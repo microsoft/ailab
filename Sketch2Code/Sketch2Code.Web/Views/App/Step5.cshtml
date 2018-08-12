@@ -1,0 +1,114 @@
+﻿@model Sketch2Code.Web.Models.GeneratedHtmlModel
+
+@{
+    var folderId = @Request.Url.Segments.Last();
+}
+
+@section Message
+    {
+    <h3 class="subtitle2 text-white">It's done!</h3>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#step3").addClass("active");
+            $("#step3txt").addClass("active");
+            $("#step2").removeClass("active");
+            $("#step2txt").removeClass("active");
+            $("#step1").removeClass("active");
+            $("#step1txt").removeClass("active");
+
+        });
+    </script>
+
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=199519676943&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+}
+
+<div id="actions" class="container-fluid">
+
+
+    
+        <div class="row">
+            <div class="col text-center justify-content-center ml-4">
+                <p>YOUR SKETCH</p>
+                <img alt="Your sketch" class="img-finish" src="@String.Format("https://sketch2code.blob.core.windows.net/{0}/original.png", Model.FolderId)">
+            </div>
+            <div class="col-3 col-md-2 text-center justify-content-center">
+                    <img alt="Success" id="success" src="/content/img/button_success.png">
+            </div>
+            <div class="col text-center justify-content-center mr-4">
+                <p> YOUR HTML</p>
+                <img alt="Your html code"class="img-finish"  src="@String.Format("https://sketch2code.blob.core.windows.net/{0}/html.png", Model.FolderId)">
+            </div>
+        </div>
+  
+</div>
+    
+
+    <div class="row justify-content-center pt-5">
+        <a href="@Url.RouteUrl(new { controller = "layout", action = "result", id = folderId })">
+            <img class="finish-img" alt="Download html" src="/content/img/button_download.svg">
+        </a>
+    </div>
+    <div class="row justify-content-center pt-3 pb-3">
+        <a href="@Url.RouteUrl(new { controller = "app", action = "Details", id = folderId })" target="_blank">
+            <img class="finish-img" alt="Predicted object details" src="/content/img/predicted_object_details.svg">
+        </a>
+    </div>
+    <div class="row justify-content-center pb-3">
+        <a href="/" id="main_02_startOver"><span style="text-decoration: underline;">TRY A NEW DESIGN</span></a>
+    </div>
+
+<div class="d-flex justify-content-center mt-3 mb-3">
+    <div class="fb-share-button p-2" data-href="https://sketch2code.azurewebsites.net" data-layout="button" data-size="large" data-mobile-iframe="false">
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsketch2code.azurewebsites.net%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+    </div>
+
+    <div class="twitter p-2">
+        <a class="twitter-share-button"
+           href="https://twitter.com/intent/tweet?text=Look%20at%20the%20HTML%20code%20I%20have%20created%20using%20AI%20with%20Sketch2Code!"
+           data-size="large" text="Look at this!!">
+            Tweet
+        </a>
+    </div>
+
+    <div class="p-2">
+        <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+        <script type="IN/Share" data-url="sketch2code.azurewebsites.net">
+        </script>
+    </div>
+
+
+</div>
+
+
+
+

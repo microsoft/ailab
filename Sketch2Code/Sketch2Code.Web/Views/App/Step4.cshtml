@@ -1,0 +1,103 @@
+﻿@model Sketch2Code.Web.Models.GeneratedHtmlModel
+
+@section Steps
+{
+    <div id="upload" class="d-flex pd-top1">
+        <div>
+            <span class="dot active"><span class="header-number active">1</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">UPLOAD DESIGN</p>
+    </div>
+    <hr>
+    <div class="d-flex pd-top2">
+        <div>
+            <span class="dot active"><span class="header-number active">2</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">SKETCH2CODE IS AT WORK!</p>
+    </div>
+    <hr>
+    <div id="download" class="d-flex pd-top3">
+        <div>
+            <span class="dot active"><span class="header-number active">3</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">DOWNLOAD YOUR HTML</p>
+    </div>
+}
+@{
+    var folderId = @Model.FolderId;
+}
+
+<div class="row">
+    <div class="col col-0 col-md-0">
+        <div class="row justify-content-center">
+
+            <h1 class="text-center justify-content-center"><span class="main_sketch">Sketch</span><span class="text-white main_two">2</span><span class="main_code">Code</span></h1>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-12 col-md-12">
+                <h2 class="text-center text-white justify-content-center main_subtitle" id="main_01_subtitle">Transform any hands-drawn design into a HTML code with AI.</h2>
+            </div>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-12 col-md-12">
+                <h2 class="text-center text-white justify-content-center main_subtitle" id="main_04_subtitle">It's done!</h2>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<div class="row justify-content-center" id="main_04_rowBottom">
+
+    <div class="col d-flex justify-content-center align-items-center col-12 col-md-10">
+        <div class="text-center main_yourSketch">
+            <p class="main_03_choices">
+                <a href="@Url.RouteUrl(new { controller = "template", action = "file", container = folderId, fileName = "original.png"})" target="_blank">YOUR SKETCH</a>
+            </p>
+            <a href="@Url.RouteUrl(new { controller = "template", action = "file", container = folderId, fileName = "original.png"})" target="_blank">
+                <img alt="Your sketch" class="img-fluid" src="/content/img/step2_leftCircle.png">
+            </a>
+        </div>
+        <hr class="main_03_lines">
+        <div class="d-flex justify-content-center main_process"><img alt="Success" src="/content/img/button_success.png" width="100%" height="100%"></div>
+        <hr class="main_03_lines">
+        <div class="text-center main_yourHtml">
+            <p class="main_03_choices">
+                <a href="@Url.RouteUrl(new { controller = "Layout", action = "RawGroupBox", id = folderId })" target="_blank">YOUR HTML CODE</a>
+            </p>
+            <a href="@Url.RouteUrl(new { controller = "Layout", action = "RawGroupBox", id = folderId })" target="_blank">
+                <img alt="Your html code" class="img-fluid" src="/content/img/step2_rightCircle%20(2).png">
+            </a>
+        </div>
+    </div>
+
+</div>
+<div class="row justify-content-center" id="row_download">
+
+    <div class="col d-flex center-buttom"><a href="@Url.RouteUrl(new { controller = "layout", action = "result", id = folderId })"><img alt="Download html" src="/content/img/button_download.svg" width="300px"></a></div>
+
+</div>
+
+<div class="row justify-content-center" id="row_predicted">
+
+    <div class="col d-flex center-buttom"><a href="@Url.RouteUrl(new { controller = "app", action = "Details", id = folderId })"><img alt="Predicted object details" src="/content/img/predicted_object_details.svg" width="300px"></a></div>
+
+</div>
+
+<div class="row justify-content-center" id="row_predicted">
+
+    <div class="col d-flex center-buttom">
+        <a href="/" id="main_02_startOver"><span style="text-decoration: underline;">OR START OVER</span></a>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,34 @@
+﻿@model IList<Sketch2Code.Web.Models.PredictionViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+
+<h2>Your Predictions: </h2>
+        <div class="container">
+        @foreach (var item in Model)
+        { 
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="badge badge-primary">@item.PredictionName (@item.LastModified)</label>
+                </div>
+                <div class="col-md-2">
+                    <a href="@Url.RouteUrl(new { controller = "Layout", action = "GroupBox", id = @item.PredictionName })">HTML Results</a>
+                    
+                </div>
+                <div class="col-md-2">
+                    <a href="@Url.RouteUrl(new { controller = "Template", action = "Details", id = @item.PredictionName })">Predicted Results</a>
+                </div>
+
+
+            </div>
+           }
+         </div>
+
+@Bootstrap.Icon(IconType.Upload)
+<span class="octicon octicon-cloud-upload"></span><span> You can also</span>
+<a href="@Url.RouteUrl(new { controller = "template", action = "uploader" })">upload</a>
+<span>an image</span>
+
+
+

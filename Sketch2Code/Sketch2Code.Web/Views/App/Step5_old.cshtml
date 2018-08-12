@@ -1,0 +1,47 @@
+﻿@model Sketch2Code.Web.Models.GeneratedHtmlModel
+@{
+    ViewBag.Title = "Step5";
+    Layout = null;
+}
+
+<html>
+<head>
+    <script src="~/Scripts/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div style="margin-left:-10000px;float:left;">
+        @Html.Raw(Model.Html)
+    </div>
+
+    <img id="htmlOriginalImage" width="400px" src='@String.Format("https://sketch2code.azurewebsites.net/template/file?container={0}&fileName=original.png", Model.FolderId)'/>
+
+    <img id="htmlImage" width="400px" />
+
+    <script>
+        html2canvas(document.querySelector("#generatedHTML")).then(function (canvas) {
+            // Export the canvas to its data URI representation
+            var base64image = canvas.toDataURL("image/png");
+            base64image = base64image.replace('data:image/png;base64,', '');
+            sendFileToServer(base64image);
+        });
+
+        function sendFileToServer(base64image) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveFile", "App")',
+                data: {
+                    imgBase64: base64image, folderId: '@Model.FolderId'
+                }
+            }).done(function (o) {
+                $('#htmlImage').attr("src", o);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+

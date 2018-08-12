@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GroupBox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IsEmpty>false</IsEmpty>
+  <X>10</X>
+  <Y>10</Y>
+  <Height>100</Height>
+  <Width>100</Width>
+  <Groups>
+    <GroupBox>
+      <IsEmpty>false</IsEmpty>
+      <X>10</X>
+      <Y>10</Y>
+      <Height>100</Height>
+      <Width>100</Width>
+      <Groups />
+      <Boxes>
+        <BoundingBox>
+          <Code>b1</Code>
+          <X>10</X>
+          <Y>10</Y>
+          <Height>100</Height>
+          <Width>100</Width>
+        </BoundingBox>
+      </Boxes>
+      <Direction>Horizontal</Direction>
+    </GroupBox>
+    <GroupBox>
+      <IsEmpty>true</IsEmpty>
+      <X>0</X>
+      <Y>0</Y>
+      <Height>0</Height>
+      <Width>0</Width>
+      <Groups />
+      <Boxes />
+      <Direction>Horizontal</Direction>
+    </GroupBox>
+    <GroupBox>
+      <IsEmpty>false</IsEmpty>
+      <X>10</X>
+      <Y>200</Y>
+      <Height>100</Height>
+      <Width>100</Width>
+      <Groups />
+      <Boxes>
+        <BoundingBox>
+          <Code>b2</Code>
+          <X>10</X>
+          <Y>200</Y>
+          <Height>100</Height>
+          <Width>100</Width>
+        </BoundingBox>
+      </Boxes>
+      <Direction>Horizontal</Direction>
+    </GroupBox>
+  </Groups>
+  <Boxes />
+  <Direction>Vertical</Direction>
+</GroupBox>

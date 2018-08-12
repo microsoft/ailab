@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+<div class="container pb-0">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="row">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+        </div>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container text-center">
+                    <img src="../Content/img/sampleDesigns/sample1.jpg" alt="Los Angeles" style="width:200px;height:200px">
+                    <form enctype="multipart/form-data" method="post" action="/app/step2fromsample/sample1">
+                        <input type="submit" value="Use this sample" class="btn btn-success mt-3" />
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="container text-center">
+                    <img src="../Content/img/sampleDesigns/sample2.jpg" alt="Los Angeles" style="width:200px;height:200px">
+                    <form enctype="multipart/form-data" method="post" action="/app/step2fromsample/sample2">
+                        <input type="submit" value="Use this sample" class="btn btn-success mt-3" />
+                    </form>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="container text-center">
+                    <img src="../Content/img/sampleDesigns/sample3.jpg" alt="Los Angeles" style="width:200px;height:200px">
+                    <form enctype="multipart/form-data" method="post" action="/app/step2fromsample/sample3">
+                        <input type="submit" value="Use this sample" class="btn btn-success mt-3" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+</div>
+
+<div id="actions" class="container-fluid">
+    <div class="row">
+        <div class="col d-flex flex-column justify-content-center">
+            <form id="file_upload" class="center-hz-right" enctype="multipart/form-data" method="post" action="@Url.RouteUrl("ready-to-start")">
+                <label for="imageData">
+                    <img alt="Upload sketch" src="/content/img/button_upload.svg" width="250px">
+                    <input id="imageData" class="custom-file-input" name="imageData" type="file" accept="image/*" onchange="submitFile();" />
+                </label>
+            </form>
+        </div>
+        <div class="col col-md-1 d-flex flex-column justify-content-center hidden-responsive"><span class="main-or">OR</span></div>
+        <div class="col d-flex flex-column justify-content-center hidden-responsive">
+            <a href="@Url.RouteUrl("camera")" id="main_01_button_pic"><img alt="Take a picture" src="/content/img/button_picture.svg" width="250px"></a>
+        </div>
+    </div>
+</div>
+
+<div id="howItWorks" class="container">
+    <h3 class="text-center">Experiment Workflow</h3>
+
+    <div class="container">
+        <div id="step1" class="row">
+            <div class="col">
+                <div class="title">
+                    <div class="number">01</div>
+                    <h5>
+                        Detect Design Patterns
+                    </h5>
+                </div>
+                <p>
+                    A Custom Vision Model trained to perform object recognition against
+                    HTML hand drawn patterns is used to detect meaningful design elements into an image.&nbsp;
+                </p>
+            </div>
+            <div class="col align-middle"><img src="/Content/img/how_to_01PNG.png" /></div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div id="step2" class="row">
+            <div class="col">
+                <img alt="Understand handwritten text" src="/Content/img/how_to_02PNG.png">
+            </div>
+            <div class="col">
+                <div class="title">
+                    <div class="number">02</div>
+                    <h5>
+                        Understand handwritten text
+                    </h5>
+                </div>
+                <p>
+                    Each detected element is passed through a Text Recognition Service to extract handwritten content.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="step3" class="row">
+            <div class="col">
+                <div class="title">
+                    <div class="number">03</div>
+                    <h5>
+                        Understand Structure
+                    </h5>
+                </div>
+                <p>
+                    The information of the detected objects and their position inside the
+                    image is feed into an algorithm that generates underlying structure.
+                </p>
+            </div>
+            <div class="col align-middle"><img alt="Understand Structure" src="/Content/img/how_to_03PNG.png"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="step4" class="row">
+            <div class="col">
+                <img alt="Understand handwritten text" src="/Content/img/how_to_04PNG.png">
+            </div>
+            <div class="col">
+                <div class="title">
+                    <div class="number">04</div>
+                    <h5>
+                        Build HTML
+                    </h5>
+                </div>
+                <p>
+                    A valid HTML is generated accordingly to the detected layout containing the detected design elements.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function submitFile() {
+            $("#file_upload").submit();
+        }
+    </script>
+}

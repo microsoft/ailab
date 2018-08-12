@@ -1,0 +1,8 @@
+﻿@model Sketch2Code.Core.Entities.PredictedObject
+@{ 
+    var width = $"{Convert.ToInt32(Model.BoundingBox.Width)}px";
+    var height = $"{Convert.ToInt32(Model.BoundingBox.Height)}px";
+}
+
+<img alt="Image html" width="90%" height="90%" style="max-height:500px;max-width:500px;" src="/Content/img/fake_img.svg"/>
+

@@ -1,0 +1,86 @@
+﻿    <div class="container">
+
+        <div class="row">
+            <div class="col-md-5">
+                @Bootstrap.H1("Product Page")
+            </div>
+
+        </div>
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-3" style="margin-top:30px;">
+                    <img class="border border-secondary" width="200" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es" />
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+                    <div class="col-md-3 col-md-offset-0">
+                        <img class="border border-secondary" width="100" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es" />
+                    </div>
+                    <div class="col-md-3">
+                        <img class="border border-secondary" width="100" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es" />
+                    </div>
+                    <div class="col-md-3">
+                        <img class="border border-secondary" width="100" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es" />
+                    </div>
+                    <div class="col-md-3">
+                        <img class="border border-secondary" width="100" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es" />
+                    </div>
+
+             </div>
+
+
+        </div>
+        
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                
+                @Bootstrap.H1("Product Name")
+          
+                  
+            </div>
+
+            <div class="row">
+                @Bootstrap.Label(LabelType.DefaultGray, "Manufacturer")
+            </div>
+            <div class="row">
+                @Bootstrap.Label(LabelType.DefaultGray, "Color:")
+            </div>
+            <div class="row">
+                @Bootstrap.Radio(1, "Red")
+            </div>
+            <div class="row">
+                @Bootstrap.Radio(1, "Blue")
+            </div>
+            <div class="row">
+                @Bootstrap.Radio(1, "White")
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    @Bootstrap.Label(LabelType.DefaultGray, "Price")
+                </div>
+                <div class="col-md-2">
+                    @Bootstrap.Label(LabelType.DefaultGray, "Old Price")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    @Bootstrap.Label(LabelType.DefaultGray, "$100")
+                </div>
+                <div class="col-md-2">
+                    @Bootstrap.Label(LabelType.DefaultGray, "$200")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" style="margin-top:10px;">
+                    @Bootstrap.Button(ButtonType.PrimaryBlue,"Add To Cart")
+                </div>
+            </div>
+
+       </div>
+    </div>
+</div>
+   

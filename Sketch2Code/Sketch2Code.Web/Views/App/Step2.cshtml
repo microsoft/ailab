@@ -1,0 +1,76 @@
+﻿@model Sketch2Code.Web.Models.ContentViewModel
+@section Steps
+{
+    <div id="upload" class="d-flex pd-top1">
+        <div>
+            <span class="dot active"><span class="header-number active">1</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">UPLOAD DESIGN</p>
+    </div>
+    <hr>
+    <div class="d-flex pd-top2">
+        <div>
+            <span class="dot"><span class="header-number">2</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt">SKETCH2CODE IS AT WORK!</p>
+    </div>
+    <hr>
+    <div id="download" class="d-flex pd-top3">
+        <div>
+            <span class="dot"><span class="header-number">3</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt">DOWNLOAD YOUR HTML</p>
+    </div>
+}
+<div class="row justify-content-center" id="main_02_row1">
+    <div class="col col-0 col-md-6">
+        <div class="row">
+            <div class="col col-0 col-md-0">
+                <div class="row justify-content-center">
+
+                    <h1 class="text-center justify-content-center step"><span class="main_sketch">Sketch</span><span class="text-white main_two">2</span><span class="main_code">Code</span></h1>
+
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col col-12 col-md-12">
+                        <h2 class="text-center text-white justify-content-center main_subtitle" id="main_01_subtitle">Transform any hands-drawn design into a HTML code with AI.</h2>
+                    </div>
+                   
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col col-12 col-md-6">
+                        <h2 class="text-center text-white justify-content-center main_subtitle" id="main_02_subtitle">We're ready!</h2>
+                    </div>
+                    
+                </div>
+
+
+            </div>
+           
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center" id="main_02_imgCircle"><img alt="Your sketch" class="let_magic" src="/content/img/step2_leftCircle.png"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="main_02_row2">
+    <div class="col">
+        <div class="d-flex flex-column justify-content-center align-items-center" id="file_Let">
+            <form enctype="multipart/form-data" method="post" action="@Url.RouteUrl("work-in-progress")">
+                <label for="submitForm">
+                    <img alt="Let the magic begin" src="/content/img/button_letMagic.png">
+                    <input id="submitForm" type="submit">
+                    <input id="imageData" name="imageData" type="hidden" value="@Model.ImageData" />
+                </label>
+            </form>
+
+            <a href="/" id="main_02_startOver"><span style="text-decoration: underline;">OR START OVER</span></a>
+        </div>
+    </div>
+</div>
+
+

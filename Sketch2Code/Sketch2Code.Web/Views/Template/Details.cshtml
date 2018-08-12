@@ -1,0 +1,60 @@
+﻿@model Sketch2Code.Web.Models.PredictionDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+    var blobStorageUrl = System.Configuration.ConfigurationManager.AppSettings["storageUrl"];
+    var originalFileName = $"{blobStorageUrl}/{Model.Name}/original.png";
+    var predictedFileName = $"{blobStorageUrl}/{Model.Name}/predicted.png";
+}
+<h2>Prediction Details - @Model.Name</h2>
+<a href="@Url.RouteUrl(new { controller = "Template", action = "FileJson", container = Model.Name })">Download JSON</a>
+
+@*Predicted Panel*@
+<div class="card">
+    <div class="card-header"><span class="octicon octicon-eye"></span> Predicted Objects</div>
+    <div class="card-body">
+        @foreach (var item in Model.Detail.AllClasses)
+        {
+            <span class="badge">@item</span>
+
+        }
+
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+@*Images Panel*@
+<div class="card">
+    <div class="card-header"><span class="octicon octicon-file-media"></span> Predicted Objects - Images used in prediction</div>
+    <div class="card-body">
+        <img width="400" src="@originalFileName" />
+        <a href="@originalFileName" target="_blank">View full image</a>
+        <img width="400" src="@predictedFileName" />
+        <a href="@predictedFileName" target="_blank">View full image</a>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+@*Sliced Images Panel*@
+<div class="card">
+    <div class="card-header"><span class="octicon octicon-file-media"></span> Sliced Objects from predicted image</div>
+    <div class="card-body">
+        @foreach (var item in Model.Detail.PredictedObjects)
+        {
+            var url = $"{blobStorageUrl}/{Model.Name}/{item.FileName}";
+            <div>
+                <img class="border border-secondary" width="200" src="@url" />
+                <span class="badge">@item.ClassName</span>
+                @if (item.Text != null && item.Text.Any())
+                {
+                    <span class="badge">@String.Join(" ", item.Text.ToArray())</span>
+                }
+            </div>
+        }
+
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+

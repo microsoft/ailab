@@ -1,0 +1,77 @@
+﻿@model Sketch2Code.Web.Models.ContentViewModel
+
+@section Message
+    {
+    <h3 class="subtitle2 text-white">Working on your Sketch. Please wait...</h3>
+}
+
+
+<div id="actions" class="container-fluid">
+    <div class="row justify-content-center pb-5">
+        <img alt="Your sketch" class="img-load-responsive" src="@String.Format("https://sketch2code.blob.core.windows.net/{0}/original.png", Model.CorrelationId)" >
+    </div>
+    <div class="row justify-content-center pb-4">
+        <img alt="Loading" class="img-responsive-status" src="/content/img/loader.gif" />
+    </div>
+</div>
+
+<input type="hidden" id="correlationId" value="@Model.CorrelationId" />
+<div style="margin-left:-10000px;float:left;" id="htmlContainer">
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#step2").addClass("active");
+            $("#step2txt").addClass("active");
+            $("#step1").removeClass("active");
+            $("#step1txt").removeClass("active");
+
+        });
+    </script>
+
+    <script src="~/Scripts/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var uploadUrl = "@Url.RouteUrl("upload")";
+            var formData = new FormData();
+            formData.append('correlationId', $("#correlationId").val());
+            $.ajax({
+                url: uploadUrl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    document.querySelector("#htmlContainer").innerHTML = data.generatedHtml;
+                    generateHtml();
+                }
+            });
+        });
+
+        function generateHtml() {
+            html2canvas(document.querySelector("#generatedHTML")).then(function (canvas) {
+                // Export the canvas to its data URI representation
+                var base64image = canvas.toDataURL("image/png");
+                base64image = base64image.replace('data:image/png;base64,', '');
+                sendFileToServer(base64image);
+            });
+        }
+
+        function sendFileToServer(base64image) {
+            var routeUrl = "/generated-html/";
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveFile", "App")',
+                data: {
+                    imgBase64: base64image, folderId: '@Model.CorrelationId'
+                },
+                success: function (o) {
+                    window.location.href = routeUrl + '@Model.CorrelationId';
+                }
+            });
+        }
+    </script>
+}

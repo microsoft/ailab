@@ -1,0 +1,60 @@
+﻿
+@using Sketch2Code.Core.BoxGeometry;
+
+@model Sketch2Code.Core.BoxGeometry.GroupBox
+@{
+    ViewBag.Title = "GroupBox";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+<div class="container">
+    @ShowTree(Model.Groups.ToList())
+</div>
+@helper ShowTree(IEnumerable<Sketch2Code.Core.BoxGeometry.GroupBox> groupbox)
+    {
+
+
+foreach (var g in groupbox)
+{
+
+ 
+
+    var justify = "";
+
+
+    if (g.Alignment.ToString().Equals(GroupBox.GroupAlignmentEnum.Left.ToString()))
+    {
+        justify = "justify-content-start";
+    }
+    else if (g.Alignment.ToString().Equals(GroupBox.GroupAlignmentEnum.Right.ToString()))
+    {
+        justify = "justify-content-end";
+    }
+    else
+    {
+        justify = "justify-content-center";
+    }
+
+
+    if (g.IsEmpty == false)
+    {
+                <div class="@(g.Direction.ToString() == "Horizontal" ? "row "+justify : "col")" style="padding-top:10px;">
+                    @if (g.Boxes.Any())
+                    {
+                        foreach (var box in g.Boxes)
+                        {
+                            @Html.Partial($"_{box.PredictedObject.ClassName}", box.PredictedObject);
+                        }
+                    }
+
+                    @if (g.Groups.Any())
+                    {
+
+                        @ShowTree(g.Groups)
+                    }
+                </div>
+            }
+
+        }
+
+
+}

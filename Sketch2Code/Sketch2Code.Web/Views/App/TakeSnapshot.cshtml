@@ -1,0 +1,147 @@
+﻿
+@section Message
+    {
+    <h3 class="subtitle2 text-white">Take a picture from your camera</h3>
+}
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            const video = document.querySelector('#basic-stream');
+
+            const button_region = document.querySelector('#capture-button-region');
+            const screenshotButton_region = document.querySelector('#screenshot-button-region');
+            const cropButton_region = document.querySelector('#screenshot-crop-button-region');
+            const screenshotButton = document.querySelector('#screenshot-button');
+            const cropButton = document.querySelector('#crop-button');
+            const restartButton = document.querySelector('#restart-button');
+            const img = document.querySelector('#screenshot-placeholder');
+            const screenshot = document.querySelector('#imageData');
+            const theForm = document.querySelector('#capture-uploader-form');
+            const videoContainer = document.querySelector('#camera-view');
+            const screenshotContainer = document.querySelector('#screenshot-view');
+
+            var cropper = null;
+            var localMediaStream = null;
+            const constraints = { video: true };
+
+            function handleError(error) { console.error('navigator.getUserMedia error: ', error); }
+
+            function handleSuccess(stream) {
+                screenshotMode();
+                window.stream = stream; // only to make stream available to console
+                video.srcObject = stream;
+                return false;
+            }
+
+            cropButton.onclick = function () {
+
+                cropper.crop();
+                var imgSource = cropper.getCroppedCanvas().toDataURL("image/png");
+                var imageSegments = imgSource.split(",");
+                screenshot.value = imageSegments.pop();
+                cropper.destroy();
+                img.src = imgSource;
+                cropMode();
+                theForm.submit();
+                return false;
+            }
+
+            screenshotButton.onclick = video.onclick = function () {
+                cropMode();
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                img.src = canvas.toDataURL('image/png');
+                cropper = new Cropper(img, { viewMode: 2 });
+                return false;
+            };
+
+            restartButton.onclick = function () {
+                cropper.destroy();
+                restartMode();
+                return false;
+            }
+
+            var screenshotMode = function () {
+                show(videoContainer);
+                show(screenshotButton_region);
+                hide(button_region);
+                hide(cropButton_region);
+                hide(screenshotContainer);
+                toogleFooter();
+            }
+            var cropMode = function () {
+                hide(videoContainer);
+                hide(screenshotButton_region);
+                show(cropButton_region);
+                show(screenshotContainer);
+                toogleFooter();
+            }
+            var restartMode = function () {
+                return screenshotMode();
+            }
+
+            var hide = function (element) {
+                if (element)
+                    element.style.display = 'none';
+            };
+
+            var show = function (element) {
+                if (element && element.style.display == 'none')
+                    element.style.display = '';
+            }
+
+            var toogleFooter = function () {
+                $("div.fixed-bottom").removeClass("fixed-bottom");
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+
+        });
+    </script>
+}
+<div class="row">
+    <div class="col">
+
+        <form method="post" action="@Url.RouteUrl("work-in-progress")" id="capture-uploader-form">
+            <div class="row">
+                <div class="col">
+                    <div class="container video-controls">
+                        <div class="row" id="camera-view" style="display:none">
+                            <div class="col">
+                                <div class="justify-content-center">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video class="embed-responsive-item videostream" id="basic-stream" autoplay=""></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2" id="screenshot-view" style="display:none">
+                            <div class="col">
+                                <div class="justify-content-center">
+                                    <img alt="Taken picture" id="screenshot-placeholder">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 text-center command-buttons" id="screenshot-button-region" style="display:none">
+                            <div class="col">
+                                <a href="#" id="screenshot-button"><img alt="Screenshot" src="/content/img/button_screenshot.svg" style="width:300px; margin-top:2em; margin-bottom:2em;" /></a>
+                            </div>
+                        </div>
+                        <div class="row command-buttons mt-2" id="screenshot-crop-button-region" style="display:none">
+                            <div class="col">
+                                <div class="float-left"><a href="#" id="crop-button"><img alt="Crop and upload" src="/content/img/button_crop.svg" style="width:300px; margin-top:2em" /></a></div>
+                                <div class="float-right"><a href="#" id="restart-button"><img alt="Restart" src="/content/img/button_restart.svg" style="width:300px; margin-top:2em" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <input type="hidden" name="imageData" id="imageData" />
+        </form>
+    </div>
+</div>
+

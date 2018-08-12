@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Sketch2Code - Transform sketches into HTML markup automagically!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="~/Content/octicons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    @RenderSection("Content", required: false)
+    <script type='text/javascript'>
+        var appInsights = window.appInsights || function (config) {
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
+            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;)r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
+        }({
+            instrumentationKey: '0bf8d80a-82a1-4966-947c-9d7b15bf42d8'
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+
+
+  
+</head>
+<body>
+    <div id="disclaimer" class="disclaimer text-white hide" aria-hidden="true">
+        This site uses cookies for analytics, personalized content and ads. By continuing to browse this site, you agree to this use.
+        <a class="learn-more" href="https://privacy.microsoft.com/en-US/">Learn more</a>
+        <button class="close" id="cookie-consent" aria-label="Close">X</button>
+    </div>
+    
+        <div class="container-fl" id="header">
+            <div class="row header-row">
+                <div class="col-lg-2 col-xl-2 col-md-2 col-6"><img alt="Microsoft Logo" class="img-fluid float-left d-flex flex-column justify-content-end center-logo" src="~/content/img/logo_MS.png"></div>
+                <div class="col header-column justify-content-center">
+                    @RenderSection("Steps")
+                </div>
+                <div class="col-lg-2 col-xl-2 col-md-2 col-6 float-left d-flex flex-column justify-content-start"><a class="link d-flex flex-column justify-content-end" target="_blank" href="https://www.ailab.microsoft.com/">AI Lab</a></div>
+                
+            </div>
+
+           
+        </div>
+
+        <div class="container-fl" id="content">
+            @RenderBody()
+        </div>
+
+        <div class="container-fl container_Bottom" id="footer">
+            <div class="row3">
+                <div class="col float-left d-flex flex-column justify-content-end align-items-start"><img alt="Microsoft Logo" class="img-fluid float-left d-flex flex-column justify-content-end center-logo2" src="~/content/img/logo_MS.png"></div>
+                <div class="col"><img alt="Logo web" class="img-fluid float-right hidden-responsive" src="/content/img/img_spareMobile.svg" id="img_bottomRight"></div>
+            </div>
+            <div class="row2">
+                <div class="col footer">
+                    <span>Your picture may be used to improve the underlying AI.</span>
+                   
+                    <div class="footer-links">
+                        <div class="col col-0 line-block" style="margin-left:6px!important; margin-bottom:2em;"></div>
+                        <div class="col col-0" style="margin-bottom:2em;"><a target="_blank" href="https://www.ailab.microsoft.com/">AI Lab</a></div>
+                        <div class="col col-0 line-block"  style="margin-bottom:2em;"><a target="_blank" href="https://support.microsoft.com/en-us/contactus">Contact Us</a></div>
+                        <div class="col col-0 line-block" style="margin-bottom:2em;"><a target="_blank" href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy &amp; Cookies</a></div>
+                        <div class="col col-0 line-block" style="margin-bottom:2em;"><a target="_blank" href="https://go.microsoft.com/fwlink/?LinkID=206977">Terms of use</a></div>
+                        <div class="col col-0 line-block"  style="margin-bottom:2em;"><a target="_blank" href="https://www.microsoft.com/trademarks">Trademarks</a></div>
+                        <div class="col col-0 line-block"  style="margin-bottom:2em;"><span>© Microsoft 2018<br></span></div>
+                        <div class="col col-0 line-block"></div>
+
+
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+       
+    </div>
+        
+
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+        var consent = function () {
+            return (document.cookie.indexOf("Sketchconsent") != -1);
+        }
+
+        $(document).ready(function () {
+            var setConsentCookie = function () {
+                var d = new Date();
+                d.setTime(d.getTime() + (99999 * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = "Sketchconsent=1;" + expires + ";path=/";
+                $("#disclaimer").hide();
+            };
+
+            if (!consent()) {
+                $("#disclaimer").show();
+                $("#cookie-consent").click(function () {
+                    setConsentCookie();
+                });
+                $("a").click(function () {
+                    setConsentCookie();
+                });
+            }
+        });
+
+    </script>
+
+    <!--Adobe analytics-->
+    <script src="https://az725175.vo.msecnd.net/scripts/jsll-4.js" type="text/javascript">
+    </script>
+    <script>
+        const config = {
+            syncMuid: awa.utils.isValueAssigned(window.awa.cookie.getCookie('Sketchconsent')),
+            userConsentCookieName: 'Sketchconsent',
+            autoCapture: {
+                lineage: true,
+                scroll: true
+            },
+            coreData: {
+                appId: 'Sketch2Code',
+                env: 'prod',
+                market: 'en-us',
+                pageName: 'Sketch2Code',
+                pageType: 'html'
+            },
+            useShortNameForContentBlob: true
+        };
+       
+        if (consent())
+            awa.init(config);
+
+
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121469252-4"></script>
+    <script>
+        if (consent()) {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-121469252-4');
+        }
+
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        if (consent()) {
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                n.queue = []; t = b.createElement(e); t.async = !0;
+                t.src = v; s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '435868603227390');
+            fbq('track', 'PageView');
+        }
+
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=435868603227390&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <!-- Twitter universal website tag code -->
+    <script>
+        if (consent()) {
+            !function (e, t, n, s, u, a) {
+                e.twq || (s = e.twq = function () {
+                    s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+                }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = '//static.ads-twitter.com/uwt.js',
+                    a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+            }(window, document, 'script');
+            // Insert Twitter Pixel ID and Standard Event data below
+            twq('init', 'nv9r3');
+            twq('track', 'PageView');
+        }
+
+    </script>
+    <!-- End Twitter universal website tag code -->
+    <!-- Twitter universal website tag code -->
+    <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?p_id=Twitter&p_user_id=0&txn_id=nv9r3&events=%5B%5B%22pageview%22%2Cnull%5D%5D&tw_sale_amount=0&tw_order_quantity=0" />
+    <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?p_id=Twitter&p_user_id=0&txn_id=nv9r3&events=%5B%5B%22pageview%22%2Cnull%5D%5D&tw_sale_amount=0&tw_order_quantity=0" />
+    <!-- End Twitter universal website tag code -->
+    <!-- LinkedIn-->
+    <script type="text/javascript">
+        _linkedin_data_partner_id = "7850";
+    </script>
+    <script type="text/javascript">
+        if (consent()) {
+            (function () {
+                var s = document.getElementsByTagName("script")[0];
+                var b = document.createElement("script");
+                b.type = "text/javascript"; b.async = true;
+                b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+                s.parentNode.insertBefore(b, s);
+            })();
+        }
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=7850&fmt=gif" />
+    </noscript>
+
+</body>
+</html>

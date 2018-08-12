@@ -1,0 +1,111 @@
+﻿@model Sketch2Code.Web.Models.PredictionDetailsViewModel
+@{
+    var blobStorageUrl = System.Configuration.ConfigurationManager.AppSettings["storageUrl"];
+    var originalFileName = $"{blobStorageUrl}/{Model.Name}/original.png";
+    var predictedFileName = $"{blobStorageUrl}/{Model.Name}/predicted.png";
+    Layout = "~/Views/Shared/_LayoutDetails.cshtml";
+}
+
+@section Steps
+{
+
+    <div id="upload" class="d-flex pd-top1">
+        <div>
+            <span class="dot active"><span class="header-number active">1</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">UPLOAD DESIGN</p>
+    </div>
+    <hr>
+    <div class="d-flex pd-top2">
+        <div>
+            <span class="dot active"><span class="header-number active">2</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">SKETCH2CODE IS AT WORK!</p>
+    </div>
+    <hr>
+    <div id="download" class="d-flex pd-top3">
+        <div>
+            <span class="dot active"><span class="header-number active">3</span></span>
+        </div>
+        <p class="flex-shrink-0 header-txt active">DOWNLOAD YOUR HTML</p>
+    </div>
+}
+
+
+    <div class="row">
+
+        <div class="col col-0 col-md-0">
+            <div class="row justify-content-center">
+
+                <h1 class="text-center justify-content-center"><span class="main_sketch">Sketch</span><span class="text-white main_two">2</span><span class="main_code">Code</span></h1>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col col-12 col-md-12">
+                    <h2 class="text-center text-white justify-content-center main_subtitle" id="main_01_subtitle">Transform any hands-drawn design into a HTML code with AI.</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+<div class="container-fluid">
+    <div class="row detailsPage_row">
+      
+        <div class="col justify-content-center col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+            <h3 class="text-top">SKETCH</h3><img alt="Your sketch" class="img-fluid" src="@originalFileName" />
+        </div>
+        <div class="col align-self-center text-center rotation-wrapper-outer">
+            <div class="rotation-wrapper-inner"><img alt="Arrow" class="img-fluid img_arrow" src="~/Content/img/arrow_details.svg"></div>
+        </div>
+        <div class="col col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+            <h3 class="text-top">PREDICTED</h3><img alt="Your predicted skecth" class="img-fluid" src="@predictedFileName" />
+        </div>
+        @*<div class="col align-self-center text-center rotation-wrapper-outer">
+                    <div class="rotation-wrapper-inner"><img class="img-fluid img_arrow" src="assets/img/arrow_details.svg"></div>
+                </div>
+                <div class="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                     <h3 class="text-top">HTML</h3><img class="img-fluid" src="@Url.RouteUrl(new { action = "file", container = Model.Name, fileName = "html_result.png"})"/>
+            </div>*@
+
+       
+    </div>
+</div>
+<div class="container-fl">
+    <div class="row3 justify-content-center">
+   
+        <div class="col col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+            <h4 id="text-predicted" class="d-flex justify-content-center">PREDICTED OBJECT DETAILS</h4>
+            <div class="row">
+                @foreach (var item in Model.Detail.PredictedObjects)
+                {
+                    var url = $"{blobStorageUrl}/{Model.Name}/{item.FileName}";
+                    <div class="col flex-row justify-content-center d-flex col-lg-3 col-md-3 col-sm-6 col-6" style="padding-top:20px;">
+                        <div class="card">
+                            <img alt="@item.ClassName" class="img-thumbnail card-img-top w-100 d-block" src="@url">
+                            <div class="card-body">
+                                <h5 class="card-title">Type: @item.ClassName</h5>
+                                @if (item.Text != null)
+                                {
+                                    if (String.Join(" ", item.Text.ToArray()) != "")
+                                    {
+                                        <h5 class="card-title">Text: @String.Join(" ", item.Text.ToArray())</h5>
+                                    }
+                                }
+                                <h5 class="card-title">Probability: @Math.Round(item.Probability * 100, 2) %</h5>
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+     
+    </div>
+</div>
+
+

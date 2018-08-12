@@ -1,0 +1,14 @@
+﻿@model IList<Sketch2Code.Core.Entities.PredictedObject>
+@{
+    ViewBag.Title = "Generated HTML Layout";
+}
+<h2>Generated HTML Layout</h2>
+<div class="card">
+<div class="card-header"><span class="octicon octicon-code"></span> Generated Controls</div>
+<div class="card-body">
+    @foreach (var item in Model)
+    {
+    @Html.Partial($"_{item.ClassName}", item);
+    }
+</div>
+    </div>

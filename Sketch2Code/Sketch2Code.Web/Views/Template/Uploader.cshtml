@@ -1,0 +1,116 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Uploader";
+    Layout = "~/Views/Shared/_DebugLayout.cshtml";
+}
+@section Content
+{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script>
+}
+<h2>Uploader</h2>
+
+
+<div class="card">
+    <div class="card-header"><span class="octicon octicon-eye"></span>Upload Design</div>
+    <div class="card-body">
+        @using (Html.BeginForm("Uploader", "Template", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+        {
+            <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+            <input type="submit" value="Enviar" />
+        }
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+<div class="card">
+    <div class="card-header"><span class="octicon octicon-eye"></span>Take a Picture</div>
+    <div class="card-body container">
+        @using (Html.BeginForm("Uploader", "Template", FormMethod.Post, new { enctype = "multipart/form-data", id = "capture-uploader-form" }))
+        {
+            <div class="row">
+                <div class="col img-fluid">
+                    <video id="basic-stream" class="videostream" autoplay=""></video>
+                </div>
+                <div class="col img-fluid">
+                    <img alt="Taken picture" id="screenshot-placeholder">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <button id="capture-button">Capture video</button>
+                        <button id="stop-button">Stop</button>
+                        <button id="screenshot-button">Take Screenshot</button>
+                        <button id="screenshot-crop-button">Crop</button>
+                    </p>
+                </div>
+            </div>
+            <input type="hidden" name="ImageData" id="ImageData2" />
+        }
+    </div>
+    <div class="card-footer"></div>
+</div>
+<script>
+
+    function handleError(error) {
+        console.error('navigator.getUserMedia error: ', error);
+    }
+    const constraints = { video: true };
+
+    (function () {
+        const video = document.querySelector('#basic-stream');
+        const button = document.querySelector('#capture-button');
+        const screenshotButton = document.querySelector('#screenshot-button');
+        const cropButton = document.querySelector('#screenshot-crop-button');
+        const img = document.querySelector('#screenshot-placeholder');
+        const screenshot = document.querySelector('#ImageData2');
+        const theForm = document.querySelector('#capture-uploader-form');
+        var cropper = null;
+        var localMediaStream = null;
+
+        function handleSuccess(stream) {
+            window.stream = stream; // only to make stream available to console
+            video.srcObject = stream;
+            return false;
+        }
+
+        button.onclick = function () {
+            navigator.mediaDevices.getUserMedia(constraints).
+                then(handleSuccess).catch(handleError);
+            return false;
+        };
+
+        cropButton.onclick = function () {
+            cropper.crop();
+            var imgSource = cropper.getCroppedCanvas().toDataURL("image/png");
+            var imageSegments = imgSource.split(",");
+            screenshot.value = imageSegments.pop();
+            cropper.destroy();
+            img.src = imgSource;
+            theForm.submit();
+            return false;
+        }
+
+        screenshotButton.onclick = video.onclick = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);            
+            img.src = canvas.toDataURL('image/png');
+            cropper = new Cropper(img);
+            return false;
+        };
+
+        document.querySelector('#stop-button').onclick = function () {
+            video.pause();
+            return false;
+        };
+
+    })();
+
+
+</script>

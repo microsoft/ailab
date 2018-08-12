@@ -1,0 +1,92 @@
+﻿@model Sketch2Code.Web.Models.PredictionDetailsViewModel
+@{
+    var blobStorageUrl = System.Configuration.ConfigurationManager.AppSettings["storageUrl"];
+    var originalFileName = $"{blobStorageUrl}/{Model.Name}/original.png";
+    var predictedFileName = $"{blobStorageUrl}/{Model.Name}/predicted.png";
+    var htmlFileName = $"{blobStorageUrl}/{Model.Name}/html.png";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#step3").addClass("active");
+            $("#step3txt").addClass("active");
+            $("#step2").removeClass("active");
+            $("#step2txt").removeClass("active");
+            $("#step1").removeClass("active");
+            $("#step1txt").removeClass("active");
+
+        });
+    </script>
+    }
+
+
+    <div class="container-fluid">
+        <div class="row detailsPage_row">
+
+            <div class="col">
+                <h3 class="subtitle3 text-top text-center">SKETCH</h3>
+            </div>
+
+            <div class="col">
+                <h3 class="subtitle3 text-top text-center">PREDICTED</h3>
+            </div>
+
+            <div class="col">
+                <h3 class="subtitle3 text-top text-center">HTML</h3>
+            </div>
+
+
+        </div>
+        <div class="row">
+
+            <div class="col  bg-white align-content-center center-vt mr-2 ml-2">
+                <img alt="Your sketch" class="img-fluid" src="@originalFileName" />
+            </div>
+            <div class="col  bg-white align-content-center center-vt ml-2 mr-2">
+                <img alt="Your predicted skecth" class="img-fluid" src="@predictedFileName" />
+            </div>
+            <div class="col  bg-white align-content-center center-vt ml-2 mr-2">
+                <img alt="Your html code" class="img-fluid" src="@htmlFileName">
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="container-float pt-5 mb-5">
+        <div class="row justify-content-center">
+
+
+            <h4 id="text-predicted" class="subtitle3 d-flex justify-content-center">PREDICTED OBJECT DETAILS</h4>
+        </div>
+        <div id="predictedObjects" class="row">
+            @foreach (var item in Model.Detail.PredictedObjects)
+            {
+                var url = $"{blobStorageUrl}/{Model.Name}/{item.FileName}";
+                <div class="col-6 col-md-3 flex-row justify-content-center d-flex" style="padding-top:20px;">
+                    <div class="card">
+                        <img alt="@item.ClassName" class="img-thumbnail card-img-top w-100 d-block" src="@url">
+                        <div class="card-body">
+                            <h5 class="card-title">Type: @item.ClassName</h5>
+                            @if (item.Text != null)
+                            {
+                                if (String.Join(" ", item.Text.ToArray()) != "")
+                                {
+                                    <h5 class="card-title">Text: @String.Join(" ", item.Text.ToArray())</h5>
+                                }
+                            }
+                            <h5 class="card-title">Probability: @Math.Round(item.Probability * 100, 2) %</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+
+
+    </div>
+

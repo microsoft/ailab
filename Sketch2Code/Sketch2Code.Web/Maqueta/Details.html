@@ -1,0 +1,192 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - Sketch2Code - Transform sketches into HTML markup automagically!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!--link href="/Content/octicons.css" rel="stylesheet" type="text/css" /-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+    <link href="/Content/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+        <div id="header" class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <img alt="Microsoft Logo" src="/content/img/logo_MS.png">
+                </div>
+
+                <div class="col text-right">
+                    <a target="_blank" href="https://www.ailab.microsoft.com/">
+                        AI Lab
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid hidden-responsive">
+            <div id="steps" class="row justify-content-center">
+                <div class="col">
+                    <span class="dot">1</span>
+                    <span class="header-txt">UPLOAD DESIGN</span>
+                </div>
+
+                <div class="col">
+                    <span class="dot">2</span>
+                    <span class="header-txt">SKETCH2CODE IS AT WORK!</span>
+                </div>
+
+                <div class="col">
+
+                    <span class="dot active">3</span>
+
+                    <span class="header-txt active">DOWNLOAD YOUR HTML</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="title">
+                <h1>
+                    <span class="main">Sketch</span>
+                    <span class="number">2</span>
+                    <span class="main">Code</span>
+                </h1>
+
+                <h2 class="subtitle">Transform any hands-drawn design into a HTML code with AI.</h2>
+                <h3 class="subtitle2">It's done!</h3>
+            </div>
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-top">SKETCH</h3><img alt="Your sketch" class="img-fluid" src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/original.png" />
+                    </div>
+                    <div class="col">
+                        <div class="rotation-wrapper-inner"><img alt="Arrow" class="img-fluid img_arrow" src="/Content/img/arrow_details.svg"></div>
+                    </div>
+                    <div class="col">
+                        <h3 class="text-top">PREDICTED</h3><img alt="Your predicted skecth" class="img-fluid" src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/predicted.png" />
+                    </div>
+                    <div class="col">
+                        <div class="rotation-wrapper-inner"><img alt="Arrow" class="img-fluid img_arrow" src="/Content/img/arrow_details.svg"></div>
+                    </div>
+                    <div class="col">
+                        <h3 class="text-top">HTML</h3><img class="img-fluid" src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/predicted.png" />
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="container-fluid">
+
+                <div class="row justify-content-center">
+                    <h4 id="text-predicted" class="d-flex justify-content-center">PREDICTED OBJECT DETAILS</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col flex-row justify-content-center" style="padding-top:20px;">
+                        <div class="card">
+                            <img src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/slices/slice_Image_4.png" class="mx-auto" style="width:200px;height:200px" />
+                            <div class="card-body">
+                                <h5 class="card-title">Type:</h5>
+                                <h5 class="card-title">Text:</h5>
+                                <h5 class="card-title">Probability:</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col flex-row justify-content-center" style="padding-top:20px;">
+                        <div class="card">
+                            <img src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/slices/slice_Image_4.png" width="200px" height="200px" />
+                            <div class="card-body">
+                                <h5 class="card-title">Type:</h5>
+                                <h5 class="card-title">Text:</h5>
+                                <h5 class="card-title">Probability:</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col flex-row justify-content-center" style="padding-top:20px;">
+                        <div class="card">
+                            <img src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/slices/slice_Image_4.png" width="200px" height="200px" />
+                            <div class="card-body">
+                                <h5 class="card-title">Type:</h5>
+                                <h5 class="card-title">Text:</h5>
+                                <h5 class="card-title">Probability:</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col flex-row justify-content-center" style="padding-top:20px;">
+                        <div class="card">
+                            <img src="https://sketch2code.blob.core.windows.net/c1711eaf-99ae-4c4b-884a-454e3825be87/slices/slice_Image_4.png" width="200px" height="200px" />
+                            <div class="card-body">
+                                <h5 class="card-title">Type:</h5>
+                                <h5 class="card-title">Text:</h5>
+                                <h5 class="card-title">Probability:</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="content-footer">
+
+                <div class="container-fluid">
+
+                    <div class="row hidden-responsive">
+
+                        <div class="col">
+                            <img alt="Microsoft Logo" class="img-fluid float-left d-flex flex-column justify-content-end center-logo-left" src="/content/img/logo_MS.png">
+                        </div>
+                        <div class="col">
+                            <img alt="Logo web" class="img-fluid float-right center-logo-right" src="/content/img/img_spareMobile.svg">
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center hidden-md">
+                        <img alt="Microsoft Logo" class="img-fluid float-left d-flex flex-column justify-content-end" src="/content/img/logo_MS.png">
+                    </div>
+
+                </div>
+                <div id="footer" class="p-3 p-md-3">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="text-center text-white pb-4">
+                                Your picture may be used to improve the underlying AI.
+                            </div>
+                        </div>
+                        <div class="row footer-links2">
+                            <div class="col"><a target="_blank" href="https://www.ailab.microsoft.com/">AI Lab</a></div>
+                            <div class="col"><a target="_blank" href="https://support.microsoft.com/en-us/contactus">Contact Us</a></div>
+                            <div class="col"><a target="_blank" href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy &amp; Cookies</a></div>
+                            <div class="col"><a target="_blank" href="https://go.microsoft.com/fwlink/?LinkID=206977">Terms of use</a></div>
+                            <div class="col"><a target="_blank" href="https://www.microsoft.com/trademarks">Trademarks</a></div>
+                        </div>
+                    </div>
+                    <div class="text-center text-white pt-5">
+                        © Microsoft 2018
+                    </div>
+                </div>
+            </div>
+
+            <script src="/Scripts/jquery-3.0.0.js"></script>
+            <script src="/Scripts/bootstrap.js"></script>
+
+</body>
+</html>

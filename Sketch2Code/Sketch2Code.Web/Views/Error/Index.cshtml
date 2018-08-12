@@ -1,0 +1,67 @@
+﻿
+@section Message
+    {
+    <h3 class="subtitle2 text-white">Ooops, something wrong just happened :(</h3>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#step1").addClass("active");
+            $("#step1txt").addClass("active");
+            $("#step2").addClass("active");
+            $("#step2txt").addClass("active");
+            $("#step3").addClass("active");
+            $("#step3txt").addClass("active");
+
+        });
+    </script>
+
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=199519676943&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+}
+
+
+
+
+<div class="row justify-content-center mt-3">
+   
+    
+            <h3 class="text-center text-white main_subtitle">Please try again in a few minutes</h3>
+   
+
+</div>
+<div class="row justify-content-center mt-3 error">
+  
+        <a class="text-white" href="/"><h3><u>Back to HomePage</u></h3></a>
+  
+</div>
+
+
+
