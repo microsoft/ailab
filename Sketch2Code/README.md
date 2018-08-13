@@ -36,26 +36,26 @@ To create this service go to your Azure Subscription and create your own service
 ### Azure Blob Storage
 An Azure Blob Storage is used to store all the intermediary steps of the process.
 A new folder is created for each generation process with the following contents:
-•	\slices: Contains the cropped images used for text prediction.
-•	Original.png: image uploaded by the user.
-•	results.json: results from the prediction process run against the original image.
-•	groups.json: results from the layout algorithm containing the spatial distribution of predicted objects.
+-	\slices: Contains the cropped images used for text prediction.
+-	Original.png: image uploaded by the user.
+-	results.json: results from the prediction process run against the original image.
+-	groups.json: results from the layout algorithm containing the spatial distribution of predicted objects.
 
 ### Azure function
 The code for the provided Azure Function is located in the Sketch2Code.Api folder. You can use this code to create your own function and must define the following configuration parameters:
-•	AzureWebJobsStorage: Endpoint to the Azure Storage.
-•	ComputerVisionDelay: Time in milliseconds to wait between calls to the computer vision service. Sample works with 120ms.
-•	HandwrittenTextApiEndpoint: Endpoint to the Computer Vision Service.
-•	HandwrittenTextSubscriptionKey: Key to access the Computer Vision Service.
-•	ObjectDetectionIterationName: Name of the training iteration to use in the prediction model.
-•	ObjectDetectionPredictionKey: Prediction Key to access the Custom Vision Service.
-•	ObjectDetectionProjectName: Name of the custom vision project.
-•	ObjectDetectionTrainingKey: Training key for the custom vision service.
-•	Probability: Probability threshold to consider a successful object detection. Below this value predictions are not considered. Sample model works with 40. 
+-	AzureWebJobsStorage: Endpoint to the Azure Storage.
+-	ComputerVisionDelay: Time in milliseconds to wait between calls to the computer vision service. Sample works with 120ms.
+-	HandwrittenTextApiEndpoint: Endpoint to the Computer Vision Service.
+-	HandwrittenTextSubscriptionKey: Key to access the Computer Vision Service.
+-	ObjectDetectionIterationName: Name of the training iteration to use in the prediction model.
+-	ObjectDetectionPredictionKey: Prediction Key to access the Custom Vision Service.
+-	ObjectDetectionProjectName: Name of the custom vision project.
+-	ObjectDetectionTrainingKey: Training key for the custom vision service.
+-	Probability: Probability threshold to consider a successful object detection. Below this value predictions are not considered. Sample model works with 40. 
 
 ### Azure Website
 The Sketch2Code.Web contains the code used to implement the front-end website. Two parameters must be configured:
-•	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
-•	storageUrl: Url for the Azure Storage. 
+-	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
+-	storageUrl: Url for the Azure Storage. 
 
 
