@@ -19,8 +19,8 @@ The Sketch2Code solution uses the following elements:
 -	An Azure Function: Serves as the backend entry point that coordinates the generation process by interacting with all the services.
 -	An Azure WebSite: User font-end to enable uploading a new design and see the generated HTML results.
 This elements form the architecture as follows:
+![Sketch2Code Architecture](https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png)
 
-https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png
 
 
 ## How to configure the solution
