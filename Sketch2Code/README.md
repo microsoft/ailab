@@ -20,6 +20,8 @@ The Sketch2Code solution uses the following elements:
 -	An Azure WebSite: User font-end to enable uploading a new design and see the generated HTML results.
 This elements form the architecture as follows:
 
+https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png
+
 
 ## How to configure the solution
 
