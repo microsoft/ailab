@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:template="clr-namespace:SnipInsight.Forms.Features.Insights.Products"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    x:Class="SnipInsight.Forms.Features.Insights.Products.SimilarProductsView"
+    x:Name="self">
+    <ContentView.Content>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Label
+                Text="{l10n:Localize Similar_Products}"
+                Style="{StaticResource 20BoldFontStyle}"
+                TextColor="{StaticResource DefaultTitleTextColor}">
+                <Label.Margin>
+                    <Thickness
+                        Top="{StaticResource DefaultMargin}"
+                        Bottom="{StaticResource DefaultMargin}" />
+                </Label.Margin>
+            </Label>
+            
+            <controls:ExtendedFlexLayout
+                Grid.Row="1"
+                ItemsSource="{Binding Products}">
+                <controls:ExtendedFlexLayout.ItemTemplate>
+                    <DataTemplate>
+                        <template:ProductItemTemplate
+                            NavigateCommand="{Binding BindingContext.OpenUrlCommand, Source={x:Reference self}}"
+                            SelectCommand="{Binding BindingContext.UpdateInsightsImageCommand, 
+                                Source={x:Reference self}}"/>
+                    </DataTemplate>
+                </controls:ExtendedFlexLayout.ItemTemplate>
+            </controls:ExtendedFlexLayout>
+            
+        </Grid>
+        
+    </ContentView.Content>
+</ContentView>

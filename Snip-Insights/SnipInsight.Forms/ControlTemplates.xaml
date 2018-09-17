@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"    
+    x:Class="SnipInsight.Forms.ControlTemplates">
+
+    <ControlTemplate x:Key="FullScreenLoadingTemplate">
+        <AbsoluteLayout>
+
+            <ContentPresenter
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                IsVisible="{TemplateBinding BindingContext.IsBusy, Converter={StaticResource NotConverter}}"/>
+
+            <ContentView
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                IsVisible="{TemplateBinding BindingContext.IsBusy}">
+                <ActivityIndicator
+                    IsRunning="true"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            </ContentView>
+
+        </AbsoluteLayout>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="SearchingInsightsTemplate">
+        <AbsoluteLayout>
+
+            <ContentPresenter
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                IsVisible="{TemplateBinding BindingContext.IsBusy, Converter={StaticResource NotConverter}}"/>
+
+            <ContentView
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                IsVisible="{TemplateBinding BindingContext.IsBusy}">
+                <StackLayout  
+                            HorizontalOptions="Center"
+                            VerticalOptions="CenterAndExpand">
+                    <Image
+                        Source="Resources/Images/Searching.png"                         
+                        WidthRequest="64"                                
+                        HeightRequest="64"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <Label Text="{l10n:Localize Insights_Looking}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="{StaticResource AccentColor}"
+                           Margin="0,15,0,0"/>                   
+                </StackLayout>
+
+
+            </ContentView>
+
+        </AbsoluteLayout>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    x:Class="SnipInsight.Forms.Features.Library.ItemView"
+    x:Name="self">
+
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer
+            Command="{Binding  Source={x:Reference self}, Path=OpenInsightsCommand}"
+            CommandParameter="{Binding .}"
+            NumberOfTapsRequired="1"/>
+    </ContentView.GestureRecognizers>
+    
+    <ContentView.Padding>
+        <Thickness
+            Bottom="{StaticResource SmallerDefaultMargin}"
+            Right="{StaticResource SmallerDefaultMargin}"/>
+    </ContentView.Padding>
+    
+    <ContentView.Content>
+        <AbsoluteLayout
+            BackgroundColor="{StaticResource ImageBackgroundColor}">
+
+            <Image
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                Source="{Binding PathThumbnail}"/>
+                
+            <controls:TooltipButton
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                Command="{Binding Source={x:Reference self}, Path=DeleteCommand}"
+                CommandParameter="{Binding .}"
+                Image="Resources/Images/Delete.png"
+                Tooltip="Delete Snip"/>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

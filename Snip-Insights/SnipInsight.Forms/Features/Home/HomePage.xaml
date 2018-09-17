@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:insights="clr-namespace:SnipInsight.Forms.Features.Insights"
+    xmlns:library="clr-namespace:SnipInsight.Forms.Features.Library"
+    xmlns:settings="clr-namespace:SnipInsight.Forms.Features.Settings"
+    xmlns:common="clr-namespace:SnipInsight.Forms.Common"
+    x:Class="SnipInsight.Forms.Features.Home.HomePage"
+    BindingContext="{x:Static common:ViewModelsFactory.HomeViewModel}"
+    BarTextColor="{StaticResource DefaultTextColor}">
+
+    <insights:InsightsPage
+        x:Name="insightsTab"
+        BindingContext="{Binding InsightsViewModel}" />
+    <library:LibraryPage
+        x:Name="libraryTab"
+        BindingContext="{Binding LibraryViewModel}" />
+    <settings:SettingsPage
+        x:Name="settingsTab"
+        BindingContext="{Binding SettingsViewModel}" />
+</TabbedPage>

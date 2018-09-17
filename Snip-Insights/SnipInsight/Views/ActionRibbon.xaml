@@ -1,0 +1,137 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.Views.ActionRibbon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             xmlns:con="clr-namespace:SnipInsight.Util"
+             xmlns:views="clr-namespace:SnipInsight.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="60" 
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <con:StringToVisibility x:Key="StringToVisibility" />
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Margin" Value="8, 0"/>
+                <Setter Property="Padding" Value="2, 0"/>
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+            </Style>
+
+            <Style x:Key="LastToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource ToolButtonStyle}">
+                <Setter Property="Margin" Value="8, 0, 0, 0"/>
+                <Setter Property="Padding" Value="20, 0"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="96"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{DynamicResource RebrandTilt}"/>
+                <Setter Property="Focusable" Value="true"/>
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+        <!-- Back to original -->
+        <ari:AriBorderedIconLabelButton Style="{StaticResource ToolButtonStyle}"
+                                        Foreground="{StaticResource RebrandTilt}"
+                                        HorizontalAlignment="Left"
+                                        Margin="8, 0, 8, 0"
+                                        ToolTip="Original Snip"
+                                        Width="128"
+                                        Template="{DynamicResource ActionButtonTemplate}"
+                                        Command="{Binding RestoreImageCommand}"
+                                        Visibility="{Binding RestoreImageUrl, Converter={StaticResource StringToVisibility}}"
+                                        AutomationProperties.Name="RevertToOrigionalSnip">
+            <TextBlock VerticalAlignment="Center"
+                       Text="ORIGINAL SNIP"/>
+        </ari:AriBorderedIconLabelButton>
+
+        <!-- Copy -->
+        <ari:AriBorderedIconLabelButton Style="{StaticResource ToolButtonStyle}"
+                                        ToolTip="Copy"
+                                        Margin="0"
+                                        Template="{DynamicResource ActionButtonTemplate}"
+                                        Command="{Binding CopyImageCommand}"
+                                        AutomationProperties.Name="CopyImage">
+            <ari:AriIcon Template="{StaticResource RebrandCopy_32_Icon}"
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+        </ari:AriBorderedIconLabelButton>
+
+        <!-- Save -->
+        <ari:AriBorderedIconLabelButton Style="{StaticResource ToolButtonStyle}"
+                                        ToolTip="Save"
+                                        Template="{DynamicResource ActionButtonTemplate}"
+                                        Command="{Binding SaveImageCommand}"
+                                        AutomationProperties.Name="SaveImage">
+            <ari:AriIcon Template="{StaticResource RebrandSave_32_Icon}"
+                         Foreground="{DynamicResource RebrandEnabledIcons}"/>
+        </ari:AriBorderedIconLabelButton>
+
+        <Menu Background="{DynamicResource RebrandbackgroundApp}"
+              Height="32"
+              KeyboardNavigation.DirectionalNavigation="Continue"
+              IsEnabled="{Binding CanShare, Mode=OneWay}">
+            <ari:AriIconLabelMenuItem x:Name="ShareMenu"
+                                      ToolTip="Share"
+                                      Width="32"
+                                      Height="32"
+                                      Padding="2,0,0,0"
+                                      AutomationProperties.Name="ShareMenu">
+                <ari:AriIconLabelMenuItem.Icon>
+                    <ari:AriIcon Template="{StaticResource RebrandShare_32_Icon}" 
+                                 Foreground="{DynamicResource RebrandEnabledIcons}"/>
+                </ari:AriIconLabelMenuItem.Icon>
+
+                <ari:AriIconLabelMenuItem
+                                    Label="Email"
+                                    Height="{DynamicResource SmallMenuItemHeight}"
+                                    Padding="{DynamicResource SmallMenuItemPadding}"
+                                    Foreground="{DynamicResource WhiteBrush}"
+                                    Command="{Binding ShareImageEmailCommand}"
+                                    AutomationProperties.Name="ShareEmailButton">
+                    <ari:AriIconLabelMenuItem.Icon>
+                        <ari:AriIcon Template="{StaticResource ShareEmail_20_Icon}" />
+                    </ari:AriIconLabelMenuItem.Icon>
+                </ari:AriIconLabelMenuItem>
+                <ari:AriIconLabelMenuItem
+                                    Label="OneNote"
+                                    Height="{DynamicResource SmallMenuItemHeight}"
+                                    Padding="{DynamicResource SmallMenuItemPadding}"
+                                    Foreground="{DynamicResource WhiteBrush}"
+                                    Command="{Binding ShareImageSendToOneNoteCommand}"
+                                    AutomationProperties.Name="ShareOneNoteButton">
+                    <ari:AriIconLabelMenuItem.Icon>
+                        <ari:AriIcon Template="{StaticResource OneNote_20_Icon}" />
+                    </ari:AriIconLabelMenuItem.Icon>
+                </ari:AriIconLabelMenuItem>
+            </ari:AriIconLabelMenuItem>
+        </Menu>
+
+        <ari:AriBorderedIconLabelButton Style="{StaticResource LastToolButtonStyle}"
+                                        Command="{Binding RefreshAICommand}"
+                                        Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}"
+                                        ToolTip="Refresh Insights"
+                                        AutomationProperties.Name="RefreshInsights">
+            <TextBlock Text="REFRESH" />
+        </ari:AriBorderedIconLabelButton>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,578 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.Views.SettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SnipInsight.Views"
+             xmlns:util="clr-namespace:SnipInsight.Util"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             xmlns:views="clr-namespace:SnipInsight.Views"
+             xmlns:properties="clr-namespace:SnipInsight.Properties"
+             mc:Ignorable="d"
+             Background="{DynamicResource SystemWhite}"
+             Foreground="{DynamicResource SystemBlack}"
+             AutomationProperties.Name="SettingsPanel"
+             FontSize="{DynamicResource NormalTextFontSize}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/AriadneStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <util:FormatStringConverter x:Key="FormatStringConverter"/>
+            <views:InvertBooleanToVisibility x:Key="InvertBooleanToVisibility" />
+
+            <Style TargetType="Hyperlink">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusedMarginStyle}"/>
+            </Style>
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Foreground" Value="{StaticResource RebrandTilt}"/>
+                <Setter Property="TextBlock.FontSize" Value="{DynamicResource SmallFontSize}"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="Padding" Value="19, 10"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource RebrandbackgroundApp}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource RebrandBackgroundResults}">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Border Visibility="{Binding Visibility, ElementName=GeneralTab}" Background="{DynamicResource RebrandRaisedButton}"/>
+                    <Button x:Name="GeneralToggle"
+                        Style="{DynamicResource RebrandRibbonButton}"
+                        AutomationProperties.Name = "GeneralSettings"
+                        Template="{DynamicResource TopRibbonTemplate}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment ="Center"
+                        Click="GeneralToggle_Click"
+                        Padding="12">
+                        <Grid>
+                            <TextBlock Text="{x:Static properties:Resources.Settings_General_Heading}"
+                               Style="{DynamicResource RebrandTopMenuTextStyle}"/>
+                            <TextBlock Text="{x:Static properties:Resources.Settings_General_Heading}"
+                               Style="{DynamicResource RebrandTopMenuTextStyleLight}"
+                               Visibility="{Binding Visibility, ElementName=GeneralTab}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <Grid Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}">
+                    <Border Visibility="{Binding Visibility, ElementName=DeveloperTab}" Background="{DynamicResource RebrandRaisedButton}"/>
+                    <Button x:Name="DeveloperToggle"
+                        Style="{DynamicResource RebrandRibbonButton}"
+                        AutomationProperties.Name = "DeveloperSettings"
+                        Template="{DynamicResource TopRibbonTemplate}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment ="Center"
+                        Click="DeveloperToggle_Click"
+                        Padding="12">
+                        <Grid >
+
+                            <TextBlock Text="{x:Static properties:Resources.Settings_ForDevelopers}"
+                               Style="{DynamicResource RebrandTopMenuTextStyle}"/>
+                            <TextBlock Text="{x:Static properties:Resources.Settings_ForDevelopers}"
+                               Style="{DynamicResource RebrandTopMenuTextStyleLight}"
+                               Visibility="{Binding Visibility, ElementName=DeveloperTab}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+                
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" 
+              x:Name="GeneralTab">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Style="{DynamicResource SettingsPanelStyle}"
+                            AutomationProperties.Name="GeneralToggleSubPanel">
+                    <!-- Startup -->
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                               Text="{x:Static properties:Resources.Settings_General_Heading}"/>
+
+                    <Separator Style="{DynamicResource RebrandSettingsSeparatorStyle}"/>
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <ari:AriToggleSwitch x:Name="OpenEditorPostSnip"
+                                             Style="{DynamicResource TogglePanelToggles}"
+                                             IsChecked="{Binding IsOpenEditorPostSnip}"
+                                             Click="OpenEditorCheckbox_Clicked"
+                                             AutomationProperties.Name="OpenEditorPostSnipToggle"/>
+                        <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Static properties:Resources.Auto_open_editor}" />
+                    </StackPanel>
+
+                    <Separator Style="{DynamicResource RebrandSettingsSeparatorStyle}"
+                               Margin="0, 2, 0, 32"/>
+
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                       Text="{x:Static properties:Resources.Settings_Snipping_Heading}"/>
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <ari:AriToggleSwitch x:Name="CopyToClipboardPostSnip"
+                                             Style="{DynamicResource TogglePanelToggles}"
+                                             IsChecked="{Binding CopyClipboardPostSnip}"
+                                             Click="CopyToClipboardCheckbox_Clicked"
+                                             AutomationProperties.Name="CopyToClipboardPostSnipToggle"/>
+                        <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Static properties:Resources.Copy_to_clipboard}" />
+                    </StackPanel>
+
+
+                    <Separator Style="{DynamicResource RebrandSettingsSeparatorStyle}"
+                               Margin="0, 2, 0, 32"/>
+
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                       Text="{x:Static properties:Resources.Settings_Cognitive_Services_Heading}"/>
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <ari:AriToggleSwitch x:Name="EnableAI"
+                                             Style="{DynamicResource TogglePanelToggles}"
+                                             IsChecked="{Binding InsightsVisible}"
+                                             Click="EnableAI_Clicked"
+                                             AutomationProperties.Name="EnableAIToggle"/>
+                        <TextBlock Style="{DynamicResource SettingsTextStyle}" 
+                                   VerticalAlignment="Center"
+                                   Text="{x:Static properties:Resources.Settings_EnableAI}" />
+                    </StackPanel>
+
+                    <Separator Style="{DynamicResource RebrandSettingsSeparatorStyle}"
+                               Margin="0, 2, 0, 32"/>
+
+                    <!--Capture Hotkeys Preferences-->
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                               Text="{x:Static properties:Resources.Settings_Capture_Heading}" />
+
+
+                    <!--<TextBlock Style="{DynamicResource SettingsTextStyle}"
+                               Text="{x:Static properties:Resources.Settings_Hotkeys_Heading1}" 
+                               Margin="0, 15, 0, 0"/>
+                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                               Text="{x:Static properties:Resources.Settings_Hotkeys_Heading2}" 
+                               Margin="0, 0, 0, 15"/>
+
+                    <TextBlock Text="{x:Static properties:Resources.Settings_SNIP}"
+                               Style="{DynamicResource SettingsTextStyle}"/>
+                    <local:KeyComboPicker x:Name="ScreenCaptureKeyCombo"
+                                          HorizontalAlignment="Left"
+                                          KeyComboChanged="ScreenCaptureKeyCombo_KeyComboChanged"
+                                          AutomationProperties.Name="ScreenCaptureKeyCombo"/>
+
+                    <TextBlock Text="{x:Static properties:Resources.Settings_QUICK}"
+                               Style="{DynamicResource SettingsTextStyle}"/>
+                    <local:KeyComboPicker x:Name="QuickCaptureKeyCombo"
+                                          HorizontalAlignment="Left"
+                                          KeyComboChanged="QuickCaptureKeyCombo_KeyComboChanged"
+                                          AutomationProperties.Name="QuickCaptureKeyCombo"/>-->
+
+                    <!--Delay Screen Capture-->
+                    <!--<TextBlock Text="{x:Static properties:Resources.Settings_DelayScreenCapture}"
+                               Style="{DynamicResource SettingsTextStyle}"/>-->
+                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                               Text="{Binding ElementName=ScreenCaptureDelaySlider, Path=Value, Converter={StaticResource FormatStringConverter}, ConverterParameter={x:Static properties:Resources.Settings_Delay_FormatString}}" />
+                    <Slider HorizontalAlignment="Left"
+                            Name="ScreenCaptureDelaySlider"
+                            Width="500"
+                            Minimum="0"
+                            Maximum="5"
+                            Margin="0, 5, 0, 36"
+                            IsSnapToTickEnabled="True"
+                            FocusVisualStyle="{DynamicResource FocusedStyle}"
+                            ValueChanged="ScreenCaptureDelaySlider_ValueChanged"
+                            AutomationProperties.Name="ScreenCaptureDelaySlider"/>
+
+                    <!--Folder Selection-->
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                               Text="Save &amp; Share options" 
+                               AutomationProperties.Name="FolderSelectionSubPanel"/>
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Name="CurrentSaveLocation"
+                                   ToolTip="Folder Path"
+                                   Style="{DynamicResource SettingsTextStyle}"
+                                   Text="Current Location"
+                                   VerticalAlignment="Center"/>
+
+                        <Button 
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                ToolTip="Browse Current Folder"
+                                Click="ChooseFolder_Clicked"
+                                Style="{DynamicResource SettingsPanelButton}"
+                                AutomationProperties.Name="ChooseFolder"
+                                HorizontalAlignment="Left"
+                                Content="BROWSE"/>
+
+                        <!--<Button Grid.Row="1"
+                                Grid.Column="1"
+                                ToolTip="Reset"
+                                Click="ResetSaveLocation"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource SettingsPanelButton}"
+                                AutomationProperties.Name="ResetFolder"
+                                Content="RESET TO DEFAULT FOLDER"/>-->
+                    </Grid>
+
+                    <!--<StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <ari:AriToggleSwitch x:Name="AutoTagging"
+                                             Style="{DynamicResource TogglePanelToggles}"
+                                             IsChecked="False"
+                                             AutomationProperties.Name ="MetadataAutoTaggingToggle"
+                                             Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}"
+                                             Click="AutotaggingCheckbox_Clicked"/>
+                        <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                   Text="Add metadata automatically on save"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}"/>
+                    </StackPanel>-->
+
+                    <!--<TextBlock Style="{DynamicResource SettingsTextStyle}"
+                               Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}"
+                               Text="{Binding ElementName=ContentModerationStrengthSlider,
+                               Path=Value, Converter={StaticResource FormatStringConverter}, ConverterParameter={x:Static properties:Resources.Settings_ContentModerationStrength_FormatString}}" />
+                    <Slider HorizontalAlignment="Left"
+                            Margin="0, 5, 0, 36"
+                            Name="ContentModerationStrengthSlider"
+                            Width="500"
+                            Visibility="{Binding InsightsVisible, Converter={StaticResource BooleanToVisibility}}"
+                            Minimum="0"
+                            Maximum="100"
+                            IsSnapToTickEnabled="True"
+                            AutomationProperties.Name="ContentModerationStrengthSlider"
+                            ValueChanged="ContentModerationStrengthSlider_ValueChanged"/>-->
+
+                    <!-- About this App -->
+                    <TextBlock Style="{DynamicResource SettingsTitleStyle}" 
+                               Text="{x:Static properties:Resources.Settings_AboutThisApp_Heading}" />
+
+                    <TextBlock x:Name="AppVersion"
+                               Text="{Binding AppVersion}"
+                               Style="{DynamicResource SettingsTextStyle}"/>
+
+                    <TextBlock Text="{x:Static properties:Resources.Settings_Copyright_Text}" 
+                               Style="{DynamicResource SettingsTextStyle}"
+                               Margin="0,0,0,20"/>
+
+                    <TextBlock x:Name="versionTextBlock"
+                               Style="{DynamicResource SettingsTextStyle}"
+                               Margin="0,0,0,20"/>
+
+                    <ari:AriLinkButton x:Name="ServiceAgreementButton"
+                                       Style="{DynamicResource RebrandPrivacityLinkButtonStyle}"
+                                       Click="OpenLink"
+                                       AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}"
+                                       Tag="{x:Static properties:Resources.Link_Terms}" 
+                                       Content="{x:Static properties:Resources.Settings_ServiceAgreement_Button}" />
+                    <ari:AriLinkButton x:Name="PrivacyButton"
+                                       Click="OpenLink"
+                                       Style="{DynamicResource RebrandPrivacityLinkButtonStyle}"
+                                       AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}"
+                                       Tag="{x:Static properties:Resources.Link_Privacy}" 
+                                       Content="{x:Static properties:Resources.Settings_PrivacyStatement_Button}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              x:Name="DeveloperTab"
+              Visibility="Collapsed">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Style="{DynamicResource SettingsPanelStyle}"
+                            AutomationProperties.Name="GeneralToggleSubPanel">
+                    <StackPanel Name="Keys"
+                                AutomationProperties.Name="Api Keys">
+                        <TextBlock Style="{DynamicResource SettingsTitleStyle}"
+                                       Text="Insight Service Keys" 
+                                       AutomationProperties.Name="InsightServiceKeysSubPanel"/>
+                        <TextBlock Margin="0"> 
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/bing-entity-search-api/"
+                                           AutomationProperties.Name="GetEntityKeyHyperLink">
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.Entity_Search}"/>
+                                </Hyperlink>
+                            </TextBlock>
+                        <TextBox Name="EntitySearch"
+                                     Style="{DynamicResource SettingsTextBoxStyle}"
+                                     AutomationProperties.Name="EntitySearchKeyTextbox" 
+                                     TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                           AutomationProperties.Name="GeImageAnalysisKeyHyperLink">
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.Image_Analysis}"/>
+                                </Hyperlink>
+                            </TextBlock>
+                        <TextBox Name="ImageAnalysis"
+                                     Style="{DynamicResource SettingsTextBoxStyle}"
+                                     AutomationProperties.Name="ImageAnalysisKeyTextbox" 
+                                     TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+ 
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/bing-image-search-api/"
+                                           AutomationProperties.Name="GetImageSearchKeyHyperLink">
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.Image_Search}"/>
+                                </Hyperlink>
+                            </TextBlock>
+                        <TextBox Name="ImageSearch"
+                                     Style="{DynamicResource SettingsTextBoxStyle}"
+                                     AutomationProperties.Name="ImageSearchKeyTextbox" 
+                                     TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                           AutomationProperties.Name="GetTextRecognitionKeyHyperLink">
+                                    
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.Text_Recognition}"/>
+                                    </Hyperlink>
+                            </TextBlock>
+                        <TextBox Name="TextRecognition"
+                                     Style="{DynamicResource SettingsTextBoxStyle}"
+                                     AutomationProperties.Name="TextRecognitionKeyTextbox" 
+                                     TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                           AutomationProperties.Name="GetTranslatorKeyHyperLink">
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.Translator}"/>
+                                </Hyperlink>
+                            </TextBlock>
+                        <TextBox Name="Translator"
+                                     Style="{DynamicResource SettingsTextBoxStyle}"
+                                     AutomationProperties.Name="TranslatorKeyTextbox" 
+                                     TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock> 
+                                <Hyperlink RequestNavigate="Open_HyperLink"
+                                           TextDecorations=""
+                                           NavigateUri="https://azure.microsoft.com/services/cognitive-services/content-moderator/"
+                                           AutomationProperties.Name="GetContentModeratorKeyHyperLink">
+                                    <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                               Text="{x:Static properties:Resources.ContentModerator}"/>
+                                </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="ContentModerator"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="ContentModeratorKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/language-understanding-intelligent-service/"
+                                       AutomationProperties.Name="GetLUISKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.LUIS_Key}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="LUISKey"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="LUIS Key Textbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/language-understanding-intelligent-service/"
+                                       AutomationProperties.Name="Get LUIS App ID KeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.LUIS_App}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="LUISAppId"
+                                Style="{DynamicResource SettingsTextBoxStyle}"
+                                AutomationProperties.Name="LUISAppIdTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <Button Style="{DynamicResource SettingsPanelButton}"
+                                x:Name="UpdateButtonKeys"
+                                HorizontalAlignment="Right"
+                                AutomationProperties.Name="SettingsPanelButton"
+                                ToolTip="{x:Static properties:Resources.UpdateKeys}"
+                                Click="UpdateAllKeys"
+                                Content="SAVE"/>
+
+                        <TextBlock Style="{DynamicResource SettingsTitleStyle}" 
+                                   VerticalAlignment="Center"
+                                   Text="Insight Service Endpoints" 
+                                   AutomationProperties.Name="InsightServiceEndpointsSubPanel"/>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/bing-entity-search-api/"
+                                       AutomationProperties.Name="GetEntityKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}" 
+                                           Text="{x:Static properties:Resources.Entity_Search_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="EntitySearchEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="EntitySearchKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                       AutomationProperties.Name="GeImageAnalysisKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.Image_Analysis_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+
+                        <TextBox Name="ImageAnalysisEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="ImageAnalysisKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/bing-image-search-api/"
+                                       AutomationProperties.Name="GetImageSearchKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.Image_Search_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="ImageSearchEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="ImageSearchKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                       AutomationProperties.Name="GetTextRecognitionKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.Text_Recognition_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="TextRecognitionEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="TextRecognitionKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/computer-vision/"
+                                       AutomationProperties.Name="GetTranslatorKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.Translator_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="TranslatorEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="TranslatorKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/content-moderator/"
+                                       AutomationProperties.Name="GetContentModeratorKeyHyperLink">
+                                <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                           Text="{x:Static properties:Resources.ContentModerator_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="ContentModeratorEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="ContentModeratorKeyTextbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <TextBlock>
+                            <Hyperlink RequestNavigate="Open_HyperLink"
+                                       TextDecorations=""
+                                       NavigateUri="https://azure.microsoft.com/services/cognitive-services/language-understanding-intelligent-service/"
+                                       AutomationProperties.Name="GetLUISKeyHyperLink">
+                            <TextBlock Style="{DynamicResource SettingsTextStyle}"
+                                       Text="{x:Static properties:Resources.LUIS_Endpoint}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBox Name="LUISKeyEndpoint"
+                                 Style="{DynamicResource SettingsTextBoxStyle}"
+                                 AutomationProperties.Name="LUIS Key Textbox" 
+                                 TextChanged="Key_OnTextChanged">
+                        </TextBox>
+
+                        <Button Style="{DynamicResource SettingsPanelButton}"
+                                x:Name="UpdateButton"
+                                HorizontalAlignment="Right"
+                                AutomationProperties.Name="SettingsPanelButton"
+                                ToolTip="{x:Static properties:Resources.UpdateKeys}"
+                                Click="UpdateAllKeys"
+                                Content="SAVE"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+
+
+</UserControl>

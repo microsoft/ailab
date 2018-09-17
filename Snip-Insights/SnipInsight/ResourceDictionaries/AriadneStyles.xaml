@@ -1,0 +1,1815 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+                    xmlns:prop="clr-namespace:SnipInsight.Properties"
+                    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+                    xmlns:hs="clr-namespace:SnipInsight.Controls">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+
+    <!--
+    **
+    **  Colors
+    **
+    -->
+
+    <Color x:Key="Control.Normal.Background.Color">#00FFFFFF</Color>
+    <Color x:Key="Control.Normal.Foreground.Color">White</Color>
+    <Color x:Key="Control.MouseOver.Background.Color">#D9D9E6</Color>
+    <Color x:Key="Ribbon.MouseOver.Background.Color">#D9D9E6</Color>
+    <Color x:Key="Navigation.MouseOver.Background.Color">#3C3C3C</Color>
+    <Color x:Key="TopNavigation.MouseOver.Background.Color">#6B69D6</Color>
+    <Color x:Key="Control.MouseOver.Foreground.Color">White</Color>
+    <Color x:Key="Control.Disabled.Background.Color">#00FFFFFF</Color>
+    <Color x:Key="Control.Disabled.Foreground.Color">White</Color>
+    <Color x:Key="Control.Pressed.Background.Color">#22FFFFFF</Color>
+    <Color x:Key="Control.Pressed.Foreground.Color">White</Color>
+    <Color x:Key="Control.Checked.Background.Color">#343434</Color>
+    <Color x:Key="Control.Checked.Foreground.Color">White</Color>
+
+    <!--
+    **
+    **  Brushes
+    **
+    -->
+
+    <SolidColorBrush x:Key="Control.Normal.Background"
+        Color="{StaticResource Control.Normal.Background.Color}" />
+    <SolidColorBrush x:Key="Control.Normal.Foreground"
+        Color="{StaticResource Control.Normal.Foreground.Color}" />
+    <SolidColorBrush x:Key="Control.MouseOver.Background"
+        Color="{StaticResource Control.MouseOver.Background.Color}" />
+    <SolidColorBrush x:Key="Ribbon.MouseOver.Background"
+                     Color="{StaticResource Ribbon.MouseOver.Background.Color}" />
+    <SolidColorBrush x:Key="Navigation.MouseOver.Background"
+                     Color="{StaticResource Navigation.MouseOver.Background.Color}" />
+    <SolidColorBrush x:Key="TopNavigation.MouseOver.Background"
+                     Color="{StaticResource TopNavigation.MouseOver.Background.Color}" />
+    <SolidColorBrush x:Key="Control.MouseOver.Foreground"
+        Color="{StaticResource Control.MouseOver.Foreground.Color}" />
+    <SolidColorBrush x:Key="Control.Disabled.Background"
+        Color="{StaticResource Control.Disabled.Background.Color}" />
+    <SolidColorBrush x:Key="Control.Disabled.Foreground"
+        Color="{StaticResource Control.Disabled.Foreground.Color}" />
+    <SolidColorBrush x:Key="Control.Pressed.Background"
+        Color="{StaticResource Control.Pressed.Background.Color}" />
+    <SolidColorBrush x:Key="Control.Pressed.Foreground"
+        Color="{StaticResource Control.Pressed.Foreground.Color}" />
+    <SolidColorBrush x:Key="Control.Checked.Background"
+        Color="{StaticResource Control.Checked.Background.Color}" />
+    <SolidColorBrush x:Key="Control.Checked.Foreground"
+        Color="{StaticResource Control.Checked.Foreground.Color}" />
+
+    <!--
+    **
+    **  VisualStates
+    **
+    -->
+
+    <Storyboard x:Key="Button.Normal.Storyboard" Duration="0:0:00.3">
+        <ColorAnimation Storyboard.TargetProperty="(SolidColorBrush.Color)"
+            Storyboard.TargetName="BackgroundBrush"
+            Duration="0:0:00.2"
+            To="{StaticResource Control.Normal.Background.Color}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.MouseOver.Storyboard">
+        <ColorAnimation Storyboard.TargetProperty="(SolidColorBrush.Color)"
+            Storyboard.TargetName="BackgroundBrush"
+            Duration="0:0:00.2"
+            To="{StaticResource Control.MouseOver.Background.Color}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.Focused.Storyboard">
+        <ColorAnimation Storyboard.TargetProperty="(SolidColorBrush.Color)"
+            Storyboard.TargetName="BackgroundBrush"
+            Duration="0:0:00.2"
+            To="{StaticResource Control.MouseOver.Background.Color}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.Pressed.Storyboard">
+        <ColorAnimation Storyboard.TargetProperty="(SolidColorBrush.Color)"
+            Storyboard.TargetName="BackgroundBrush"
+            Duration="0:0:0"
+            To="{StaticResource Control.Pressed.Background.Color}" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.Disabled.Storyboard">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+            Storyboard.TargetName="Root"
+            Duration="0:0:00.1"
+            To=".5" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.Shy.Storyboard">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+            Storyboard.TargetName="Label"
+            Duration="0:0:00.2"
+            To="0" />
+    </Storyboard>
+
+    <Storyboard x:Key="Button.NotShy.Storyboard">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+            Storyboard.TargetName="Label"
+            Duration="0:0:00.2"
+            To="1" />
+    </Storyboard>
+
+    <!--
+    **
+    **  Icon Label Control
+    **
+    -->
+
+    <Style x:Key="{x:Type ari:AriIconLabel}"
+        TargetType="{x:Type ari:AriIconLabel}">
+        <Setter Property="BorderThickness"
+            Value="0" />
+        <Setter Property="Focusable"
+            Value="False" />
+        <Setter Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter Property="Padding"
+            Value="0" />
+        <Setter Property="UseLayoutRounding"
+            Value="true" />
+        <Setter Property="SnapsToDevicePixels"
+            Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabel}">
+                    <Border x:Name="Root"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                            CornerRadius="2"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="LayoutGrid"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="IconContentPresenter"
+                                              ContentSource="Icon"
+                                              Margin="{TemplateBinding IconPadding}"
+                                              TextBlock.Foreground="{TemplateBinding Foreground}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            <TextBlock x:Name="LabelTextBlock"
+                                       Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="{TemplateBinding Label}"
+                                       TextTrimming="CharacterEllipsis"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       TextWrapping="{TemplateBinding TextWrapping}"
+                                       Margin="{TemplateBinding LabelPadding}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation"
+                                 Value="Horizontal" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Grid.Row"
+                                    Value="0" />
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Grid.Column"
+                                    Value="1" />
+                            <Setter TargetName="LayoutGrid"
+                                    Property="VerticalAlignment"
+                                    Value="Center" />
+                            <Setter TargetName="LayoutGrid"
+                                    Property="HorizontalAlignment"
+                                    Value="Left" />
+                        </Trigger>
+                        <Trigger Property="Label"
+                                 Value="{x:Null}" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Icon"
+                                 Value="{x:Null}" >
+                            <Setter TargetName="IconContentPresenter"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ShowLabel"
+                                 Value="False" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--
+    **
+    **  Button Base
+    **
+    -->
+
+    <Style x:Key="AriButtonBaseStyle"
+        TargetType="{x:Type ButtonBase}">
+        <Setter Property="FocusVisualStyle"
+            Value="{x:Null}" />
+        <Setter Property="Background"
+            Value="{StaticResource Control.Normal.Background}" />
+        <Setter Property="BorderBrush"
+            Value="{StaticResource Control.Normal.Foreground}" />
+        <Setter Property="Foreground"
+            Value="{StaticResource Control.Normal.Foreground}" />
+        <Setter Property="BorderThickness"
+            Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter Property="Padding"
+            Value="0" />
+        <Setter Property="UseLayoutRounding"
+            Value="true" />
+        <Setter Property="SnapsToDevicePixels"
+            Value="true" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+    </Style>
+
+
+    <!--
+    **
+    **  Bar Button Base
+    **
+    -->
+
+    <Style x:Key="AriBarButtonBaseStyle"
+        BasedOn="{StaticResource AriButtonBaseStyle}"
+        TargetType="{x:Type ButtonBase}">
+    </Style>
+
+    <!--
+    **
+    **  Bar Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriIconLabelButton}"
+        BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabelButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Icon="{TemplateBinding Content}"
+                            Label="{TemplateBinding Label}"
+                            IconPadding="0,17,0,0" >
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource TopNavigation.MouseOver.Background}" />
+                        </Trigger>
+                        <!--<Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource TopNavigation.MouseOver.Background}" />
+                        </Trigger>-->
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ari:AriIconSmallButton}"
+           BasedOn="{StaticResource AriButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconSmallButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Icon="{TemplateBinding Content}" >
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource TopNavigation.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource TopNavigation.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  Bar Toggle Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriIconLabelToggleButton}"
+            BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" 
+                Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="BorderThickness"
+                Value="1"/>
+        <Setter Property="BorderBrush"
+                Value="#191A1D"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabelToggleButton}">
+                    <Border x:Name="PART_Border"
+                                CornerRadius="2" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <ari:AriIconLabel x:Name="Root"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          Padding="{TemplateBinding Padding}"
+                                          Icon="{TemplateBinding Content}"
+                                          Label="{TemplateBinding Label}">
+                        </ari:AriIconLabel>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1" >
+                                        <GradientStop Color="#414758" Offset="0.5" />
+                                        <GradientStop Color="#3D4351" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1" >
+                                        <GradientStop Color="#414758" Offset="0.5" />
+                                        <GradientStop Color="#3D4351" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  Bar Ink Radio Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriInkRadioButton}"
+        BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Width"
+                Value="60" />
+        <Setter Property="Height"
+                Value="60" />
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriInkRadioButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Label="{TemplateBinding Label}"
+                            IconPadding="0,14,0,0" >
+                        <ari:AriIconLabel.Icon>
+                            <Grid
+                                  Height="32"
+                                  Width="32">
+                                <Ellipse x:Name="InkSample"
+                                             Fill="{TemplateBinding Ink}"
+                                             StrokeThickness="1.5"
+                                             Margin="1">
+                                    <Ellipse.Stroke>
+                                        <SolidColorBrush x:Name="InkBorderBrush" />
+                                    </Ellipse.Stroke>
+                                </Ellipse>
+                                <Ellipse x:Name="SelectedIndicator"
+                                         StrokeThickness="2"
+                                         Stroke="{DynamicResource RebrandTilt}"
+                                         Visibility="Collapsed"
+                                         Margin="1"/>
+                            </Grid>
+                        </ari:AriIconLabel.Icon>
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Ribbon.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                            <Setter TargetName="SelectedIndicator"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ari:AriEraseRadioButton}"
+        BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriEraseRadioButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{DynamicResource RebrandThemeGreyBrush}"
+                            Padding="{TemplateBinding Padding}"
+                            Icon="{TemplateBinding Content}"
+                            Label="{TemplateBinding Label}"
+                            IconPadding="0,14,0,0" >
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Ribbon.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  Bar MenuItem
+    **
+    -->
+
+    <!-- Item -->
+    <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=TopLevelItemTemplateKey}"
+                     TargetType="{x:Type ari:AriIconLabelMenuItem}">
+        <Grid SnapsToDevicePixels="true">
+            <Rectangle Name="Bg"
+                       Fill="{TemplateBinding MenuItem.Background}"/>
+            <DockPanel>
+                <ContentPresenter x:Name="Icon"
+                                  Margin="4,0,6,0"
+                                  VerticalAlignment="Center"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <Path x:Name="GlyphPanel"
+                      Margin="7,0,0,0"
+                      Visibility="Collapsed"
+                      VerticalAlignment="Center"
+                      Fill="{TemplateBinding MenuItem.Foreground}"
+                      FlowDirection="LeftToRight"
+                      Data="{DynamicResource Checkmark}"/>
+                <ContentPresenter x:Name="Header"
+                                  ContentSource="Header"
+                                  Margin="{TemplateBinding MenuItem.Padding}"
+                                  RecognizesAccessKey="True"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </DockPanel>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="true">
+                <Setter TargetName="GlyphPanel"
+                        Property="Visibility"
+                        Value="Visible"/>
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsShy"
+                     Value="true">
+                <Setter TargetName="Header"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="true">
+                <Setter TargetName="Bg"
+                        Property="Fill"
+                        Value="{StaticResource Control.MouseOver.Background}"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused"
+                     Value="true">
+                <Setter TargetName="Bg"
+                        Property="Stroke"
+                        Value="#E0717070"/>
+                <Setter TargetName="Bg"
+                        Property="Fill"
+                        Value="{DynamicResource Control.MouseOver.Background}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="false">
+                <Setter Property="Opacity"
+                        Value=".3"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Header -->
+    <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=TopLevelHeaderTemplateKey}"
+                     TargetType="{x:Type ari:AriIconLabelMenuItem}">
+        <Grid x:Name="RootGrid" 
+              SnapsToDevicePixels="true" >
+            <ari:AriIconLabel x:Name="Root"
+                              Background="{TemplateBinding Background}"
+                              BorderThickness="1"
+                              BorderBrush="{DynamicResource RebrandDarkerBackground}"
+                              Padding="{TemplateBinding Padding}"
+                              Icon="{TemplateBinding Icon}"
+                              Label="{TemplateBinding Label}">
+            </ari:AriIconLabel>
+            
+            <Popup x:Name="PART_Popup"
+                   VerticalOffset="-1"
+                   HorizontalOffset="-1"
+                   AllowsTransparency="true"
+                   Placement="Bottom"
+                   IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}"
+                   Focusable="false"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                <ContentControl Name="SubMenuBorder" 
+                                Background="{DynamicResource RebrandDarkerBackground}"
+                                Template="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=SubmenuContent}}"
+                                IsTabStop="false">
+                    <ScrollViewer Name="SubMenuScrollViewer" CanContentScroll="true" Margin="-2"
+                                Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
+                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                            <Canvas Height="0" 
+                                    Width="0" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top">
+                                <Rectangle
+                                        Height="{Binding ElementName=SubMenuBorder,Path=ActualHeight}"
+                                        Width="{Binding ElementName=SubMenuBorder,Path=ActualWidth}"
+                                        Fill="{DynamicResource RebrandButtonBackground}" />
+                            </Canvas>
+                            <ItemsPresenter Name="ItemsPresenter"
+                                        KeyboardNavigation.TabNavigation="Cycle"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Grid.IsSharedSizeScope="true"/>
+                        </Grid>
+                    </ScrollViewer>
+                </ContentControl>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSuspendingPopupAnimation"
+                     Value="true">
+                <Setter TargetName="PART_Popup"
+                        Property="PopupAnimation"
+                        Value="None"/>
+            </Trigger>
+            <!--<Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>-->
+            <Trigger Property="IsHighlighted"
+                     Value="true">
+                <Setter TargetName="Root"
+                        Property="Background"
+                        Value="{DynamicResource RebrandBackgroundResults}"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused"
+                     Value="true">
+                <Setter TargetName="Root"
+                        Property="Background"
+                        Value="{DynamicResource RebrandBackgroundResults}"/>
+            </Trigger>
+            <Trigger Property="IsSubmenuOpen"
+                     Value="true">
+                <Setter TargetName="Root"
+                        Property="Background"
+                        Value="{DynamicResource RebrandBackgroundResults}"/>
+            </Trigger>
+            <Trigger Property="IsShy"
+                     Value="true" >
+                <Setter TargetName="Root"
+                        Property="ShowLabel"
+                        Value="False" />
+                <Setter TargetName="RootGrid"
+                        Property="Height"
+                        Value="60" />
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="false">
+                <Setter Property="Opacity"
+                        Value=".3"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="Root" Value="{DynamicResource RebrandSelectedButton}"/>
+                <!--<Setter Property="BorderBrush" TargetName="Root" Value="Blue"/>-->
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Submenu Item -->
+    <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=SubmenuItemTemplateKey}"
+                     TargetType="{x:Type ari:AriIconLabelMenuItem}">
+        <Grid SnapsToDevicePixels="true">
+            <Rectangle Name="Bg"
+                       Fill="{TemplateBinding MenuItem.Background}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="Col0"
+                                      MinWidth="24"
+                                      Width="Auto"
+                                      SharedSizeGroup="MenuItemIconColumnGroup"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition x:Name="Col3"
+                                      Width="37"/>
+                    <ColumnDefinition Width="Auto"
+                                      SharedSizeGroup="MenuItemIGTColumnGroup"/>
+                    <ColumnDefinition x:Name="Col5"
+                                      Width="17"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Margin="14,4,0,4"
+                                  VerticalAlignment="Center"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <Border x:Name="GlyphPanel"
+                        Background="#E6EFF4"
+                        BorderBrush="#CDD3E6"
+                        BorderThickness="1"
+                        CornerRadius="3"
+                        Margin="1"
+                        Visibility="Hidden"
+                        Width="22"
+                        Height="22">
+                    <Path Name="Glyph"
+                          Width="9"
+                          Height="11"
+                          Fill="#0C12A1"
+                          FlowDirection="LeftToRight"
+                          Data="{DynamicResource Checkmark}"/>
+                </Border>
+                <ContentPresenter x:Name="Header"
+                                  Grid.Column="2"
+                                  ContentSource="Header"
+                                  Margin="{TemplateBinding MenuItem.Padding}"
+                                  RecognizesAccessKey="True"
+                                  VerticalAlignment="Center"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <TextBlock Grid.Column="4"
+                           Text="{TemplateBinding MenuItem.InputGestureText}"
+                           Margin="{TemplateBinding MenuItem.Padding}" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="true">
+                <Setter TargetName="GlyphPanel"
+                        Property="Visibility"
+                        Value="Visible"/>
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="true">
+                <Setter TargetName="Bg"
+                        Property="Fill"
+                        Value="{DynamicResource RebrandSelectedButton}"/>
+            </Trigger>
+            <Trigger Property="IsShy"
+                     Value="true">
+                <Setter TargetName="Icon"
+                        Property="Margin"
+                        Value="14,4,0,4"/>
+                <Setter TargetName="Header"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+                <Setter TargetName="Col3"
+                        Property="Width"
+                        Value="0" />
+                <Setter TargetName="Col5"
+                        Property="Width"
+                        Value="6" />
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="false">
+                <Setter TargetName="GlyphPanel"
+                        Property="Background"
+                        Value="#EEE9E9"/>
+                <Setter TargetName="GlyphPanel"
+                        Property="BorderBrush"
+                        Value="#DBD6D6"/>
+                <Setter TargetName="Glyph"
+                        Property="Fill"
+                        Value="#848589"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Submenu Header -->
+    <ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=SubmenuHeaderTemplateKey}"
+                     TargetType="{x:Type ari:AriIconLabelMenuItem}">
+        <Grid SnapsToDevicePixels="true">
+            <Rectangle Name="Bg"
+                       Fill="{TemplateBinding MenuItem.Background}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="24"
+                                      Width="Auto"
+                                      SharedSizeGroup="MenuItemIconColumnGroup"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="37"/>
+                    <ColumnDefinition Width="Auto"
+                                      SharedSizeGroup="MenuItemIGTColumnGroup"/>
+                    <ColumnDefinition Width="17"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Margin="1"
+                                  VerticalAlignment="Center"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <Border x:Name="GlyphPanel"
+                        Background="#E6EFF4"
+                        BorderBrush="#CDD3E6"
+                        BorderThickness="1"
+                        CornerRadius="3"
+                        Margin="1"
+                        Visibility="Hidden"
+                        Width="22"
+                        Height="22">
+                    <Path Name="Glyph"
+                          Width="9"
+                          Height="11"
+                          Fill="#0C12A1"
+                          FlowDirection="LeftToRight"
+                          Data="{DynamicResource Checkmark}"/>
+                </Border>
+                <ContentPresenter Grid.Column="2"
+                                  ContentSource="Header"
+                                  Margin="{TemplateBinding MenuItem.Padding}"
+                                  RecognizesAccessKey="True"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <TextBlock Grid.Column="4"
+                           Text="{TemplateBinding MenuItem.InputGestureText}"
+                           Margin="{TemplateBinding MenuItem.Padding}"
+                           Visibility="Collapsed"/>
+                <Path Grid.Column="5"
+                      VerticalAlignment="Center"
+                      Margin="4,0,0,0"
+                      Fill="{TemplateBinding MenuItem.Foreground}"
+                      Data="{DynamicResource RightArrow}"/>
+            </Grid>
+            <Popup x:Name="PART_Popup"
+                   AllowsTransparency="true"
+                   Placement="Right"
+                   VerticalOffset="-3"
+                   HorizontalOffset="-2"
+                   IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}"
+                   Focusable="false"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                <ContentControl Name="SubMenuBorder"
+                                Template="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=SubmenuContent}}"
+                                IsTabStop="false">
+                    <ScrollViewer Name="SubMenuScrollViewer" CanContentScroll="true"
+                                MaxHeight="{Binding Path=MaxSubmenuHeight,RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
+                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                            <Canvas Height="0" Width="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Rectangle
+                                Height="{Binding ElementName=SubMenuBorder,Path=ActualHeight}"
+                                Width="{Binding ElementName=SubMenuBorder,Path=ActualWidth}"
+                                Fill="{DynamicResource SubMenuBackgroundBrush}" />
+                            </Canvas>
+                            <ItemsPresenter Name="ItemsPresenter" Margin="2"
+                                        KeyboardNavigation.TabNavigation="Cycle"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Grid.IsSharedSizeScope="true"/>
+                        </Grid>
+                    </ScrollViewer>
+                </ContentControl>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSuspendingPopupAnimation"
+                     Value="true">
+                <Setter TargetName="PART_Popup"
+                        Property="PopupAnimation"
+                        Value="None"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="true">
+                <Setter TargetName="Bg"
+                        Property="Fill"
+                        Value="{DynamicResource Control.MouseOver.Background}"/>
+            </Trigger>
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="true">
+                <Setter TargetName="GlyphPanel"
+                        Property="Visibility"
+                        Value="Visible"/>
+                <Setter TargetName="Icon"
+                        Property="Visibility"
+                        Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsHighlighted"
+                     Value="true">
+                <Setter TargetName="Bg"
+                        Property="Fill"
+                        Value="{DynamicResource Control.MouseOver.Background}"/>
+                <Setter TargetName="Bg"
+                        Property="Stroke"
+                        Value="#8571CBF1"/>
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="false">
+                <Setter TargetName="GlyphPanel"
+                        Property="Background"
+                        Value="#EEE9E9"/>
+                <Setter TargetName="GlyphPanel"
+                        Property="BorderBrush"
+                        Value="#DBD6D6"/>
+                <Setter TargetName="Glyph"
+                        Property="Fill"
+                        Value="#848589"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type ari:AriIconLabelMenuItem}" TargetType="{x:Type ari:AriIconLabelMenuItem}">
+        <!--<Setter Property="Height" Value="26" />-->
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <!--<Setter Property="Cursor" Value="Hand" />-->
+        <!--<Setter Property="Padding" Value="6 4 2 2" />-->
+        <Setter Property="HorizontalContentAlignment"
+                Value="{Binding Path=HorizontalContentAlignment,RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment"
+                Value="{Binding Path=VerticalContentAlignment,RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Setter Property="ScrollViewer.PanningMode"
+                Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled"
+                Value="False"/>
+        <Setter Property="Template"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=SubmenuItemTemplateKey}}"/>
+        <Style.Triggers>
+            <Trigger Property="Role"
+                     Value="TopLevelHeader">
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=TopLevelHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="TopLevelItem">
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=TopLevelItemTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="SubmenuHeader">
+                <Setter Property="Template"
+                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type ari:AriIconLabelMenuItem}, ResourceId=SubmenuHeaderTemplateKey}}"/>
+            </Trigger>
+            <Trigger Property="Role"
+                     Value="SubmenuItem">
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--
+    **
+    **  Circle Icon Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriCircleIconButton}"
+        BasedOn="{StaticResource AriButtonBaseStyle}">
+        <Setter Property="Background"
+                Value="#99666666" />
+        <Setter Property="Height"
+                Value="48" />
+        <Setter Property="Width"
+                Value="48" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriCircleIconButton}">
+                    <Grid x:Name="Container"
+                          Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}">
+                        <Ellipse x:Name="BackgroundTile"
+                                 Fill="{TemplateBinding Background}" />
+                        <ari:AriIconLabel x:Name="Root"
+                                          Padding="{TemplateBinding Padding}"
+                                          Icon="{TemplateBinding Content}"
+                                          Label="{TemplateBinding Label}"
+                                          ShowLabel="False"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center">
+                        </ari:AriIconLabel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#FFD83F27" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#FFD83F27" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#FFD83F27" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#FF1E1E1E" />
+                            <Setter TargetName="Container"
+                                    Property="Opacity"
+                                    Value=".75" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  Rectangle Icon Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriRectangleIconButton}"
+        BasedOn="{StaticResource AriButtonBaseStyle}">
+        <Setter Property="Background"
+                Value="#99666666" />
+        <Setter Property="Height"
+                Value="48" />
+        <Setter Property="Width"
+                Value="48" />
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriRectangleIconButton}">
+                    <Grid x:Name="Container"
+                          Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}">
+                        <Rectangle x:Name="BackgroundTile"
+                                 Fill="{TemplateBinding Background}" />
+                        <ari:AriIconLabel x:Name="Root"
+                                          Padding="{TemplateBinding Padding}"
+                                          Icon="{TemplateBinding Content}"
+                                          Label="{TemplateBinding Label}"
+                                          ShowLabel="False"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center">
+                        </ari:AriIconLabel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#D83B01" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#D83B01" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="BackgroundTile"
+                                    Property="Fill"
+                                    Value="#B82B01" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Container"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  Bordered Icon Label Button
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+        BasedOn="{StaticResource AriButtonBaseStyle}">
+        <Setter Property="IsShy"
+                Value="True" />
+        <Setter Property="ToolTipService.Placement" 
+                Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="BorderThickness"
+                Value="1"/>
+        <Setter Property="BorderBrush"
+                Value="#191A1D"/>
+        <Setter Property="Foreground"
+                Value="#7b8296"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriBorderedIconLabelButton}">
+                    <Border x:Name="PART_Border"
+                                CornerRadius="2" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <ari:AriIconLabel x:Name="Root"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      Padding="{TemplateBinding Padding}"
+                                      Icon="{TemplateBinding Content}"
+                                      Label="{TemplateBinding Label}">
+                        </ari:AriIconLabel>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                            <Setter Property="Foreground"
+                                    Value="White">
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandTiltTransparent30}" />
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1" >
+                                        <GradientStop Color="#414758" Offset="0.5" />
+                                        <GradientStop Color="#3D4351" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    **
+    **  First Run Card
+    **
+    -->
+
+    <Style TargetType="{x:Type ari:AriFirstRunCard}" >
+        <Setter Property="IsEnabled"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriFirstRunCard}">
+                    <ControlTemplate.Resources>
+                        <QuadraticEase x:Key="EaseIn" EasingMode="EaseIn" />
+                        <QuadraticEase x:Key="EaseOut" EasingMode="EaseOut" />
+                    </ControlTemplate.Resources>
+                    <StackPanel>
+
+                        <ari:AriIcon x:Name="Image"
+                                     Template="{TemplateBinding Image}"
+                                     Height="200"
+                                     Width="200"
+                                     Opacity="0"
+                                     >
+                            <ari:AriIcon.RenderTransform>
+                                <TranslateTransform x:Name="ImageTransform" />
+                            </ari:AriIcon.RenderTransform>
+                        </ari:AriIcon>
+
+                        <TextBlock x:Name="Heading"
+                                   FontSize="36"
+                                   TextAlignment="Center"
+                                   Text="{TemplateBinding Heading}"
+                                   Opacity="0">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform x:Name="HeadingTransform" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+
+                        <TextBlock x:Name="Message"
+                                   Text="{TemplateBinding Message}"
+                                   FontSize="18"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Opacity="0"
+                                   Height="70"
+                                   Margin="20, 10, 20, 10">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform x:Name="MessageTransform" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="true" >
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Image"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="0"
+                                                            To="1"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="ImageTransform"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="200"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Heading"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="0"
+                                                            To="1"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="HeadingTransform"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="200"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Message"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="0"
+                                                            To="1"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="MessageTransform"
+                                                            BeginTime="0:0:00.2"
+                                                            Duration="0:0:00.3"
+                                                            From="200"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseOut}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Image"
+                                                            Duration="0:0:00.3"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="ImageTransform"
+                                                            Duration="0:0:00.3"
+                                                            To="-200"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Heading"
+                                                            Duration="0:0:00.3"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="HeadingTransform"
+                                                            Duration="0:0:00.3"
+                                                            To="-200"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="Message"
+                                                            Duration="0:0:00.3"
+                                                            To="0"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+                                        <DoubleAnimation Storyboard.TargetProperty="X"
+                                                            Storyboard.TargetName="MessageTransform"
+                                                            Duration="0:0:00.3"
+                                                            To="-200"
+                                                            EasingFunction="{StaticResource EaseIn}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriModernWindow}" TargetType="{x:Type ari:AriModernWindow}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuHighlightBrush}}" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome CornerRadius="0"
+                                    ResizeBorderThickness="4"
+                                    NonClientFrameEdges="None"
+                                    CaptionHeight="30"
+                                    UseAeroCaptionButtons="False"
+                                    GlassFrameThickness="0,0,0,-1"  />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ModernCaptionBrush" Value="White" />
+        <Setter Property="ModernCaptionButtonBrush" Value="White" />
+        <Setter Property="ModernBorderBrush" Value="#3085FF" />
+        <Setter Property="ModernBorderThickness" Value="1" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriModernWindow}">
+                    <Grid Background="{TemplateBinding Background}" >
+                        <Grid.Resources>
+                            <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource RebrandThemeGreyBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MouseOverGreyBrush}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style x:Key="NavCloseButtonStyle" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource RebrandThemeGreyBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MouseOverGreyBrush}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <Border x:Name="ModernBorder" Background="{DynamicResource SystemWhite}" BorderBrush="{TemplateBinding ModernBorderBrush}" BorderThickness="{TemplateBinding ModernBorderThickness}" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter x:Name="ContentArea"
+                                                  Grid.Row="1"
+                                                  Content="{TemplateBinding Content}"
+                                                  Margin="0,0,0,0" />
+                                <Grid x:Name="WindowTitleBar" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="46" />
+                                        <ColumnDefinition Width="46" />
+                                        <ColumnDefinition Width="46" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Name="CaptionArea" Grid.Column="0" Visibility="Collapsed" Foreground="{TemplateBinding ModernCaptionBrush}" IsHitTestVisible="False" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,10,0" SnapsToDevicePixels="True" UseLayoutRounding="True" FontSize="{TemplateBinding CaptionBarHeight}" />
+                                    <Button x:Name="MinimizeButton" Grid.Column="1" Style="{StaticResource NavButtonStyle}" ToolTip="{x:Static prop:Resources.WindowsChrome_Minimize}" AutomationProperties.Name="{x:Static prop:Resources.WindowsChrome_Minimize}">
+                                        <Canvas HorizontalAlignment="Left" Height="24" UseLayoutRounding="False" VerticalAlignment="Top" Width="24">
+                                            <Canvas Height="0" Canvas.Left="6" Canvas.Top="12.5" Width="12">
+                                                <Path Data="M12,0.5L0,0.5" Height="1" Canvas.Left="0" Stroke="Black" Canvas.Top="-0.5" Width="12"/>
+                                            </Canvas>
+                                        </Canvas>
+                                    </Button>
+                                    <Button x:Name="RestoreButton" Grid.Column="2" Style="{StaticResource NavButtonStyle}" Visibility="Collapsed" ToolTip="{x:Static prop:Resources.WindowsChrome_Restore}" AutomationProperties.Name="{x:Static prop:Resources.WindowsChrome_Restore}">
+                                        <Canvas HorizontalAlignment="Left" Height="24" UseLayoutRounding="False" VerticalAlignment="Top" Width="24">
+                                            <Canvas Height="12" Canvas.Left="6" Canvas.Top="6" Width="12">
+                                                <Path Data="F1M11,8L9,8 9,3 4,3 4,1 11,1z M8,11L1,11 1,4 8,4z M3,0L3,3 0,3 0,12 9,12 9,9 12,9 12,0z" Fill="Black" Height="12" Canvas.Left="0" Canvas.Top="0" Width="12"/>
+                                            </Canvas>
+                                        </Canvas>
+                                    </Button>
+                                    <Button x:Name="MaximizeButton" Grid.Column="2" Style="{StaticResource NavButtonStyle}" ToolTip="{x:Static prop:Resources.WindowsChrome_Maximize}" AutomationProperties.Name="{x:Static prop:Resources.WindowsChrome_Maximize}">
+                                        <Canvas HorizontalAlignment="Left" Height="24" UseLayoutRounding="False" VerticalAlignment="Top" Width="24">
+                                            <Canvas Height="12" Canvas.Left="6" Canvas.Top="6" Width="12">
+                                                <Path Data="F1M12,0L0,0 0,12 12,12z M11,11L1,11 1,1 11,1z" Fill="Black" Height="12" Canvas.Left="0" Canvas.Top="0" Width="12"/>
+                                            </Canvas>
+                                        </Canvas>
+                                    </Button>
+                                    <Button x:Name="CloseButton" Grid.Column="3" Style="{StaticResource NavCloseButtonStyle}"  ToolTip="{x:Static prop:Resources.WindowsChrome_Close}" AutomationProperties.Name="{x:Static prop:Resources.WindowsChrome_Close}">
+                                        <Canvas HorizontalAlignment="Left" Height="24" UseLayoutRounding="False" VerticalAlignment="Top" Width="24">
+                                            <Canvas Height="12" Canvas.Left="6" Canvas.Top="6" Width="12">
+                                                <Path Data="M0.354,12.354L12.354,0.354" Height="12.707" Canvas.Left="-0.354" Stroke="Black" Canvas.Top="-0.354" Width="12.707"/>
+                                                <Path Data="M12.354,12.354L0.354,0.354" Height="12.707" Canvas.Left="-0.354" Stroke="Black" Canvas.Top="-0.354" Width="12.707"/>
+                                            </Canvas>
+                                        </Canvas>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter Property="ModernBorderBrush" Value="#666666" />
+                            <Setter TargetName="WindowTitleBar" Property="Opacity" Value=".5" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="ModernBorder" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter Property="shell:WindowChrome.ResizeBorderThickness" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AriDialogPanel" TargetType="Panel">
+        <Setter Property="Background" Value="#3075bb" />
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriDialogButton}" TargetType="{x:Type ari:AriDialogButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="#3075bb"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="MinWidth" Value="84" />
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle x:Name="bg" Fill="{TemplateBinding Background}" />
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <Rectangle x:Name="FocusVisual" IsHitTestVisible="False" Visibility="Collapsed" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="White" StrokeDashArray="1,1" Margin="2"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="Fill" TargetName="bg" Value="#343434"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#22ffffff"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#33ffffff"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value=".5" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Visibility" TargetName="FocusVisual" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriProgressBar}" TargetType="{x:Type ari:AriProgressBar}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#4d4d4d"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ProgressBar}">
+                    <Grid x:Name="TemplateRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Determinate"/>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
+                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                        <Rectangle x:Name="PART_Track"/>
+                        <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
+                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsIndeterminate" Value="true">
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+        <Setter Property="Background" Value="#343434" />
+        <Setter Property="BorderBrush" Value="#999999" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriSuperTip}" TargetType="{x:Type ari:AriSuperTip}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#6B69D6"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriSuperTip}">
+                    <Grid x:Name="Root">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="1"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriToggleSwitch}" TargetType="{x:Type ari:AriToggleSwitch}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriToggleSwitch}">
+                    <Canvas Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="Transparent">
+                        <Rectangle x:Name="Back" Canvas.Top="3.5" Canvas.Left="1" StrokeThickness="2.25" Height="22" Width="48" RadiusX="11" RadiusY="11">
+                            <Rectangle.Stroke>
+                                <SolidColorBrush x:Name="BackStrokeBrush" Color="{x:Static SystemColors.WindowFrameColor}" />
+                            </Rectangle.Stroke>
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="BackFillBrush" Color="Transparent" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Ellipse x:Name="Dot" Canvas.Top="8.55" Canvas.Left="7.5" Fill="{x:Static SystemColors.WindowFrameBrush}" Height="11" Width="11" />
+                        <TextBlock x:Name="Label" VerticalAlignment="Top" Canvas.Left="60" Canvas.Top="0" Foreground="Black" FontSize="{DynamicResource NormalFontTextSize}" Text="Off"></TextBlock>
+                    </Canvas>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Label" Property="Text" Value="On" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="BackStrokeBrush"
+                                                        Storyboard.TargetProperty="Color"
+                                                        Duration="0:0:0.2"
+                                                        To="#6B69D6" />
+                                        <!-- I cannot use resource dictionary colors in a resource dictionary file, sorry in advance! -->
+                                        <ColorAnimation Storyboard.TargetName="BackFillBrush"
+                                                        Storyboard.TargetProperty="Color"
+                                                        Duration="0:0:0.2"
+                                                        To="#6B69D6" />
+                                        <DoubleAnimation Storyboard.TargetName="Dot"
+                                                         Storyboard.TargetProperty="(Canvas.Left)"
+                                                         Duration="0:0:0.2"
+                                                         To="30" />
+                                        <ColorAnimation Storyboard.TargetName="Dot"
+                                                        Storyboard.TargetProperty="Fill.Color"
+                                                        Duration="0:0:0.2"
+                                                        To="{x:Static SystemColors.WindowColor}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="BackStrokeBrush"
+                                                        Storyboard.TargetProperty="Color"
+                                                        Duration="0:0:0.2"
+                                                        To="{x:Static SystemColors.WindowFrameColor}" />
+                                        <ColorAnimation Storyboard.TargetName="BackFillBrush"
+                                                        Storyboard.TargetProperty="Color"
+                                                        Duration="0:0:0.2"
+                                                        To="Transparent" />
+                                        <DoubleAnimation Storyboard.TargetName="Dot"
+                                                         Storyboard.TargetProperty="(Canvas.Left)"
+                                                         Duration="0:0:0.2"
+                                                         To="7" />
+                                        <ColorAnimation Storyboard.TargetName="Dot"
+                                                        Storyboard.TargetProperty="Fill.Color"
+                                                        Duration="0:0:0.2"
+                                                        To="{x:Static SystemColors.WindowFrameColor}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ari:AriLinkButton}" TargetType="{x:Type ari:AriLinkButton}">
+        <Setter Property="Foreground" Value="#3075bb" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriLinkButton}">
+                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#50e3c2" />
+                        </Trigger>
+                        <!--<Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Foreground" Value="#5095db" />
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

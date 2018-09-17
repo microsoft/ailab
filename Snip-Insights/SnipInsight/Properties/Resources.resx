@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioVideoSource_NoAudio" xml:space="preserve">
+    <value>No microphone</value>
+  </data>
+  <data name="Close_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Close_ToolTip" xml:space="preserve">
+    <value>Close the Snip Insights application</value>
+  </data>
+  <data name="Delete_Content" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Exception_Dialog_Text" xml:space="preserve">
+    <value>Sorry! It looks like something has gone wrong. A software problem has occurred in Snip Insights . Not to worry, we've reported it to the team. You may continue to use the application, but some features may not work as expected.</value>
+  </data>
+  <data name="Exception_Dialog_Title" xml:space="preserve">
+    <value>Snip Insights error</value>
+  </data>
+  <data name="Pause_Content" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Pause_ToolTip" xml:space="preserve">
+    <value>Pause your recording</value>
+  </data>
+  <data name="PreviewStart_Content" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="PreviewStart_ToolTip" xml:space="preserve">
+    <value>Watch a preview of your recording</value>
+  </data>
+  <data name="PreviewStop_Content" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="RecordingStop_Text" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="RecordingStop_ToolTip" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Record_Content" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Record_ToolTip" xml:space="preserve">
+    <value>Record audio and write on your picture</value>
+  </data>
+  <data name="Capture_Content" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="Capture_ToolTip" xml:space="preserve">
+    <value>Capture  your screen</value>
+  </data>
+  <data name="AudioVideo_ErrorReport" xml:space="preserve">
+    <value>There was a problem with your microphone. Please try restarting your device.</value>
+  </data>
+  <data name="AudioVideo_NoAudioReceived" xml:space="preserve">
+    <value>The microphone is not recording. Please check your device, and try again.</value>
+  </data>
+  <data name="AudioVideo_NoSamplesProcessed" xml:space="preserve">
+    <value>Nothing was recorded. Please try a longer recording.</value>
+  </data>
+  <data name="AudioVideo_NoSuitableAudioStream" xml:space="preserve">
+    <value>The microphone is not supported. Please try a different audio device.</value>
+  </data>
+  <data name="AudioVideo_NoTranscodeAudioType" xml:space="preserve">
+    <value>We are unable to record using the microphone. Please try a different audio device.</value>
+  </data>
+  <data name="AudioVideoSource_NoVideo" xml:space="preserve">
+    <value>No camera</value>
+  </data>
+  <data name="CameraView_title" xml:space="preserve">
+    <value>Snip camera</value>
+  </data>
+  <data name="Camera_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Camera_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Camera_SelectToolTip" xml:space="preserve">
+    <value>Select a camera</value>
+  </data>
+  <data name="Camera_TakePicture" xml:space="preserve">
+    <value>Take</value>
+  </data>
+  <data name="Camera_TakeToolTip" xml:space="preserve">
+    <value>Take a photo</value>
+  </data>
+  <data name="Photo_Content" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="Photo_ToolTip" xml:space="preserve">
+    <value>Take a photo</value>
+  </data>
+  <data name="Publish_Failed" xml:space="preserve">
+    <value>Publish failed!</value>
+  </data>
+  <data name="Publish_Succeed" xml:space="preserve">
+    <value>Publish succeed!</value>
+  </data>
+  <data name="Publish_WatchLink" xml:space="preserve">
+    <value>Click to View</value>
+  </data>
+  <data name="Menu_Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="Menu_Share_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Menu_Share_Embed" xml:space="preserve">
+    <value>Embed</value>
+  </data>
+  <data name="Menu_Share_Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="FirstRun_Annotate_Heading" xml:space="preserve">
+    <value>Insights</value>
+  </data>
+  <data name="FirstRun_Grab_Heading" xml:space="preserve">
+    <value>Snip Insights</value>
+  </data>
+  <data name="FirstRun_Share_Heading" xml:space="preserve">
+    <value>Show-and-tell</value>
+  </data>
+  <data name="FirstRun_Intro_Heading" xml:space="preserve">
+    <value>Snip Insights AI</value>
+  </data>
+  <data name="WindowTitle_FirstRun" xml:space="preserve">
+    <value>Tutorial</value>
+  </data>
+  <data name="WindowTitle_Main" xml:space="preserve">
+    <value>Snip Insights Editor</value>
+  </data>
+  <data name="WindowTitle_Toast" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="WindowTitle_Tool" xml:space="preserve">
+    <value>Snip Insights Toolbar</value>
+  </data>
+  <data name="FirstRun_Annotate_Message" xml:space="preserve">
+    <value>Turn on insights to see similar images, auto-naming and more.</value>
+  </data>
+  <data name="FirstRun_Intro_Message" xml:space="preserve">
+    <value>Use the tool window or assign shorcuts to access features.</value>
+  </data>
+  <data name="FirstRun_Share_Message" xml:space="preserve">
+    <value>Edit, share and save your snips, all in the same window.</value>
+  </data>
+  <data name="FirstRun_Grab_Message" xml:space="preserve">
+    <value>Click and drag to capture any window or area of your screen.</value>
+  </data>
+  <data name="WindowsChrome_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WindowsChrome_Maximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="WindowsChrome_Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="WindowsChrome_Restore" xml:space="preserve">
+    <value>Restore Down</value>
+  </data>
+  <data name="Progress_Upload" xml:space="preserve">
+    <value>Uploading your snip so it'll be easy to share...</value>
+  </data>
+  <data name="Progress_Video" xml:space="preserve">
+    <value>Processing video...</value>
+  </data>
+  <data name="Link_Privacy" xml:space="preserve">
+    <value>https://go.microsoft.com/fwlink/?LinkId=521839</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Message_CopiedToClipboard" xml:space="preserve">
+    <value>Copied to clipboard</value>
+  </data>
+  <data name="Message_LinkCopiedToClipboard" xml:space="preserve">
+    <value>Link copied to clipboard</value>
+  </data>
+  <data name="Link_Terms" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/servicesagreement/</value>
+  </data>
+  <data name="Message_CopyToClipboardFailed" xml:space="preserve">
+    <value>Failed to copy to clipboard! Please try again later.</value>
+  </data>
+  <data name="KeyComboPicker_NotSupportCombination" xml:space="preserve">
+    <value>Not a supported combination</value>
+  </data>
+  <data name="KeyComboPicker_Updated" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="Settings_AboutThisApp_Heading" xml:space="preserve">
+    <value>About this app</value>
+  </data>
+  <data name="Settings_Capture_Heading" xml:space="preserve">
+    <value>Capture preferences</value>
+  </data>
+  <data name="Settings_Copyright_Text" xml:space="preserve">
+    <value>© 2018 Microsoft Corporation</value>
+  </data>
+  <data name="Settings_Hotkeys_Heading" xml:space="preserve">
+    <value>Hotkeys - (Ctrl + Alt + AnyKey)</value>
+  </data>
+  <data name="Settings_PrivacyStatement_Button" xml:space="preserve">
+    <value>Privacy Statement</value>
+  </data>
+  <data name="Settings_General_Heading" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_Snipping_Heading" xml:space="preserve">
+    <value>Snipping</value>
+  </data>
+  <data name="Settings_Cognitive_Services_Heading" xml:space="preserve">
+    <value>Cognitive Services</value>
+  </data>
+  <data name="Settings_RunWhenWindowsStarts_Label" xml:space="preserve">
+    <value>Run Snip Insights when Windows starts</value>
+  </data>
+  <data name="Settings_ServiceAgreement_Button" xml:space="preserve">
+    <value>Microsoft Services Agreement</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_NewCapture" xml:space="preserve">
+    <value>New Capture</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_NewPhoto" xml:space="preserve">
+    <value>New Photo</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_NewWhiteboard" xml:space="preserve">
+    <value>New Whiteboard</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_Library" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TrayIcon_ContextMenuItem_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="TrayIcon_ToolTip" xml:space="preserve">
+    <value>Snip Insights</value>
+  </data>
+  <data name="TrayIcon_BalloonTip_AppIsStillRunning_Text" xml:space="preserve">
+    <value>Snip Insights is still running in the system tray, listening for hotkey commands to create new snips. Click here to stop showing this message.</value>
+  </data>
+  <data name="TrayIcon_BalloonTip_AppIsStillRunning_Title" xml:space="preserve">
+    <value>Snip Insights is still running</value>
+  </data>
+  <data name="Settings_ShowToolbarOnDesktop" xml:space="preserve">
+    <value>Show toolbar on the desktop</value>
+  </data>
+  <data name="Settings_Delay_FormatString" xml:space="preserve">
+    <value>Delay screen capture: {0} second(s)</value>
+  </data>
+  <data name="Menu_Share_OneNote" xml:space="preserve">
+    <value>OneNote</value>
+  </data>
+  <data name="SendToOneNoteDialogDescription" xml:space="preserve">
+    <value>Pick a section or page to insert the Snip:</value>
+  </data>
+  <data name="SendToOneNoteDialogSendToButton" xml:space="preserve">
+    <value>Send to selected location</value>
+  </data>
+  <data name="SendToOneNoteDialogTitle" xml:space="preserve">
+    <value>Send Snip to OneNote</value>
+  </data>
+  <data name="SendToOneNoteProcessElevationMismatchDiaglogMessage" xml:space="preserve">
+    <value>Snip Insights is unable to open OneNote because {0} is running as Administrator and {1} is not. Close OneNote and try again.</value>
+  </data>
+  <data name="SendToOneNoteProcessElevationMismatchDiaglogTitle" xml:space="preserve">
+    <value>Unable to open OneNote</value>
+  </data>
+  <data name="Message_SendToOneNote_Failed" xml:space="preserve">
+    <value>Send to OneNote failed</value>
+  </data>
+  <data name="Message_SendToOneNote_Succeeded" xml:space="preserve">
+    <value>Snip sent to OneNote</value>
+  </data>
+  <data name="SendToOneNoteFirstRunNotCompleteDialogMessage" xml:space="preserve">
+    <value>OneNote has not been configured. Launch and configure OneNote first and then try again.</value>
+  </data>
+  <data name="SendToOneNoteFirstRunNotCompleteDialogTitle" xml:space="preserve">
+    <value>OneNote not configured</value>
+  </data>
+  <data name="SendToOneNoteRestartSnipDialogMessage" xml:space="preserve">
+    <value>Snip Insights needs to be restarted. Click OK to restart Snip Insights.</value>
+  </data>
+  <data name="SendToOneNoteRestartSnipDialogTitle" xml:space="preserve">
+    <value>Restart Snip Insights</value>
+  </data>
+  <data name="Settings_ContentModerationStrength_FormatString" xml:space="preserve">
+    <value>Share image moderator strength: {0} %</value>
+  </data>
+  <data name="ShareModerateWarning" xml:space="preserve">
+    <value>This image may contain inappropriate content, would you like to proceed anyway?</value>
+  </data>
+  <data name="Settings_EnableAI" xml:space="preserve">
+    <value>Enable AI assistance</value>
+  </data>
+  <data name="Commit_Changes" xml:space="preserve">
+    <value>Do you want to save the changes?</value>
+  </data>
+  <data name="LUIS_App_id" xml:space="preserve">
+    <value>2891e896-28de-4a0e-818e-504de767d08f</value>
+  </data>
+  <data name="API_Key_Not_Found" xml:space="preserve">
+    <value> API Key not configured in setting</value>
+  </data>
+  <data name="Auto_open_editor" xml:space="preserve">
+    <value>Automatically open editor on snip</value>
+  </data>
+  <data name="Celebrity_Information" xml:space="preserve">
+    <value>Celebrity Information</value>
+  </data>
+  <data name="Confirm_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete this snip?</value>
+  </data>
+  <data name="Confirm_Delete_List" xml:space="preserve">
+    <value>Are you sure you want to delete {0} snips?</value>
+  </data>
+  <data name="ContentModerator" xml:space="preserve">
+    <value>Content Moderator</value>
+  </data>
+  <data name="Copy_to_clipboard" xml:space="preserve">
+    <value>Copy to clipboard after a snip</value>
+  </data>
+  <data name="Create_New_Event" xml:space="preserve">
+    <value>Create New Event</value>
+  </data>
+  <data name="Delete_Failed" xml:space="preserve">
+    <value>The deletion failed.</value>
+  </data>
+  <data name="Delete_Failed_List" xml:space="preserve">
+    <value>The deletion failed for {0} item(s)</value>
+  </data>
+  <data name="Entity_Search" xml:space="preserve">
+    <value>Entity Search</value>
+  </data>
+  <data name="Eraser" xml:space="preserve">
+    <value>Eraser</value>
+  </data>
+  <data name="Erase_All" xml:space="preserve">
+    <value>Erase All</value>
+  </data>
+  <data name="Exception_at_celebrities" xml:space="preserve">
+    <value>Exception at celebrities: </value>
+  </data>
+  <data name="Exception_at_landmark" xml:space="preserve">
+    <value>Exception at landmark: </value>
+  </data>
+  <data name="Highlighter" xml:space="preserve">
+    <value>Highlighter</value>
+  </data>
+  <data name="Image_Analysis" xml:space="preserve">
+    <value>Image Analysis</value>
+  </data>
+  <data name="Image_Not_Loaded" xml:space="preserve">
+    <value>Sorry, image cannot be loaded</value>
+  </data>
+  <data name="Image_Search" xml:space="preserve">
+    <value>Image Search</value>
+  </data>
+  <data name="Image_to_Text" xml:space="preserve">
+    <value>Image to Text</value>
+  </data>
+  <data name="Insight_Not_Found" xml:space="preserve">
+    <value>Could not find insights!</value>
+  </data>
+  <data name="Key_Restart" xml:space="preserve">
+    <value>Keys have been updated.
+Please restart the application to apply changes. </value>
+  </data>
+  <data name="Landmark_Information" xml:space="preserve">
+    <value>Landmark Information</value>
+  </data>
+  <data name="LUIS_App" xml:space="preserve">
+    <value>LUIS App ID</value>
+  </data>
+  <data name="LUIS_Key" xml:space="preserve">
+    <value>LUIS Key</value>
+  </data>
+  <data name="More_information" xml:space="preserve">
+    <value>More info</value>
+  </data>
+  <data name="My_Snips" xml:space="preserve">
+    <value>My Snips</value>
+  </data>
+  <data name="No_Browser" xml:space="preserve">
+    <value>No internet browser found. Please install a browser and try again</value>
+  </data>
+  <data name="Pen_Toggle" xml:space="preserve">
+    <value>Pen Toggle</value>
+  </data>
+  <data name="Please_try_again" xml:space="preserve">
+    <value>Please try again</value>
+  </data>
+  <data name="Popular_landmark" xml:space="preserve">
+    <value>Popular landmark</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Send_Email" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="Sharing_Snip" xml:space="preserve">
+    <value>Sharing a snip with you</value>
+  </data>
+  <data name="Sharing_Snip_Name" xml:space="preserve">
+    <value>Sharing a snip of '{0}' with you</value>
+  </data>
+  <data name="Show_toast" xml:space="preserve">
+    <value>Show the notification toast after a snip</value>
+  </data>
+  <data name="Similar_Images" xml:space="preserve">
+    <value>Similar Images</value>
+  </data>
+  <data name="Similar_Images_Web" xml:space="preserve">
+    <value>From the web</value>
+  </data>
+  <data name="Similar_Products" xml:space="preserve">
+    <value>Similar Products</value>
+  </data>
+  <data name="Suggested_Insights" xml:space="preserve">
+    <value>Suggested Insights</value>
+  </data>
+  <data name="Text_Recognition" xml:space="preserve">
+    <value>Text Recognition</value>
+  </data>
+  <data name="Translator" xml:space="preserve">
+    <value>Translator</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="UpdateKeys" xml:space="preserve">
+    <value>UpdateKeys</value>
+  </data>
+  <data name="Who_is_this" xml:space="preserve">
+    <value>Who is this?</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AppIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnipInsights.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InkCursor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InkCursor.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ContentModerator_Endpoint" xml:space="preserve">
+    <value>Content Moderator Endpoint</value>
+  </data>
+  <data name="Entity_Search_Endpoint" xml:space="preserve">
+    <value>Entity Search Endpoint</value>
+  </data>
+  <data name="Image_Analysis_Endpoint" xml:space="preserve">
+    <value>Image Analysis (Computer Vision) Endpoint</value>
+  </data>
+  <data name="Image_Search_Endpoint" xml:space="preserve">
+    <value>Image Search (Bing Search) Endpoint</value>
+  </data>
+  <data name="LUIS_Endpoint" xml:space="preserve">
+    <value>LUIS Endpoint</value>
+  </data>
+  <data name="Text_Recognition_Endpoint" xml:space="preserve">
+    <value>Text Recognition (Computer Vision) Endpoint</value>
+  </data>
+  <data name="Translator_Endpoint" xml:space="preserve">
+    <value>Translator Text API Endpoint</value>
+  </data>
+  <data name="Settings_ForDevelopers" xml:space="preserve">
+    <value>For developers</value>
+  </data>
+  <data name="Settings_Hotkeys_Heading1" xml:space="preserve">
+    <value>Windows Hotkeys (Ctrl + Alt + Any supported key)</value>
+  </data>
+  <data name="Settings_Hotkeys_Heading2" xml:space="preserve">
+    <value>* MacOS Hotkeys (Cmd + Option + Any Supported key)</value>
+  </data>
+  <data name="Settings_DelayScreenCapture" xml:space="preserve">
+    <value>Delay screen capture</value>
+  </data>
+  <data name="Settings_QUIT" xml:space="preserve">
+    <value>QUIT</value>
+  </data>
+  <data name="Settings_SNIP" xml:space="preserve">
+    <value>SNIP</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Side_Celebrity_Information" xml:space="preserve">
+    <value>Celebrity</value>
+  </data>
+  <data name="Side_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Side_Landmark_Information" xml:space="preserve">
+    <value>Landmark</value>
+  </data>
+  <data name="Side_Ocr" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Side_Similar_Images" xml:space="preserve">
+    <value>Similar Images</value>
+  </data>
+  <data name="Side_Similar_Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="Copied_To_Clipboard" xml:space="preserve">
+    <value>Copied to clipboard</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="Notification_popup" xml:space="preserve">
+    <value>Notification Popup</value>
+  </data>
+  <data name="Notification_shortcut_dismiss" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Notification_shortcut_editor" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="Notification_shortcut_folder" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="Open_editor" xml:space="preserve">
+    <value>Open Editor</value>
+  </data>
+  <data name="Open_folder" xml:space="preserve">
+    <value>Open Folder</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="Screenshot_saved" xml:space="preserve">
+    <value>Screenshot Saved!</value>
+  </data>
+  <data name="Screen_Diferent_Scale_Factor_Detected" xml:space="preserve">
+    <value>Different scales on monitors have been detected. This can introduce issues on the snips you take. Please set the same scale on every monitor.</value>
+  </data>
+  <data name="Settings_QUICK" xml:space="preserve">
+    <value>QUICK CAPTURE</value>
+  </data>
+</root>

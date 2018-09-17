@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SnipInsight.Forms.Features.Insights.ImageSearch.ImageSearchItemTemplate"
+    x:Name="self"
+    BackgroundColor="{StaticResource ImageBackgroundColor}"
+    HeightRequest="{StaticResource ImageHeight}"
+    WidthRequest="{StaticResource ImageWidth}">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer
+            Command="{Binding SelectCommand, Source={x:Reference self}}"
+            CommandParameter="{Binding BindingContext.URL, Source={x:Reference self}}" />
+    </ContentView.GestureRecognizers>
+    <ContentView.Margin>
+        <Thickness
+            Top="{StaticResource DefaultMargin}"
+            Right="{StaticResource SmallerDefaultMargin}" />
+    </ContentView.Margin>
+    <ContentView.Content>
+
+        <Image
+            Aspect="AspectFit"
+            Source="{Binding URL}"/>
+        
+    </ContentView.Content>
+</ContentView>

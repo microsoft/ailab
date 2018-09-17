@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    x:Class="SnipInsight.Forms.Features.Settings.DeveloperSettingsPage"
+    Title="{l10n:Localize Settings_Developers_Heading}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style
+                TargetType="Entry">
+                <Setter
+                    Property="Margin">
+                    <Thickness
+                        Top="{StaticResource SmallestDefaultMargin}"
+                        Bottom="{StaticResource BiggerDefaultMargin}" />
+                </Setter>
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource DefaultFontSize}" />
+                <Setter
+                    Property="BackgroundColor"
+                    Value="#31343E" />
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <!-- This Grid's needed because just with inner StackLayout with Margin/Padding such's not applied. 
+                 Actually, the checkboxes dissappear -->
+            <Grid
+                HorizontalOptions="Start"
+                WidthRequest="636">
+                <Grid.Padding>
+                    <Thickness
+                        Left="{StaticResource SettingsLeftRightPadding}"
+                        Right="{StaticResource SettingsLeftRightPadding}"
+                        Bottom="{StaticResource BiggerDefaultMargin}" />
+                </Grid.Padding>
+                <StackLayout>
+                    <!-- Insight Service Keys -->
+                    <Label
+                        Text="{l10n:Localize Settings_Service_Keys_Title}"
+                        Style="{StaticResource SettingsTitleStyle}">
+                        <Label.Margin>
+                            <Thickness
+                                Top="{StaticResource BiggerDefaultMargin}"
+                                Bottom="{StaticResource DefaultMargin}" />
+                        </Label.Margin>
+                    </Label>
+                    <Label
+                        Text="{l10n:Localize Entity_Search}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Entity_Search}"
+                        Text="{Binding EntitySearchAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize Image_Analysis}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Image_Analysis}"
+                        Text="{Binding ImageAnalysisAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize Image_Search}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Image_Search}"
+                        Text="{Binding ImageSearchAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize Text_Recognition}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Text_Recognition}"
+                        Text="{Binding TextRecognitionAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize Translator}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Translator}"
+                        Text="{Binding TranslatorAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize LUIS_Key}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize LUIS_Key}"
+                        Text="{Binding LuisAPIKey}" />
+                    <Label
+                        Text="{l10n:Localize LUIS_App}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize LUIS_App}"
+                        Text="{Binding LuisAPPID}" />
+                    <Button
+                        Text="{l10n:Localize Insights_Save}"
+                        Command="{Binding SaveCommand}"
+                        AutomationProperties.Name="{l10n:Localize Insights_Save}"
+                        HorizontalOptions="End"
+                        WidthRequest="120" />
+                    <!-- Insight Service Endpoints -->
+                    <Label
+                        Text="{l10n:Localize Settings_Service_Endpoints_Title}"
+                        Style="{StaticResource SettingsTitleStyle}">
+                        <Label.Margin>
+                            <Thickness
+                                Top="{StaticResource BiggerDefaultMargin}"
+                                Bottom="{StaticResource DefaultMargin}" />
+                        </Label.Margin>
+                    </Label>
+                    <Label
+                        Text="{l10n:Localize Entity_Search}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Entity_Search}"
+                        Text="{Binding EntitySearchEndPoint}" />
+                    <Label
+                        Text="{l10n:Localize Image_Analysis}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Image_Analysis}"
+                        Text="{Binding ImageAnalysisEndPoint}" />
+                    <Label
+                        Text="{l10n:Localize Image_Search}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Image_Search}"
+                        Text="{Binding ImageSearchEndPoint}" />
+                    <Label
+                        Text="{l10n:Localize Text_Recognition}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Text_Recognition}"
+                        Text="{Binding TextRecognitionEndPoint}" />
+                    <Label
+                        Text="{l10n:Localize Translator}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize Translator}"
+                        Text="{Binding TranslatorEndPoint}" />
+                    <Label
+                        Text="{l10n:Localize LUIS_Endpoint}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Entry
+                        AutomationProperties.Name="{l10n:Localize LUIS_Endpoint}"
+                        Text="{Binding LuisEndPoint}" />
+                    <Button
+                        Text="{l10n:Localize Insights_Save}"
+                        AutomationProperties.Name="{l10n:Localize Insights_Save}"
+                        Command="{Binding SaveCommand}"
+                        HorizontalOptions="End"
+                        WidthRequest="120" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
