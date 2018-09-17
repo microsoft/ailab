@@ -1,0 +1,10 @@
+steps:
+- script: |
+    chmod +x build.mac.sh
+    ./build.mac.sh
+- task: PublishBuildArtifacts@1
+  displayName: Publish Mac package assets
+  inputs:
+    pathtoPublish: $(Build.SourcesDirectory)/Installers/Mac/build
+    artifactName: Package
+    artifactType: container

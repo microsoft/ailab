@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="SnipInsight.Forms.Colors">
+
+    <Color x:Key="AccentColor">#50e3c2</Color>
+    
+    <Color x:Key="DefaultButtonBackgroundColor">#393e4c</Color>
+
+    <Color x:Key="DefaultButtonBorderColor">#282b33</Color>
+    
+    <Color x:Key="DefaultTextColor">#abb3c8</Color>
+
+    <Color x:Key="SecondaryTextColor">#868ea4</Color>
+
+    <Color x:Key="DefaultTitleTextColor">White</Color>
+
+    <Color x:Key="ImageBackgroundColor">White</Color>
+
+    <Color x:Key="SnippingInverseSelectionColor">#99282b33</Color>
+    
+    <Color x:Key="SnippingTextColor">#c8cfe1</Color>
+    
+    <Color x:Key="SnippingTooltipBackgroundColor">#181818</Color>
+
+    <Color x:Key="WhiteColor">#ffffff</Color>
+
+    <Color x:Key="WindowDarkBackgroundColor">#343945</Color>
+
+    <Color x:Key="SettingsLinesColor">#454c5d</Color>
+    
+    <Color x:Key="WindowLightBackgroundColor">#3d4351</Color>
+    
+    <Color x:Key="MarkerColor">#99FFFF80</Color>
+    
+</ResourceDictionary>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:imgSearch="clr-namespace:SnipInsight.Forms.Features.Insights.ImageSearch"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    x:Class="SnipInsight.Forms.Features.Insights.ImageSearch.ImageSearchView"
+    x:Name="self">
+    <ContentView.Content>
+        
+        <StackLayout>
+            
+            <Label 
+                Style="{StaticResource InsightsResultTitleStyle}" 
+                Text="{l10n:Localize Similar_Images}" />
+            
+            <controls:ExtendedFlexLayout 
+                ItemsSource="{Binding BindingContext.Images, Source={x:Reference self}}">
+                <controls:ExtendedFlexLayout.ItemTemplate>
+                    <DataTemplate>
+                        <imgSearch:ImageSearchItemTemplate
+                            SelectCommand="{Binding BindingContext.UpdateInsightsImageCommand, 
+                                Source={x:Reference self}}"/>
+                    </DataTemplate>
+                </controls:ExtendedFlexLayout.ItemTemplate>
+            </controls:ExtendedFlexLayout>
+            
+        </StackLayout>
+        
+    </ContentView.Content>
+</ContentView>

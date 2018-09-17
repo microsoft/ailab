@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SnipInsight.Forms.Features.Insights.Products.ProductItemTemplate"
+    x:Name="self"
+    WidthRequest="{StaticResource ImageWidth}">
+    <ContentView.Margin>
+        <Thickness
+            Top="{StaticResource DefaultMargin}"
+            Right="{StaticResource SmallerDefaultMargin}" />
+    </ContentView.Margin>
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer
+            Command="{Binding SelectCommand, Source={x:Reference self}}"
+            CommandParameter="{Binding BindingContext.ContentUrl, Source={x:Reference self}}" />
+    </ContentView.GestureRecognizers>
+    <ContentView.Content>
+        <StackLayout>
+            <Grid
+                BackgroundColor="{StaticResource ImageBackgroundColor}">
+                <Image
+                    Source="{Binding Image}"
+                    Aspect="AspectFit"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="{Binding WidthRequest, Source={x:Reference self}}"
+                    HeightRequest="{StaticResource ImageHeight}" />
+
+                <Button
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Image="Resources/Images/GoTo.png"
+                    AutomationProperties.Name="GoTo Button"
+                    Command="{Binding NavigateCommand, Source={x:Reference self}}"
+                    CommandParameter="{Binding HostPage}" />
+            </Grid>
+            <Label
+                Style="{StaticResource 13RegularFontStyle}"
+                Margin="0,12,0,0"
+                TextColor="{StaticResource SecondaryTextColor}"
+                Text="{Binding Name}"
+                LineBreakMode="TailTruncation" />
+            <Label
+                Style="{StaticResource 14RegularFontStyle}"
+                Margin="0,6,0,0"
+                TextColor="{StaticResource SnippingTextColor}"
+                Text="{Binding Metadata.Offer, Converter={StaticResource ProductOfferToCurrencyConverter}}" />
+            <Label
+                Style="{StaticResource 12RegularFontStyle}"
+                Margin="0,6,0,0"
+                FontAttributes="Bold"
+                TextColor="{StaticResource WhiteColor}"
+                Text="{Binding HostPage}"
+                LineBreakMode="TailTruncation">
+            </Label>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

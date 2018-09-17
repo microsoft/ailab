@@ -1,0 +1,10 @@
+steps:
+- script: |
+    chmod +x build.linux.sh
+    ./build.linux.sh
+- task: PublishBuildArtifacts@1
+  displayName: Publish Linux package assets
+  inputs:
+    pathtoPublish: $(Build.SourcesDirectory)/Installers/Linux/build
+    artifactName: Package
+    artifactType: container

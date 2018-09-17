@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SnipInsight.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DiagsReportUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://mix.office-int.com/api/log</Value>
+    </Setting>
+    <Setting Name="MixApiEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://mix.office-int.com/</Value>
+    </Setting>
+    <Setting Name="AutoUpdateUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://mix.office-int.com/api/tools</Value>
+    </Setting>
+    <Setting Name="LastSaveVideoDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSaveImageDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ToolPosition" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="ToolDocking" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,247 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.AIServices.AIComponents.OCRControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:views="clr-namespace:SnipInsight.AIServices.AIComponents"
+            xmlns:util="clr-namespace:SnipInsight.Util"
+            DataContext="{Binding Source={StaticResource Locator}, Path=OCRLoc}"
+            xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+            xmlns:properties="clr-namespace:SnipInsight.Properties"
+            Visibility="{Binding IsVisible}"
+            mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <util:NullToVisibilityConverter x:Key="nullToVisibilityConverter"/>
+            
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+            </Style>
+
+            <views:MultiBooleanToVisibility x:Key="MultiBooleanToVisibility" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipTemplates.xaml" />
+                <ResourceDictionary Source="../../ResourceDictionaries/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{x:Static properties:Resources.Image_to_Text}"
+                       Style="{DynamicResource RebrandAIHeadingText}" />
+
+            <ari:AriBorderedIconLabelButton x:Name="CopyButton"
+                                            Grid.Column="1"    
+                                            Margin="8, 0"
+                                            Height="32"
+                                            Width="32"
+                                            Style="{StaticResource ToolButtonStyle}"
+                                            Command="{Binding CopyTextCommand}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            ToolTip="Copy Text"
+                                            AutomationProperties.Name="CopyText">
+                <ari:AriIcon Template="{StaticResource RebrandCopy_32_Icon}"
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriBorderedIconLabelButton>
+
+            <ToggleButton x:Name="TranslationToggle"
+                          Grid.Column="2"
+                          Height="32"
+                          Command="{Binding ToggleTranslatorCommand}"
+                          Style="{DynamicResource RebrandTranslationSpellCheck}"
+                          VerticalAlignment="Center" 
+                          HorizontalAlignment="Center"
+                          Visibility="{Binding TranslatorEnable, Converter={StaticResource BooleanToVisibility}}"
+                          AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                <TextBlock Text="Translate"
+                           FontSize="{DynamicResource ExtraSmallFontSize}"/>
+            </ToggleButton>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid Visibility="{Binding TranslationVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0"
+                             Style="{DynamicResource RebrandOCRTextBoxStyle}"
+                             x:Name="Result"
+                             Text="{Binding Path=Text}"
+                             Height="{DynamicResource TextBoxOCRSize}"
+                             IsReadOnly="True"
+                             VerticalAlignment="Top"
+                             VerticalScrollBarVisibility="Auto"
+                             AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}"/>
+
+                    <Grid Grid.Row="1" Margin="0, 16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Language" 
+                                   Style="{DynamicResource RebrandOCRTextStyle}"/>
+
+                        <Grid Visibility="{Binding TranslationVisibility}"
+                              Grid.Column="1" >
+                            <ComboBox x:Name="comboBox1"
+                                      ItemsSource="{Binding Path=Languages}"
+                                      Width="200"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath = "Key"
+                                      HorizontalAlignment="Left"
+                                      SelectedValue="{Binding FromLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Style="{DynamicResource RebrandOCRComboboxStyle}" />
+                            <TextBlock Visibility="{Binding SelectedItem, ElementName=comboBox1, Converter={StaticResource nullToVisibilityConverter}}"
+                                       IsHitTestVisible="False"
+                                       Text="   ... Not detected ..." 
+                                       Style="{DynamicResource RebrandOCRTextStyle}"/>
+                        </Grid>
+                    </Grid>
+                    <TextBox Grid.Row="2"
+                             Style="{DynamicResource RebrandOCRTextBoxStyle}"
+                             x:Name="TranslatorResult"
+                             Text="{Binding Path=TranslatedText}"
+                             IsReadOnly="True"
+                             VerticalAlignment="Top"
+                             VerticalScrollBarVisibility="Auto"
+                             Height="{DynamicResource TextBoxOCRSize}"
+                             AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}"/>
+
+                    <Grid Grid.Row="3"
+                          Margin="0, 16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Translate to" 
+                                   Style="{DynamicResource RebrandOCRTextStyle}"/>
+
+                        <ComboBox ItemsSource="{Binding Path=Languages}"
+                          Grid.Column="1"
+                                  Width="200"
+                          DisplayMemberPath="Value"
+                          SelectedValuePath = "Key"
+                                  HorizontalAlignment="Left"
+                          SelectedValue="{Binding ToLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{DynamicResource RebrandOCRComboboxStyle}"
+                          Visibility="{Binding TranslationVisibility}"/>
+                    </Grid>
+                </Grid>
+
+                <TextBox Style="{DynamicResource RebrandOCRTextBoxStyle}"
+                         Text="{Binding Path=Text}" 
+                         Height="{DynamicResource TextBoxOCRSize}"
+                         Visibility="{Binding OCRSingleBoxVisibility}"
+                         VerticalScrollBarVisibility="Visible"
+                         IsReadOnly="True"
+                         VerticalAlignment="Top"
+                         AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+            <!-- Removed from app -->
+            <Grid Visibility="Collapsed">
+                <TextBlock Grid.Row="2"
+                       Text="Powered by Microsoft Translator"
+                       Margin="0,7,0,0"
+                       Foreground="Gray"
+                       FontStyle="Italic"
+                       TextAlignment="Right"
+                       Visibility="{Binding TranslationVisibility}"/>
+
+                <TextBlock Grid.Row="3"
+                       Text="Export"
+                       FontSize="{DynamicResource SmallFontSize}"
+                       Foreground="{DynamicResource RebrandText}"
+                       Margin="0,10">
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibility}">
+                            <Binding Path="CalendarButtonVisibility"/>
+                            <Binding Path="EmailButtonVisibility" />
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+
+                <StackPanel Grid.Row="4">
+                    <Button Height="45"
+                        Width="250"
+                        Style="{DynamicResource ExportOCRButton}"
+                        HorizontalContentAlignment="Left"
+                        HorizontalAlignment="Left"
+                        Command="{Binding OpenCalendarEventCommand}"
+                        Visibility="{Binding CalendarButtonVisibility}"
+                        Template="{DynamicResource ExportButton}"
+                        AutomationProperties.Name = "ExportCalendarButton">
+                        <StackPanel Style="{DynamicResource OCRStackPanel}">
+                            <ari:AriIcon Template="{StaticResource Calendar_32_Icon}"/>
+                            <TextBlock Text="{x:Static properties:Resources.Create_New_Event}"
+                                   Style="{DynamicResource ExportOCRTextBlock}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Height="45"
+                        Width="250"
+                        Margin="0,10"
+                        Style="{DynamicResource ExportOCRButton}"
+                        HorizontalContentAlignment="Left"
+                        HorizontalAlignment="Left"
+                        Command="{Binding SendNewEmailCommand}"
+                        Visibility="{Binding EmailButtonVisibility}"
+                        Template="{DynamicResource ExportButton}"
+                        AutomationProperties.Name = "ExportCalendarButton">
+                        <StackPanel Style="{DynamicResource OCRStackPanel}">
+                            <ari:AriIcon Template="{StaticResource SendEmail_32_Icon}"
+                                     Margin="0,0,0,-4"/>
+                            <TextBlock Text="{x:Static properties:Resources.Send_Email}"
+                                   Style="{DynamicResource ExportOCRTextBlock}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

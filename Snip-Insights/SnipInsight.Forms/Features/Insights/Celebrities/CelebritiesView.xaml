@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    xmlns:suave="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+    x:Class="SnipInsight.Forms.Features.Insights.Celebrities.CelebritiesView"
+    x:Name="self">
+    <ContentView.Resources>
+        
+        <Style 
+            x:Key="InsightsResultSubtitleStyle"
+            TargetType="Label"
+            BasedOn="{StaticResource 16BoldFontStyle}">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTitleTextColor}" />
+        </Style>
+
+        <Style
+            x:Key="NewsFooterStyle"
+            TargetType="Label"
+            BasedOn="{StaticResource 13RegularFontStyle}">
+            <Setter
+                Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style
+            x:Key="NewsTitleStyle"
+            TargetType="Label"
+            BasedOn="{StaticResource 14BoldFontStyle}">
+            <Setter
+                Property="TextColor"
+                Value="{StaticResource AccentColor}" />
+        </Style>
+
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        
+        <StackLayout>
+            
+            <StackLayout
+                x:Name="celebrityInformationSection">
+                
+                <Label
+                    Style="{StaticResource InsightsResultTitleStyle}"
+                    Text="{l10n:Localize Celebrity_Information}" />
+
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+
+                    <Label
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource InsightsResultSubtitleStyle}"
+                        Text="{Binding Celebrity.Name}"
+                        VerticalOptions="Center" />
+
+                    <Button
+                        Grid.Row="1"
+                        Command="{Binding Path=OpenUrlCommand}"
+                        CommandParameter="{Binding Celebrity.URL}"
+                        HorizontalOptions="End"
+                        Text="{l10n:Localize More_information}"
+                        AutomationProperties.Name="{l10n:Localize More_information}"/>
+
+                </StackLayout>
+
+                <Label
+                    Grid.Row="2"
+                    Text="{Binding Celebrity.Description}">
+                    <Label.Margin>
+                        <Thickness
+                            Left="{StaticResource BiggerDefaultMargin}"
+                            Top="{StaticResource SmallerDefaultMargin}"
+                            Bottom="{StaticResource DefaultMargin}" />
+                    </Label.Margin>
+                </Label>
+
+            </StackLayout >
+
+            <StackLayout
+                x:Name="celebrityNewsSection">
+                
+                <Label
+                    Style="{StaticResource InsightsResultTitleStyle}"
+                    Text="{Binding NewsTitle}"/>
+
+                <suave:DynamicStackLayout
+                    HorizontalOptions="Fill"
+                    ItemsSource="{Binding Celebrity.News}"
+                    Spacing="{StaticResource DefaultMargin}">
+                    <suave:DynamicStackLayout.Margin>
+                        <Thickness
+                            Top="{StaticResource SmallestDefaultMargin}"/>
+                    </suave:DynamicStackLayout.Margin>
+                    <suave:DynamicStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <AbsoluteLayout
+                                HeightRequest="128">
+
+                                <BoxView
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    BackgroundColor="{StaticResource WindowDarkBackgroundColor}" />
+
+                                <Grid
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    BackgroundColor="{StaticResource WindowDarkBackgroundColor}"
+                                    RowSpacing="{StaticResource SmallestDefaultMargin}">
+                                    <Grid.Margin>
+                                        <Thickness
+                                            Left="128"
+                                            Top="{StaticResource SmallerDefaultMargin}"
+                                            Right="{StaticResource DefaultMargin}"
+                                            Bottom="{StaticResource DefaultMargin}"/>
+                                    </Grid.Margin>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Button 
+                                        Command="{Binding Source={x:Reference self}, 
+                                            Path=BindingContext.OpenUrlCommand}"
+                                        CommandParameter="{Binding URL}"
+                                        HorizontalOptions="Start"
+                                        AutomationProperties.Name="OpenUrl"
+                                        Text="{Binding Name}"/>
+
+                                    <Label
+                                        Grid.Row="1"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Description}"
+                                        VerticalOptions="FillAndExpand"/>
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Style="{StaticResource NewsFooterStyle}"
+                                        Text="{Binding Provider[0].Name}" />
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Style="{StaticResource NewsFooterStyle}"
+                                        Text="{Binding DatePublished}"
+                                        HorizontalOptions="End" />
+
+                                </Grid>
+
+                                <Image
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    AbsoluteLayout.LayoutBounds="0, 0, AutoSize, AutoSize"
+                                    BackgroundColor="{StaticResource ImageBackgroundColor}"
+                                    HeightRequest="120"
+                                    Source="{Binding Image.Thumbnail.URL}"
+                                    WidthRequest="88">
+                                    <Grid.Margin>
+                                        <Thickness
+                                            Left="{StaticResource SmallerDefaultMargin}"
+                                            Top="{StaticResource NegativeSmallestDefaultMargin}"/>
+                                    </Grid.Margin>
+                                </Image>
+                                
+                            </AbsoluteLayout>
+                        </DataTemplate>
+                    </suave:DynamicStackLayout.ItemTemplate>
+                </suave:DynamicStackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

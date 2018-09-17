@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="SnipInsight.Forms.Features.Settings.CheckBoxControl" 
+    x:Name="self">
+    <ContentView.Margin>
+        <Thickness
+            Top="{StaticResource SmallerDefaultMargin}" />
+    </ContentView.Margin>
+    <ContentView.Content>
+        <Grid
+            RowSpacing="{StaticResource SmallerDefaultMargin}"
+            ColumnSpacing="{StaticResource SmallerDefaultMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Switch
+                IsToggled="{Binding Setting, Source={x:Reference self}}" />
+
+            <!-- Margin set to vertical align with left Switch -->
+            <Label 
+                Grid.Column="1" 
+                Text="{Binding Text, Source={x:Reference self}}"
+                VerticalOptions="Center"
+                Style="{StaticResource SettingsCheckBoxLabelStyle}"
+                Margin="0, 2, 0, 0" />
+            
+            <BoxView 
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HeightRequest="1" 
+                WidthRequest="480" 
+                HorizontalOptions="Start" 
+                BackgroundColor="{StaticResource SettingsLinesColor}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

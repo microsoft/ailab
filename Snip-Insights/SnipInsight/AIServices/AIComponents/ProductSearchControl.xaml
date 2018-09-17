@@ -1,0 +1,102 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.AIServices.AIComponents.ProductSearchControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            DataContext="{Binding Source={StaticResource Locator}, Path=ProductSearchLoc}"
+            Visibility="{Binding IsVisible}"
+            SizeChanged="ProductGallerySizeChanged"
+            mc:Ignorable="d"
+            AutomationProperties.Name="ProductSearchPanel">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="ProductTemplate">
+               <Grid Width="176" 
+                     Margin="0, 8, 16, 16" 
+                     ToolTip="ProductSearchResults">
+                        <Grid.RowDefinitions>
+                        <RowDefinition Height="144"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    <Button Command="{Binding DataContext.ProductSelected,
+                                              RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Style="{DynamicResource RebrandImageButton}"
+                            AutomationProperties.Name="ProductImage">
+                        <Image x:Name="ProductImage" 
+                               Source="{Binding Path=Image}" 
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Stretch="UniformToFill"
+                               ToolTip="{Binding Path=Name, StringFormat=Image Name: \{0\}}"
+                               Style="{DynamicResource ProductResultsImage}" Grid.Row="0" />
+                        </Button>
+                   
+                        <TextBlock Text="{Binding Path=Name}"
+                                   Style="{DynamicResource RebrandProductResultsTitle}" 
+                                   Grid.Row="1"
+                                   Width="{Binding Path=ActualWidth, ElementName=ProductImage}"
+                                   AutomationProperties.Name="{Binding Path=Name}"
+                                   AutomationProperties.ItemStatus="{Binding RelativeSource={RelativeSource Self},Path= Text}"
+                                   ToolTip="{Binding Path=Name}"/>
+
+                        <TextBlock Text="{Binding Path=Metadata.Offer.Price, StringFormat=US \$\{0\}}"
+                                   Style="{DynamicResource RebrandProductResultsPrice}" Grid.Row="2"
+                                   Width="{Binding Path=ActualWidth, ElementName=ProductImage}"
+                                   ToolTip="{Binding Path=Metadata.Offer.Price, StringFormat=Product Price: \$\{0\}}"
+                                   AutomationProperties.Name="{Binding Path=Metadata.Offer.Price, StringFormat=Product Price: \$\{0\}}"
+                                   AutomationProperties.ItemStatus="{Binding RelativeSource={RelativeSource Self},Path=Text}"/>
+
+                        <TextBlock Style="{DynamicResource RebrandProductResultsSeller}" 
+                                   Grid.Row="3"
+                                   Width="{Binding Path=ActualWidth, ElementName=ProductImage}"
+                                   TextTrimming="CharacterEllipsis"
+                                   AutomationProperties.Name="ProductSeller">
+                            <Hyperlink Command="{Binding DataContext.NavigateToUrl,
+                                          RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                       CommandParameter="{Binding}"
+                                       Foreground="{DynamicResource WhiteBrush}"
+                                       TextDecorations=""
+                                       FocusVisualStyle="{DynamicResource FocusedMarginStyle}"
+                                       AutomationProperties.Name="UrlToProduct">
+                                <TextBlock Text="{Binding Path=HostPage}"
+                                           TextTrimming="CharacterEllipsis"
+                                           ToolTip="{Binding Path=HostPage}"
+                                           FontSize="{DynamicResource ExtraSmallFontSize}"
+                                           AutomationProperties.Name="UrlToProduct"/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Products"
+                   Style="{DynamicResource RebrandAIHeadingText}" />
+        <ItemsControl Grid.Row="1"
+                      x:Name="ProductDisplayPanel"
+                      Style="{DynamicResource RebrandAIItemsControl}"
+                      ItemsSource="{Binding Products}"
+                      ItemTemplate="{StaticResource ProductTemplate}"
+                      AutomationProperties.Name="ProductSearchItemsControls">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

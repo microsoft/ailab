@@ -1,0 +1,2223 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+                    xmlns:hs="clr-namespace:SnipInsight.Controls">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+
+    <!--Font, widths, heights, and button sizes-->
+    <sys:Double x:Key="HeadingFontSize">34</sys:Double>
+    <sys:Double x:Key="SubheadingFontSize">35</sys:Double>
+    <sys:Double x:Key="NormalTextFontSize">20</sys:Double>
+    <sys:Double x:Key="ImageSearchSize">130</sys:Double>
+    <sys:Double x:Key="ProductControlFontSize">14</sys:Double>
+    <sys:Double x:Key="OCRBoxSize">500</sys:Double>
+    <sys:Double x:Key="TextBoxOCRSize">150</sys:Double>
+    <sys:Double x:Key="TextBoxMinSize">350</sys:Double>
+    <sys:Double x:Key="ControlsMinHeight">450</sys:Double>
+    <sys:Double x:Key="DefaultSquareIconSize">27</sys:Double>
+    <sys:Double x:Key="AIRibbonIconSize">20</sys:Double>
+    <sys:Double x:Key="DefaultSmallIconSize">12</sys:Double>
+    <sys:Double x:Key="DefaultCanvasIconSize">20</sys:Double>
+    <sys:Double x:Key="SmallCanvasIconSize">18</sys:Double>
+    <sys:Double x:Key="SmallMenuItemHeight">30</sys:Double>
+    <sys:Double x:Key="TinyFontSize">12</sys:Double>
+    <sys:Double x:Key="ExtraSmallFontSize">14</sys:Double>
+    <sys:Double x:Key="SmallFontSize">16</sys:Double>
+    <sys:Double x:Key="RegularFontSize">18</sys:Double>
+    <sys:Double x:Key="BigFontSize">20</sys:Double>
+    <sys:Double x:Key="LargeFontSize">24</sys:Double>
+    <sys:Double x:Key="HugeFontSize">32</sys:Double>
+    <sys:Double x:Key="LoadingEllipsesFontSize">45</sys:Double>
+    <sys:Double x:Key="EditorButtonSize">60</sys:Double>
+    <sys:Double x:Key="AINavButtonSize">60</sys:Double>
+    <sys:Double x:Key="AIRibbonToggleHeight">32</sys:Double>
+    <sys:Double x:Key="AIRibbonToggleWidth">56</sys:Double>
+    <sys:Double x:Key="TopRibbonButtonHeight">40</sys:Double>
+    <sys:Double x:Key="TopRibbonButtonWidth">140</sys:Double>
+    <sys:Double x:Key="ActionRibbonHeight">55</sys:Double>
+
+    <!-- Rebrand Color -->
+    <SolidColorBrush x:Key="RebrandbackgroundApp" Color="#343945"/>
+    <SolidColorBrush x:Key="RebrandBackgroundResults" Color="#3d4351"/>
+    <SolidColorBrush x:Key="RebrandTilt" Color="#50e3c2"/>
+    <SolidColorBrush x:Key="RebrandEnabledIcons" Color="#7b8296"/>
+    <SolidColorBrush x:Key="RebrandText" Color="#abb3c8"/>
+    <SolidColorBrush x:Key="RebrandTextLight" Color="#C8CFE1"/>
+    <SolidColorBrush x:Key="RebrandRaisedButton" Color="#343945"/>
+    <SolidColorBrush x:Key="RebrandHoverButton" Color="#454b5e"/>
+    <SolidColorBrush x:Key="RebrandSelectedButton" Color="#2d313c"/>
+    <SolidColorBrush x:Key="RebrandButtonBackground" Color="#393e4c"/>
+    <SolidColorBrush x:Key="RebrandDisable" Color="#50e3c2"/>
+    <SolidColorBrush x:Key="RebrandDarkerBackground" Color="#282b33"/>
+    <SolidColorBrush x:Key="RebrandDarkerBackgroundTransparent30" Color="#55282b33"/>
+    <SolidColorBrush x:Key="RebrandDarkestBackground" Color="#181818"/>
+    <SolidColorBrush x:Key="RebrandForegroundTextColor" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="RebrandThemeGreyBrush" Color="#343945" />
+    <SolidColorBrush x:Key="RebrandLightGray" Color="#565c6c"/>
+    <SolidColorBrush x:Key="RebrandTiltTransparent30" Color="#5550e3c2"/>
+    <Style TargetType="{x:Type Window}">
+        <Setter Property="FontFamily" Value="Handscript"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- Color -->
+    <Color x:Key="ThemeColor">#6B69D6</Color>
+    <SolidColorBrush x:Key="ThemeColorBrush" Color="#6B69D6"/>
+    <SolidColorBrush x:Key="RibbonBrush" Color="#FAFAFF"/>
+    <SolidColorBrush x:Key="ThemeGreyBrush" Color="#E0E0E0"/>
+    <SolidColorBrush x:Key="HyperlinkBrush" Color="{x:Static SystemColors.HighlightColor}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{x:Static SystemColors.WindowColor}"/>
+    <SolidColorBrush x:Key="SystemWhite" Color="{x:Static SystemColors.WindowColor}"/>
+    <SolidColorBrush x:Key="SystemBlack" Color="{x:Static SystemColors.WindowTextColor}"/>
+    <SolidColorBrush x:Key="ThemeDarkGrey" Color="DimGray"/>
+    <SolidColorBrush x:Key="FTUXTextBox" Color="#FAFAFC"/>
+    <SolidColorBrush x:Key="FTUXArrow" Color="#ACACBC"/>
+    <SolidColorBrush x:Key="FTUXDottedLines" Color="#B6B6DD"/>
+    <SolidColorBrush x:Key="LoadingGreyBrush" Color="#828282"/>
+    <SolidColorBrush x:Key="MouseOverGreyBrush" Color="#E6E6E6"/>
+    <SolidColorBrush x:Key="DisabledButtonBrush" Color="#CDCDCD"/>
+    <SolidColorBrush x:Key="ActionRibbonBrush" Color="#F8F8F8"/>
+    <SolidColorBrush x:Key="FTUXBackground" Color="#FCFAFF"/>
+    <SolidColorBrush x:Key="FTUXForeground" Color="#5E5E5E"/>
+    <SolidColorBrush x:Key="FTUXBorder" Color="#C9C9C9"/>
+    <SolidColorBrush x:Key="SystemButtonBlack" Color="{x:Static SystemColors.ControlTextColor}"/>
+
+    <!-- Thicknesses -->
+    <Thickness x:Key="SmallMenuItemPadding">5</Thickness>
+
+    <!-- Focused Styles -->
+    <Style x:Key="FocusedStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle StrokeThickness="1"  
+                                Stroke="{DynamicResource RebrandTilt}"  
+                                SnapsToDevicePixels="true"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FocusedMarginStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle StrokeThickness="1"  
+                                       Margin="-4, 0"
+                                Stroke="{DynamicResource RebrandTilt}"  
+                                SnapsToDevicePixels="true"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Tab Control Style -->
+    <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
+    <Style x:Key="RebrandTabControlStyle" TargetType="{x:Type TabControl}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TabItem.Selected.Border}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid x:Name="templateRoot" 
+                                  ClipToBounds="true" 
+                                  SnapsToDevicePixels="true" 
+                                  KeyboardNavigation.TabNavigation="Local">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="ColumnDefinition0"/>
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                            <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TabPanel x:Name="headerPanel" 
+                                          Background="{DynamicResource RebrandBackgroundResults}" 
+                                          Grid.Column="0" 
+                                          IsItemsHost="true" 
+                                          Margin="0, 0, 0, -1" 
+                                          Grid.Row="0" 
+                                          KeyboardNavigation.TabIndex="1" 
+                                          Panel.ZIndex="1"/>
+                        <Border x:Name="contentPanel" 
+                                        BorderBrush="#FFFFFF" 
+                                        BorderThickness="0" 
+                                        Background="{TemplateBinding Background}" 
+                                        Grid.Column="0" 
+                                        KeyboardNavigation.DirectionalNavigation="Contained" 
+                                        Grid.Row="1" 
+                                        KeyboardNavigation.TabIndex="2" 
+                                        KeyboardNavigation.TabNavigation="Local">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" 
+                                                      ContentSource="SelectedContent" 
+                                                      Margin="0" 
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter Property="Grid.Row" TargetName="headerPanel" Value="1"/>
+                            <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                            <Setter Property="Margin" TargetName="headerPanel" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                            <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="headerPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="contentPanel" Value="1"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                            <Setter Property="Margin" TargetName="headerPanel" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                            <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                            <Setter Property="Grid.Column" TargetName="headerPanel" Value="1"/>
+                            <Setter Property="Grid.Column" TargetName="contentPanel" Value="0"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                            <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                            <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                            <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                            <Setter Property="Margin" TargetName="headerPanel" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="TextElement.Foreground" 
+                                            TargetName="templateRoot" 
+                                            Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Button Styles-->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle SnapsToDevicePixels="true" 
+                               Stroke="{DynamicResource RebrandTilt}" 
+                               StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="Button.Static.Background" Color="{DynamicResource ThemeColor}"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+
+    <Style x:Key="AIControlButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="TextElement.Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TabButton" TargetType="ToggleButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.8" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Foreground" Value="{DynamicResource Button.Static.Background}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RebrandRibbonButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
+    <!--NavBar Toggle-->
+    <Style x:Key="NavbarToggle"  TargetType="{x:Type ari:AriIconLabelButton}"
+        BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Height" Value="65" />
+        <Setter Property="Padding" Value="0,0,0,7"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabelButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Icon="{TemplateBinding Content}"
+                            IconPadding="0,18,0,0" >
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource ThemeDarkGrey}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource SystemBlack}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource SystemBlack}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--AI Ribbon Toggles-->
+    <Style x:Key="AIRibbonToggle"  TargetType="{x:Type ari:AriEraseRadioButton}"
+        BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Height" Value="{StaticResource AIRibbonToggleHeight}" />
+        <Setter Property="Width" Value="{StaticResource AIRibbonToggleWidth}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriEraseRadioButton}">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Icon="{TemplateBinding Content}"
+                            Label="{TemplateBinding Label}"
+                            IconPadding="10,20,10,0" >
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Ribbon.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Pressed.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="transparent" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="TextElement.Foreground"
+                                    Value="Black" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="True" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource SystemButtonBlack}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DisabledButtonBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource SystemButtonBlack}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--AI Ribbon Toggles-->
+    <Style x:Key="RebrandAIRibbonToggle"  
+           TargetType="{x:Type ari:AriEraseRadioButton}"
+           BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Margin" Value="4,0"/>
+        <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="Orange"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriEraseRadioButton}">
+                    <Border x:Name="PART_Border" 
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="2"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}">
+                        <TextBlock x:Name="Root" 
+                                   Text="{TemplateBinding Label}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontSize="{DynamicResource TinySmallFontSize}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" 
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandDarkerBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource RebrandTilt}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="TextElement.Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandDarkerBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="false" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandText}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False" >
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <!--<Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0" To="#555d71" Storyboard.TargetProperty="Foreground.Color" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0" To="White" Storyboard.TargetProperty="Foreground.Color" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>-->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RebrandAIIconRibbonToggle"  
+           TargetType="{x:Type ari:AriEraseRadioButton}"
+           BasedOn="{StaticResource AriBarButtonBaseStyle}">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+                Value="1000" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Margin" Value="4,0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+        <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriEraseRadioButton}">
+                    <Border x:Name="PART_Border" 
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="2"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}">
+                        <Grid x:Name="PART_Grid">
+                            <ContentPresenter x:Name="Root"/>
+                        </Grid>
+                        <!--<TextBlock x:Name="Root" 
+                                   Text="{TemplateBinding Label}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontSize="{DynamicResource TinySmallFontSize}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>-->
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" 
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandDarkerBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandbackgroundApp}" />
+                            <Setter TargetName="PART_Grid"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandTiltTransparent30}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="TextElement.Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandDarkerBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="false" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandText}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False" >
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0" To="#555d71" Storyboard.TargetProperty="Foreground.Color" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0" To="White" Storyboard.TargetProperty="Foreground.Color" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!--Controls-->
+    <Style x:Key="AIControl" TargetType="UserControl">
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Visibility" Value="Hidden"/>
+        <Setter Property="Margin" Value="45, 5, 40, 35"/>
+    </Style>
+
+    <!--Wrap Panel-->
+    <Style x:Key="ImageWrapPanel" TargetType="WrapPanel">
+        <Setter Property="IsItemsHost" Value="False"/>
+        <Setter Property="Margin" Value="22,0,22,0"/>
+    </Style>
+
+    <!-- Icons -->
+    <Style x:Key="Icon" TargetType="Image">
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="35"/>
+    </Style>
+
+    <!--Toggle Panel Text-->
+    <Style x:Key="TogglePanelText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource RebrandText}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="7,0,0,2"/>
+    </Style>
+
+    <!-- Toggle Panel Toggles-->
+    <Style x:Key="TogglePanelToggles" TargetType="ari:AriToggleSwitch">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0, 12, 12, 12"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandText}"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandText}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriToggleSwitch}">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" BorderThickness="1" BorderBrush="{TemplateBinding Foreground}" CornerRadius="2">
+                            <ari:AriIcon x:Name="PART_Tick" Template="{DynamicResource RebrandTick}" Foreground="{TemplateBinding Foreground}" Margin="1" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="PART_Tick" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="PART_Tick" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Image Search Image-->
+    <Style x:Key="ImageSearchImage"
+           TargetType="Image">
+        <Setter Property="Margin" Value="3.5"/>
+        <Setter Property="Stretch" Value="Fill"/>
+    </Style>
+
+    <!--Image Search Image-->
+    <Style x:Key="RebrandImageSearchImage"
+           TargetType="Image">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Stretch" Value="UniformToFill"/>
+    </Style>
+
+    <!--Product Search Results Title Textbox-->
+    <Style x:Key="ProductResultsTitle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource ProductControlFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeColorBrush}"/>
+        <Setter Property="Padding" Value="10,5,0,2.5" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+
+    <!--Product Search Results Title Textbox-->
+    <Style x:Key="RebrandProductResultsTitle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandText}"/>
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0, 8, 0, 2" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+
+    <!--Product Search Results Price Textbox-->
+    <Style x:Key="ProductResultsPrice"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource ProductControlFontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="10,2.5,0,0" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+
+    <!--Product Search Results Price Textbox-->
+    <Style x:Key="RebrandProductResultsPrice"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+    </Style>
+
+    <!--Product Search Results Seller Textbox-->
+    <Style x:Key="ProductResultsSeller"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource ProductControlFontSize}"/>
+        <Setter Property="Padding" Value="10,0.5,0,5" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    </Style>
+
+    <!--Product Search Results Seller Textbox-->
+    <Style x:Key="RebrandProductResultsSeller"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="0, 2"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource TinyFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedMarginStyle}"/>
+    </Style>
+
+    <!--Product Results Image-->
+    <Style x:Key="ProductResultsImage"
+           TargetType="Image">
+        <Setter Property="MaxWidth" Value="450" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+    </Style>
+
+    <Style x:Key="ProductSearchControl"
+           TargetType="UserControl">
+        <Setter Property="Height" Value="225" />
+        <Setter Property="Margin" Value="7" />
+    </Style>
+
+    <!--Celebrity Landmark Title Text Blocx-->
+    <Style x:Key="PeoplePlaceTitleTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="25,5,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!--Celebrity Landmark Title Text Blocx-->
+    <Style x:Key="RebrandPeoplePlaceTitleTextBox"
+           TargetType="TextBox">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!--Hyperlink Text Blocx-->
+    <Style x:Key="PeoplePlaceLinkTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="Padding" Value="25,0,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkBrush}" />
+    </Style>
+
+    <!--Hyperlink Text Blocx-->
+    <Style x:Key="RebrandPeoplePlaceLinkTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="RebrandHyperlinkCelebrity"
+           TargetType="Hyperlink">
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkBrush}" />
+        <Setter Property="TextDecorations" Value=""/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTilt}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedMarginStyle}" />
+    </Style>
+
+    <!--Description Text Block-->
+    <Style x:Key="PeoplePlaceDescriptionTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="25,5" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!--Description Text Block-->
+    <Style x:Key="RebrandPeoplePlaceDescriptionTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="35, 8, 0, 8" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandText}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!--MetaData Text Block-->
+    <Style x:Key="PeoplePlaceMetaDataTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="25,5" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeDarkGrey}"/>
+    </Style>
+
+    <!--MetaData Text Block-->
+    <Style x:Key="RebrandPeoplePlaceMetaDataTextBox"
+           TargetType="TextBox">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource TinyFontSize}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Margin" Value="-3, 0, 16, 0"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandEnabledIcons}" />
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedMarginStyle}" />
+    </Style>
+
+    <!--Title Text Blocx-->
+    <Style x:Key="SubTitleTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="25,5,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource SubheadingFontSize}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!--Hyperlink Text Blocx-->
+    <Style x:Key="HyperlinkTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="Padding" Value="25,0,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource NormalTextFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkBrush}" />
+    </Style>
+
+    <!--Description Text Block-->
+    <Style x:Key="DescriptionTextBox"
+           TargetType="TextBox">
+        <Setter Property="Padding" Value="25,10" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontSize" Value="{DynamicResource NormalTextFontSize}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!--Translation/Spellcheck Toggles-->
+    <Style x:Key="TranslationSpellCheck" TargetType="ToggleButton">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Icon="{TemplateBinding Content}"
+                            Foreground="{DynamicResource ThemeColorBrush}">
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true">
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="false">
+                            <Setter TargetName="Root"
+                                    Property="Foreground"
+                                    Value="Black" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RebrandTranslationSpellCheck" TargetType="ToggleButton">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandEnabledIcons}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="Root"
+                            CornerRadius="2"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            Padding="10, 7">
+                        <ari:AriIconLabel x:Name="PART_Button"
+                                          Icon="{TemplateBinding Content}"
+                                          TextBlock.Foreground="{TemplateBinding Foreground}"
+                                          Foreground="{TemplateBinding Foreground}">
+                        </ari:AriIconLabel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource WhiteBrush}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource WhiteBrush}" />
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true">
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                            <Setter 
+                                    Property="TextBlock.Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                            <Setter 
+                                    Property="Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource RebrandTilt}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="BorderBrush"
+                                    Value="{StaticResource RebrandTilt}" />
+                        </Trigger>
+                        <!--<Trigger Property="IsChecked"
+                                 Value="false">
+                            <Setter TargetName="PART_Button"
+                                    Property="Foreground"
+                                    Value="Black" />
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Copy Text Button-->
+    <Style x:Key="CopyTextButton" TargetType="Button">
+        <Setter Property="ToolTipService.Placement" Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ari:AriIconLabel x:Name="Root"
+                            Background="{StaticResource Control.Normal.Background}"
+                            Icon="{TemplateBinding Content}"
+                            Foreground="{DynamicResource ThemeColorBrush}">
+                    </ari:AriIconLabel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.MouseOver.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Background"
+                                    Value="{StaticResource Control.Normal.Background}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Image Action Buttons -->
+    <Style x:Key="ImageActionButton"
+           TargetType="ari:AriIconLabelMenuItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabelMenuItem}">
+                    <Grid SnapsToDevicePixels="true"
+                          Height="28">
+                        <Rectangle Name="Bg"
+                                   Fill="Transparent"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="Col0"
+                                                  MinWidth="14"
+                                                  Width="Auto"
+                                                  SharedSizeGroup="MenuItemIconColumnGroup"/>
+                                <ColumnDefinition Width="1.5"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition x:Name="Col3"
+                                                  Width="3"/>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="MenuItemIGTColumnGroup"/>
+                                <ColumnDefinition x:Name="Col5"
+                                              Width="1.5"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="Icon"
+                                              Margin="3"
+                                              VerticalAlignment="Center"
+                                              ContentSource="Icon"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Border x:Name="GlyphPanel"
+                                    Background="#E6EFF4"
+                                    BorderBrush="#CDD3E6"
+                                    BorderThickness="1"
+                                    CornerRadius="3"
+                                    Margin="1"
+                                    Visibility="Hidden"
+                                    Width="22"
+                                    Height="22">
+                                <Path Name="Glyph"
+                                      Width="9"
+                                      Height="11"
+                                      Fill="#0C12A1"
+                                      FlowDirection="LeftToRight"
+                                      Data="{DynamicResource Checkmark}"/>
+                            </Border>
+                            <ContentPresenter x:Name="Header"
+                                          Grid.Column="2"
+                                          ContentSource="Header"
+                                          Margin="{TemplateBinding MenuItem.Padding}"
+                                          RecognizesAccessKey="True"
+                                          VerticalAlignment="Center"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <TextBlock Grid.Column="4"
+                                   Text="{TemplateBinding MenuItem.InputGestureText}"
+                                   Margin="{TemplateBinding MenuItem.Padding}" />
+                            <Popup x:Name="PART_Popup"
+                                   VerticalOffset="-1"
+                                   HorizontalOffset="-1"
+                                   AllowsTransparency="true"
+                                   Placement="Bottom"
+                                   IsOpen="{Binding Path=IsSubmenuOpen,
+                                                    RelativeSource={RelativeSource TemplatedParent}}"
+                                   Focusable="false"
+                                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                                <ContentControl Name="SubMenuBorder" Background="#FF1e1e1e"
+                                                Template="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement},
+                                                          ResourceId=SubmenuContent}}"
+                                                IsTabStop="false">
+                                    <ScrollViewer Name="SubMenuScrollViewer"
+                                                  CanContentScroll="true"
+                                                  Margin="-2"
+                                                  Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement},
+                                                         ResourceId=MenuScrollViewer}}">
+                                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                                            <Canvas Height="0"
+                                                    Width="0"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top">
+                                                <Rectangle
+                                                    Height="{Binding ElementName=SubMenuBorder,Path=ActualHeight}"
+                                                    Width="{Binding ElementName=SubMenuBorder,Path=ActualWidth}"
+                                                    Fill="{DynamicResource ThemeDarkGrey}" />
+                                            </Canvas>
+                                            <ItemsPresenter Name="ItemsPresenter"
+                                                            KeyboardNavigation.TabNavigation="Cycle"
+                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                            Grid.IsSharedSizeScope="true"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </ContentControl>
+                            </Popup>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Icon"
+                             Value="{x:Null}">
+                            <Setter TargetName="Icon"
+                                Property="Visibility"
+                                Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                             Value="true">
+                            <Setter TargetName="GlyphPanel"
+                                Property="Visibility"
+                                Value="Visible"/>
+                            <Setter TargetName="Icon"
+                                Property="Visibility"
+                                Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsHighlighted"
+                             Value="true">
+                            <Setter TargetName="Bg"
+                                Property="Fill"
+                                Value="{DynamicResource Ribbon.MouseOver.Background}"/>
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                             Value="true">
+                            <Setter TargetName="Icon"
+                                Property="Margin"
+                                Value="14,4,0,4"/>
+                            <Setter TargetName="Header"
+                                Property="Visibility"
+                                Value="Collapsed"/>
+                            <Setter TargetName="Col3"
+                                Property="Width"
+                                Value="0" />
+                            <Setter TargetName="Col5"
+                                Property="Width"
+                                Value="6" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                             Value="false">
+                            <Setter TargetName="GlyphPanel"
+                                Property="Background"
+                                Value="#EEE9E9"/>
+                            <Setter TargetName="GlyphPanel"
+                                Property="BorderBrush"
+                                Value="#DBD6D6"/>
+                            <Setter TargetName="Glyph"
+                                Property="Fill"
+                                Value="#848589"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Stackpanel Action Button-->
+    <Style x:Key="ActionButtons"
+           TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="0,0,30,30"/>
+    </Style>
+
+    <!--Settings title style -->
+    <Style x:Key="SettingsPanelStyle"
+           TargetType="StackPanel">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="56, 30, 0, 80" />
+        <Setter Property="Width" Value="Auto"/>
+    </Style>
+
+    <!--Settings title style -->
+    <Style x:Key="SettingsTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource BigFontSize}" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Margin" Value="0, 5, 0, 14" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandForegroundTextColor}"/>
+    </Style>
+
+    <!-- Settings Text Style -->
+    <Style x:Key="SettingsTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Margin" Value="0, 9" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+    </Style>
+
+    <!-- Settings Text Style -->
+    <Style x:Key="RebrandOCRTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Rebrand Top Menu Text Style -->
+    <Style x:Key="RebrandTopMenuTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+    </Style>
+
+    <Style x:Key="RebrandTopMenuTextStyleLight"
+           BasedOn="{StaticResource RebrandTopMenuTextStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <!-- Settings Panel Icon Style -->
+    <Style x:Key="SettingsPanelIconStyle"
+           TargetType="{x:Type ari:AriIconLabel}">
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="UseLayoutRounding"
+                Value="true" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="true" />
+        <Setter Property="Margin"
+                Value="10,10,20,10"/>
+        <Setter Property="Foreground"
+                Value="{DynamicResource SystemBlack}"/>
+        <Setter Property="FontSize"
+                Value="{DynamicResource TinyFontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriIconLabel}">
+
+                    <Border x:Name="Root"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="LayoutGrid"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="IconContentPresenter"
+                                              ContentSource="Icon"
+                                              Margin="{TemplateBinding IconPadding}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            <TextBlock x:Name="LabelTextBlock"
+                                       Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="{TemplateBinding Label}"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="{TemplateBinding TextWrapping}"
+                                       Margin="{TemplateBinding LabelPadding}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation"
+                                 Value="Horizontal" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Grid.Row"
+                                    Value="0" />
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Grid.Column"
+                                    Value="1" />
+                            <Setter TargetName="LayoutGrid"
+                                    Property="VerticalAlignment"
+                                    Value="Center" />
+                            <Setter TargetName="LayoutGrid"
+                                    Property="HorizontalAlignment"
+                                    Value="Left" />
+                        </Trigger>
+                        <Trigger Property="Label"
+                                 Value="{x:Null}" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Icon"
+                                 Value="{x:Null}" >
+                            <Setter TargetName="IconContentPresenter"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ShowLabel"
+                                 Value="False" >
+                            <Setter TargetName="LabelTextBlock"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Settings Panel Button -->
+    <Style x:Key="SettingsPanelButton"
+           TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TinyFontSize}"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontStretch" Value="Expanded"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTilt}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="40, 6"/>
+        <Setter Property="Margin" Value="0, 21" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="PART_Border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="PART_Content" 
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          IsHitTestVisible="False"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="PART_Border"
+                                    Property="Background"
+                                    Value="{DynamicResource RebrandSelectedButton}" />
+                            <Setter TargetName="PART_Border"
+                                    Property="TextBlock.Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="PART_Border"
+                                    Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1" >
+                                        <GradientStop Color="#414758" Offset="0.5" />
+                                        <GradientStop Color="#3D4351" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Content"
+                                    Property="TextBlock.Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter TargetName="PART_Border"
+                                    Property="Opacity"
+                                    Value="0.5"/>
+                            <Setter TargetName="PART_Content"
+                                    Property="TextBlock.Foreground"
+                                    Value="{DynamicResource RebrandDisable}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="True">
+                            <Setter TargetName="PART_Border"
+                                    Property="BorderBrush"
+                                    Value="{DynamicResource RebrandTilt}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="RebrandPrivacityLinkButtonStyle"
+           TargetType="{x:Type ari:AriLinkButton}"
+           BasedOn="{StaticResource {x:Type ari:AriLinkButton}}">
+        <Setter Property="Foreground" Value="{DynamicResource RebrandEnabledIcons}"/>
+        <Setter Property="Margin" Value="0, 8"/>
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}" />
+    </Style>
+
+    <!--Ellipses Loading Text -->
+    <Style x:Key="EllipsesLoadingTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource LoadingEllipsesFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LoadingGreyBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <!--<Setter Property="Margin" Value="50"/>-->
+    </Style>
+
+    <!--Ellipses Loading Text -->
+    <Style x:Key="RebrandEllipsesLoadingTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTilt}" />
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <!--<Setter Property="Margin" Value="50"/>-->
+    </Style>
+
+    <!--Loading Text -->
+    <Style x:Key="LoadingTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LoadingGreyBrush}" />
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Text" Value="Looking for insights"/>
+    </Style>
+
+    <!--Loading Text -->
+    <Style x:Key="RebrandLoadingTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTilt}" />
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Text" Value="Looking for insights"/>
+    </Style>
+
+    <!--No Result Text -->
+    <Style x:Key="NoResultTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LoadingGreyBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!--No Result Text -->
+    <Style x:Key="CodeErrorTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource LoadingGreyBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!--First time user experience Button -->
+    <Style x:Key="FTUXButton"
+           TargetType="Button"
+           BasedOn="{StaticResource AIControlButtonStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource SystemWhite}"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="Height" Value="46"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="Margin" Value="0,10"/>
+    </Style>
+
+    <Style x:Key="RebrandFTUXButton"
+           TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource SystemWhite}"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="Height" Value="46"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="Margin" Value="0,10"/>
+    </Style>
+
+    <!-- First time user experience Textblock -->
+    <Style x:Key="FTUXTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}"/>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Padding" Value="0,50,10,50"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Text" Value="Turn on cognitive services to use services such as image suggestion, image to text conversion, auto-naming, tagging, and more."/>
+    </Style>
+
+    <!-- First time user experience Textblock -->
+    <Style x:Key="RebrandFTUXTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <!--<Setter Property="Padding" Value="0,50,10,50"></Setter>-->
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Text" Value="Turn on cognitive services to use services such as image suggestion, image to text conversion, auto-naming, tagging, and more."/>
+    </Style>
+
+    <!-- FTUX hyperlink -->
+    <Style x:Key="FTUXHyperlink"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+    </Style>
+
+    <!--Top Ribbon Toggle Buttons -->
+    <Style x:Key="TopRibbonButton"
+           TargetType="Button">
+        <Setter Property="Height" Value="{StaticResource TopRibbonButtonHeight}"/>
+        <Setter Property="Width" Value="{StaticResource TopRibbonButtonWidth}"/>
+        <Setter Property="FontSize" Value="{DynamicResource HeadingFontSize}"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeDarkGrey}"/>
+    </Style>
+
+    <!-- Top Ribbon Rectangle Selection -->
+    <Style x:Key="TopRibbonRectangle"
+           TargetType="Rectangle">
+        <Setter Property="Height" Value="4"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Fill" Value="{DynamicResource ThemeColorBrush}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuHighlightBrush}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Settings Rectangle Selection -->
+    <Style x:Key="SettingsRectangle"
+           TargetType="Rectangle">
+        <Setter Property="Height" Value="4"/>
+        <Setter Property="Width" Value="42"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Fill" Value="{DynamicResource ThemeColorBrush}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Fill" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- AI Side Panel Navigation Button -->
+    <Style x:Key="AISidePanelToggle"
+           TargetType="ToggleButton">
+        <Setter Property="Height" Value="{DynamicResource AINavButtonSize}"/>
+        <Setter Property="Width" Value="{DynamicResource AINavButtonSize}"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <!--Side bar Rectangle Selection -->
+    <Style x:Key="SideNavigationRectangle"
+		   TargetType="Rectangle">
+        <Setter Property="Height" Value="{DynamicResource AINavButtonSize}"/>
+        <Setter Property="Width" Value="4.5"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Fill" Value="{DynamicResource ThemeColorBrush}"/>
+    </Style>
+
+    <!-- Editor Menu Style -->
+    <Style x:Key="EditorMenu"
+		   TargetType="Menu">
+        <Setter Property="Height" Value="{DynamicResource EditorButtonSize}"/>
+        <Setter Property="Width" Value="{DynamicResource EditorButtonSize}"/>
+    </Style>
+
+    <!-- Editor Menu Item Style -->
+    <Style x:Key="EditorMenuItem"
+		   TargetType="MenuItem">
+        <Setter Property="Height" Value="{DynamicResource EditorButtonSize}"/>
+        <Setter Property="Width" Value="{DynamicResource EditorButtonSize}"/>
+    </Style>
+
+    <!-- Image Button Style -->
+    <Style x:Key="ImageButton"
+		   TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <!-- AI Heading Text Style -->
+    <Style x:Key="AIHeadingText"
+		   TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource HeadingFontSize}"/>
+        <Setter Property="Margin" Value="25,25,0,0"/>
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+
+    <!-- AI Heading Text Style -->
+    <Style x:Key="RebrandAIHeadingText"
+		   TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource BigFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
+        <Setter Property="Margin" Value="0, 12"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- AI Sub Heading Text Style -->
+    <Style x:Key="AISubHeadingText"
+		   TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource ProductControlFontSize}"/>
+        <Setter Property="Margin" Value="25,0,0,25"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Foreground" Value="{x:Static SystemColors.ActiveBorderBrush}"/>
+    </Style>
+
+    <!-- AI ItemsControl Style -->
+    <Style x:Key="AIItemsControl"
+		   TargetType="ItemsControl">
+        <Setter Property="Margin" Value="20, 0"/>
+    </Style>
+
+    <!-- Rebrand AI ItemsControl Style -->
+    <Style x:Key="RebrandAIItemsControl"
+		   TargetType="ItemsControl">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <!-- Export OCR Buttons -->
+    <Style x:Key="ExportOCRButton"
+           TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource ThemeColorBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+
+    <!-- Export OCR TextBlock -->
+    <Style x:Key="ExportOCRTextBlock"
+           TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource SystemWhite}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="10"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Action Ribbon Button Style -->
+    <Style x:Key="ActionRibbonButton"
+           TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="55"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Action Ribbon Stack Panel -->
+    <Style x:Key="ActionRibbonStackPanel"
+           TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="15,0"/>
+        <Setter Property="Height" Value="55"/>
+    </Style>
+
+    <!-- Rebrand Bar Ink Radio Button -->
+    <Style x:Key="RebrandAriInkRadioButton" 
+           TargetType="{x:Type ari:AriInkRadioButton}"
+           BasedOn="{StaticResource {x:Type ari:AriInkRadioButton}}">
+        <Setter Property="Foreground" 
+                Value="Black"/>
+        <Setter Property="Width"
+                Value="60" />
+        <Setter Property="Height"
+                Value="60" />
+        <Setter Property="ToolTipService.Placement" 
+                Value="Bottom" />
+        <Setter Property="ToolTipService.InitialShowDelay"
+            Value="1000" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ari:AriInkRadioButton}">
+                    <Grid VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
+                        <ari:AriIconLabel x:Name="Root"
+                            Padding="{TemplateBinding Padding}"
+                            Label="{TemplateBinding Label}" >
+                            <ari:AriIconLabel.Icon>
+                                <Grid Height="32"
+                                  Width="32">
+                                    <Ellipse x:Name="InkSample"
+                                         Fill="{TemplateBinding Ink}"
+                                         StrokeThickness="1"
+                                         Margin="1">
+                                        <Ellipse.Stroke>
+                                            <SolidColorBrush x:Name="InkBorderBrush" />
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse x:Name="SelectedIndicator"
+                                         StrokeThickness="2"
+                                         Stroke="{DynamicResource RebrandTilt}"
+                                         Visibility="Collapsed"
+                                         Margin="1"/>
+                                </Grid>
+                            </ari:AriIconLabel.Icon>
+                        </ari:AriIconLabel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true" >
+                            <Setter TargetName="SelectedIndicator"
+                                    Property="Visibility"
+                                    Value="Visible"/>
+                            <Setter TargetName="InkSample"
+                                    Property="Stroke"
+                                    Value="Gray"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" >
+                            <Setter TargetName="SelectedIndicator"
+                                    Property="Visibility"
+                                    Value="Visible"/>
+                            <Setter TargetName="InkSample"
+                                    Property="Stroke"
+                                    Value="Gray"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value="0.7" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="true" >
+                            <Setter TargetName="SelectedIndicator"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsShy"
+                                 Value="true" >
+                            <Setter TargetName="Root"
+                                    Property="ShowLabel"
+                                    Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false" >
+                            <Setter TargetName="Root"
+                                    Property="Opacity"
+                                    Value=".3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- OCR Stack Panel -->
+    <Style x:Key="OCRStackPanel"
+           TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="15,0"/>
+        <Setter Property="Height" Value="45"/>
+    </Style>
+
+    <Style x:Key="RebrandSettingsSeparatorStyle"
+           TargetType="Separator">
+        <Setter Property="Background" Value="#454c5d"/>
+        <Setter Property="Margin" Value="0,3"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Separator}">
+                    <Border 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Background}" 
+                        Height="1" 
+                        SnapsToDevicePixels="true"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Settings TextBox Style -->
+    <Style x:Key="SettingsTextBoxStyle"
+           TargetType="TextBox">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Background" Value="{DynamicResource RebrandDarkerBackgroundTransparent30}"/>
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}" />
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="MaxLength" Value="255" />
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="Margin" Value="0, 0, 0, 26"/>
+        <Setter Property="MinWidth" Value="640"/>
+        <Setter Property="Padding" Value="4"/>
+    </Style>
+
+    <!-- Ocr TextBox Style -->
+    <Style x:Key="RebrandOCRTextBoxStyle"
+           TargetType="TextBox">
+        <Setter Property="FontSize" Value="{DynamicResource ExtraSmallFontSize}" />
+        <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource RebrandTextLight}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Margin" Value="0,8"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}" />
+    </Style>
+
+    <!-- Library Text Style -->
+    <Style x:Key="RebrandLibraryGroupHeader"
+           TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{DynamicResource BigFontSize}" />
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}"/>
+        <Setter Property="Margin" Value="0, 0"/>
+        <Setter Property="Padding" Value="26, 2"/>
+    </Style>
+
+    <!-- Editor Grid Style -->
+    <Style x:Key="EditorGrid"
+           TargetType="Grid">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Action Ribbon Grid Style -->
+    <Style x:Key="ActionRibbonGrid"
+           TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource ActionRibbonBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Editor Side Toggle Container Style -->
+    <Style x:Key="ToggleContainerGrid"
+           TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource ActionRibbonBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsHighContrast, Source={x:Static hs:HighContrastMode.Instance}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+
+
+
+
+
+
+    <!-- Ocr Combobox Style -->
+    <!-- Flat ComboBox -->
+    <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
+    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#fff" />
+    <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
+
+    <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2"
+                    Name="Border"
+                    BorderBrush="{DynamicResource RebrandDarkerBackground}" 
+                    CornerRadius="2" 
+                    BorderThickness="1, 1, 1, 1" 
+                    Background="{DynamicResource RebrandBackgroundResults}" />
+            <Border Grid.Column="1" 
+                    Margin="1, 1, 1, 1" 
+                    BorderBrush="{DynamicResource RebrandDarkerBackground}" 
+                    Name="ButtonBorder"
+                    CornerRadius="0, 0, 0, 0" 
+                    BorderThickness="0, 0, 0, 0" 
+                    Background="{DynamicResource RebrandBackgroundResults}" />
+            <Path Name="Arrow" 
+                  Grid.Column="1" 
+                  Data="M0,0 L4,6 L8,0 L4,0 z"
+                  HorizontalAlignment="Center" 
+                  Fill="{DynamicResource RebrandTextLight}"
+                  VerticalAlignment="Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <!--<Setter Property="BorderBrush" 
+                        TargetName="ButtonBorder" 
+                        Value="WhiteSmoke"/>-->
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" 
+                        TargetName="Border" 
+                        Value="{DynamicResource RebrandTilt}"/>
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                <!--<Setter Property="Panel.Background" 
+                        TargetName="ButtonBorder"
+                        Value="WhiteSmoke"/>-->
+                <Setter Property="Shape.Fill" 
+                        TargetName="Arrow" 
+                        Value="White"/>
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
+                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="RebrandOCRComboboxStyle"  TargetType="{x:Type ComboBox}">
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <!--<Setter Property="Focusable" Value="False"/>-->
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource RebrandTextLight}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton Name="ToggleButton" Grid.Column="2"
+                                      ClickMode="Press" 
+                                      Focusable="True"
+                                      IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                      Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
+
+                        <ContentPresenter Name="ContentSite" 
+                                          Margin="12, 7, 23, 6" 
+                                          IsHitTestVisible="False"
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Center"                              
+                                          TextBlock.FontSize="{DynamicResource ExtraSmallFontSize}"
+                                          Content="{TemplateBinding ComboBox.SelectionBoxItem}" 
+                                          ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                        <TextBox Name="PART_EditableTextBox" 
+                                 Margin="3, 3, 23, 3"                     
+                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                 Visibility="Hidden" Background="Transparent"
+                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                 Focusable="True" >
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox" >
+                                    <Border Name="PART_ContentHost" Focusable="False" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <!-- Popup showing items -->
+                        <Popup Name="Popup" 
+                               Placement="Bottom"
+                               Focusable="False" 
+                               AllowsTransparency="True"
+                               IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                               PopupAnimation="Slide">
+                            <Grid Name="DropDown" SnapsToDevicePixels="True"
+                                  MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                  MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                <Border Name="DropDownBorder" 
+                                        Background="{DynamicResource RebrandBackgroundResults}" 
+                                        Margin="0, 1, 0, 0"
+                                        CornerRadius="2" 
+                                        BorderThickness="1,1,1,1" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"/>
+                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" 
+                                                    FocusVisualStyle="{DynamicResource FocusedStyle}"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ItemsControl.HasItems" Value="False">
+                            <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                        </Trigger>
+                        <Trigger Property="ComboBox.IsEditable" Value="True">
+                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                            <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
+                            <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End of Flat ComboBox -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Scrollbar Thumbs-->
+    <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Grid">
+                        <Rectangle HorizontalAlignment="Stretch" 
+                                   VerticalAlignment="Stretch" 
+                                   Width="Auto" 
+                                   Height="Auto" 
+                                   Fill="Transparent" />
+                        <Border x:Name="Rectangle1" 
+                                CornerRadius="0" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" 
+                                Width="Auto" 
+                                Height="Auto"  
+                                Background="{TemplateBinding Background}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="Horizontal">
+                            <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                            <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--ScrollBars-->
+    <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+        <Setter Property="Foreground" Value="{DynamicResource RebrandLightGray}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="-3, 0" />
+        <Setter Property="Width" Value="11" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="GridRoot" 
+                          Width="{TemplateBinding Width}" 
+                          Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.00001*" />
+                        </Grid.RowDefinitions>
+
+                        <Track x:Name="PART_Track" 
+                               Grid.Row="0" 
+                               IsDirectionReversed="true" 
+                               Focusable="false">
+                            <Track.Thumb>
+                                <Thumb x:Name="Thumb" 
+                                       Background="{TemplateBinding Foreground}" 
+                                       Style="{DynamicResource ScrollThumbs}" />
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton x:Name="PageUp" 
+                                              Command="ScrollBar.PageDownCommand" 
+                                              Opacity="0" 
+                                              Focusable="false" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton x:Name="PageDown" 
+                                              Command="ScrollBar.PageUpCommand" 
+                                              Opacity="0" 
+                                              Focusable="false" />
+                            </Track.DecreaseRepeatButton>
+                        </Track>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="Thumb" 
+                                 Property="IsMouseOver" 
+                                 Value="true">
+                            <Setter Value="{DynamicResource ButtonSelectBrush}" 
+                                    TargetName="Thumb" 
+                                    Property="Background" />
+                        </Trigger>
+                        <Trigger SourceName="Thumb" 
+                                 Property="IsDragging" 
+                                 Value="true">
+                            <Setter Value="{DynamicResource DarkBrush}" 
+                                    TargetName="Thumb" 
+                                    Property="Background" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" 
+                                 Value="false">
+                            <Setter TargetName="Thumb" 
+                                    Property="Visibility" 
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Orientation" 
+                                 Value="Horizontal">
+                            <Setter TargetName="GridRoot" 
+                                    Property="LayoutTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="Height" Value="8" />
+                            <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                            <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                            <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RebrandImageButton" TargetType="Button">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="0, 0, 0, 0"/>
+        <Setter Property="Width" Value="176"/>
+        <Setter Property="Height" Value="144"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:local="clr-namespace:SnipInsight.Forms"
+    xmlns:settings="clr-namespace:SnipInsight.Forms.Features.Settings"
+    x:Class="SnipInsight.Forms.GlobalStyles">
+    <ResourceDictionary.MergedDictionaries>
+        <local:Colors />
+        <local:FontStyles />
+        <local:Sizes />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style 
+        TargetType="Button">
+        <Setter Property="BorderColor" Value="{StaticResource DefaultButtonBorderColor}" />
+        <!-- Radius seems to make nothing in Gtk -->
+        <Setter Property="BorderRadius" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonBackgroundColor}" />
+    </Style>
+    
+    <Style 
+        TargetType="controls:TooltipButton">
+        <Setter Property="BorderColor" Value="{StaticResource DefaultButtonBorderColor}" />
+        <!-- Radius seems to make nothing in Gtk -->
+        <Setter Property="BorderRadius" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonBackgroundColor}" />
+    </Style>
+
+    <Style 
+        TargetType="controls:ExtendedFlexLayout">
+        <Setter Property="AlignContent" Value="Start" />
+        <Setter Property="AlignItems" Value="Start" />
+        <Setter Property="Direction" Value="Row" />
+        <Setter Property="JustifyContent" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="Wrap" Value="Wrap" />
+    </Style>
+
+    <Style 
+        TargetType="Label"
+        BasedOn="{StaticResource 14RegularFontStyle}">
+        <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+    </Style>
+
+    <Style 
+        TargetType="StackLayout">
+        <Setter Property="Spacing" Value="0" />
+    </Style>
+
+    <Style
+        TargetType="Picker">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DefaultTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DefaultFontSize}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource DefaultButtonBackgroundColor}"/>
+    </Style>
+
+</ResourceDictionary>

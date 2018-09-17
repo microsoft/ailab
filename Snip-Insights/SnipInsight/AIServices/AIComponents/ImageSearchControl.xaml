@@ -1,0 +1,65 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.AIServices.AIComponents.ImageSearchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:properties="clr-namespace:SnipInsight.Properties"
+             DataContext="{Binding Source={StaticResource Locator}, Path=ImageSearchLoc}"
+             Visibility="{Binding IsVisible}"
+             SizeChanged="ImageGallerySizeChanged"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="ImageTemplate">
+                <Button Command="{Binding DataContext.ImageSelected,
+                                          RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        Margin="0, 8, 16, 8"
+                        CommandParameter="{Binding}"
+                        Style="{DynamicResource RebrandImageButton}"
+                        AutomationProperties.Name="Bing Image Search Results">
+                    <Image Source="{Binding Image}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stretch="UniformToFill"
+                           Style="{DynamicResource RebrandImageSearchImage}">
+                        <!--<Image.ToolTip>
+                            <ToolTip DataContext="{Binding PlacementTarget,
+                                                           RelativeSource={RelativeSource Self}}">
+                                <Image Source="{Binding Source}"
+                                       Stretch="None" />
+                            </ToolTip>
+                        </Image.ToolTip>-->
+                    </Image>
+                </Button>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0"
+                   Text="{x:Static properties:Resources.Similar_Images}"
+                   Style="{DynamicResource RebrandAIHeadingText}"/>
+        <ItemsControl Grid.Row="1"
+                      x:Name ="ImageDisplayPanel"
+                      Style="{DynamicResource RebrandAIItemsControl}"
+                      ItemsSource="{Binding Images}"
+                      ItemTemplate = "{StaticResource ImageTemplate}">
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

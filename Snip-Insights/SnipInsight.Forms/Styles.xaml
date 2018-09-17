@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:local="clr-namespace:SnipInsight.Forms"
+    xmlns:settings="clr-namespace:SnipInsight.Forms.Features.Settings"
+    x:Class="SnipInsight.Forms.Styles">
+    <ResourceDictionary.MergedDictionaries>
+        <local:Colors />
+        <local:FontStyles />
+        <local:Sizes />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style 
+        x:Key="InsightsResultTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource 20BoldFontStyle}">
+        <Setter Property="Margin">
+            <Thickness
+                Top="{StaticResource DefaultMargin}"
+                Bottom="{StaticResource DefaultMargin}"/>
+        </Setter>
+        <Setter Property="TextColor" Value="{StaticResource DefaultTitleTextColor}" />
+    </Style>
+
+    <Style 
+        x:Key="InsightsResultSubtitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource 14BoldFontStyle}">
+        <Setter Property="TextColor" Value="{StaticResource DefaultTitleTextColor}" />
+    </Style>
+
+    <Style 
+        x:Key="SettingsCheckBoxLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource 14RegularFontStyle}">
+        <Setter Property="TextColor" Value="{StaticResource SnippingTextColor}" />
+    </Style>
+
+    <Style 
+        x:Key="SettingsTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource 20BoldFontStyle}">
+        <Setter Property="Margin">
+            <Thickness
+                Top="{StaticResource BiggerDefaultMargin}"
+                Bottom="{StaticResource SmallestDefaultMargin}" />
+        </Setter>
+        <Setter Property="TextColor" Value="{StaticResource DefaultTitleTextColor}" />
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,116 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.Views.TopRibbon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:SnipInsight.Views"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             mc:Ignorable="d"
+             d:DesignHeight="80" 
+             d:DesignWidth="1200"
+             Background="{DynamicResource RebrandBackgroundResults}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/AriadneStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <views:InvertBooleanToVisibility x:Key="InvertBooleanToVisibility" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Grid>
+                <Rectangle Fill="{DynamicResource RebrandRaisedButton}"
+                           Visibility="{Binding AIEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                <Rectangle Fill="{DynamicResource RebrandBackgroundResults}"
+                           Visibility="{Binding AIEnable,
+                                    Converter={StaticResource BooleanToVisibility}}"/>
+
+                <!--IsEnabled="{Binding AIEnable}"-->
+                <Button x:Name="InsightsToggle"
+                        Style="{DynamicResource RebrandRibbonButton}"
+                        Visibility="Collapsed"
+                        Command="{Binding ToggleEditorCommand}"
+                        AutomationProperties.Name = "Insights"
+                        AutomationProperties.ItemStatus ="{Binding IsEnabled}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment ="Center"
+                        Padding="12"
+                        Template="{DynamicResource TopRibbonTemplate}">
+                    <Grid>
+                        <TextBlock Text="Insights"
+                               Style="{DynamicResource RebrandTopMenuTextStyle}"/>
+                        <TextBlock Text="Insights"
+                               Style="{DynamicResource RebrandTopMenuTextStyleLight}"
+                               Visibility="{Binding AIEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                    </Grid>
+                </Button>
+            </Grid>
+
+            <Grid>
+                <Rectangle Fill="{DynamicResource RebrandRaisedButton}"
+                           Visibility="{Binding LibraryEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                <Rectangle Fill="{DynamicResource RebrandBackgroundResults}"
+                           Visibility="{Binding LibraryEnable,
+                                    Converter={StaticResource BooleanToVisibility}}"/>
+
+                <!--IsEnabled="{Binding LibraryEnable}"-->
+                <Button x:Name="LibraryToggle"
+                        Style="{DynamicResource RebrandRibbonButton}"
+                        Command="{Binding ToggleLibraryCommand}"
+                        AutomationProperties.Name = "Library"
+                        Template="{DynamicResource TopRibbonTemplate}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment ="Center"
+                        Padding="12">
+                    <Grid>
+                        <TextBlock Text="Library"
+                               Style="{DynamicResource RebrandTopMenuTextStyle}"/>
+                        <TextBlock Text="Library"
+                               Style="{DynamicResource RebrandTopMenuTextStyleLight}"
+                               Visibility="{Binding LibraryEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                    </Grid>
+                </Button>
+            </Grid>
+
+            <Grid>
+                <Rectangle Fill="{DynamicResource RebrandRaisedButton}"
+                           Visibility="{Binding SettingsEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                <Rectangle Fill="{DynamicResource RebrandBackgroundResults}"
+                           Visibility="{Binding SettingsEnable,
+                                    Converter={StaticResource BooleanToVisibility}}"/>
+
+                <!--IsEnabled="{Binding SettingsEnable}"-->
+                <Button x:Name="SettingsButton"
+                        Style="{DynamicResource RebrandRibbonButton}"
+                        Command="{Binding ToggleSettingsCommand}"
+                        AutomationProperties.Name = "Settings"
+                        AutomationProperties.ItemStatus ="{Binding IsEnabled}"
+                        Template="{DynamicResource TopRibbonTemplate}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment ="Center"
+                        Padding="12">
+                    <Grid>
+                        <TextBlock Text="Settings"
+                               Style="{DynamicResource RebrandTopMenuTextStyle}"/>
+                        <TextBlock Text="Settings"
+                               Style="{DynamicResource RebrandTopMenuTextStyleLight}"
+                               Visibility="{Binding SettingsEnable,
+                                    Converter={StaticResource InvertBooleanToVisibility}}"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,9 @@
+steps:
+- powershell: |
+    ./build.windows.ps1
+- task: PublishBuildArtifacts@1
+  displayName: Publish Windows package assets
+  inputs:
+    pathtoPublish: $(Build.SourcesDirectory)/bin/x64/Release
+    artifactName: Package
+    artifactType: container
