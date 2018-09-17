@@ -16,7 +16,7 @@ namespace SnipInsight.Forms.Tests.Features.Insights.Celebrities
             var imageAnalysisService = RestService.For<IImageAnalysisService>(Constants.ImageAnalysisEndpoint);
             var image = ImageHelper.GetToyStoryImage();
 
-            var result = await imageAnalysisService.Analyze(image, Constants.ImageAnalysisAPIKey);
+            var result = await imageAnalysisService.Analyze(image, APIKeys.ImageAnalysisAndTextRecognitionAPIKey);
 
             Assert.NotNull(result);
         }
@@ -26,7 +26,7 @@ namespace SnipInsight.Forms.Tests.Features.Insights.Celebrities
         {
             var entitySearchService = RestService.For<IEntitySearchService>(Constants.EntitySearchEndpoint);
 
-            var result = await entitySearchService.GetEntities(EntityName, Constants.EntitySearchAPIKey);
+            var result = await entitySearchService.GetEntities(EntityName, APIKeys.EntitySearchAPIKey);
 
             Assert.NotNull(result);
         }
@@ -36,7 +36,7 @@ namespace SnipInsight.Forms.Tests.Features.Insights.Celebrities
         {
             var entitySearchService = RestService.For<IEntitySearchService>(Constants.EntitySearchEndpoint);
 
-            var result = await entitySearchService.SearchNews(EntityName, Constants.ImageSearchAPIKey);
+            var result = await entitySearchService.SearchNews(EntityName, APIKeys.ImageSearchAPIKey);
 
             Assert.NotNull(result);
         }

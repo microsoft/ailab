@@ -39,13 +39,13 @@ namespace SnipInsight.Forms.Tests.Features.Insights.Celebrities
             settingsServiceMock.SetupGet(service => service.ImageAnalysisEndPoint)
                                .Returns(Constants.ImageAnalysisEndpoint);
             settingsServiceMock.SetupGet(service => service.ImageAnalysisAPIKey)
-                               .Returns(Constants.ImageAnalysisAPIKey);
+                               .Returns(APIKeys.ImageAnalysisAndTextRecognitionAPIKey);
             settingsServiceMock.SetupGet(service => service.EntitySearchEndPoint)
                                .Returns(Constants.EntitySearchEndpoint);
             settingsServiceMock.SetupGet(service => service.EntitySearchAPIKey)
-                               .Returns(Constants.EntitySearchAPIKey);
+                               .Returns(APIKeys.EntitySearchAPIKey);
             settingsServiceMock.SetupGet(service => service.ImageSearchAPIKey)
-                               .Returns(Constants.ImageSearchAPIKey);
+                               .Returns(APIKeys.ImageSearchAPIKey);
 
             return settingsServiceMock;
         }

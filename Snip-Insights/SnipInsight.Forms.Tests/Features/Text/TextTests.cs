@@ -31,7 +31,7 @@ namespace SnipInsight.Forms.Tests.Features.Products
             var image = ImageHelper.GetHandWritenImage();
 
             var result = await Forms.Common.RetryHelper.WrapAsync(
-                this.service.RecognizePrintedText(image, Constants.TextRecognitionAPIKey));
+                this.service.RecognizePrintedText(image, APIKeys.ImageAnalysisAndTextRecognitionAPIKey));
 
             Assert.True(result.Regions[0].Lines[0].Words.Any());
         }
@@ -52,7 +52,7 @@ namespace SnipInsight.Forms.Tests.Features.Products
             settingsServiceMock.SetupGet(service => service.TextRecognitionEndPoint)
                                .Returns(Constants.TextRecognitionEndPoint);
             settingsServiceMock.SetupGet(service => service.TextRecognitionAPIKey)
-                               .Returns(Constants.TextRecognitionAPIKey);
+                               .Returns(Constants.ImageAnalysisAndTextRecognitionAPIKey);
             settingsServiceMock.SetupGet(service => service.TranslatorEndPoint)
                                .Returns(Constants.TranslatorEndPoint);
             settingsServiceMock.SetupGet(service => service.TranslatorAPIKey)
@@ -62,7 +62,7 @@ namespace SnipInsight.Forms.Tests.Features.Products
             settingsServiceMock.SetupGet(service => service.LuisAPPID)
                                .Returns(Constants.LUISAppId);
             settingsServiceMock.SetupGet(service => service.LuisAPIKey)
-                               .Returns(Constants.LUISAPIKey);
+                               .Returns(Constants.LuisAPIKey);
 
             return settingsServiceMock;
         }
