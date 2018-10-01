@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{2C90CA1B-BD65-41C9-B542-5F1F6E472863}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SnipInsight</RootNamespace>
+    <AssemblyName>Snip Insights</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SNIP</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SnipInsights.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app1.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationClientsideProviders" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AIServices\AIComponents\AISideNavigation.xaml.cs">
+      <DependentUpon>AISideNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\CelebrityRecognitionControl.xaml.cs">
+      <DependentUpon>CelebrityRecognitionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\EmptyState.xaml.cs">
+      <DependentUpon>EmptyState.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\ImageSearchControl.xaml.cs">
+      <DependentUpon>ImageSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\InsightsPermissions.xaml.cs">
+      <DependentUpon>InsightsPermissions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\LandmarkRecognitionControl.xaml.cs">
+      <DependentUpon>LandmarkRecognitionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\NewsControls.xaml.cs">
+      <DependentUpon>NewsControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\OCRControl.xaml.cs">
+      <DependentUpon>OCRControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AIComponents\ProductSearchControl.xaml.cs">
+      <DependentUpon>ProductSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AIServices\AILogic\HandWrittenTextHandler.cs" />
+    <Compile Include="AIServices\AILogic\ImageAnalysisHandler.cs" />
+    <Compile Include="AIServices\AILogic\ImageSearchHandler.cs" />
+    <Compile Include="AIServices\AILogic\NewsHandler.cs" />
+    <Compile Include="AIServices\AILogic\LUISInsights.cs" />
+    <Compile Include="AIServices\AILogic\PrintedTextHandler.cs" />
+    <Compile Include="AIServices\AILogic\ProductSearchHandler.cs" />
+    <Compile Include="AIServices\AILogic\TranslationHandler.cs" />
+    <Compile Include="AIServices\AIManager.cs" />
+    <Compile Include="AIServices\AIModels\EntitySearchModel.cs" />
+    <Compile Include="AIServices\AIModels\ContentModerationModel.cs" />
+    <Compile Include="AIServices\AIModels\HandWrittenModel.cs" />
+    <Compile Include="AIServices\AIModels\ImageAnalysisModel.cs" />
+    <Compile Include="AIServices\AIModels\ImageAnalysisResult.cs" />
+    <Compile Include="AIServices\AIModels\ImageSearchModel.cs" />
+    <Compile Include="AIServices\AIModels\LUISModel.cs" />
+    <Compile Include="AIServices\AIModels\PrintedModel.cs" />
+    <Compile Include="AIServices\AIModels\ProductSearchModel.cs" />
+    <Compile Include="AIServices\AIViewModels\ImageAnalysisViewModel.cs" />
+    <Compile Include="AIServices\AIViewModels\BaseDynamicDisplay.cs" />
+    <Compile Include="AIServices\AIViewModels\ImageDynamicDisplay.cs" />
+    <Compile Include="AIServices\AIViewModels\InsightsPermissionsViewModel.cs" />
+    <Compile Include="AIServices\AIViewModels\ImageSearchViewModel.cs" />
+    <Compile Include="AIServices\AIViewModels\OCRViewModel.cs" />
+    <Compile Include="AIServices\AIViewModels\ProductDynamicDisplay.cs" />
+    <Compile Include="AIServices\AIViewModels\ProductSearchViewModel.cs" />
+    <Compile Include="AIServices\CloudService.cs" />
+    <Compile Include="AIServices\AILogic\ContentModerationHandler.cs" />
+    <Compile Include="Controls\HighContrastMode.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="APIKeys.cs" />
+    <Compile Include="ImageCapture\ImageLoader.cs" />
+    <Compile Include="Telemetry\PanelName.cs" />
+    <Compile Include="Controls\Ariadne\AriBorderedIconLabelButton.cs" />
+    <Compile Include="Controls\Ariadne\AriButtonBase.cs" />
+    <Compile Include="Controls\Ariadne\AriCircleIconButton.cs" />
+    <Compile Include="Controls\Ariadne\AriDialogButton.cs" />
+    <Compile Include="Controls\Ariadne\AriEraseRadiobutton.cs" />
+    <Compile Include="Controls\Ariadne\AriFirstRunCard.cs" />
+    <Compile Include="Controls\Ariadne\AriIcon.cs" />
+    <Compile Include="Controls\Ariadne\AriIconLabel.cs" />
+    <Compile Include="Controls\Ariadne\AriIconLabelButton.cs" />
+    <Compile Include="Controls\Ariadne\AriIconLabelMenuItem.cs" />
+    <Compile Include="Controls\Ariadne\AriIconLabelToggleButton.cs" />
+    <Compile Include="Controls\Ariadne\AriIconSmallButton.cs" />
+    <Compile Include="Controls\Ariadne\AriInkRadioButton.cs" />
+    <Compile Include="Controls\Ariadne\AriLinkButton.cs" />
+    <Compile Include="Controls\Ariadne\AriMenuItemBase.cs" />
+    <Compile Include="Controls\Ariadne\AriModernWindow.cs" />
+    <Compile Include="Controls\Ariadne\AriProgressBar.cs" />
+    <Compile Include="Controls\Ariadne\AriRadioButtonBase.cs" />
+    <Compile Include="Controls\Ariadne\AriRectangleIconButton.cs" />
+    <Compile Include="Controls\Ariadne\AriSuperTip.cs" />
+    <Compile Include="Controls\Ariadne\AriToggleButtonBase.cs" />
+    <Compile Include="Controls\Ariadne\AriToggleSwitch.cs" />
+    <Compile Include="Controls\Ariadne\IAriControl.cs" />
+    <Compile Include="Controls\DpiAwareWindow.cs" />
+    <Compile Include="Controls\IIconLabelControl.cs" />
+    <Compile Include="Controls\IShyControl.cs" />
+    <Compile Include="Controls\PaneButton.cs" />
+    <Compile Include="Controls\RibbonButton.cs" />
+    <Compile Include="Controls\RibbonComboBox.cs" />
+    <Compile Include="Controls\RibbonComboBoxItem.cs" />
+    <Compile Include="Controls\RibbonGroupPanel.cs" />
+    <Compile Include="Controls\RibbonSeparator.cs" />
+    <Compile Include="Controls\RibbonToggleButton.cs" />
+    <Compile Include="AIServices\AILogic\EntitySearchHandler.cs" />
+    <Compile Include="Ink\AcetateLayerInkCanvas.cs" />
+    <Compile Include="SendTo\OneNoteManager.cs" />
+    <Compile Include="StateMachine\ActionNames.cs" />
+    <Compile Include="StateMachine\SnipInsightState.cs" />
+    <Compile Include="StateMachine\SnipInsightTrigger.cs" />
+    <Compile Include="StateMachine\RelayCommand.cs" />
+    <Compile Include="StateMachine\StateMachine.cs" />
+    <Compile Include="StateMachine\StateMachineEnableConverter.cs" />
+    <Compile Include="StateMachine\StateMachineExtensions.cs" />
+    <Compile Include="StateMachine\StateMachineVisibilityConverter.cs" />
+    <Compile Include="Telemetry\ApplicationLogger.cs" />
+    <Compile Include="Telemetry\EventName.cs" />
+    <Compile Include="Telemetry\PropertyName.cs" />
+    <Compile Include="Telemetry\PropertyValue.cs" />
+    <Compile Include="TrayIcon.cs" />
+    <Compile Include="TrayIconContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrayIconContextMenu.Designer.cs">
+      <DependentUpon>TrayIconContextMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\AnimationUtilities.cs" />
+    <Compile Include="Util\AppDiagnosticsLogger.cs" />
+    <Compile Include="Util\AppUsageLogger.cs" />
+    <Compile Include="Util\Diagnostics.cs" />
+    <Compile Include="Util\DpiScale.cs" />
+    <Compile Include="Util\DpiUtilities.cs" />
+    <Compile Include="Util\FormatStringConverter.cs" />
+    <Compile Include="Util\HotKey.cs" />
+    <Compile Include="Util\ImageUtils.cs" />
+    <Compile Include="Util\KeyCombo.cs" />
+    <Compile Include="Util\LogUploader.cs" />
+    <Compile Include="Util\NativeMethods.cs" />
+    <Compile Include="Util\NullToVisibilityConverter.cs" />
+    <Compile Include="Util\ProcessDpiAwareness.cs" />
+    <Compile Include="Util\RegistrySettings.cs" />
+    <Compile Include="Util\StringToVisibility.cs" />
+    <Compile Include="Util\UnitConversion.cs" />
+    <Compile Include="Util\Utils.cs" />
+    <Compile Include="Util\WinMessage.cs" />
+    <Compile Include="ViewModels\AIPanelViewModel.cs" />
+    <Compile Include="ViewModels\DelegateCommand.cs" />
+    <Compile Include="ViewModels\SnipInsightViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AcetateLayer.xaml.cs">
+      <DependentUpon>AcetateLayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActionRibbon.xaml.cs">
+      <DependentUpon>ActionRibbon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CapturedImage.xaml.cs">
+      <DependentUpon>CapturedImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlTreeEnumerator.cs" />
+    <Compile Include="Views\DependencyPropertyUtilities.cs" />
+    <Compile Include="Views\EditorSideNavigation.xaml.cs">
+      <DependentUpon>EditorSideNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditorWindowTourPanel.xaml.cs">
+      <DependentUpon>EditorWindowTourPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstRunWindow.xaml.cs">
+      <DependentUpon>FirstRunWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HighContrastHelper.cs" />
+    <Compile Include="Views\KeyComboPicker.xaml.cs">
+      <DependentUpon>KeyComboPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LayoutUtilities.cs" />
+    <Compile Include="Views\LibraryPanel.xaml.cs">
+      <DependentUpon>LibraryPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationWindow.xaml.cs">
+      <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgressControl.xaml.cs">
+      <DependentUpon>ProgressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPanel.xaml.cs">
+      <DependentUpon>SettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToastControl.xaml.cs">
+      <DependentUpon>ToastControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolWindow.xaml.cs">
+      <DependentUpon>ToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TopRibbon.xaml.cs">
+      <DependentUpon>TopRibbon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TwoButtonDialog.xaml.cs">
+      <DependentUpon>TwoButtonDialog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AIServices\AIComponents\AISideNavigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\CelebrityRecognitionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\EmptyState.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AIServices\AIComponents\ImageSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\InsightsPermissions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\LandmarkRecognitionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\LoadingAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\NewsControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\OCRControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AIServices\AIComponents\ProductSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageCapture\ImageCaptureWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppManager.cs" />
+    <Compile Include="ClipboardUtils\ClipboardManager.cs" />
+    <Compile Include="Conversion\PictureConverter.cs" />
+    <Compile Include="Email\EmailManager.cs" />
+    <Compile Include="ImageCapture\AreaSelection.cs" />
+    <Compile Include="ImageCapture\DpiScalor.cs" />
+    <Compile Include="ImageCapture\IImageCaptureManager.cs" />
+    <Compile Include="ImageCapture\ImageCaptureCursor.cs" />
+    <Compile Include="ImageCapture\ImageCaptureManager.cs" />
+    <Compile Include="ImageCapture\ImageCaptureWindow.xaml.cs">
+      <DependentUpon>ImageCaptureWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageCapture\RectangleConverter.cs" />
+    <Compile Include="ImageCapture\ScreenCapture.cs" />
+    <Compile Include="ImageCapture\ScreenProperties.cs" />
+    <Compile Include="ImageCapture\ScreenshotImage.cs" />
+    <Compile Include="ImageCapture\SmartBoundaryDetection.cs" />
+    <Page Include="ResourceDictionaries\AriadneStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionaries\ComboBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionaries\FirstRunImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionaries\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceDictionaries\SnipStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionaries\SnipTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AcetateLayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActionRibbon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CapturedImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditorSideNavigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditorWindowTourPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstRunWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\KeyComboPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LibraryPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProgressControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToastControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TopRibbon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TwoButtonDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Package\SnipInsightLink.cs" />
+    <Compile Include="Package\SnipInsightLinkTimeSorter.cs" />
+    <Compile Include="Package\SnipInsightsManager.cs" />
+    <Compile Include="Package\PackageData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrayIconContextMenu.resx">
+      <DependentUpon>TrayIconContextMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app1.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Play_360x200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\InkCursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SnipInsights.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResourceDictionaries\RebrandResourceDictionaries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SnipInsights.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Interop.Microsoft.Office.Interop.OneNote">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Edm">
+      <Version>5.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.OData">
+      <Version>5.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Services.Client">
+      <Version>5.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Office.Interop.Outlook">
+      <Version>15.0.4797.1003</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.WindowsAPICodePack.Shell">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLightLibs">
+      <Version>5.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Stateless">
+      <Version>2.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http.Formatting.Extension">
+      <Version>5.2.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>taskkill /IM "Snip Insights.exe" /FI "STATUS eq RUNNING" /F</PreBuildEvent>
+  </PropertyGroup>
+</Project>

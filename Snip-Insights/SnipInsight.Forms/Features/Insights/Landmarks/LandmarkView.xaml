@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    x:Class="SnipInsight.Forms.Features.Insights.Landmarks.LandmarkView">
+    <ContentView.Content>
+        <StackLayout
+            Spacing="{StaticResource DefaultMargin}">
+
+            <Label
+                Style="{StaticResource InsightsResultTitleStyle}"
+                Text="{l10n:Localize Landmark_Information}"/>
+
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+
+                <Label 
+                    Grid.Row="1"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource InsightsResultSubtitleStyle}"
+                    Text="{Binding Landmark.Name}"/>
+
+                <Button
+                    Grid.Row="1"
+                    Command="{Binding Path=OpenUrlCommand}"
+                    CommandParameter="{Binding Landmark.URL}"
+                    HorizontalOptions="End"
+                    AutomationProperties.Name="Landmark Url"
+                    Text="{l10n:Localize More_information}"/>
+
+            </StackLayout>
+
+            <Label 
+                Grid.Row="2"
+                Text="{Binding Landmark.Description}">
+                <Label.Margin>
+                    <Thickness
+                        Left="{StaticResource BiggerDefaultMargin}"
+                        Top="{StaticResource SmallerDefaultMargin}"
+                        Bottom="{StaticResource DefaultMargin}"/>
+                </Label.Margin>
+            </Label>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

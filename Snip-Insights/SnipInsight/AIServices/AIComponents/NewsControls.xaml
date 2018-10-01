@@ -1,0 +1,175 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.AIServices.AIComponents.NewsControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             DataContext="{Binding Source={StaticResource Locator}, Path=ImageAnalysisLoc}"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}"/>
+            </Style>
+
+            <Style x:Key="HiddenButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Margin" Value="-1"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}"/>
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                        <Setter Property="Background"
+                                Value="Black" />
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="0"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <DataTemplate x:Key="NewsTemplate">
+                <Grid Background="{DynamicResource RebrandbackgroundApp}" 
+                      Margin="0, 8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          Margin="16, -8, 16, 16"
+                          Height="120"
+                          Width="88">
+                        <Image Stretch="UniformToFill"
+                               StretchDirection="Both"
+                               Source="{Binding Path=Image.Thumbnail.URL}"
+                               AutomationProperties.Name="{Binding Path=Name, StringFormat='Image For {0}'}"/>
+                        <ari:AriBorderedIconLabelButton Style="{StaticResource HiddenButtonStyle}"
+                                                        Command="{Binding DataContext.NavigateToNewsUrlCommand,RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        ToolTip="Go">
+                            <Border Background="Black" Padding="28" Margin="0, -60" BorderThickness="0" >
+                                <ari:AriIcon Template="{DynamicResource RebrandGoto_32_Icon}"
+                                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+                            </Border>
+                        </ari:AriBorderedIconLabelButton>
+                    </Grid>
+
+                    <Grid Grid.Column="1"
+                          Grid.Row="1" 
+                          Margin="8, 16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"
+                                                  MinWidth="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Style="{DynamicResource RebrandPeoplePlaceLinkTextBlock}">
+                                <Hyperlink Command="{Binding DataContext.NavigateToNewsUrlCommand,RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                           CommandParameter="{Binding}"
+                                           Style="{DynamicResource RebrandHyperlinkCelebrity}"
+                                           Foreground="{DynamicResource WhiteBrush}"
+                                           AutomationProperties.Name="{Binding Path=Name}">
+                                    <TextBlock Text="{Binding Path=Name}"
+                                               TextTrimming="WordEllipsis"
+                                               FontSize="{DynamicResource ExtraSmallFontSize}"
+                                               ToolTip="{Binding Path=URL}"/>
+                                </Hyperlink>
+                            </TextBlock>
+
+                            <ari:AriBorderedIconLabelButton Grid.Column="1"    
+                                                            Margin="8, 0"
+                                                            Height="32"
+                                                            Width="32"
+                                                            Style="{StaticResource ToolButtonStyle}"
+                                                            Command="{Binding DataContext.NavigateToNewsUrlCommand,RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                            CommandParameter="{Binding}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            ToolTip="Go">
+                                <ari:AriIcon Template="{DynamicResource RebrandGoto_32_Icon}"
+                                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+                            </ari:AriBorderedIconLabelButton>
+                        </Grid>
+
+                        <TextBox Grid.Row="1"
+                                 Style="{DynamicResource RebrandPeoplePlaceDescriptionTextBox}"
+                                 Padding="0"
+                                 Margin="-2, 8, 0, 12"
+                                 TextWrapping="Wrap"
+                                 IsTabStop="False"  
+                                 ToolTip="{Binding Path=Description}"
+                                 Foreground="{DynamicResource RebrandText}"
+                                 Text="{Binding Path=Description}"/>
+                        
+                        <Grid Grid.Row="3"
+                              VerticalAlignment="Bottom" 
+                              Margin="0, 8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0"
+                                 Style="{DynamicResource RebrandPeoplePlaceMetaDataTextBox}"
+                                 Text="{Binding Path=Provider[0].Name}"
+                                     IsTabStop="False"/>
+                            <TextBox Grid.Column="1"
+                                 Style="{DynamicResource RebrandPeoplePlaceMetaDataTextBox}"
+                                 Text="{Binding Path=DatePublished}"
+                                 HorizontalAlignment="Right"
+                                     IsTabStop="False"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Path=Celebrity.Name,
+                                  StringFormat='News about {0}'}"
+                   Style="{DynamicResource RebrandAIHeadingText}"
+                   AutomationProperties.Name ="{Binding Path=Celebrity.Name,
+                                  StringFormat='Heading: News about {0}'}"/>
+        <ItemsControl Grid.Row="1"
+                      ItemsSource="{Binding Celebrity.News}"
+                      ItemTemplate="{StaticResource NewsTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Stretch" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

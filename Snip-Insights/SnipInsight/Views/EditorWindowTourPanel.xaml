@@ -1,0 +1,91 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.Views.EditorWindowTourPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SnipInsight.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="ShowStoryboard">
+                <ColorAnimation Storyboard.TargetProperty="Color"
+			        Storyboard.TargetName="RootBackground"
+			        Duration="0:0:0.5"
+			        To="#99000000" />
+            </Storyboard>
+            <Storyboard x:Key="HideStoryboard">
+                <ColorAnimation Storyboard.TargetProperty="Color"
+			        Storyboard.TargetName="RootBackground"
+			        Duration="0:0:01"
+			        To="#00000000" />
+            </Storyboard>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="Root">
+        <Grid.Background>
+            <SolidColorBrush x:Name="RootBackground" Color="#00000000" />
+        </Grid.Background>
+
+        <ari:AriSuperTip x:Name="Tip1"
+                         Margin="10,0,10,10"
+                         HorizontalAlignment="Left"
+                         Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="24">
+                    Edit, learn and explore!
+                </TextBlock>
+                <ari:AriDialogButton x:Name="Button1"
+                                     Click="Button1_Click"
+                                     Margin="20,3,0,0"
+                                     HorizontalAlignment="Center"
+                                     Background="#6B69D6">
+                    Interesting!
+                </ari:AriDialogButton>
+            </StackPanel>
+        </ari:AriSuperTip>
+
+        <ari:AriSuperTip x:Name="Tip2"
+                         Margin="150,0,10,10"
+                         HorizontalAlignment="Left"
+                         Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="24">
+                    You can always find your old snips here!
+                </TextBlock>
+                <ari:AriDialogButton x:Name="Button2"
+                                     Click="Button2_Click"
+                                     Margin="20,3,0,0"
+                                     HorizontalAlignment="Center"
+                                     Background="#6B69D6">
+                    Got it!
+                </ari:AriDialogButton>
+            </StackPanel>
+        </ari:AriSuperTip>
+
+        <ari:AriSuperTip x:Name="Tip3"
+                         Margin="80,0,10,10"
+                         HorizontalAlignment="Right"
+                         Visibility="Collapsed">
+            <StackPanel Orientation="Vertical" Width="220">
+                <TextBlock FontSize="24" TextAlignment="Center">
+                    Input your keys here!
+                </TextBlock>
+                <ari:AriDialogButton x:Name="Button3"
+                                     Click="Button3_Click"
+                                     Margin="0,20,0,0"
+                                     HorizontalAlignment="Center"
+                                     Padding="8,1"
+                                     Background="#6B69D6">
+                    Let's begin...
+                </ari:AriDialogButton>
+            </StackPanel>
+        </ari:AriSuperTip>
+    </Grid>
+
+</UserControl>

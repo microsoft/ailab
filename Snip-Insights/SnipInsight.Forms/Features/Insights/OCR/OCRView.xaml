@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    x:Class="SnipInsight.Forms.Features.Insights.OCR.OCRView"
+    x:Name="self">
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource InsightsResultTitleStyle}"
+                    Text="{l10n:Localize Image_of_Text}" />
+
+                <Button
+                    Grid.Column="1"
+                    Image="Resources/Images/Copy.png"
+                    VerticalOptions="Center"
+                    AutomationProperties.Name="Copy to clipboard"
+                    Command="{Binding CopyCommand, Source={x:Reference self}}" />
+                <Button
+                    WidthRequest="100"
+                    HeightRequest="42"
+                    VerticalOptions="Center"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    Text="{l10n:Localize Translate}"
+                    AutomationProperties.Name="{l10n:Localize Translate}"
+                    Command="{Binding ToggleTranslateVisibilityCommand}" />
+            </Grid>
+            <StackLayout
+                IsVisible="{Binding TranslationInterfaceVisibility}"
+                Grid.Row="1">
+                <Frame
+                    BackgroundColor="{StaticResource DefaultButtonBackgroundColor}"
+                    BorderColor="{StaticResource DefaultButtonBorderColor}">
+                    <Grid>
+                        <Label
+                            Margin="{StaticResource SmallerDefaultMargin}"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Text}" />
+                    </Grid>
+                </Frame>
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="24,9,0,0">
+                    <Label
+                        Text="{l10n:Localize Language}" />
+                    <Label
+                        Text="{Binding DetectedLanguage}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout
+                Grid.Row="1"
+                IsVisible="{Binding TranslationInterfaceVisibility, Converter={StaticResource NotConverter}}">
+                <Frame
+                    Margin="{Binding SmallerDefaultMargin}"
+                    BackgroundColor="{StaticResource DefaultButtonBackgroundColor}"
+                    BorderColor="{StaticResource DefaultButtonBorderColor}">
+                    <Grid>
+                        <Label
+                            Margin="{StaticResource SmallerDefaultMargin}"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Text}" />
+                    </Grid>
+                </Frame>
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="{StaticResource SmallerDefaultMargin}">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="{l10n:Localize Language}" />
+                    <Picker
+                        Margin="12,0,0,0"
+                        VerticalOptions="Center"
+                        x:Name="pickerTranslateFrom"
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding DetectedLanguage}"
+                        SelectedIndexChanged="From_Picker_SelectedIndexChanged"
+                        WidthRequest="200" />
+                </StackLayout>
+
+                <Frame
+                    Margin="{Binding SmallerDefaultMargin}"
+                    BackgroundColor="{StaticResource DefaultButtonBackgroundColor}"
+                    BorderColor="{StaticResource DefaultButtonBorderColor}">
+                    <Grid>
+                        <Label
+                            Margin="{StaticResource SmallerDefaultMargin}"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding TranslatedText}" />
+                    </Grid>
+                </Frame>
+                <StackLayout
+                    Margin="{StaticResource SmallerDefaultMargin}"
+                    Orientation="Horizontal">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="{l10n:Localize Translate_to}" />
+                    <Picker
+                        VerticalOptions="Center"
+                        Margin="12,0,0,0"                        
+                        x:Name="pickerTranslateTo"
+                        SelectedIndexChanged="To_Picker_SelectedIndexChanged"
+                        SelectedItem="{Binding DetectedLanguage}"
+                        ItemsSource="{Binding Languages}" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

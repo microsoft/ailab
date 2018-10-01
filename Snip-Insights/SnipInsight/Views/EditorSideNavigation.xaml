@@ -1,0 +1,243 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.Views.EditorSideNavigation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SnipInsight.Views"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             xmlns:properties="clr-namespace:SnipInsight.Properties"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/AriadneStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Foreground" Value="{StaticResource RebrandEnabledIcons}"/>
+                <Setter Property="Background" Value="{StaticResource RebrandButtonBackground}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource RebrandDarkerBackground}"/>
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Margin" Value="4,0"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Grid>
+                <ari:AriEraseRadioButton x:Name="PenToggle" 
+                                         Style="{DynamicResource RebrandAIIconRibbonToggle}"
+                                         IsChecked="{Binding PenChecked, Mode=TwoWay}"
+                                         Checked="PenButton_Check"
+                                         Click="PenButton_Click"
+                                         GroupName="main"
+                                         LostKeyboardFocus="PenToggleLostKeyboardFocus"
+                                         ToolTip="{x:Static properties:Resources.Pen_Toggle}"
+                                         AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                    <ari:AriIcon Template="{StaticResource Rebrand_Pencil_32_Icon}"
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+                </ari:AriEraseRadioButton>
+                <Popup x:Name="PenPalettePopup"
+                       Placement="Bottom"
+                       PlacementTarget="{Binding ElementName=PenToggle}"
+                       IsOpen="False"
+                       Focusable="True"
+                       StaysOpen="False">
+                    <Grid x:Name="ToggleContainer"
+                          HorizontalAlignment="Center"
+                          Opacity="1" 
+                          FocusManager.IsFocusScope="True"
+                          Width="302.5"
+                          Height="158">
+                        <Border x:Name="Tool2Border"
+                                BorderThickness="1, 0, 1, 1"
+                                BorderBrush="{DynamicResource RebrandDarkerBackground}"
+                                Background="{DynamicResource RebrandThemeGreyBrush}"
+                                TextBlock.Foreground="{StaticResource RebrandText}"
+                                Style="{DynamicResource ToggleContainerGrid}">
+                            <StackPanel x:Name="ToggleStackContainer"
+                                        VerticalAlignment="Top"
+                                        Orientation="Vertical">
+                                <TextBlock Text="Colors"
+                                           Margin="10,10,10,0"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ari:AriInkRadioButton x:Name="BlackColorButton"
+                                                           Ink="Black"
+                                                           IsChecked="True"
+                                                           GroupName="colorGroup"
+                                                           
+                                                           Click="ColorButton_Click"
+                                                           Style="{DynamicResource RebrandAriInkRadioButton}"
+                                                           AutomationProperties.Name="BlackColorButton"/>
+                                    <ari:AriInkRadioButton x:Name="RedColorButton"
+                                                           Ink="Red"
+                                                           GroupName="colorGroup"
+                                                           
+                                                           Click="ColorButton_Click"
+                                                           Style="{DynamicResource RebrandAriInkRadioButton}"
+                                                           AutomationProperties.Name="RedColorButton"/>
+                                    <ari:AriInkRadioButton x:Name="YellowColorButton"
+                                                           Ink="Orange"
+                                                           GroupName="colorGroup"
+                                                           
+                                                           Click="ColorButton_Click"
+                                                           Style="{DynamicResource RebrandAriInkRadioButton}"
+                                                           AutomationProperties.Name="OrangeColorButton"/>
+                                    <ari:AriInkRadioButton x:Name="GreenColorButton"
+                                                           Ink="Green"
+                                                           GroupName="colorGroup"
+                                                           
+                                                           Click="ColorButton_Click"
+                                                           Style="{DynamicResource RebrandAriInkRadioButton}"
+                                                           AutomationProperties.Name="GreenColorButton"/>
+                                    <ari:AriInkRadioButton x:Name="BlueColorButton"
+                                                           Ink="Blue"
+                                                           GroupName="colorGroup"
+                                                           
+                                                           Click="ColorButton_Click"
+                                                           Style="{DynamicResource RebrandAriInkRadioButton}"
+                                                           AutomationProperties.Name="BlueColorButton" />
+                                </StackPanel>
+                                <TextBlock Text="Weight"
+                                           Margin="10,2"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ari:AriIconLabelMenuItem x:Name="PenSize1Button"
+                                                              Label="Very Fine"
+                                                              IsShy="True"
+                                                              FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                                              Height="50"
+                                                              Click="PenSizeButton_Click"
+                                                              AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                                        <ari:AriIconLabelMenuItem.Icon>
+                                            <Grid Height="32" Width="32">
+                                                <Ellipse x:Name="PenSize1Shape"
+                                                         Fill="#FFCCCCCC"
+                                                         Height="8"
+                                                         Width="8" />
+                                            </Grid>
+                                        </ari:AriIconLabelMenuItem.Icon>
+                                    </ari:AriIconLabelMenuItem>
+                                    <ari:AriIconLabelMenuItem x:Name="PenSize3Button"
+                                                              Label="Fine"
+                                                              IsShy="True"
+                                                              FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                                              Height="50"
+                                                              Click="PenSizeButton_Click"
+                                                              AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                                        <ari:AriIconLabelMenuItem.Icon>
+                                            <Grid Height="32"
+                                                  Width="32">
+                                                <Ellipse x:Name="PenSize3Shape"
+                                                         Fill="#FFCCCCCC"
+                                                         Height="12"
+                                                         Width="12" />
+                                            </Grid>
+                                        </ari:AriIconLabelMenuItem.Icon>
+                                    </ari:AriIconLabelMenuItem>
+                                    <ari:AriIconLabelMenuItem x:Name="PenSize5Button"
+                                                              Label="Medium"
+                                                              IsShy="True"
+                                                              FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                                              Height="50"
+                                                              Click="PenSizeButton_Click"
+                                                              AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                                        <ari:AriIconLabelMenuItem.Icon>
+                                            <Grid Height="32"
+                                                  Width="32">
+                                                <Ellipse x:Name="PenSize5Shape"
+                                                         Fill="#FFCCCCCC"
+                                                         Height="16"
+                                                         Width="16" />
+                                            </Grid>
+                                        </ari:AriIconLabelMenuItem.Icon>
+                                    </ari:AriIconLabelMenuItem>
+
+                                    <ari:AriIconLabelMenuItem x:Name="PenSize9Button"
+                                                              Label="Thick"
+                                                              IsShy="True"
+                                                              FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                                              Height="50"
+                                                              Click="PenSizeButton_Click"
+                                                              LostKeyboardFocus="PenSizeLostKeyboardFocus"
+                                                              AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                                        <ari:AriIconLabelMenuItem.Icon>
+                                            <Grid Height="32"
+                                                  Width="32">
+                                                <Ellipse x:Name="PenSize9Shape"
+                                                         Fill="#FFCCCCCC"
+                                                         Height="20"
+                                                         Width="20" />
+                                            </Grid>
+                                        </ari:AriIconLabelMenuItem.Icon>
+                                    </ari:AriIconLabelMenuItem>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Popup>
+            </Grid>
+
+            <ari:AriEraseRadioButton x:Name="HighlighterButton"
+                                     Style="{DynamicResource RebrandAIIconRibbonToggle}"
+                                     IsChecked="{Binding HighlighterChecked, Mode=TwoWay}"
+                                     Checked="Highlighter_Checked"
+                                     GroupName="main"
+                                     ToolTip ="{x:Static properties:Resources.Highlighter}"
+                                     AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}" >
+                <ari:AriIcon Template="{StaticResource Rebrand_Hightlight_32_Icon}" 
+                             Margin="-5, -5, -5, -10"
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriEraseRadioButton>
+
+            <ari:AriEraseRadioButton x:Name="EraserButton"
+                                     Style="{DynamicResource RebrandAIIconRibbonToggle}"
+									 IsChecked="{Binding EraserChecked, Mode=TwoWay}"
+                                     ToolTip="{x:Static properties:Resources.Eraser}"
+                                     GroupName="main"
+                                     AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                <ari:AriIcon Template="{StaticResource Rebrand_Erase_32_Icon}" 
+                                 Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriEraseRadioButton>
+
+
+            <ari:AriEraseRadioButton x:Name="EraseAllButton"
+                                     Style="{DynamicResource RebrandAIIconRibbonToggle}"
+                                     Command="{Binding EraseAllCommand}"
+                                     GroupName="main"
+                                     ToolTip="{x:Static properties:Resources.Erase_All}"
+                                     AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                <ari:AriIcon Template="{StaticResource Rebrand_EraseAll_32_Icon}" 
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriEraseRadioButton>
+
+
+            <ari:AriEraseRadioButton x:Name="UndoButton"
+                                     Style="{StaticResource RebrandAIIconRibbonToggle}"
+                                     Command="{Binding UndoCommand}"
+                                     GroupName="main"
+                                     ToolTip="{x:Static properties:Resources.Undo}"
+                                     AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                <ari:AriIcon Template="{StaticResource Rebrand_Undo_32_Icon}" 
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriEraseRadioButton>
+
+            <ari:AriEraseRadioButton x:Name="RedoButton"
+                                     Style="{DynamicResource RebrandAIIconRibbonToggle}"
+                                     Command="{Binding RedoCommand}"
+                                     GroupName="main"
+                                     ToolTip="{x:Static properties:Resources.Redo}"
+                                     AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                <ari:AriIcon Template="{StaticResource Rebrand_Redo_32_Icon}" 
+                             Foreground="{DynamicResource RebrandEnabledIcons}"/>
+            </ari:AriEraseRadioButton>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    xmlns:celebrities="clr-namespace:SnipInsight.Forms.Features.Insights.Celebrities"
+    xmlns:textUtils="clr-namespace:SnipInsight.Forms.Features.Insights.OCR"
+    xmlns:imgSearch="clr-namespace:SnipInsight.Forms.Features.Insights.ImageSearch"
+    xmlns:landmarks="clr-namespace:SnipInsight.Forms.Features.Insights.Landmarks"
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:local="clr-namespace:SnipInsight.Forms.Features.Insights"
+    xmlns:similarProducts="clr-namespace:SnipInsight.Forms.Features.Insights.Products"
+    xmlns:drawing="clr-namespace:SnipInsight.Forms.Features.Insights.Drawing"
+    x:Class="SnipInsight.Forms.Features.Insights.InsightsPage"
+    ControlTemplate="{StaticResource SearchingInsightsTemplate}"
+    Title="{l10n:Localize FirstRun_Annotate_Heading}"
+    x:Name="self">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <x:Double
+          x:Key="ButtonsTopBottomMargin">12</x:Double>
+      <x:Double
+          x:Key="LeftRegionWidth">620</x:Double>
+      <Style
+          x:Key="baseInsightsButonStyle"
+          TargetType="Button">
+        <Setter
+            Property="Margin"
+            Value="4,0" />
+      </Style>
+      <Style
+          x:Key="InsightsButtonStyle"
+          TargetType="Button"
+          BasedOn="{StaticResource baseInsightsButonStyle}">
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="13" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource AccentColor}" />
+      </Style>
+      <Style
+          x:Key="drawingButtonStyle"
+          TargetType="Button"
+          BasedOn="InsightsButtonStyle">
+        <Setter
+            Property="HorizontalOptions"
+            Value="Start" />
+        <Setter
+            Property="WidthRequest"
+            Value="45" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid
+        ColumnSpacing="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition
+            Width="{StaticResource LeftRegionWidth}" />
+        <ColumnDefinition
+            Width="*" />
+      </Grid.ColumnDefinitions>
+      <ContentView
+          BackgroundColor="{StaticResource WindowDarkBackgroundColor}">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+          </Grid.RowDefinitions>
+          <Grid.Padding>
+            <Thickness
+                Left="{StaticResource DefaultMargin}"
+                Top="{StaticResource ButtonsTopBottomMargin}" />
+          </Grid.Padding>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Pencil.png"
+                Command="{Binding PencilCommand}"
+                AutomationProperties.Name="Pencil Button" />
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Marker.png"
+                Command="{Binding HighLightCommand}"
+                AutomationProperties.Name="Marker Button" />
+            <Button
+                Grid.Column="2"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Eraser.png"
+                Command="{Binding SetEraserModeCommand}"
+                IsEnabled="{Binding ImagePath, Converter={StaticResource StringEmptyToBoolConverter}, ConverterParameter=inverse}"
+                AutomationProperties.Name="Eraser Button"/>
+            <Button
+                Grid.Column="3"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/EraserAll.png"
+                Clicked="Erase"
+                AutomationProperties.Name="Erase all Button"
+                IsEnabled="{Binding ImagePath, Converter={StaticResource StringEmptyToBoolConverter}, ConverterParameter=inverse}" />
+            <Button
+                Grid.Column="4"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Undo.png"
+                Clicked="Undo"
+                AutomationProperties.Name="Undo Button"
+                IsEnabled="{Binding CanUndo, Source={x:Reference canvas}}" />
+            <Button
+                Grid.Column="5"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Redo.png"
+                Clicked="Redo"
+                AutomationProperties.Name="Redo Button"
+                IsEnabled="{Binding CanRedo, Source={x:Reference canvas}}" />
+            <Button
+                Grid.Column="6"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Copy.png"
+                AutomationProperties.Name="Copy to clipboard Button"
+                Command="{Binding CopyToClipboardCommand}" />
+            <Button
+                Grid.Column="7"
+                Style="{StaticResource drawingButtonStyle}"
+                Image="Resources/Images/Save.png"
+                AutomationProperties.Name="Save Button"
+                IsEnabled="{Binding ImagePath, Converter={StaticResource StringEmptyToBoolConverter}, ConverterParameter=inverse}"
+                Clicked="Save"/>
+            <Button
+                Grid.Column="9"
+                Style="{StaticResource InsightsButtonStyle}"
+                WidthRequest="110"
+                HorizontalOptions="Start"
+                FontAttributes="None"
+                Text="{l10n:Localize Refresh}"
+                AutomationProperties.Name="{l10n:Localize Refresh}"
+                Command="{Binding RefreshCommand}" />
+          </Grid>
+          <Grid
+              x:Name="canvasGrid"
+              Grid.Row="1"
+              IsVisible="{Binding ImagePath, Converter={StaticResource StringEmptyToBoolConverter}, ConverterParameter=inverse}">
+            <drawing:ColorPicker
+                BindingContext="{Binding ColorPickerViewModel}"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                BackgroundColor="Blue"
+                x:Name="colorPicker"
+                IsVisible="{Binding IsVisible}" />
+            <local:Canvas
+                x:Name="canvas"
+                FaceSelectedCommand="{Binding ChangeCelebrityCommand}"
+                Image="{Binding ImagePath}"
+                Margin="{StaticResource DefaultMargin}"
+                DrawingColor="{Binding ColorPickerViewModel.SelectedColor}"
+                LineWeight="{Binding ColorPickerViewModel.LineWeight}"
+                DrawingMode="{Binding DrawingMode}">
+              <local:Canvas.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding CanvasTappedCommand}" />
+              </local:Canvas.GestureRecognizers>
+            </local:Canvas>
+          </Grid>
+          <Grid
+              VerticalOptions="End"
+              Grid.Row="1"
+              Margin="{StaticResource DefaultMargin}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                  Width="Auto" />
+              <ColumnDefinition
+                  Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label
+                WidthRequest="230"
+                Style="{StaticResource 12RegularFontStyle}"
+                Text="This is a sample application. See"
+                HorizontalOptions="Start" />
+            <Label
+                WidthRequest="230"
+                HorizontalOptions="Start"
+                Grid.Column="1"
+                TextColor="{StaticResource AccentColor}"
+                Style="{StaticResource 12BoldFontStyle}"
+                Text=" Terms and Conditions here">
+              <Label.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding OpenUrlCommand}"
+                    CommandParameter="{l10n:Localize Link_Terms}" />
+              </Label.GestureRecognizers>
+            </Label>
+          </Grid>
+        </Grid>
+      </ContentView>
+      <Grid
+                x:Name="resultsGrid"
+          Grid.Column="1"
+          ColumnSpacing="2"
+          HorizontalOptions="FillAndExpand"
+          RowSpacing="{StaticResource ButtonsTopBottomMargin}">
+        <Grid.Padding>
+          <Thickness
+              Left="{StaticResource DefaultMargin}"
+              Top="{StaticResource ButtonsTopBottomMargin}" />
+        </Grid.Padding>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition
+               Height="{StaticResource BiggerDefaultMargin}" />
+          <RowDefinition
+              Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:ToggleButton
+            x:Name="informationButton"
+            AutomationProperties.Name="Information Button"
+            Grid.Column="0"
+            IsEnabled="true"
+            IsKeepActive="true"
+            Text="{l10n:Localize Celebrity_Information}"
+            Tooltip="{l10n:Localize Celebrity_Information}"
+            IsToggledChanged="ToggleInfoSectionClick"/>
+
+        <controls:ToggleButton
+            x:Name="ocrButton"
+            AutomationProperties.Name="Ocr Button"
+            Grid.Column="1"
+            IsKeepActive="true"
+            Text="{l10n:Localize OCR_Text}"
+            Tooltip="{l10n:Localize OCR_Text}"
+            IsToggledChanged="ToggleOCRSectionClick"/>
+
+        <controls:ToggleButton
+            x:Name="imagesButton"
+            AutomationProperties.Name="Images Button"
+            Grid.Column="2"
+            IsKeepActive="true"
+            Text="{l10n:Localize Similar_Images}"
+            Tooltip="{l10n:Localize Similar_Images}"
+            BindingContext="{Binding ImageSearchViewModel}"
+            IsEnabled="{Binding HasData}"
+            IsToggledChanged="ToggleSimilarImagesSectionClick"/>
+
+        <controls:ToggleButton
+            x:Name="productButton"
+            AutomationProperties.Name="Product Button"
+            Grid.Column="3"
+            IsKeepActive="true"
+            Text="{l10n:Localize Similar_Products}"
+            Tooltip="{l10n:Localize Similar_Products}"
+            BindingContext="{Binding SimilarProductsViewModel}"
+            IsEnabled="{Binding HasData}"
+            IsToggledChanged="ToggleProductsSectionClick"/>
+
+        <controls:ToggleButton
+            Grid.Column="4"
+            IsKeepActive="true"
+            x:Name="celebrityButton"
+            AutomationProperties.Name="Celebrity Button"
+            Text="{l10n:Localize Celebrity_News}"
+            Tooltip="{l10n:Localize Celebrity_News}"
+            BindingContext="{Binding CelebritiesAndLandmarksViewModel.CelebritiesViewModel}"
+            IsEnabled="{Binding HasData}"
+            IsToggledChanged="ToggleCelebrityNewsSectionClick"/>
+
+        <controls:ToggleButton
+            x:Name="landmarkButton"
+            AutomationProperties.Name="Landmark Button"
+            Grid.Column="5"
+            IsKeepActive="true"
+            Text="{l10n:Localize Landmark_Information_Button_Text}"
+            Tooltip="{l10n:Localize Landmark_Information_Button_Text}"
+            BindingContext="{Binding CelebritiesAndLandmarksViewModel.LandmarksViewModel}"
+            IsEnabled="{Binding HasData}"
+            IsToggledChanged="ToggleLandmarkSectionClick"/>
+
+        <ScrollView
+            Grid.ColumnSpan="6"
+            Grid.Row="1">
+          <StackLayout>
+            <StackLayout.Padding>
+              <Thickness
+                  Left="0"
+                  Top="0"
+                  Right="{StaticResource DefaultMargin}"
+                  Bottom="{StaticResource DefaultMargin}" />
+            </StackLayout.Padding>
+            <textUtils:OCRView
+                x:Name="textUtils"
+                BindingContext="{Binding OCRViewModel}"
+                IsVisible="{Binding IsVisible}"
+                CopyCommand="{Binding BindingContext.CopyToClipboardCommand, Source={x:Reference self}}" />
+            <celebrities:CelebritiesView
+                x:Name="celebritiesView"
+                VerticalOptions="FillAndExpand"
+                BindingContext="{Binding CelebritiesAndLandmarksViewModel.CelebritiesViewModel}"
+                IsVisible="{Binding IsVisible}" />
+            <imgSearch:ImageSearchView
+                x:Name="similarImagesControl"
+                VerticalOptions="FillAndExpand"
+                BindingContext="{Binding ImageSearchViewModel}"
+                IsVisible="{Binding IsVisible}" />
+            <similarProducts:SimilarProductsView
+                BindingContext="{Binding SimilarProductsViewModel}"
+                IsVisible="{Binding IsVisible}" />
+            <landmarks:LandmarkView
+                x:Name="landmarkView"
+                VerticalOptions="FillAndExpand"
+                BindingContext="{Binding CelebritiesAndLandmarksViewModel.LandmarksViewModel}"
+                IsVisible="{Binding IsVisible}" />
+          </StackLayout>
+        </ScrollView>
+      </Grid>
+          
+      <Grid
+        x:Name="noResultsGrid"
+        IsVisible="False"
+        Grid.Column="1"
+        ColumnSpacing="2"
+        HorizontalOptions="FillAndExpand"
+        RowSpacing="{StaticResource ButtonsTopBottomMargin}">
+        <Grid.Padding>
+        <Thickness
+            Left="{StaticResource DefaultMargin}"
+            Top="{StaticResource ButtonsTopBottomMargin}" />
+        </Grid.Padding>
+
+         <StackLayout 
+            Orientation="Vertical"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center">
+              <Image
+              Source="Resources/Images/Waiting.png"
+              WidthRequest="64"
+              HeightRequest="64" />
+                    <StackLayout 
+                        Orientation="Vertical"
+                        Margin="0,20,0,0">
+                        <Label 
+                            Text="Could not find Insights!" 
+                            TextColor="{StaticResource AccentColor}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Please try again" 
+                    Margin="0,10,0,0"
+                    TextColor="{StaticResource AccentColor}"/>
+                    </StackLayout>
+
+        </StackLayout>
+
+    </Grid>
+
+      <Grid
+        Grid.ColumnSpan="2"
+        IsVisible="{Binding IsVisible, Converter={StaticResource NotConverter}, Source={x:Reference canvasGrid}}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition
+              Width="{StaticResource LeftRegionWidth}" />
+          <ColumnDefinition
+              Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+              Grid.Column="0"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              BackgroundColor="{StaticResource WindowDarkBackgroundColor}">
+          <Image
+              Source="Resources/Images/Logo64.png"
+              WidthRequest="64"
+              HeightRequest="64"
+              HorizontalOptions="Center"
+              VerticalOptions="Center" />
+          <Label
+              Text="{l10n:Localize Insights_Begin_Snip}"
+              HorizontalOptions="CenterAndExpand"
+              TextColor="{StaticResource AccentColor}"
+              Margin="0,15,0,0" />
+        </StackLayout>
+        <StackLayout
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   BackgroundColor="{StaticResource WindowLightBackgroundColor}">
+          <Image
+              Source="Resources/Images/Waiting.png"
+              WidthRequest="64"
+              HeightRequest="64"
+              HorizontalOptions="Center"
+              VerticalOptions="Center" />
+          <Label
+              Text="{l10n:Localize Insights_No_Infor_Available}"
+              HorizontalOptions="CenterAndExpand"
+              TextColor="{StaticResource AccentColor}"
+              Margin="0,15,0,0" />
+        </StackLayout>
+      </Grid>
+
+      <Grid
+        Grid.Column="1"
+        IsVisible="{Binding EnableAI, Converter={StaticResource NotConverter}}"
+        BackgroundColor="{StaticResource WindowLightBackgroundColor}">
+        <StackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="{StaticResource WindowLightBackgroundColor}">
+          <Image
+              Source="Resources/Images/Waiting.png"
+              WidthRequest="64"
+              HeightRequest="64"
+              HorizontalOptions="Center"
+              VerticalOptions="Center" />
+          <Label
+              Text="{l10n:Localize Insights_Turn_On_Message}"
+              HorizontalOptions="Center"
+              TextColor="{StaticResource AccentColor}"
+              Margin="15" />
+        </StackLayout>
+      </Grid>
+
+      <!--<Grid
+                Grid.ColumnSpan="2"
+                IsVisible="{Binding IsVisible, Converter={StaticResource NotConverter}, Source={x:Reference canvasGrid}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="{StaticResource LeftRegionWidth}" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource WindowDarkBackgroundColor}">
+                    <Image
+                        Source="Resources/Images/Logo64.png"
+                        WidthRequest="64"
+                        HeightRequest="64"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+                    <Label
+                        Text="{l10n:Localize Insights_Begin_Snip}"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="{StaticResource AccentColor}"
+                        Margin="0,15,0,0" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource WindowLightBackgroundColor}">
+                    <Image
+                        Source="Resources/Images/Waiting.png"
+                        WidthRequest="64"
+                        HeightRequest="64"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+                    <Label
+                        Text="{l10n:Localize Insights_No_Infor_Available}"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="{StaticResource AccentColor}"
+                        Margin="0,15,0,0" />
+                </StackLayout>
+            </Grid>-->
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

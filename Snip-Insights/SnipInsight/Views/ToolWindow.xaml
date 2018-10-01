@@ -1,0 +1,294 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<controls:DpiAwareWindow x:Class="SnipInsight.Views.ToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:SnipInsight.Controls"
+        xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+        xmlns:properties="clr-namespace:SnipInsight.Properties"
+        x:Name="Self"
+        mc:Ignorable="d"
+        Background="Transparent"
+        Title="{x:Static properties:Resources.WindowTitle_Tool}"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None"
+        Topmost="True"
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded"
+        Activated="Window_Activated"
+        MouseEnter="Window_MouseEnter"
+        MouseLeave="Window_MouseLeave"
+        SizeChanged="Window_SizeChanged"
+        AllowsTransparency="True"
+        StylusDown="Self_StylusDown"
+        StylusUp="Self_StylusUp"
+        Deactivated="Self_Deactivated"
+        Height="40"
+        Icon="/Snip Insights;component/Resources/SnipInsights.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <Storyboard x:Key="GrowStoryboardTop" Completed="AfterGrowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                              Storyboard.TargetName="ControlContainer"
+                              Duration="0:0:00.3"
+                              To="1" />
+                <DoubleAnimation Storyboard.TargetProperty="Height"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"/>
+                <DoubleAnimation Storyboard.TargetProperty="Height"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"/>
+            </Storyboard>
+            <Storyboard x:Key="ShrinkStoryboardTop" Completed="AfterShrinkStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+                <DoubleAnimation Storyboard.TargetProperty="Height"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="5"/>
+                <DoubleAnimation Storyboard.TargetProperty="Height"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+            </Storyboard>
+            <Storyboard x:Key="GrowStoryboardLeft" Completed="AfterGrowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="1" />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    />
+            </Storyboard>
+            <Storyboard x:Key="ShrinkStoryboardLeft" Completed="AfterShrinkStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="5"
+                    />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+            </Storyboard>
+            <Storyboard x:Key="GrowStoryboardRight" Completed="AfterGrowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="1" />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    />
+                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                    Storyboard.TargetName="ToolBorder"
+                    Duration="0:0:00.3"
+                    />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    />
+            </Storyboard>
+            <Storyboard x:Key="ShrinkStoryboardRight" Completed="AfterShrinkStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ControlContainer"
+                    Duration="0:0:00.3"
+                    To="5"
+                    />
+                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                    Storyboard.TargetName="ToolBorder"
+                    Duration="0:0:00.3"
+                    To="55,0,0,0"
+                    />
+                <DoubleAnimation Storyboard.TargetProperty="Width"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+            </Storyboard>
+            <Storyboard x:Key="ShowStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="Self"
+                    Duration="0:0:00.3"
+                    To="1" />
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    To="1" />
+            </Storyboard>
+            <Storyboard x:Key="HideStoryboard">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="Self"
+                    Duration="0:0:00.3"
+                    To="0" />
+                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                    Storyboard.TargetName="ToggleContainer"
+                    Duration="0:0:00.3"
+                    To="0" />
+            </Storyboard>
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Foreground" Value="{StaticResource RebrandEnabledIcons}"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+            <Style x:Key="ToolToggleButtonStyle" 
+                   TargetType="{x:Type ari:AriIconLabelToggleButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriIconLabelToggleButton}}">
+                <Setter Property="Foreground" Value="{StaticResource RebrandEnabledIcons}"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="Root"
+          FocusManager.IsFocusScope="True" 
+          Height="40">
+        <Border x:Name="ToolBorder"
+                Background="{StaticResource RebrandbackgroundApp}">
+            <Grid x:Name="ControlContainer" 
+                  Height="40">
+                <StackPanel x:Name="StackContainer" Orientation="Horizontal" Margin="5, 0">
+
+                    <Grid MouseMove="AriIcon_MouseMove">
+                        <ari:AriIcon Template="{StaticResource SnipInsightLogo_32_Icon}"
+                                 Foreground="{StaticResource RebrandTilt}"
+                                 />
+                    </Grid>
+                    <ari:AriBorderedIconLabelButton x:Name="Capture"
+                                                    Style="{StaticResource ToolButtonStyle}"
+                                                    Foreground="{StaticResource RebrandTilt}"
+                                                    Padding="19, 0"
+                                                    Command="{Binding CaptureCommand}"
+                                                    ToolTip="Capture Snip"
+                                                    AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                        <TextBlock Text="SNIP" />
+                    </ari:AriBorderedIconLabelButton>
+
+                    <ari:AriIconLabelToggleButton x:Name="TogglePanel"
+                                                    ToolTip="Toggle Panel"
+                                                    Style="{StaticResource ToolToggleButtonStyle}"
+                                                    LostKeyboardFocus="LostKeyboardFocus_Event"
+                                                    AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                        <ari:AriIcon Template="{StaticResource RebrandSettings_32_Icon}" />
+                    </ari:AriIconLabelToggleButton>
+                    <ari:AriBorderedIconLabelButton x:Name="SettingsButton"
+                                                    Style="{StaticResource ToolButtonStyle}"
+                                                    ToolTip="Settings"
+                                                    Command="{Binding ShowSettingsCommand}"
+                                                    AutomationProperties.Name="Settings">
+                        <ari:AriIconLabel Template="{StaticResource RebrandConfig_32_Icon}"/>
+                    </ari:AriBorderedIconLabelButton>
+
+                    <ari:AriBorderedIconLabelButton x:Name="OpenLibrary"
+                                                    Style="{StaticResource ToolButtonStyle}"
+                                                    Command="{Binding ShowLibraryCommand}"
+                                                    ToolTip="Library"
+                                                    AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                        <ari:AriIcon Template="{StaticResource RebrandLibrary_32_Icon}" />
+                    </ari:AriBorderedIconLabelButton>
+                    <ari:AriBorderedIconLabelButton x:Name="CloseButton"
+                                                    Style="{StaticResource ToolButtonStyle}"
+                                                    Margin="12, 4, 4, 4"
+                                                    Click="CloseButton_Click"
+                                                    ToolTip="Close"
+                                                    AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                        <ari:AriIcon Template="{StaticResource RebrandClose_32_Icon}" />
+                    </ari:AriBorderedIconLabelButton>
+
+                    <!-- DO NOT REMOVE this WrapPanel, used in code -->
+                    <WrapPanel x:Name="StackControls" Orientation="Vertical" Height="60"/>
+                </StackPanel>
+                <Popup x:Name="MyPopup"
+                       Placement="Bottom"
+                       PlacementTarget="{Binding ElementName=TogglePanel}"
+                       IsOpen="{Binding ElementName=TogglePanel, Path=IsChecked}"
+                       Focusable="True"
+                       MouseEnter="Window_MouseEnter"
+                       MouseLeave="Window_MouseLeave"
+                       AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self},Path= Name}">
+                    <Border x:Name="ToggleContainer" 
+                            Opacity="1" 
+                            FocusManager.IsFocusScope="True"
+                            Padding="10"
+                            Background="{DynamicResource RebrandDarkerBackground}">
+                        <Grid Margin="0, 0, 10, 0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ari:AriToggleSwitch x:Name="AIEnableToggle"
+                                                     Grid.Row="0"
+                                                     Grid.Column="0"
+                                                     Style="{DynamicResource TogglePanelToggles}"
+                                                     Click="EnableAI_Clicked"
+                                                     IsChecked="{Binding InsightsVisible}"
+                                                     AutomationProperties.Name="EnableArtificialIntelligenceToggle"/>
+                            <TextBlock Text="Enable AI" 
+                                           Style="{DynamicResource TogglePanelText}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"/>
+
+                            <ari:AriToggleSwitch x:Name="CopyClipboardToggle"
+                                                     Grid.Row="1"
+                                                     Grid.Column="0"
+                                                     Style="{DynamicResource TogglePanelToggles}"
+                                                     Click="CopyClipboard_Clicked"
+                                                     IsChecked="{Binding CopyClipboardPostSnip}"
+                                                     AutomationProperties.Name="CopyToClipboardToggle"/>
+                            <TextBlock Text="Copy Clipboard" 
+                                           Style="{DynamicResource TogglePanelText}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"/>
+
+
+                            <ari:AriToggleSwitch x:Name="OpenEditorToggle"
+                                                     Grid.Row="2"
+                                                     Grid.Column="0"
+                                                     Style="{DynamicResource TogglePanelToggles}"
+                                                     Click="OpenEditor_Clicked"
+                                                     IsChecked="{Binding IsOpenEditorPostSnip}"
+                                                     LostKeyboardFocus="LostKeyboardFocus_Event_Popup"
+                                                     AutomationProperties.Name="OpenEditor"/>
+                            <TextBlock Text="Open Editor" 
+                                           Grid.Row="2"
+                                           Grid.Column="1"
+                                           Style="{DynamicResource TogglePanelText}"/>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </Grid>
+</controls:DpiAwareWindow>
+
+

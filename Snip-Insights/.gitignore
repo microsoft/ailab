@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+packages/
+Installers/Windows/build
+Installers/Windows/Release
+
+.DS_Store
+*.Cache
+*.orig
+*.lock.json
+*.nuget.targets
+
+

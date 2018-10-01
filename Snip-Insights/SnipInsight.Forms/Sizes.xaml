@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="SnipInsight.Forms.Sizes">
+
+    <x:Double x:Key="BiggerDefaultMargin">32</x:Double>
+
+    <x:Double x:Key="DefaultMargin">24</x:Double>
+
+    <x:Double x:Key="SmallerDefaultMargin">16</x:Double>
+
+    <x:Double x:Key="SmallestDefaultMargin">8</x:Double>
+    
+    <x:Double x:Key="NegativeSmallestDefaultMargin">-8</x:Double>
+
+    <x:Double x:Key="ImageHeight">144</x:Double>
+    
+    <x:Double x:Key="ImageWidth">176</x:Double>
+
+    <x:Double x:Key="SettingsLeftRightPadding">56</x:Double>
+
+    <x:Double x:Key="SettingsButtonWidth">292</x:Double>
+    
+    <x:Double x:Key="BrushMinimumSize">0.005</x:Double>
+    
+    <x:Double x:Key="BrushMediumSize">0.008</x:Double>
+    
+    <x:Double x:Key="BrushLargeSize">0.01</x:Double>
+    
+    <x:Double x:Key="BrushExtraLargeSize">0.015</x:Double>
+    
+    <x:Double x:Key="BrushHighlightSize">0.05</x:Double>
+
+    <x:Double x:Key="DefaultFontSize">14</x:Double>
+    
+</ResourceDictionary>

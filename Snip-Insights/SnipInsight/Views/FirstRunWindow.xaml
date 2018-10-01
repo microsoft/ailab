@@ -1,0 +1,120 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<controls:DpiAwareWindow x:Class="SnipInsight.Views.FirstRunWindow"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:controls="clr-namespace:SnipInsight.Controls"
+                         xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+                         xmlns:properties="clr-namespace:SnipInsight.Properties"
+                         mc:Ignorable="d"
+                         Title="{x:Static properties:Resources.WindowTitle_FirstRun}"
+                         ResizeMode="NoResize"
+                         SizeToContent="WidthAndHeight"
+                         WindowStartupLocation="Manual"
+                         WindowStyle="None"
+                         Topmost="true"
+                         Background="{DynamicResource FTUXBackground}"
+                         Foreground="{DynamicResource FTUXForeground}"
+                         BorderBrush="{DynamicResource FTUXBorder}"
+                         BorderThickness="1"
+                         Loaded="Window_Loaded"
+                         MouseDown="Window_MouseDown"
+                         MouseEnter="Window_MouseEnter"
+                         MouseLeave="Window_MouseLeave"
+                         KeyDown="Window_KeyDown"
+                         Deactivated="Window_Deactivated"
+                         Icon="/Snip Insights;component/Resources/SnipInsights.ico">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/FirstRunImages.xaml" />
+                <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Width="360">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+
+        <ari:AriRectangleIconButton x:Name="CloseButton"
+                                 Height="24"
+                                 Width="24"
+                                 Margin="8"
+                                 Background="Transparent"
+                                 Foreground="{DynamicResource FTUXForeground}"
+                                 BorderThickness="0"
+                                 IsShy="True"
+                                 Click="CloseButton_Click"
+                                 FontSize="24"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Top"
+                                >&#x2715;</ari:AriRectangleIconButton>
+
+        <ari:AriFirstRunCard x:Name="Card0"
+                             Grid.Row="1"
+                             Image="{StaticResource Snip_AI_FTUX_Icon}"
+                             Heading="{x:Static properties:Resources.FirstRun_Intro_Heading}"
+                             Message="{x:Static properties:Resources.FirstRun_Intro_Message}" />
+
+        <ari:AriFirstRunCard x:Name="Card1"
+                             Grid.Row="1"
+                             Image="{StaticResource Snip_FTUX_Icon}"
+                             Heading="{x:Static properties:Resources.FirstRun_Grab_Heading}"
+                             Message="{x:Static properties:Resources.FirstRun_Grab_Message}" />
+
+        <ari:AriFirstRunCard x:Name="Card2"
+                             Grid.Row="1"
+                             Image="{StaticResource Insights_FTUX_Icon}"
+                             Heading="{x:Static properties:Resources.FirstRun_Annotate_Heading}"
+                             Message="{x:Static properties:Resources.FirstRun_Annotate_Message}" />
+
+        <ari:AriFirstRunCard x:Name="Card3"
+                             Grid.Row="1"
+                             Image="{StaticResource ShowTell_FTUX_Icon}"
+                             Heading="{x:Static properties:Resources.FirstRun_Share_Heading}"
+                             Message="{x:Static properties:Resources.FirstRun_Share_Message}" />
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="0,30,0,40"
+                    HorizontalAlignment="Center">
+            <Ellipse x:Name="Ball0"
+                     Fill="#6862D1"
+                     Height="10"
+                     Width="10"
+                     Margin="10,5"
+                     MouseDown="Ball0_MouseDown"/>
+
+            <Ellipse x:Name="Ball1"
+                     Fill="#C9C9C9"
+                     Height="10"
+                     Width="10"
+                     Margin="10,5"
+                     MouseDown="Ball1_MouseDown"/>
+
+            <Ellipse x:Name="Ball2"
+                     Fill="#C9C9C9"
+                     Height="10"
+                     Width="10"
+                     Margin="10,5"
+                     MouseDown="Ball2_MouseDown"/>
+
+            <Ellipse x:Name="Ball3"
+                     Fill="#C9C9C9"
+                     Height="10"
+                     Width="10"
+                     Margin="10,5"
+                     MouseDown="Ball3_MouseDown"/>
+        </StackPanel>
+
+    </Grid>
+</controls:DpiAwareWindow>

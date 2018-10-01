@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SnipInsight.Forms.Converters"
+    xmlns:local="clr-namespace:SnipInsight.Forms"
+    x:Class="SnipInsight.Forms.App">
+	<Application.Resources>
+        <ResourceDictionary>
+        
+            <!-- BEGIN CONVERTERS -->
+
+            <converters:NotConverter x:Key="NotConverter"/>
+            <converters:DebugConverter x:Key="DebugConverter"/>
+            <converters:ProductOfferToCurrencyConverter x:Key="ProductOfferToCurrencyConverter" />
+            <converters:StringEmptyToBoolConverter x:Key="StringEmptyToBoolConverter"/>
+            
+            <!-- END CONVERTERS -->
+
+            <ResourceDictionary.MergedDictionaries>
+                <local:Colors />
+                <local:ControlTemplates />
+                <local:FontStyles />
+                <local:GlobalStyles />
+                <local:Sizes />
+                <local:Styles />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+	</Application.Resources>
+</Application>

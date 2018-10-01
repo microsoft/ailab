@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    xmlns:local="clr-namespace:SnipInsight.Forms.Features.Library"
+    x:Class="SnipInsight.Forms.Features.Library.LibraryPage"
+    x:Name="self"
+    ControlTemplate="{StaticResource FullScreenLoadingTemplate}"
+    Title="{l10n:Localize TrayIcon_ContextMenuItem_Library}">
+    <ContentPage.Content>
+        <ContentView
+            BackgroundColor="{StaticResource WindowDarkBackgroundColor}">
+            <ContentView.Padding>
+                <Thickness
+                    Left="{StaticResource DefaultMargin}"/>
+            </ContentView.Padding>
+
+            <ListView
+                ItemsSource="{Binding Images}"
+                BackgroundColor="{StaticResource WindowDarkBackgroundColor}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <ContentView
+                                    VerticalOptions="Start">
+                                    <ContentView.Padding>
+                                        <Thickness
+                                            Top="{StaticResource DefaultMargin}"
+                                            Right="{StaticResource DefaultMargin}"
+                                            Bottom="{StaticResource DefaultMargin}"/>
+                                    </ContentView.Padding>
+                                    <Label
+                                        Text="{Binding Key}"
+                                        Style="{StaticResource 20BoldFontStyle}"
+                                        TextColor="{StaticResource WhiteColor}"/>
+                                </ContentView>
+
+                                <controls:ExtendedFlexLayout 
+                                    Grid.Row="1"
+                                    ItemsSource="{Binding .}">
+                                    <controls:ExtendedFlexLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:ItemView
+                                                HeightRequest="100"
+                                                WidthRequest="160"
+                                                OpenInsightsCommand="{Binding Source={x:Reference self}, 
+                                                    Path=BindingContext.OpenInsightsCommand}"
+                                                DeleteCommand="{Binding Source={x:Reference self}, 
+                                                    Path=BindingContext.DeleteCommand}"/>
+                                        </DataTemplate>
+                                    </controls:ExtendedFlexLayout.ItemTemplate>
+                                </controls:ExtendedFlexLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

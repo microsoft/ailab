@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    xmlns:local="clr-namespace:SnipInsight.Forms.Features.Settings"
+    x:Class="SnipInsight.Forms.Features.Settings.SettingsPage"
+    Title="{l10n:Localize Menu_Settings}"
+    BarTextColor="{StaticResource DefaultTextColor}">
+
+</TabbedPage>

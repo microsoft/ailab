@@ -1,0 +1,109 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<Window x:Class="SnipInsight.ImageCapture.ImageCaptureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SnipInsight.ImageCapture"
+        Title="ImageCaptureWindow" Height="300" Width="300" Topmost="True"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False" ShowActivated="True" WindowStyle="None">
+    <Window.Resources>
+        <Storyboard x:Key="animateAnts"
+                        RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="ForegroundAnts"
+                                 Storyboard.TargetProperty="StrokeDashOffset"
+                                 From="0"
+                                 To="8"
+                                 Duration="0:0:1" />
+        </Storyboard>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureFullScreenCommand}" Executed="CapturingFullScreen" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureDoneCommand}" Executed="CapturingDone" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureCancelCommand}" Executed="CapturingCancel" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeySpaceCommand}" Executed="CapturingSpace" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyRightCommand}" Executed="CapturingRight" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyLeftCommand}" Executed="CapturingLeft" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyUpCommand}" Executed="CapturingUp" />
+        <CommandBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyDownCommand}" Executed="CapturingDown" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureFullScreenCommand}" Key="A" Modifiers="Control" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureDoneCommand}" Key="Enter" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureDoneCommand}" Key="C" Modifiers="Control" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureDoneCommand}" Key="X" Modifiers="Control" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureCancelCommand}" Key="Escape" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureCancelCommand}" Key="LWin" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureCancelCommand}" Key="RWin" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeySpaceCommand}" Key="Space" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyRightCommand}" Key="Right" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyLeftCommand}" Key="Left" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyUpCommand}" Key="Up" />
+        <KeyBinding Command="{x:Static local:ImageCaptureWindow.CaptureKeyDownCommand}" Key="Down" />
+    </Window.InputBindings>
+
+    <Grid>
+        <Rectangle x:Name="BackgroundImage"/>
+
+        <Path Fill="#66000000">
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Xor">
+                    <CombinedGeometry.Geometry1>
+                        <RectangleGeometry>
+                            <RectangleGeometry.Rect>
+                                <MultiBinding Converter="{local:RectangleConverter}">
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type Window}}" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType={x:Type Window}}" />
+                                </MultiBinding>
+                            </RectangleGeometry.Rect>
+                        </RectangleGeometry>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <RectangleGeometry x:Name="ForegroundClip"/>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Path.Data>
+        </Path>
+
+        <Rectangle x:Name="ForegroundAnts" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Stroke="#FF50e3c2" StrokeThickness="2" StrokeDashOffset="0" StrokeDashArray="4 4">
+            <UIElement.RenderTransform>
+                <TranslateTransform x:Name="ForegroundAntsTransform"/>
+            </UIElement.RenderTransform>
+        </Rectangle>
+
+        <Canvas IsHitTestVisible="False" x:Name="MagnifierPanel" Visibility="Visible">
+            <Canvas.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../ResourceDictionaries/Icons.xaml" />
+                        <ResourceDictionary Source="../ResourceDictionaries/SnipStyles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Canvas.Resources>
+            
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="MagnifierTransform"/>
+                    <ScaleTransform x:Name="MagnifierScale" />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+
+            <ari:AriIcon Template="{StaticResource RebrandCrossPoint}" Foreground="{DynamicResource RebrandTilt}"/>
+            
+            <Border Width="74"
+                    Height ="20" 
+                    Margin="-58, 26,0,0" 
+                    CornerRadius="2"
+                    Background="{DynamicResource RebrandDarkestBackground}">
+                <TextBlock Name="MagnifierText"  
+                           FontSize="12" 
+                           Foreground="{DynamicResource RebrandTextLight}" 
+                           TextAlignment="Center" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+            </Border>
+        </Canvas>
+    </Grid>
+</Window>

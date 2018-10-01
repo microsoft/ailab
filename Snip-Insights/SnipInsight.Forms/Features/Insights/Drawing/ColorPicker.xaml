@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xf="clr-namespace:Xamarin.Forms.PlatformConfiguration;assembly=Xamarin.Forms.Core"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"    
+    x:Class="SnipInsight.Forms.Features.Insights.Drawing.ColorPicker">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="ColorButtonStyle"
+                TargetType="Button">
+                <Setter
+                    Property="WidthRequest"
+                    Value="40" />
+                <Setter
+                    Property="HeightRequest"
+                    Value="40" />
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="Margin"
+                    Value="15,0" />
+                <Setter
+                    Property="BorderWidth"
+                    Value="0" />
+                <Setter
+                    Property="BorderColor"
+                    Value="{StaticResource AccentColor}" />
+            </Style>
+            <Style
+                x:Key="WeightButtonStyle"
+                TargetType="Button">
+                <Setter
+                    Property="Margin"
+                    Value="15,0" />
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="BorderWidth"
+                    Value="0" />
+                <Setter
+                    Property="BorderColor"
+                    Value="{StaticResource AccentColor}" />
+                <Setter
+                    Property="BackgroundColor"
+                    Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid
+            BackgroundColor="Black"
+            Padding="1">
+            <Grid
+                BackgroundColor="{StaticResource WindowLightBackgroundColor}"
+                Padding="14">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="5"
+                    Text="{l10n:Localize Color_Picker_Colors}"
+                    Margin="15" />
+                <!-- Color buttons-->
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="blackButton"
+                    Style="{StaticResource ColorButtonStyle}"
+                    BackgroundColor="Black"
+                    Command="{Binding SelectColorCommand}"
+                    CommandParameter="{Binding BackgroundColor, Source={x:Reference blackButton}}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="redButton"
+                    BackgroundColor="#ff0000"
+                    Style="{StaticResource ColorButtonStyle}"
+                    Command="{Binding SelectColorCommand}"
+                    CommandParameter="{Binding BackgroundColor, Source={x:Reference redButton}}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    x:Name="yellowButton"
+                    BackgroundColor="#FFA500"
+                    Style="{StaticResource ColorButtonStyle}"
+                    Command="{Binding SelectColorCommand}"
+                    CommandParameter="{Binding BackgroundColor, Source={x:Reference yellowButton}}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    x:Name="greenButton"
+                    BackgroundColor="#008000"
+                    Style="{StaticResource ColorButtonStyle}"
+                    Command="{Binding SelectColorCommand}"
+                    CommandParameter="{Binding BackgroundColor, Source={x:Reference greenButton}}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    x:Name="blueButton"
+                    BackgroundColor="#0000FF"
+                    Style="{StaticResource ColorButtonStyle}"
+                    Command="{Binding SelectColorCommand}"
+                    CommandParameter="{Binding BackgroundColor, Source={x:Reference blueButton}}" />
+                <!-- Weight buttons-->
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="5"
+                    Text="{l10n:Localize Color_Picker_Weight}"
+                    Margin="15" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    x:Name="line1Button"
+                    Style="{StaticResource WeightButtonStyle}"
+                    HeightRequest="10"
+                    WidthRequest="10"
+                    Command="{Binding SelectLineWeightCommand}"
+                    CommandParameter="{StaticResource BrushMinimumSize}" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    x:Name="line2Button"
+                    Style="{StaticResource WeightButtonStyle}"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    Command="{Binding SelectLineWeightCommand}"
+                    CommandParameter="{StaticResource BrushMediumSize}" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    x:Name="line3Button"
+                    Style="{StaticResource WeightButtonStyle}"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    Command="{Binding SelectLineWeightCommand}"
+                    CommandParameter="{StaticResource BrushLargeSize}" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    x:Name="line4Button"
+                    Style="{StaticResource WeightButtonStyle}"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    Command="{Binding SelectLineWeightCommand}"
+                    CommandParameter="{StaticResource BrushExtraLargeSize}" />
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

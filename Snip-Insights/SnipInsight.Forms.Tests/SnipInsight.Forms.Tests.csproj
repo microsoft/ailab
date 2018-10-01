@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <NoWarn>NU1701</NoWarn>
+    <IsPackable>false</IsPackable>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="Refit" Version="4.6.16" />
+    <PackageReference Include="Moq" Version="4.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SnipInsight.Forms\SnipInsight.Forms.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Features\Products\playmobil.png" />
+    <None Remove="cat.png" />
+    <None Remove="Resources\texthandWritted2.png" />
+    <None Remove="texthandwritted.png" />
+    <None Remove="Resources\cat.png" />
+    <None Remove="Resources\Harry_Potter.jpg" />
+    <None Remove="Resources\playmobil.png" />
+    <None Remove="Resources\texthandwritted.png" />
+    <None Remove="Resources\toy-story.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\cat.png" />
+    <EmbeddedResource Include="Resources\Harry_Potter.jpg" />
+    <EmbeddedResource Include="Resources\playmobil.png" />
+    <EmbeddedResource Include="Resources\texthandwritted.png" />
+    <EmbeddedResource Include="Resources\texthandWritted2.png" />
+    <EmbeddedResource Include="Resources\toy-story.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Insights\Celebrities\" />
+  </ItemGroup>
+    <Import Project="..\StyleCop\stylecop.props" />
+</Project>

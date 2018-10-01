@@ -1,0 +1,157 @@
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:l10n="clr-namespace:SnipInsight.Forms.Features.Localization"
+    xmlns:local="clr-namespace:SnipInsight.Forms.Features.Settings"
+    xmlns:controls="clr-namespace:SnipInsight.Forms.Controls"
+    x:Class="SnipInsight.Forms.Features.Settings.GeneralSettingsPage"
+    Title="{l10n:Localize Settings_General_Heading}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style
+                x:Key="AboutButtonStyle"
+                TargetType="Button">
+                <Setter Property="Command" Value="{Binding OpenUrlCommand}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="{StaticResource SettingsButtonWidth}" />
+                <Setter Property="Margin">
+                    <Thickness
+                        Top="{StaticResource SmallerDefaultMargin}" />
+                </Setter>
+                <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+
+            <!-- This Grid's needed because just with inner StackLayout with Margin/Padding such's not applied. 
+                 Actually, the checkboxes dissappear -->
+            <Grid>
+                <Grid.Padding>
+                    <Thickness
+                        Left="{StaticResource SettingsLeftRightPadding}"
+                        Bottom="{StaticResource BiggerDefaultMargin}" />
+                </Grid.Padding>
+                
+                <StackLayout
+                    HorizontalOptions="FillAndExpand">
+                    
+                    <!-- General -->
+                    <Label
+                        Text="{l10n:Localize Settings_General_Heading}"
+                        Style="{StaticResource SettingsTitleStyle}" />
+                    <local:CheckBoxControl
+                        AutomationProperties.Name="{l10n:Localize Auto_open_editor}"
+                        Text="{l10n:Localize Auto_open_editor}"
+                        Setting="{Binding AutoOpenEditor}" />
+
+                    <!-- Snipping-->
+                    <Label
+                        Text="{l10n:Localize Settings_Snipping_Heading}"
+                        Style="{StaticResource SettingsTitleStyle}" />
+                    <local:CheckBoxControl
+                        AutomationProperties.Name="{l10n:Localize Copy_to_clipboard}"
+                        Text="{l10n:Localize Copy_to_clipboard}"
+                        Setting="{Binding CopyToClipboard}" />
+                    
+                    <!-- Cognitive Services -->
+                    <Label
+                        Text="{l10n:Localize Settings_Cognitive_Services_Heading}"
+                        Style="{StaticResource SettingsTitleStyle}" />
+                    <local:CheckBoxControl
+                        AutomationProperties.Name="{l10n:Localize Settings_EnableAI}"
+                        Text="{l10n:Localize Settings_EnableAI}"
+                        Setting="{Binding EnableAI}" />
+
+                    <!-- Capture Preferences -->
+                    <Label
+                        Text="{l10n:Localize Settings_Capture_Heading}"
+                        Style="{StaticResource SettingsTitleStyle}">
+                        <Label.Margin>
+                            <Thickness
+                                Top="{StaticResource BiggerDefaultMargin}"
+                                Bottom="{StaticResource DefaultMargin}" />
+                        </Label.Margin>
+                    </Label>
+                    <Label
+                        Text="{l10n:Localize Settings_Delay}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Picker
+                        WidthRequest="{StaticResource SettingsButtonWidth}"
+                        ItemsSource="{Binding ScreenCaptureDelays}"
+                        HorizontalOptions="Start"
+                        SelectedIndex="{Binding ScreenCaptureDelaySeconds}">
+                        <Picker.Margin>
+                            <Thickness
+                                Top="{StaticResource SmallestDefaultMargin}" />
+                        </Picker.Margin>
+                    </Picker>
+                        
+                    <!-- Save & Share Options -->
+                    <Label
+                        Text="{l10n:Localize Settings_Save_Share_Options}"
+                        Style="{StaticResource SettingsTitleStyle}">
+                        <Label.Margin>
+                            <Thickness
+                                Top="{StaticResource BiggerDefaultMargin}"
+                                Bottom="{StaticResource DefaultMargin}" />
+                        </Label.Margin>
+                    </Label>
+
+                    <Label
+                        Text="{l10n:Localize Settings_Current_Location}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    
+                    <controls:FileButton 
+                        FileAction="SelectFolder"
+                        CurrentFolder="{Binding SnipsPath}"
+                        WidthRequest="{StaticResource SettingsButtonWidth}"
+                        HeightRequest="28"
+                        HorizontalOptions="Start">
+                        <controls:FileButton.Margin>
+                            <Thickness
+                                Top="{StaticResource SmallestDefaultMargin}" />
+                        </controls:FileButton.Margin>
+                    </controls:FileButton>
+
+                    <!-- About this app -->
+                    <Label
+                        Text="{l10n:Localize Settings_AboutThisApp_Heading}"
+                        Style="{StaticResource SettingsTitleStyle}">
+                        <Label.Margin>
+                            <Thickness
+                                Top="{StaticResource BiggerDefaultMargin}"
+                                Bottom="{StaticResource DefaultMargin}" />
+                        </Label.Margin>
+                    </Label>
+                    <Label
+                        Text="{l10n:Localize Settings_Copyright_Text}"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Label
+                        x:Name="VersionTextBlock"
+                        Margin="0,13,0,0"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                    <Button
+                        Text="{l10n:Localize Settings_ServiceAgreement_Button}"
+                        AutomationProperties.Name="{l10n:Localize Settings_ServiceAgreement_Button}"
+                        CommandParameter="{l10n:Localize Link_Terms}"
+                        Style="{StaticResource AboutButtonStyle}" />
+                    <Button
+                        Text="{l10n:Localize Settings_PrivacyStatement_Button}"
+                        AutomationProperties.Name="{l10n:Localize Settings_PrivacyStatement_Button}"
+                        CommandParameter="{l10n:Localize Link_Privacy}" 
+                        Style="{StaticResource AboutButtonStyle}" />
+                    <Label
+                        x:Name="ProductVersionTextBlock"
+                        Margin="0,13,0,0"
+                        Style="{StaticResource SettingsCheckBoxLabelStyle}" />
+                </StackLayout>
+                
+            </Grid>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

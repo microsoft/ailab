@@ -1,0 +1,111 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved -->
+<!--  Licensed under the MIT License. -->
+<UserControl x:Class="SnipInsight.AIServices.AIComponents.InsightsPermissions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ari="clr-namespace:SnipInsight.Controls.Ariadne"
+             xmlns:local="clr-namespace:SnipInsight.AIServices.AIComponents"
+             mc:Ignorable="d" 
+             AutomationProperties.Name="InsightsPermissionsPanel">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipStyles.xaml" />
+                <ResourceDictionary Source="../../ResourceDictionaries/SnipTemplates.xaml" />
+                <ResourceDictionary Source="../../ResourceDictionaries/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ToolButtonStyle" 
+                   TargetType="{x:Type ari:AriBorderedIconLabelButton}"
+                   BasedOn="{StaticResource {x:Type ari:AriBorderedIconLabelButton}}">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource RebrandDarkerBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource RebrandButtonBackground}"/>
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedStyle}"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          Background="{DynamicResource RebrandBackgroundResults}"
+          DataContext="{Binding Source={StaticResource Locator}, Path=InsightsPermissionsLoc}">
+        <Grid 
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Width="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ari:AriIcon Grid.Row="0"
+                     Template="{StaticResource Rebrand_Waiting_64_Icon}"
+                     Foreground="{DynamicResource RebrandTilt}"
+                     Width="64"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{DynamicResource RebrandFTUXTextBlock}"
+                       Margin="0, 10"
+                       Foreground="{DynamicResource RebrandDisable}" />
+                <StackPanel Grid.Row="1"
+                            Margin="0, 10">
+                    <AdornerDecorator>
+                        <TextBlock FocusVisualStyle="{DynamicResource FocusedStyle}">
+                                    <Hyperlink Command="{Binding Path=OpenLearnMoreInBrowserCommand}"
+                                               Style="{DynamicResource RebrandHyperlinkCelebrity}"
+                                               AutomationProperties.Name="About Cognitive Services"
+                                               FocusVisualStyle="{DynamicResource FocusedStyle}">
+                                        <TextBlock Text="About Cognitive Services" />
+                                    </Hyperlink>
+                                </TextBlock>
+                    </AdornerDecorator>
+
+
+                    <AdornerDecorator>
+                        <TextBlock FocusVisualStyle="{DynamicResource FocusedStyle}">
+                                    <Hyperlink Command="{Binding Path=OpenPrivatePolicyInBrowserCommand}"
+                                               Style="{DynamicResource RebrandHyperlinkCelebrity}"
+                                               AutomationProperties.Name="Privacy Policy"
+                                               FocusVisualStyle="{DynamicResource FocusedStyle}">
+                                        <TextBlock Text="Privacy Policy"
+                                                   Style="{DynamicResource FTUXHyperlink}"/>
+                                    </Hyperlink>
+                                </TextBlock>
+                    </AdornerDecorator>
+                </StackPanel>
+
+                <AdornerDecorator Grid.Row="2">
+                    <!--<ari:AriBorderedIconLabelButton Style="{StaticResource LastToolButtonStyle}"
+                                                    Command="{Binding TurnOnAIAnalysisCommand}"
+                                                    FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                                    AutomationProperties.Name="RefreshInsights"
+                                                    Content="Turn On">
+                    </ari:AriBorderedIconLabelButton>-->
+                    <ari:AriBorderedIconLabelButton Style="{StaticResource ToolButtonStyle}"
+                                        Foreground="{StaticResource RebrandTilt}"
+                                        ToolTip="Turn On"
+                                        Width="220"
+                                        Height="46"
+                                        HorizontalAlignment="Left"
+                                        Template="{DynamicResource ActionButtonTemplate}"
+                                        Command="{Binding TurnOnAIAnalysisCommand}"
+                                        FocusVisualStyle="{DynamicResource FocusedStyle}"
+                                        AutomationProperties.Name="TurnOnInsights">
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="Turn On"
+                                   Style="{DynamicResource RebrandFTUXTextBlock}"/>
+                    </ari:AriBorderedIconLabelButton>
+                </AdornerDecorator>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
+    

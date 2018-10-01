@@ -1,0 +1,12 @@
+Package: SnipInsights
+Version: 0.2.0.0
+Architecture: amd64
+Depends: mono-complete, gtk-sharp2, libmono-system-net-http4.0-cil, gtk2-engines-pixbuf
+Pre-Depends: 
+Recommends: 
+Maintainer: Microsoft []
+Conflicts: 
+Replaces: 
+Provides: SnipInsights
+Description: Microsoft Snip Insights software
+
