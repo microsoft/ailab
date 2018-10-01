@@ -17,7 +17,7 @@ The Sketch2Code solution uses the following elements:
 -	A Microsoft Computer Vision Service: To identify the text written into a design element a Computer Vision Service is used.
 -	An Azure Blob Storage: All steps involved in the HTML generation process are stored, including original image, prediction results and layout grouping information. 
 -	An Azure Function: Serves as the backend entry point that coordinates the generation process by interacting with all the services.
--	An Azure WebSite: User front-end to enable uploading a new design and see the generated HTML results.
+-	An Azure Web App: User front-end to enable uploading a new design and see the generated HTML results.
 These elements form the architecture as follows:
 ![Sketch2Code Architecture](https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png)
 
@@ -43,7 +43,7 @@ A new folder is created for each generation process with the following contents:
 -	results.json: results from the prediction process run against the original image.
 -	groups.json: results from the layout algorithm containing the spatial distribution of predicted objects.
 
-### Azure function
+### Azure Function
 The code for the provided Azure Function is located in the [Sketch2Code.Api](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Api) folder. You can use this code to create your own function and must define the following configuration parameters:
 -	AzureWebJobsStorage: Endpoint to the Azure Storage.
 -	ComputerVisionDelay: Time in milliseconds to wait between calls to the computer vision service. Sample works with 120ms.
@@ -55,7 +55,7 @@ The code for the provided Azure Function is located in the [Sketch2Code.Api](htt
 -	ObjectDetectionTrainingKey: Training key for the custom vision service.
 -	Probability: Probability threshold to consider a successful object detection. Below this value predictions are not considered. Sample model works with 40. 
 
-### Azure Website
+### Azure Web App
 The [Sketch2Code.Web](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Web) contains the code used to implement the front-end website. Two parameters must be configured:
 -	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
 -	storageUrl: Url for the Azure Storage. 
