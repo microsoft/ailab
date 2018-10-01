@@ -43,7 +43,7 @@ A new folder is created for each generation process with the following contents:
 -	results.json: results from the prediction process run against the original image.
 -	groups.json: results from the layout algorithm containing the spatial distribution of predicted objects.
 
-### Azure function
+### Azure Function
 The code for the provided Azure Function is located in the [Sketch2Code.Api](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Api) folder. You can use this code to create your own function and must define the following configuration parameters:
 -	AzureWebJobsStorage: Endpoint to the Azure Storage.
 -	ComputerVisionDelay: Time in milliseconds to wait between calls to the computer vision service. Sample works with 120ms.
