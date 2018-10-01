@@ -44,7 +44,7 @@ A new folder is created for each generation process with the following contents:
 -	groups.json: results from the layout algorithm containing the spatial distribution of predicted objects.
 
 ### Azure function
-The code for the provided Azure Function is located in the Sketch2Code.Api folder. You can use this code to create your own function and must define the following configuration parameters:
+The code for the provided Azure Function is located in the [Sketch2Code.Api](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Api) folder. You can use this code to create your own function and must define the following configuration parameters:
 -	AzureWebJobsStorage: Endpoint to the Azure Storage.
 -	ComputerVisionDelay: Time in milliseconds to wait between calls to the computer vision service. Sample works with 120ms.
 -	HandwrittenTextApiEndpoint: Endpoint to the Computer Vision Service.
@@ -56,7 +56,7 @@ The code for the provided Azure Function is located in the Sketch2Code.Api folde
 -	Probability: Probability threshold to consider a successful object detection. Below this value predictions are not considered. Sample model works with 40. 
 
 ### Azure Website
-The Sketch2Code.Web contains the code used to implement the front-end website. Two parameters must be configured:
+The [Sketch2Code.Web](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Web) contains the code used to implement the front-end website. Two parameters must be configured:
 -	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
 -	storageUrl: Url for the Azure Storage. 
 
