@@ -17,7 +17,7 @@ The Sketch2Code solution uses the following elements:
 -	A Microsoft Computer Vision Service: To identify the text written into a design element a Computer Vision Service is used.
 -	An Azure Blob Storage: All steps involved in the HTML generation process are stored, including original image, prediction results and layout grouping information. 
 -	An Azure Function: Serves as the backend entry point that coordinates the generation process by interacting with all the services.
--	An Azure WebSite: User font-end to enable uploading a new design and see the generated HTML results.
+-	An Azure WebSite: User front-end to enable uploading a new design and see the generated HTML results.
 This elements form the architecture as follows:
 ![Sketch2Code Architecture](https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png)
 
