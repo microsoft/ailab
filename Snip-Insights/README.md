@@ -2,13 +2,6 @@
 
 Snip Insights, a Microsoft Garage Project is a screen capturing application that revolutionizes the way users search by generating insights from images. It leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. Microsoft Garage turns fresh ideas into real projects.  Learn more at [http://microsoft.com/garage](http://microsoft.com/garage).
 
-To get started with the original Snip Insights, a Microsoft Garage Project, please fork or download the project from this [GitHub repository](https://github.com/Microsoft/Snip-Insights).
-
-``` bash
-git clone https://github.com/Microsoft/Snip-Insights.git
-```
-
-
 ## Supported Platforms: Windows, Mac OS and Linux
 
 The Snip Insights app is available for three platforms:
@@ -28,7 +21,7 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 ### **Windows**
 
 1. Download the zip from Windows 
-2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](docs/Windows_Install_Certificate.md) section.
+2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](/docs/Windows_Install_Certificate.md) section.
 3. Install Snip Insights by double click over the .appx package file
 
 ### **Linux**
@@ -47,12 +40,7 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 ## Requirements
 
-* Windows 10
-* Git
-* .NET Framework
-* C# WPF libraries
 * [Visual Studio 2017 version 15.8 or Visual Studio for Mac version 7.6.3](https://www.visualstudio.com/vs/)
-
 
 ## Using your own subscription
 
@@ -90,40 +78,8 @@ Remember to Click the **Save** button after entering all the keys.
 Congratulations! You should now have a fully working application to get started. Have fun testing the project and thank you for your contribution! 
 ### Using the code:
 
-For detailed instructions go to see [Using the code](docs/Using_The_Code.md). 
+For detailed instructions go to see [Using the code](/docs/Using_The_Code.md).  
     
-## Try out our latest builds (ready to use):
-
-In the Release tab of this project you have available a ready to use installer for each platform (navigate this link):
-https://github.com/jacano/ailab/releases/latest/
-
-
-## Reporting Security Issues
-
-Security issues and bugs should be reported privately, via email, to the Microsoft Security
-Response Center (MSRC) at [secure@microsoft.com](mailto:secure@microsoft.com). You should
-receive a response within 24 hours. If for some reason you do not, please follow up via
-email to ensure we received your original message. Further information, including the
-[MSRC PGP](https://technet.microsoft.com/en-us/security/dn606155) key, can be found in
-the [Security TechCenter](https://technet.microsoft.com/en-us/security/default).
-
-
-
-## Contributing
-
-This project welcomes contributions and suggestions. Most contributions require you to
-agree to a Contributor License Agreement (CLA) declaring that you have the right to,
-and actually do, grant us the rights to use your contribution. For details, visit
-[https://cla.microsoft.com](https://cla.microsoft.com).
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need
-to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the
-instructions provided by the bot. You will only need to do this once across all repositories using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
-or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
 
 ## Licenses
 

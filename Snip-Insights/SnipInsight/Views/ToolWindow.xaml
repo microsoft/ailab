@@ -27,7 +27,7 @@
         StylusUp="Self_StylusUp"
         Deactivated="Self_Deactivated"
         Height="40"
-        Icon="/SnipInsights;component/Resources/SnipInsights.ico">
+        Icon="/Snip Insights;component/Resources/SnipInsights.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

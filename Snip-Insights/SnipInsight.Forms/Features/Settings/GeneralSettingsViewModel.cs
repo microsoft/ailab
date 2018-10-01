@@ -54,6 +54,8 @@ namespace SnipInsight.Forms.Features.Settings
                 {
                     Settings.EnableAI = value;
                     this.OnPropertyChanged(nameof(this.EnableAI));
+
+                    MessagingCenter.Send(Messenger.Instance, Messages.IAEnabled);
                 }
             }
         }

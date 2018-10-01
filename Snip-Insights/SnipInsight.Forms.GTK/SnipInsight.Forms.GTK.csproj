@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SnipInsight.Forms.GTK</RootNamespace>
-    <AssemblyName>SnipInsight</AssemblyName>
+    <AssemblyName>Snip Insights</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -72,6 +72,7 @@
     <Compile Include="Common\ClipboardHelper.cs" />
     <Compile Include="Common\FileChooserService.cs" />
     <Compile Include="Features\Drawing\DrawedPath.cs" />
+    <Compile Include="Features\SelectorMenu\SelectorMenuWindow.cs" />
     <Compile Include="Features\TopMenu\PopupWindow.cs" />
     <Compile Include="Features\TopMenu\TopMenuWindow.cs" />
     <Compile Include="Features\TrayIcon\SnipInsightsTrayIcon.cs" />

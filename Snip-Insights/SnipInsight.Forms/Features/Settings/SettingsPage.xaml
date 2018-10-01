@@ -8,10 +8,4 @@
     Title="{l10n:Localize Menu_Settings}"
     BarTextColor="{StaticResource DefaultTextColor}">
 
-    <local:GeneralSettingsPage
-        BindingContext="{Binding GeneralSettingsViewModel}" />
-
-    <local:DeveloperSettingsPage
-        BindingContext="{Binding DeveloperSettingsViewModel}" />
-    
 </TabbedPage>

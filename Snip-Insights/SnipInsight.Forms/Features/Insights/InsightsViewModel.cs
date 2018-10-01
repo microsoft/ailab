@@ -9,6 +9,7 @@ using SnipInsight.Forms.Features.Insights.ImageSearch;
 using SnipInsight.Forms.Features.Insights.OCR;
 using SnipInsight.Forms.Features.Insights.Products;
 using SnipInsight.Forms.Features.Library;
+using SnipInsight.Forms.Features.Settings;
 using Xamarin.Forms;
 
 namespace SnipInsight.Forms.Features.Insights
@@ -40,6 +41,8 @@ namespace SnipInsight.Forms.Features.Insights
 
             MessagingCenter.Subscribe<Messenger, string>(
                 this, Messages.UpdateInsightsImage, (_, imagePath) => this.UpdateImagePath(imagePath));
+
+            MessagingCenter.Subscribe<Messenger>(this, Messages.SettingsUpdated, _ => this.RaiseSettingsPropertyChanged());
         }
 
         public ICommand ChangeCelebrityCommand { get; private set; }
@@ -68,6 +71,19 @@ namespace SnipInsight.Forms.Features.Insights
 
         public ColorPickerViewModel ColorPickerViewModel { get; }
 
+        public bool EnableAI
+        {
+            get => Settings.Settings.EnableAI;
+            set
+            {
+                if (Settings.Settings.EnableAI != value)
+                {
+                    Settings.Settings.EnableAI = value;
+                    this.OnPropertyChanged(nameof(this.EnableAI));
+                }
+            }
+        }
+
         public DrawingMode DrawingMode
         {
             get => this.drawingMode;
@@ -93,6 +109,11 @@ namespace SnipInsight.Forms.Features.Insights
             this.ImagePath = imagePath;
 
             this.RunInsights();
+        }
+
+        private void RaiseSettingsPropertyChanged()
+        {
+            this.OnPropertyChanged(nameof(this.EnableAI));
         }
 
         private void OnChangeCelebrity(int index)
@@ -132,7 +153,16 @@ namespace SnipInsight.Forms.Features.Insights
                 var celebritiesTask = this.CelebritiesAndLandmarksViewModel.LoadAsync(new MemoryStream(imageData), this.cancelationSource.Token);
                 var similarProductTask = this.SimilarProductsViewModel.LoadAsync(new MemoryStream(imageData), this.cancelationSource.Token);
                 var runAllTask = Task.WhenAll(celebritiesTask, imageSearchTask, similarProductTask);
-                await this.InvokeWithErrorHandling(runAllTask);
+                var result = await this.InvokeWithErrorHandling(runAllTask);
+
+                if (!result)
+                {
+                    MessagingCenter.Send<Messenger>(Messenger.Instance, Messages.InsightsNoResults);
+                }
+                else
+                {
+                    MessagingCenter.Send<Messenger>(Messenger.Instance, Messages.InsightsResults);
+                }
             }
 
             this.IsBusy = false;

@@ -486,7 +486,7 @@
   <data name="Image_to_Text" xml:space="preserve">
     <value>Image to Text</value>
   </data>
-    <data name="OCR_Text" xml:space="preserve">
+  <data name="OCR_Text" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="Insight_Not_Found" xml:space="preserve">
@@ -646,6 +646,9 @@ Please restart the application to apply changes. </value>
   <data name="Insights_No_Infor_Available" xml:space="preserve">
     <value>No information available</value>
   </data>
+  <data name="Insights_Turn_On_Message" xml:space="preserve">
+    <value>Turn on cognitive services to use services such as image suggestion, image to text conversion, auto-naming, tagging, and more.</value>
+  </data>
   <data name="Landmark_Information_Button_Text" xml:space="preserve">
     <value>Landmark</value>
   </data>
@@ -669,5 +672,11 @@ Please restart the application to apply changes. </value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="Open_Library_Folder" xml:space="preserve">
+    <value>Open Folder</value>
   </data>
 </root>

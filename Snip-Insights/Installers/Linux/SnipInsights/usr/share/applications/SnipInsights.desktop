@@ -2,7 +2,7 @@
 Comment=Snip Insights
 Terminal=false
 Name=Snip Insights
-Exec=/usr/bin/SnipInsights.sh &
+Exec=/usr/bin/"Snip Insights.sh" &
 Type=Application
 Icon=/usr/share/pixmaps/SnipInsights.ico
 Categories=GNOME;Utility

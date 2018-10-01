@@ -1,4 +1,7 @@
-﻿using SnipInsight.Forms.Common;
+﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using SnipInsight.Forms.Common;
 using Xamarin.Forms;
 
 namespace SnipInsight.Forms.Features.Home
@@ -19,6 +22,7 @@ namespace SnipInsight.Forms.Features.Home
             MessagingCenter.Subscribe<Messenger>(this, Messages.OpenInsights, this.OpenInsights);
             MessagingCenter.Subscribe<Messenger>(this, Messages.OpenLibrary, this.OpenLibrary);
             MessagingCenter.Subscribe<Messenger>(this, Messages.OpenSettings, this.OpenSettings);
+            MessagingCenter.Subscribe<Messenger>(this, Messages.OpenLibraryFolder, this.OpenLibraryFolder);
         }
 
         protected override void OnDisappearing()
@@ -28,6 +32,7 @@ namespace SnipInsight.Forms.Features.Home
             MessagingCenter.Unsubscribe<Messenger>(this, Messages.OpenInsights);
             MessagingCenter.Unsubscribe<Messenger>(this, Messages.OpenLibrary);
             MessagingCenter.Unsubscribe<Messenger>(this, Messages.OpenSettings);
+            MessagingCenter.Unsubscribe<Messenger>(this, Messages.OpenLibraryFolder);
         }
 
         private void OpenInsights(Messenger obj)
@@ -46,6 +51,18 @@ namespace SnipInsight.Forms.Features.Home
         {
             this.RefreshLibrary();
             this.SelectedItem = this.settingsTab.BindingContext;
+        }
+
+        private void OpenLibraryFolder(Messenger obj)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", $"-R \"{Settings.Settings.SnipsPath}\"");
+            }
+            else
+            {
+                Process.Start($"file://{Settings.Settings.SnipsPath}");
+            }
         }
 
         private void RefreshLibrary()

@@ -25,7 +25,7 @@
                          MouseLeave="Window_MouseLeave"
                          KeyDown="Window_KeyDown"
                          Deactivated="Window_Deactivated"
-                         Icon="/SnipInsights;component/Resources/SnipInsights.ico">
+                         Icon="/Snip Insights;component/Resources/SnipInsights.ico">
 
     <Window.Resources>
         <ResourceDictionary>

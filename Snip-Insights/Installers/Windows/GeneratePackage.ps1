@@ -10,7 +10,7 @@ mkdir .\Release
 
 Copy-item -Force -Recurse "../../bin/x64/Release/*" -Destination "./Release/"
 pushd Release
-DesktopAppConverter.exe -Installer .\ -AppExecutable SnipInsights.exe -PackageName "SnipInsights" -AppDisplayName "Snip Insights" -PackageDisplayName "Snip Insights" -Publisher "CN=Microsoft" -Destination "\output" -Version $env:PACKAGE_VERSION -MakeApp -Verbose -Sign
+DesktopAppConverter.exe -Installer .\ -AppExecutable "Snip Insights.exe" -PackageName "SnipInsights" -AppDisplayName "Snip Insights" -PackageDisplayName "Snip Insights" -Publisher "CN=Microsoft" -Destination "\output" -Version $env:PACKAGE_VERSION -MakeApp -Verbose -Sign
 popd
 Copy-item -Force -Recurse "/output/*" -Destination "./build/"
-Compress-Archive "./build/SnipInsights" "./build/SnipInsights-$env:PACKAGE_VERSION.zip"
+Compress-Archive "./build/SnipInsights" "./build/Snip Insights-$env:PACKAGE_VERSION.zip"

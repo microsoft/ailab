@@ -11,6 +11,7 @@
             <!-- BEGIN CONVERTERS -->
 
             <converters:NotConverter x:Key="NotConverter"/>
+            <converters:DebugConverter x:Key="DebugConverter"/>
             <converters:ProductOfferToCurrencyConverter x:Key="ProductOfferToCurrencyConverter" />
             <converters:StringEmptyToBoolConverter x:Key="StringEmptyToBoolConverter"/>
             

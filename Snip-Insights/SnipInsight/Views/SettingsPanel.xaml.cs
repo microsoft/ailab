@@ -49,7 +49,7 @@ namespace SnipInsight.Views
             // AutoTagging.IsChecked = UserSettings.IsAutoTaggingEnabled;
 
             UserSettings.IsAutoTaggingEnabled = false;
-            UserSettings.IsNotificationToastEnabled = false;
+            UserSettings.IsNotificationToastEnabled = true;
             UserSettings.DisableRunWithWindows = true;
             UserSettings.DisableToolWindow = false;
 

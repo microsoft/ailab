@@ -17,7 +17,7 @@
                      Closed="MainWindow_OnClosed"
                      KeyDown="AriModernWindow_KeyDown"
                      Style="{DynamicResource {x:Type ari:AriModernWindow}}"
-                     Icon="/SnipInsights;component/Resources/SnipInsights.ico">
+                     Icon="/Snip Insights;component/Resources/SnipInsights.ico">
     <Window.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />

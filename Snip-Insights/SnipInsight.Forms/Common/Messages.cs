@@ -8,6 +8,8 @@ namespace SnipInsight.Forms.Common
 
         public static readonly string OpenLibrary = nameof(OpenLibrary);
 
+        public static readonly string OpenLibraryFolder = nameof(OpenLibraryFolder);
+
         public static readonly string OpenSettings = nameof(OpenSettings);
 
         public static readonly string UpdateInsightsImage = nameof(UpdateInsightsImage);
@@ -21,5 +23,11 @@ namespace SnipInsight.Forms.Common
         public static readonly string RefreshLibrary = nameof(RefreshLibrary);
 
         public static readonly string OCRText = nameof(OCRText);
+
+        public static readonly string IAEnabled = nameof(IAEnabled);
+
+        public static readonly string InsightsNoResults = nameof(InsightsNoResults);
+
+        public static readonly string InsightsResults = nameof(InsightsResults);
     }
 }

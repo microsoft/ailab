@@ -1103,6 +1103,12 @@ namespace SnipInsight.Forms.Features.Localization {
             }
         }
         
+        public static string Insights_Turn_On_Message {
+            get {
+                return ResourceManager.GetString("Insights_Turn_On_Message", resourceCulture);
+            }
+        }
+        
         public static string Landmark_Information_Button_Text {
             get {
                 return ResourceManager.GetString("Landmark_Information_Button_Text", resourceCulture);
@@ -1148,6 +1154,18 @@ namespace SnipInsight.Forms.Features.Localization {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        public static string Dismiss {
+            get {
+                return ResourceManager.GetString("Dismiss", resourceCulture);
+            }
+        }
+        
+        public static string Open_Library_Folder {
+            get {
+                return ResourceManager.GetString("Open_Library_Folder", resourceCulture);
             }
         }
     }

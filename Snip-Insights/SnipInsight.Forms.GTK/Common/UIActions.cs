@@ -8,6 +8,9 @@
         Library,
         Settings,
         Exit,
-        TopMenu
+        TopMenu,
+        OpenEditor,
+        OpenLibraryFolder,
+        CloseSelectorMenuWindow,
     }
 }

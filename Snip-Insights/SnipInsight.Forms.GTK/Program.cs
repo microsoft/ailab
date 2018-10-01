@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Gtk;
 using SnipInsight.Forms.Common;
 using SnipInsight.Forms.GTK.Common;
+using SnipInsight.Forms.GTK.Features.SelectorMenu;
 using SnipInsight.Forms.GTK.Features.Snipping;
 using SnipInsight.Forms.GTK.Features.TopMenu;
 using SnipInsight.Forms.GTK.Features.TrayIcon;
@@ -19,6 +21,7 @@ namespace SnipInsight.Forms.GTK
     {
         private static HideableFormsWindow formsWindow;
         private static TopMenuWindow topMenuWindow;
+        private static SelectorMenuWindow selectorMenuWindow;
 
         [STAThread]
         public static void Main(string[] args)
@@ -30,6 +33,7 @@ namespace SnipInsight.Forms.GTK
 
             Application.Init();
 
+            CreateSelectorMenuWindow();
             CreateAndShowTopMenuWindow();
 
             GLib.Idle.Add(() =>
@@ -45,6 +49,13 @@ namespace SnipInsight.Forms.GTK
             });
 
             Application.Run();
+        }
+
+        private static void CreateSelectorMenuWindow()
+        {
+            selectorMenuWindow = new SelectorMenuWindow();
+            selectorMenuWindow.SetIconFromFile(Constants.IconPath);
+            selectorMenuWindow.UIActionSelected += UIActionSelected;
         }
 
         private static void CreateAndShowTopMenuWindow()
@@ -106,6 +117,7 @@ namespace SnipInsight.Forms.GTK
         {
             formsWindow.HideAll();
             topMenuWindow.HideAll();
+            selectorMenuWindow.HideAll();
 
             Task.Factory.StartNew(
                 async () =>
@@ -149,6 +161,10 @@ namespace SnipInsight.Forms.GTK
                     {
                         XF.MessagingCenter.Send(Messenger.Instance, Messages.UpdateInsightsImage, args.ImagePath);
                     }
+                    else
+                    {
+                        selectorMenuWindow.ShowWithArguments(args.ImagePath);
+                    }
 
                     break;
                 case UIActions.Library:
@@ -164,6 +180,17 @@ namespace SnipInsight.Forms.GTK
                     break;
                 case UIActions.TopMenu:
                     topMenuWindow.ShowAll();
+                    break;
+                case UIActions.OpenEditor:
+                    OpenHome();
+                    XF.MessagingCenter.Send(Messenger.Instance, Messages.OpenInsights);
+                    XF.MessagingCenter.Send(Messenger.Instance, Messages.UpdateInsightsImage, args.ImagePath);
+                    break;
+                case UIActions.OpenLibraryFolder:
+                    XF.MessagingCenter.Send(Messenger.Instance, Messages.OpenLibraryFolder);
+                    break;
+                case UIActions.CloseSelectorMenuWindow:
+                    selectorMenuWindow.HideAll();
                     break;
                 default:
                     break;

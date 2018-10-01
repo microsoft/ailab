@@ -14,6 +14,7 @@ namespace SnipInsight.Forms.Features.Insights
         public InsightsPage()
         {
             this.InitializeComponent();
+
             this.fileChooserService = DependencyService.Get<IFileChooserService>();
         }
 
@@ -23,8 +24,13 @@ namespace SnipInsight.Forms.Features.Insights
         {
             base.OnAppearing();
 
+            this.ShowResults();
+
             MessagingCenter.Subscribe<Messenger, ImageModel>(
                 this, Messages.OpenImageFromLibrary, this.OpenImageFromLibrary);
+
+            MessagingCenter.Subscribe<Messenger>(this, Messages.InsightsResults, this.Results);
+            MessagingCenter.Subscribe<Messenger>(this, Messages.InsightsNoResults, this.NoResults);
 
             this.ActivateSection(Section.Information);
         }
@@ -51,6 +57,9 @@ namespace SnipInsight.Forms.Features.Insights
             base.OnDisappearing();
 
             MessagingCenter.Unsubscribe<Messenger, ImageModel>(this, Messages.OpenImageFromLibrary);
+
+            MessagingCenter.Unsubscribe<Messenger>(this, Messages.InsightsResults);
+            MessagingCenter.Unsubscribe<Messenger>(this, Messages.InsightsNoResults);
         }
 
         private void ManageCelebritiesAndOCRVisibilities(object sender, PropertyChangedEventArgs e)
@@ -83,6 +92,28 @@ namespace SnipInsight.Forms.Features.Insights
         private void OpenImageFromLibrary(Messenger obj, ImageModel image)
         {
             this.ViewModel.LoadImageFromLibraryCommand.Execute(image);
+        }
+
+        private void Results(Messenger obj)
+        {
+            this.ShowResults();
+        }
+
+        private void NoResults(Messenger obj)
+        {
+            this.ShowNoResults();
+        }
+
+        private void ShowResults()
+        {
+            this.resultsGrid.IsVisible = true;
+            this.noResultsGrid.IsVisible = false;
+        }
+
+        private void ShowNoResults()
+        {
+            this.resultsGrid.IsVisible = false;
+            this.noResultsGrid.IsVisible = true;
         }
 
         private void ActivateSection(Section section)

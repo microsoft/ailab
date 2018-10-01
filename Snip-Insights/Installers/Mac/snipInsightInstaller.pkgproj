@@ -33,7 +33,7 @@
 								<key>GID</key>
 								<integer>80</integer>
 								<key>PATH</key>
-								<string>Release/SnipInsight.app</string>
+								<string>Release/Snip Insights.app</string>
 								<key>PATH_TYPE</key>
 								<integer>1</integer>
 								<key>PERMISSIONS</key>
@@ -1020,11 +1020,11 @@
 				</dict>
 			</array>
 			<key>NAME</key>
-			<string>SnipInsights</string>
+			<string>Snip Insights</string>
 			<key>PAYLOAD_ONLY</key>
 			<false/>
 			<key>REFERENCE_FOLDER_PATH</key>
-			<string>/Users/xamarinteamplainconcepts/Desktop/SnipMacInstaller/Release/SnipInsight</string>
+			<string>/Users/xamarinteamplainconcepts/Desktop/SnipMacInstaller/Release/SnipInsights</string>
 		</dict>
 	</dict>
 	<key>TYPE</key>

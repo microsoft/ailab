@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Gdk;
 using Gtk;
 using SnipInsight.Forms.Common;
@@ -26,7 +27,15 @@ namespace SnipInsight.Forms.GTK.Features.Snipping
                 SettingsFeature.Settings.SnipsPath,
                 $"capture{date}.{Constants.ScreenshotExtension}");
 
-            //// FIXME macOS: some colors are wrong
+            try
+            {
+                // FIXME macOS: some colors are wrong
+                screenshot.Save(path, Constants.ScreenshotExtension);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
 
             try
             {

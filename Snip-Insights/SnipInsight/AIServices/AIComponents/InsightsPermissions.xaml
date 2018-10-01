@@ -94,7 +94,7 @@
                                         ToolTip="Turn On"
                                         Width="220"
                                         Height="46"
-                                                    HorizontalAlignment="Left"
+                                        HorizontalAlignment="Left"
                                         Template="{DynamicResource ActionButtonTemplate}"
                                         Command="{Binding TurnOnAIAnalysisCommand}"
                                         FocusVisualStyle="{DynamicResource FocusedStyle}"
