@@ -78,7 +78,7 @@ Remember to Click the **Save** button after entering all the keys.
 Congratulations! You should now have a fully working application to get started. Have fun testing the project and thank you for your contribution! 
 ### Using the code:
 
-For detailed instructions go to see [Using the code](/docs/Using_The_Code.md).  
+For detailed instructions go to see [Using the code](docs/Using_The_Code.md).  
     
 
 ## Licenses
