@@ -12,7 +12,7 @@ The process of transformation of a handwritten image to HTML this solution imple
 5.	An HTML generation engine uses all these pieces of information to generate an HTML markup code reflecting the result.
 
 <p align="center">
-  <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Sketch2Codes/images/S2C_Homepage-Carousel.gif">
+  <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/S2C_Homepage-Carousel.gif">
 </p>
 
 ## Architecture
