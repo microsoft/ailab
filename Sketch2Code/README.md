@@ -11,6 +11,10 @@ The process of transformation of a handwritten image to HTML this solution imple
 4.	A layout algorithm uses the spatial information from all the bounding boxes of the predicted elements to generate a grid structure that accommodates all.
 5.	An HTML generation engine uses all these pieces of information to generate an HTML markup code reflecting the result.
 
+<p align="center">
+  <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Sketch2Codes/images/S2C_Homepage-Carousel.gif">
+</p>
+
 ## Architecture
 The Sketch2Code solution uses the following elements:
 -	A Microsoft Custom Vision Model: This model has been trained with images of different handwritten designs tagging the information of most common HTML elements like Buttons, TextBox and Image.
@@ -20,7 +24,6 @@ The Sketch2Code solution uses the following elements:
 -	An Azure Web App: User front-end to enable uploading a new design and see the generated HTML results.
 These elements form the architecture as follows:
 ![Sketch2Code Architecture](https://github.com/Microsoft/ailab/blob/master/Sketch2Code/images/architecture.png)
-
 
 
 ## How to configure the solution
