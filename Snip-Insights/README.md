@@ -1,6 +1,6 @@
 # Snip Insights
 
-Snip Insights, a Microsoft Garage Project is a screen capturing application that revolutionizes the way users search by generating insights from images. It leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. Microsoft Garage turns fresh ideas into real projects.  Learn more at [http://microsoft.com/garage](http://microsoft.com/garage).
+An open source cross-platform AI tool for intelligent screen capture. Snip Insights revolutionizes the way users can generate insights from screen captures. The initial prototype of Snip Insights, built for Windows OS and released at Microsoft Build 2018 in May, was created by [Microsoft Garage interns](https://www.microsoft.com/en-us/garage/)based out of Vancouver, BC. Our team at [Microsoft AI Lab](https://ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6) in collaboration with the Microsoft AI CTO team; took Snip Insights to the next level by giving the tool a new intuitive UX, cross-platform availability (MacOS,Linux, and Windows), and free download and usage under MSA license. Snip Insights leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. 
 
 ## Supported Platforms: Windows, Mac OS and Linux
 
@@ -20,21 +20,21 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 ### **Windows**
 
-1. Download the zip from Windows 
-2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](/docs/Windows_Install_Certificate.md) section.
+1. Download the zip for Windows from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
+2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](/Snip-Insights/docs/Windows_Install_Certificate.md) section.
 3. Install Snip Insights by double click over the .appx package file
 
 ### **Linux**
 
 1. Install **Mono** by following the official steps depending on your Linux distribution: <http://www.mono-project.com/download/stable/#download-lin>
-2. Install the .deb package
+2. Install the .deb package from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
 3. Launch the app from applications section 
 
 ### Mac OS
 
 1. Download and install **Mono** (Stable channel): https://www.mono-project.com/download/stable/#download-mac
    which includes GTK#, the UI toolkit on which Xamarin.Forms relies for this project
-2. Install the .pkg as a normal macos application.
+2. Install the .pkg as a normal macos application from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
 3. SnipInsights app is available on Applications section on macos
 
 
