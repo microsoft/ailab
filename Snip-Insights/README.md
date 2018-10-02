@@ -2,8 +2,9 @@
 
 An open source cross-platform AI tool for intelligent screen capture. Snip Insights revolutionizes the way users can generate insights from screen captures. The initial prototype of Snip Insights, built for Windows OS and released at Microsoft Build 2018 in May, was created by [Microsoft Garage interns](https://www.microsoft.com/en-us/garage/) based out of Vancouver, BC. Our team at [Microsoft AI Lab](https://ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6) in collaboration with the Microsoft AI CTO team; took Snip Insights to the next level by giving the tool a new intuitive UX, cross-platform availability (MacOS,Linux, and Windows), and free download and usage under MSA license. Snip Insights leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. 
 
-![Snip Insights in Action](https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Homepage-Carousel_580x326_V2b.gif)
-
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Homepage-Carousel_580x326_V2b.gif">
+</p>
 
 ## Supported Platforms: Windows, Mac OS and Linux
 
