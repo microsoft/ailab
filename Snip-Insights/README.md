@@ -41,7 +41,7 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 2. Install the .pkg as a normal macos application from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
 3. SnipInsights app is available on Applications section on macos
 
-##Architecture
+## Architecture
 <p align="center">
   <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Content_Image_B_1280x752.jpg">
 </p>
