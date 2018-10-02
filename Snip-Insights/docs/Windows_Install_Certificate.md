@@ -20,6 +20,6 @@ We are going to install the certificate on Trusted People folder:
 
 ![image.png](/Windows_Import_Certificate_Trusted_People.png);
 
-Complete the import wizard clicking in Finish button:
+Complete the import wizard by clicking on the Finish button:
 
 ![image.png](/Windows_Import_Certificate_Completed.png)
