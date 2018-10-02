@@ -1,25 +1,24 @@
 ## Install Certificate
 
-![image.png](/Windows_Zip_Content.png)
+<img src="Windows_Zip_Content.png" alt="Zip Content" />
 
 The certificate must be installed in order to deploy the application in PC.
-You can install the certificate by double click over .cer file and select "Install Certificate..." options:
+You can install the certificate by double clicking the .cer file and selecting the "Install Certificate..." option:
 
-
-![image.png](/Windows_Certificate_Properties.png)
+<img src="Windows_Certificate_Properties.png" alt="Certificate Properties" />
 
 Select Local Machine (You will need Administrator Rights):
 
-![image.png](/Windows_Import_Certificate.png)
+<img src="Windows_Import_Certificate.png" alt="Import Certificate" />
 
 Click Browse to select the place to install the certificate:
 
-![image.png](/Windows_Import_Certificate_1.png) 
+<img src="Windows_Import_Certificate_1.png" alt="Import Certificate 1" />
 
-We are going to install the certificate on Trusted People folder:
+We are going to install the certificate in the Trusted People folder:
 
-![image.png](/Windows_Import_Certificate_Trusted_People.png);
+<img src="Windows_Import_Certificate_Trusted_People.png" alt="Trusted People" />
 
-Complete the import wizard clicking in Finish button:
+Complete the import wizard by clicking on the Finish button:
 
-![image.png](/Windows_Import_Certificate_Completed.png)
+<img src="Windows_Import_Certificate_Completed.png" alt="Certificate Completed" />
