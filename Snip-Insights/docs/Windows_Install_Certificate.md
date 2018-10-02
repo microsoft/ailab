@@ -3,7 +3,7 @@
 ![image.png](/Windows_Zip_Content.png)
 
 The certificate must be installed in order to deploy the application in PC.
-You can install the certificate by double click over .cer file and select "Install Certificate..." options:
+You can install the certificate by double clicking over .cer file and selecting "Install Certificate..." option:
 
 
 ![image.png](/Windows_Certificate_Properties.png)
