@@ -32,9 +32,9 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 ### Mac OS
 
-1. Download and install **Mono** (Stable channel): http://www.mono-project.com/download/stable/
-   1. Such includes GTK#, the UI toolkit on which Xamarin.Forms relies for this project
-2. Install the .pckg as a normal macos application.
+1. Download and install **Mono** (Stable channel): https://www.mono-project.com/download/stable/#download-mac
+   which includes GTK#, the UI toolkit on which Xamarin.Forms relies for this project
+2. Install the .pkg as a normal macos application.
 3. SnipInsights app is available on Applications section on macos
 
 
