@@ -14,7 +14,7 @@ The Snip Insights app is available for three platforms:
 
 Xamarin.Forms enables you to build native UIs for iOS, Android, macOS, Linux, and Windows from a single, shared codebase. You can dive into app development with Xamarin.Forms by following our [free self-guided learning from Xamarin University](https://university.xamarin.com/classes/track/self-guided). 
 
-Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interface toolkit that links the GTK+ toolkit and a variety of GNOME libraries, allowing the development of fully native GNONE graphics apps using Mono and .NET. [Xamarin.Forms GTK#](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/platform/gtk?tabs=vswin)
+Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interface toolkit that links the GTK+ toolkit and a variety of GNOME libraries, allowing the development of fully native GNOME graphics apps using Mono and .NET. [Xamarin.Forms GTK#](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/platform/gtk?tabs=vswin)
  
 ## Installation
 
