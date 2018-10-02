@@ -57,7 +57,7 @@ The code for the provided Azure Function is located in the [Sketch2Code.Api](htt
 
 ### Azure Web App
 The [Sketch2Code.Web](https://github.com/Microsoft/ailab/tree/master/Sketch2Code/Sketch2Code.Web) contains the code used to implement the front-end website. Two parameters must be configured:
--	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
--	storageUrl: Url for the Azure Storage. 
+1.	Sketch2CodeAppFunctionEndPoint: Endpoint to the Azure Function
+2.	storageUrl: Url for the Azure Storage. 
 
 
