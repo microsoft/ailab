@@ -24,21 +24,21 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 ### **Windows**
 
-1. Download the zip for Windows from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
+1. Download the zip for Windows from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.1)
 2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](/Snip-Insights/docs/Windows_Install_Certificate.md) section.
 3. Install Snip Insights by double click over the .appx package file
 
 ### **Linux**
 
 1. Install **Mono** by following the official steps depending on your Linux distribution: <http://www.mono-project.com/download/stable/#download-lin>
-2. Install the .deb package from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
+2. Install the .deb package from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.1)
 3. Launch the app from applications section 
 
 ### Mac OS
 
 1. Download and install **Mono** (Stable channel): https://www.mono-project.com/download/stable/#download-mac
    which includes GTK#, the UI toolkit on which Xamarin.Forms relies for this project
-2. Install the .pkg as a normal macos application from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
+2. Install the .pkg as a normal macos application from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.1)
 3. SnipInsights app is available on Applications section on macos
 
 ## Architecture
