@@ -5,7 +5,7 @@
 
 ## Process flow
 The process of transformation of a handwritten image to HTML this solution implements is detailed as follows:
-1.	First, the user uploads an image through the website.
+1.	The user uploads an image through the website.
 2.	A custom vision model predicts what HTML elements are present in the image and their location.
 3.	A handwritten text recognition service reads the text inside the predicted elements.
 4.	A layout algorithm uses the spatial information from all the bounding boxes of the predicted elements to generate a grid structure that accommodates all.
