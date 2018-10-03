@@ -43,7 +43,7 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 ## Architecture
 <p align="center">
-  <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Content_Image_B_1280x752.jpg">
+  <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Content_Image.jpg">
 </p>
 
 ## Requirements
