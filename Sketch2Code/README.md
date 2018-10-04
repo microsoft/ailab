@@ -4,7 +4,7 @@
 [Sketch2Code](https://www.ailab.microsoft.com/experiments/30c61484-d081-4072-99d6-e132d362b99d) is a solution that uses AI to transform a handwritten user interface design from a picture to valid HTML markup code. 
 
 ## Process flow
-The process of transformation of a handwritten image to HTML this solution implements is detailed as follows:
+The process of transformation of a handwritten image to HTML. How this solution is implemented is as follows:
 1.	First, the user uploads an image through the website.
 2.	A custom vision model predicts what HTML elements are present in the image and their location.
 3.	A handwritten text recognition service reads the text inside the predicted elements.
