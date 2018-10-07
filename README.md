@@ -1,3 +1,14 @@
+# Microsoft AI Lab Projects
+- [Snip Insights](https://www.microsoft.com/en-us/garage/profiles/snip-insights/)
+- Intelligent Robotics
+- [Sketch 2 Code](https://www.ailab.microsoft.com/experiments/30c61484-d081-4072-99d6-e132d362b99d)
+- [Build a bot](https://www.ailab.microsoft.com/experiments/1af37019-42f1-4a74-baa8-0ec847419c02)
+- [Drawing Bot](https://www.ailab.microsoft.com/experiments/1e9e1eef-2ab1-41f1-b341-0118f414bd78)
+- [JFK Files](https://www.ailab.microsoft.com/experiments/7d6b0652-51dc-440d-a12a-481f28525143)
+- [Drones](https://www.ailab.microsoft.com/experiments/92262b36-de2e-444e-86ca-8bcb8bd02454)
+- [Style Transfer](https://www.ailab.microsoft.com/experiments/99907c05-d487-450b-9ee9-901b40205e81)
+- [MRC](https://www.ailab.microsoft.com/experiments/ef90706b-e822-4686-bbc4-94fd0bca5fc5)
+
 
 # Contributing
 
