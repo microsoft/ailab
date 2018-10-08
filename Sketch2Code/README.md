@@ -39,7 +39,7 @@ A Microsoft Computer Vision Service is needed to perform handwritten character r
 To create this service go to your Azure Subscription and create your own service. Annotate the Endpoint and the Key to complete the configuration of the solution.
 
 ### Azure Blob Storage
-An Azure Blob Storage is used to store all the intermediary steps of the process.
+An [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) is used to store all the intermediary steps of the process.
 A new folder is created for each generation process with the following contents:
 -	\slices: Contains the cropped images used for text prediction.
 -	Original.png: image uploaded by the user.
