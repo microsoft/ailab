@@ -1,6 +1,6 @@
 # Microsoft AI Lab Projects
-- [Snip Insights](https://www.microsoft.com/en-us/garage/profiles/snip-insights/)
-- Intelligent Robotics
+- [Snip Insights](https://www.ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6)
+- [Intelligent Robotics](https://www.ailab.microsoft.com/experiments/f508a96d-3255-474b-a769-d5b2cf2bb9d6)
 - [Sketch 2 Code](https://www.ailab.microsoft.com/experiments/30c61484-d081-4072-99d6-e132d362b99d)
 - [Build a bot](https://www.ailab.microsoft.com/experiments/1af37019-42f1-4a74-baa8-0ec847419c02)
 - [Drawing Bot](https://www.ailab.microsoft.com/experiments/1e9e1eef-2ab1-41f1-b341-0118f414bd78)
