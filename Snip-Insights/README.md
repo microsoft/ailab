@@ -34,7 +34,7 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 2. Install the .deb package from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
 3. Launch the app from applications section 
 
-### Mac OS
+### **Mac OS**
 
 1. Download and install **Mono** (Stable channel): https://www.mono-project.com/download/stable/#download-mac
    which includes GTK#, the UI toolkit on which Xamarin.Forms relies for this project
