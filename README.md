@@ -1,4 +1,5 @@
 # Microsoft AI Lab Projects
+- [Spektacom "Power Bat"](https://www.ailab.microsoft.com/experiments/ce508ed3-cea9-41eb-a08e-ab4727556f7b)
 - [Snip Insights](https://www.ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6)
 - [Intelligent Robotics](https://www.ailab.microsoft.com/experiments/f508a96d-3255-474b-a769-d5b2cf2bb9d6)
 - [Sketch 2 Code](https://www.ailab.microsoft.com/experiments/30c61484-d081-4072-99d6-e132d362b99d)
