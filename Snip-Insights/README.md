@@ -1,6 +1,6 @@
 # Snip Insights
 
-An open source cross-platform AI tool for intelligent screen capture. Snip Insights revolutionizes the way users can generate insights from screen captures. The initial prototype of Snip Insights, built for Windows OS and released at Microsoft Build 2018 in May, was created by [Microsoft Garage interns](https://www.microsoft.com/en-us/garage/) based out of Vancouver, BC. Our team at [Microsoft AI Lab](https://ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6) in collaboration with the Microsoft AI CTO team; took Snip Insights to the next level by giving the tool a new intuitive UX, cross-platform availability (MacOS,Linux, and Windows), and free download and usage under MSA license. Snip Insights leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. 
+An open source cross-platform AI tool for intelligent screen capture. Snip Insights revolutionizes the way users can generate insights from screen captures. The initial prototype of Snip Insights, built for Windows OS and released at Microsoft Build 2018 in May, was created by [Microsoft Garage interns](https://www.microsoft.com/en-us/garage/) based out of Vancouver, BC. Our team at [Microsoft AI Lab](https://ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6) in collaboration with the Microsoft AI CTO team; took Snip Insights to the next level by giving the tool a new intuitive UX, cross-platform availability (MacOS, Linux, and Windows), and free download and usage under MSA license. Snip Insights leverages Microsoft Azure's Cognitive Services APIs to increase users' productivity by reducing the number of steps needed to gain intelligent insights. 
 
 <p align="center">
   <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/Snip-Insights/Images/SnipInsights_Homepage-Carousel_580x326_V2b.gif">
@@ -25,14 +25,14 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 ### **Windows**
 
 1. Download the zip for Windows from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
-2. Install the certificate (".cer" file) according the instructions detailed on [**Install Certificate**](/Snip-Insights/docs/Windows_Install_Certificate.md) section.
-3. Install Snip Insights by double click over the .appx package file
+2. Install the certificate (".cer" file) according to the instructions detailed on [**Install Certificate**](/Snip-Insights/docs/Windows_Install_Certificate.md) section.
+3. Install Snip Insights by double clicking over the .appx package file.
 
 ### **Linux**
 
 1. Install **Mono** by following the official steps depending on your Linux distribution: <http://www.mono-project.com/download/stable/#download-lin>
 2. Install the .deb package from [here](https://github.com/Microsoft/ailab/releases/tag/1.0.0.0)
-3. Launch the app from applications section 
+3. Launch the app from applications section. 
 
 ### **Mac OS**
 
@@ -54,10 +54,10 @@ Xamarin.Forms has preview support for GTK# apps. GTK# is a graphical user interf
 
 To add the keys to Snip Insights, a Microsoft Garage Project, start the application.  Once running, click/tap the **Settings** icon in the toolbar.  Scroll down until you find the "Cognitive Services, Enable AI assistance" toggle, and toggle it to the **On** position.  You should now see the Insight Service Keys section.
 
-- Entity Search - Create new Entity Search Cognitive Service.  Once created, you can display the keys.  Select one and paste into "Settings"
+- Entity Search - Create new Entity Search Cognitive Service. Once created, you can display the keys.  Select one and paste into "Settings"
 - Image Analysis - In Azure, create a **Computer Vision API ** Cognitive Service and use its key.
 - Image Search - In Azure, create a **Bing Search v7 API** Cognitive Service and use its key.
-- Text Recognition - You can use the same key as used in Image Analysis.  Both Image Analysis and Text Recognition use Computer Vision API.
+- Text Recognition - You can use the same key as used in Image Analysis. Both Image Analysis and Text Recognition use Computer Vision API.
 - Translator - Use the **Translator Text API** Cognitive Service.
 - Content Moderator - Use the **Content Moderator API** Cognitive Service.
 
@@ -93,7 +93,7 @@ For detailed instructions go to see [Using the code](docs/Using_The_Code.md).
 
 This project uses some third-party assets with a license that requires attribution:
 
-- [Xam.Plugins.Settings](https://github.com/jamesmontemagno/SettingsPlugin):by James Montemagno
+- [Xam.Plugins.Settings](https://github.com/jamesmontemagno/SettingsPlugin): by James Montemagno
 - [DynamicStackLayout](https://github.com/SuavePirate/DynamicStackLayout): by SuavePirate
 - [Nerdbank.GitVersioning](https://github.com/aarnott/Nerdbank.GitVersioning): by Andrew Arnott 
 - [Newtonsoft.Json](https://www.newtonsoft.com/json): by James Newton-King
