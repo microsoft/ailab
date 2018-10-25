@@ -1,15 +1,17 @@
 # Microsoft AI Lab
-What is [AI Lab?](https://www.ailab.microsoft.com/experiments)
 
-AI Lab helps our large fast-growing community of developers get started on AI. You can experience, learn and code the latest and greatest innovations from Microsoft AI here. AI Lab currently houses eight projects that showcase the latest in custom vision, attnGAN, Visual Studio tools for AI, Cognitive Search, Machine Reading Comprehension and more. Each lab gives you access to the experimentation playground, source code on GitHub, a crisp developer-friendly video, and insights into the underlying developer/ organizational challenge and solution. 
+Qu'est ce que [AI Lab?](https://www.ailab.microsoft.com/experiments)
+
+AILab Lab aide notre vaste communauté de développeurs en croissance rapide à se lancer dans l'IA. Vous pouvez découvrir, apprendre et coder les dernières et meilleures innovations de Microsoft AI ici. AI Lab héberge actuellement huit projets qui présentent les derniers outils en matière de vision personnalisée, attnGAN, Visual Studio pour l'IA, la recherche cognitive, la compréhension de la lecture par machine, etc. Chaque laboratoire vous donne accès au terrain d’expérimentation, au code source sur GitHub, à une vidéo nette et conviviale pour les développeurs, ainsi qu’à un aperçu du défi et de la solution développeur / organisationnelle sous-jacente.
 
 <p align="center">
   <img width="560" height="300" src="https://github.com/Microsoft/ailab/blob/master/images/AI Lab.png">
 </p>
 
-AI Lab is developed in partnership with Microsoft’s AI School and the Microsoft Research (MSR) AI organization.
+AI Lab est développé en partenariat avec Microsoft AI School et l’organisation Microsoft Research (MSR) AI.
 
-# Microsoft AI Lab Projects
+# Projets Microsoft AI Lab
+
 - [Spektacom "Power Bat"](https://www.ailab.microsoft.com/experiments/ce508ed3-cea9-41eb-a08e-ab4727556f7b)
 - [Snip Insights](https://www.ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6)
 - [Intelligent Robotics](https://www.ailab.microsoft.com/experiments/f508a96d-3255-474b-a769-d5b2cf2bb9d6)
@@ -22,16 +24,13 @@ AI Lab is developed in partnership with Microsoft’s AI School and the Microsof
 - [MRC](https://www.ailab.microsoft.com/experiments/ef90706b-e822-4686-bbc4-94fd0bca5fc5)
 
 
-# Contributing
+# Contribuant
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+Ce projet accueille des contributions et des suggestions. La plupart des contributions requièrent que vous acceptiez un contrat de licence de contributeur (CLA) déclarant que vous avez le droit, et vous accordez réellement, de nous accorder le droit d'utiliser votre contribution. Pour plus de détails, visitez le site https://cla.microsoft.com.
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+Lorsque vous soumettez une demande d'extraction, un CLA-bot déterminera automatiquement si vous devez fournir un CLA et décorer le PR de manière appropriée (par exemple, une étiquette, un commentaire). Suivez simplement les instructions fournies par le bot. Vous n'aurez besoin de faire cela qu'une seule fois pour tous les dépôts en utilisant notre CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Ce projet a adopté le code de conduite Microsoft Open Source. Pour plus d'informations, consultez [la FAQ du code de conduite] (https://opensource.microsoft.com/codeofconduct/faq/) ou contactez [opencode@microsoft.com](mailto:opencode@microsoft.com) pour toute question ou tout commentaire supplémentaire.
+
+
+
