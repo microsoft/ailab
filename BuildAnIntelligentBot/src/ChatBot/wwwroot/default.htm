@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="./lib/botchat.css" rel="stylesheet" />
+    <link href="./styles/fonts.css" rel="stylesheet" />
+    <link href="./styles/normalize.css" rel="stylesheet" />
+    <link href="./styles/app.css" rel="stylesheet" />
+    <script src="./lib/botchat.js"></script>
+    <script src="./lib/CognitiveServices.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <h1>Bot Recognition API Settings</h1>
+    <form>
+      <div class="field-groups">
+        <div class="field-group left">
+          <label>
+            <input type="radio" name="recognition-api" value="0" />
+            <span>Speech</span>
+          </label>
+          <label>
+            <input type="radio" name="recognition-api" value="1" />
+            <span>Custom Speech</span>
+          </label>
+        </div>
+
+        <div class="field-group right">
+          <label>
+            <input type="checkbox" name="botchat-debug" />
+            <span>See bot debug messages in console</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-groups audio">
+        <div class="field-group left">
+          <label>
+            <input type="checkbox" name="bot-translator" />
+            <span>Test bot translator with an audio file</span>
+          </label>
+
+          <div id="bot-translator-fields" class="hidden">
+            <label>
+              <span>Upload audio file in a foreign language</span>
+              <input type="file" name="bot-translator-file" />
+            </label>
+
+            <label class="translator-select-locale hidden">
+              <span>What is the language of the audio file?</span>
+              <select name="bot-translator-locale">
+                 <option value="" selected>Please choose</option>
+                 <option value="ar-eg">Arabic</option>
+                 <option value="zh-cn">Chinese</option>
+                 <option value="fr-fr">French</option>
+                 <option value="de-de">German</option>
+                 <option value="it-it">Italian</option>
+                 <option value="ja-jp">Japanese</option>
+                 <option value="pt-br">Portuguese</option>
+                 <option value="ru-ru">Russian</option>
+                 <option value="es-es">Spanish</option>
+              </select>
+            </label>
+
+            <div class="translator-submit-audio hidden">
+              <button id="submit-audio">Submit Audio</button>
+              <div>
+                <div class="sk-circle">
+                  <div class="sk-circle1 sk-child"></div>
+                  <div class="sk-circle2 sk-child"></div>
+                  <div class="sk-circle3 sk-child"></div>
+                  <div class="sk-circle4 sk-child"></div>
+                  <div class="sk-circle5 sk-child"></div>
+                  <div class="sk-circle6 sk-child"></div>
+                  <div class="sk-circle7 sk-child"></div>
+                  <div class="sk-circle8 sk-child"></div>
+                  <div class="sk-circle9 sk-child"></div>
+                  <div class="sk-circle10 sk-child"></div>
+                  <div class="sk-circle11 sk-child"></div>
+                  <div class="sk-circle12 sk-child"></div>
+                </div>
+                <span class="message">Please wait while we upload your file and send it to Custom Translator.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+    <div id="bot"></div>
+  </div>
+
+  <script>
+const speechSubscriptionKey = "<your-speech-subscription-key>";
+const customEndpointId = "<custom-speech-endpoint-id>";
+const user = {
+  id: 'userid',
+  name: 'username',
+};
+const bot = {
+  id: 'botid',
+  name: 'botname',
+};
+let botConnection = null;
+const speechSynthesizer = new CognitiveServices.SpeechSynthesizer({
+  subscriptionKey: speechSubscriptionKey,
+  customVoiceEndpointUrl:
+    'https://westus.tts.speech.microsoft.com/cognitiveservices/v1',
+});
+let lastSpokenConversationId = null;
+
+const botTranslatorSubmit = document.querySelector(
+  '#submit-audio'
+);
+
+function setLastConversationId(activityId) {
+  this.lastSpokenConversationId = activityId;
+}
+
+function getLastConversationId() {
+  return this.lastSpokenConversationId;
+}
+
+function getAudioMessageLocale() {
+  const selectLocale = document.querySelector('select[name="bot-translator-locale"]');
+  return selectLocale.options[selectLocale.selectedIndex].value;
+}
+
+function getBotConfig() {
+  const debug = document.querySelector('input[name="botchat-debug"]').checked;
+  const recoginitionAPICheckedInput = document.querySelector(
+    'input[name="recognition-api"]:checked'
+  );
+  const recognitionAPI =
+    recoginitionAPICheckedInput && parseInt(recoginitionAPICheckedInput.value);
+
+  // Validate
+  if (!recoginitionAPICheckedInput) {
+    return new Error(
+      `Please select a recognition API: Speech (Preview) or Custom Speech`
+    );
+  }
+
+  endpointId = '';
+  subscriptionKey = speechSubscriptionKey;
+  if (recognitionAPI === 1) {
+    // Custom Speech selected
+    endpointId = customEndpointId;
+  }
+
+  return {
+    recognitionAPI,
+    subscriptionKey,
+    endpointId,
+    debug,
+  };
+}
+
+function removeBot() {
+  const appContainer = document.querySelector('#container');
+  const botContainer = document.querySelector('#bot');
+  const newBotContainer = document.createElement('div');
+  newBotContainer.setAttribute('id', 'bot');
+  botConnection.end();
+  appContainer.removeChild(botContainer);
+  appContainer.appendChild(newBotContainer);
+}
+
+function launchBot(config) {
+  const { recognitionAPI, subscriptionKey, endpointId, debug } = config;
+  window.botchatDebug = debug;
+
+  if (debug) {
+    console.info('\n\n=> Launching bot ...');
+    console.info('Bot config: ', config);
+  }
+  botConnection = new BotChat.DirectLine({
+     secret: '<direct-line-secret>',
+     webSocket: true,
+  });
+
+  const speechRecognizer = getRecognitionAPI(config);
+
+  const speechOptions = {
+    speechSynthesizer,
+    speechRecognizer
+  };
+
+  BotChat.App(
+    {
+      bot: bot,
+      locale: 'en-us',
+      user: user,
+      speechOptions: speechOptions,
+      resize: 'detect',
+      botConnection: botConnection
+    },
+    document.getElementById('bot')
+  );    
+}
+
+function getRecognitionAPI(config) {
+  const { recognitionAPI, subscriptionKey, endpointId, debug } = config;
+    let speechRecognizer;
+    if (subscriptionKey) {
+      if (recognitionAPI === 1) {
+          // Custom Speech
+          speechRecognizer = new CognitiveServices.SpeechRecognizer({
+              subscriptionKey: subscriptionKey,
+               recognitionAPI: 1,
+              endpointId: endpointId,
+          });
+      } else {
+          // Speech (preview)
+          speechRecognizer = new CognitiveServices.SpeechRecognizer({
+              subscriptionKey: subscriptionKey,
+          });
+      }
+  }
+    
+  return speechRecognizer;
+}
+
+function attachmentsFromFiles(files) {
+    const attachments = [];
+    for (let i = 0, numFiles = files.length; i < numFiles; i++) {
+      const file = files[i];
+      attachments.push({
+        contentType: file.type,
+        contentUrl: window.URL.createObjectURL(file),
+        name: file.name
+      });
+    }
+    return attachments;
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  const recognitionAPIRadios = document.querySelectorAll(
+    'input[name="recognition-api"]'
+  );
+  const recoginitionAPICheckedInput = document.querySelector(
+    'input[name="recognition-api"]:checked'
+  );
+  const botTranslatorCheckbox = document.querySelector(
+    'input[name="bot-translator"]'
+  );
+  const fileInput = document.querySelector(
+    'input[name="bot-translator-file"]'
+  );
+  const selectLocaleContainer = document.querySelector('.translator-select-locale');
+  const selectLocale = document.querySelector('select[name="bot-translator-locale"]');
+
+  selectLocale.addEventListener('change', function() {
+    if (this.value === "") {
+      document.querySelector('.translator-submit-audio').classList.add('hidden');
+    } else {
+      document.querySelector('.translator-submit-audio').classList.remove('hidden');
+    }
+  });
+
+  fileInput.addEventListener('change', () => {
+    selectLocaleContainer.classList.remove('hidden');
+  });
+
+  const recognitionAPIValue =
+    recoginitionAPICheckedInput && recoginitionAPICheckedInput.value;
+
+  botTranslatorCheckbox.addEventListener('click', function(e) {
+    const translatorFields = document.querySelector('#bot-translator-fields');
+    if (this.checked) {
+      const recoginitionAPICheckedInput = document.querySelector(
+        'input[name="recognition-api"]:checked'
+      );
+      
+      // Validate
+      if (!recoginitionAPICheckedInput) {
+        // There must be a recognition API option selected so select the first 
+        // option by default
+        const recoginitionAPIInput = document.querySelector(
+          'input[name="recognition-api"]'
+        );
+        var event = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        }); 
+        recoginitionAPIInput.dispatchEvent(event);
+      }
+      translatorFields.classList.remove('hidden');
+    } else {
+      const selectLocaleContainer = document.querySelector('.translator-select-locale');
+      const selectLocale = document.querySelector('select[name="bot-translator-locale"]');
+      const fileInput = document.querySelector(
+        'input[name="bot-translator-file"]'
+      );
+      selectLocale.selectedIndex = 0;
+      const submitAudio = document.querySelector('.translator-submit-audio');
+
+      translatorFields.classList.add('hidden');
+      selectLocaleContainer.classList.add('hidden');
+      submitAudio.classList.add('hidden');
+
+      // Create a new file input element to clear its contents 
+      const fileInputParent = fileInput.parentElement; 
+      fileInputParent.removeChild(fileInput);
+      const newFileInput = document.createElement('input');
+      newFileInput.setAttribute('type', 'file');
+      newFileInput.setAttribute('name', 'bot-translator-file');
+      newFileInput.addEventListener('change', () => {
+        const selectLocaleContainer = document.querySelector('.translator-select-locale');
+        selectLocaleContainer.classList.remove('hidden');
+      });
+      fileInputParent.appendChild(newFileInput);
+    }
+  });
+
+  botTranslatorSubmit.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Hide submit button and show loading spinner instead
+    this.parentElement.classList.add('loading-spinner');
+    const fileInput = document.querySelector('input[name="bot-translator-file"]');
+    const locale = getAudioMessageLocale();
+
+    botConnection.activity$
+      .filter(activity => activity.type === 'PlayAudio')
+      .subscribe(activity => {
+        if (getLastConversationId() !== activity.id) {
+            setLastConversationId(activity.id);
+            const locale = getAudioMessageLocale();
+            BotChat.Speech.SpeechSynthesizer.speak(activity.speak, locale);
+            // Hide loading spinner and show submit button again
+            botTranslatorSubmit.parentElement.classList.remove('loading-spinner');
+        }
+      });
+
+    botConnection
+      .postActivity({
+        type: 'message',
+        attachments: attachmentsFromFiles(fileInput.files),
+        from: user,
+        locale
+      })
+      .subscribe();
+  });
+
+  recognitionAPIRadios.forEach(radio => {
+    radio.addEventListener('click', function(e) {
+      const config = getBotConfig();
+
+      if (config instanceof Error) {
+        alert(config.message);
+      } else {
+        removeBot();
+        launchBot(config);
+      }
+    });
+  });
+
+  launchBot({ subscriptionKey: speechSubscriptionKey });
+});
+</script>
+</body>
+
+</html>

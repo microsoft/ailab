@@ -1,0 +1,113 @@
+{
+  "luis_schema_version": "3.0.0",
+  "versionId": "0.1",
+  "name": "talk-to-my-bot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "GetDiscounts"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "ReserveTable"
+    }
+  ],
+  "entities": [
+    {
+      "name": "AmountPeople",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [
+    {
+      "name": "datetimeV2",
+      "roles": []
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "are there any discounts available?",
+      "intent": "GetDiscounts",
+      "entities": []
+    },
+    {
+      "text": "do you have any discount for today?",
+      "intent": "GetDiscounts",
+      "entities": []
+    },
+    {
+      "text": "do you have any discounts?",
+      "intent": "GetDiscounts",
+      "entities": []
+    },
+    {
+      "text": "i need a table for three",
+      "intent": "ReserveTable",
+      "entities": [
+        {
+          "entity": "AmountPeople",
+          "startPos": 19,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "i need to make a dinner reservation.",
+      "intent": "ReserveTable",
+      "entities": []
+    },
+    {
+      "text": "i need to make a reservation for tomorrow at 7 pm",
+      "intent": "ReserveTable",
+      "entities": []
+    },
+    {
+      "text": "i want to make a reservation for 3 people",
+      "intent": "ReserveTable",
+      "entities": [
+        {
+          "entity": "AmountPeople",
+          "startPos": 33,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "i’d like to make a reservation for friday at 7 o’clock.",
+      "intent": "ReserveTable",
+      "entities": []
+    },
+    {
+      "text": "i'd like to reserve a table on wednesday 7pm for five people",
+      "intent": "ReserveTable",
+      "entities": [
+        {
+          "entity": "AmountPeople",
+          "startPos": 49,
+          "endPos": 52
+        }
+      ]
+    },
+    {
+      "text": "we need a reservation for four.",
+      "intent": "ReserveTable",
+      "entities": [
+        {
+          "entity": "AmountPeople",
+          "startPos": 26,
+          "endPos": 29
+        }
+      ]
+    }
+  ]
+}

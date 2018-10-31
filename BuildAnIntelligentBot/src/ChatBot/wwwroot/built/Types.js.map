@@ -1,0 +1,1 @@
+{"version":3,"file":"Types.js","sourceRoot":"","sources":["../src/Types.ts"],"names":[],"mappings":"","sourcesContent":["import { Activity } from 'botframework-directlinejs';\n\nexport interface FormatOptions {\n    showHeader?: boolean // DEPRECATED: Use \"title\" instead\n}\n\nexport type ActivityOrID = {\n    activity?: Activity\n    id?: string\n}\n"]}
