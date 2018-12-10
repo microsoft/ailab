@@ -1,0 +1,19 @@
+{
+    "image": {
+        "name": "storytelling",
+        "version": 1,
+        "tags": {
+            "style": "scifi"
+        }
+    },
+    "compute": {
+        "name": "aks",
+        "agent_count": "1",
+        "vm_size": "Standard_NC6",
+        "location": "eastus"
+    },
+    "deploy": {
+        "name": "story-service",
+        "auth": true
+    }
+}
