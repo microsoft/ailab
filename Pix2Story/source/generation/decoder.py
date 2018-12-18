@@ -85,7 +85,7 @@ def run_sampler(st_gen, image_data, image_loc, dec, c, beam_width=1,  use_unk=Fa
         if beam_width < 50:
             passage = st_gen.story(image_data=image_data,image_loc = image_loc,bw=50)
         else:
-            passage = 'History can not be generated'
+            passage = 'Story can not be generated'
     passage = check_text(passage)
     return passage
 

@@ -97,4 +97,4 @@ For train new models:
 
     `>story_generator = generate.StoryGenerator()`
 
-    `>story_generator.story(image_path='path/to/your/image')`
+    `>story_generator.story(image_loc='path/to/your/image')`
