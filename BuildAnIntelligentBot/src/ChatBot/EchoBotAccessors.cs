@@ -9,7 +9,7 @@ namespace ChatBot
 {
     /// <summary>
     /// This class is created as a Singleton and passed into the IBot-derived constructor.
-    ///  - See <see cref="EchoWithCounterBot"/> constructor for how that is injected.
+    ///  - See <see cref="EchoBot"/> constructor for how that is injected.
     ///  - See the Startup.cs file for more details on creating the Singleton that gets
     ///    injected into the constructor.
     /// </summary>
