@@ -13,7 +13,7 @@ namespace ChatBot.Middlewares
 {
     public class TranslatorSpeechMiddleware : IMiddleware
     {
-        private readonly SpeechTranslationService _speechTranslationService;
+        private readonly TranslatorSpeechService _translatorSpeechService;
         private readonly TranslatorTextService _translatorTextService;
         private readonly TextToSpeechService _textToSpeechService;
 
@@ -31,7 +31,7 @@ namespace ChatBot.Middlewares
             }
 
             this._translatorTextService = new TranslatorTextService(translatorKey);
-            this._speechTranslationService = new SpeechTranslationService(speechKey, region);
+            this._translatorSpeechService = new TranslatorSpeechService(speechKey, region);
             this._textToSpeechService = new TextToSpeechService();
         }
 
@@ -95,7 +95,7 @@ namespace ChatBot.Middlewares
                 // STT target language will be English for this lab
                 if (!string.IsNullOrEmpty(audioUrl) && string.IsNullOrEmpty(text))
                 {
-                    var transcript = await this._speechTranslationService.SpeechToTranslatedTextAsync(audioUrl, conversationLanguage, BotConstants.EnglishLanguage);
+                    var transcript = await this._translatorSpeechService.SpeechToTranslatedTextAsync(audioUrl, conversationLanguage, BotConstants.EnglishLanguage);
                     if (transcript != null)
                     {
                         text = transcript.Translation;

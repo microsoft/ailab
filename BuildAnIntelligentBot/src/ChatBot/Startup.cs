@@ -60,13 +60,13 @@ namespace ChatBot
             var botFilePath = Configuration.GetSection("botFilePath")?.Value;
 
             // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
-            var botConfig = BotConfiguration.Load(botFilePath ?? @".\BotConfiguration.bot", secretKey);
+            var botConfig = BotConfiguration.Load(botFilePath ?? @".\EchoBot.bot", secretKey);
             services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
 
             // Initialize Bot Connected Services clients.
 
 
-            services.AddBot<EchoWithCounterBot>(options =>
+            services.AddBot<EchoBot>(options =>
             {
                 // Retrieve current endpoint.
                 var environment = _isProduction ? "production" : "development";
@@ -79,7 +79,7 @@ namespace ChatBot
                 options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
 
                 // Creates a logger for the application to use.
-                ILogger logger = _loggerFactory.CreateLogger<EchoWithCounterBot>();
+                ILogger logger = _loggerFactory.CreateLogger<EchoBot>();
 
                 // Catches any errors that occur during a conversation turn and logs them.
                 options.OnTurnError = async (context, exception) =>
