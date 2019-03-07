@@ -1,0 +1,15 @@
+bonsai-ai>=2.0.20
+bonsai-cli>=0.8.34
+certifi>=2018.11.29
+chardet>=3.0.4
+Click>=7.0
+configparser>=3.7.1
+idna>=2.8
+protobuf>=3.6.1
+requests>=2.21.0
+simpy>=3.0.11
+six>=1.12.0
+tabulate>=0.8.3
+tornado>=4.5.3
+urllib3>=1.24.1
+websocket-client>=0.54.0

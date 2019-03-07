@@ -1,0 +1,1 @@
+{"training": {"command": "python3 hvac_simulator.py", "simulator": "bonsai.ai"}, "files": ["*.ink", "*.py", "*.csv", "LICENSE", "README.md", "requirements.txt"]}
