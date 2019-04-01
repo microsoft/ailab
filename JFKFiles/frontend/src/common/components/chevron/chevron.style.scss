@@ -1,0 +1,16 @@
+@import "../../../theme/_mixins.scss";
+
+.chevron {
+  @include jfk-icon;
+
+  transform: rotate(180deg);
+  transition: transform 0.25s ease-out;
+}
+
+.chevron-up {
+  @extend .chevron;
+
+  transform: rotate(0deg);
+}
+
+

@@ -1,0 +1,18 @@
+@import "./../../../../theme/_breakpoints.scss";
+
+.container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container-list {
+  flex-flow: column;
+  padding-right: 2rem;
+
+  @include respond-to-desktop {
+    padding-right: 3rem;
+  }
+}

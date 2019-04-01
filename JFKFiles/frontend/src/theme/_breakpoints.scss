@@ -1,0 +1,20 @@
+$breakpointXs: 0;
+$breakpointSm: 960;
+$breakpointMd: 1024;
+$breakpointLg: 1280;
+$breakpointXl: 1920;
+
+:export {
+  breakpointXs: $breakpointXs;
+  breakpointSm: $breakpointSm;
+  breakpointMd: $breakpointMd;
+  breakpointLg: $breakpointLg;
+  breakpointXl: $breakpointXl;
+}
+
+
+@mixin respond-to-desktop {
+  @media screen and (min-width: $breakpointSm#{px}) {
+    @content;
+  }
+}

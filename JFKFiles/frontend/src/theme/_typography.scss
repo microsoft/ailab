@@ -1,0 +1,16 @@
+// Main Font.
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600,700");
+
+// Icon Font.
+$font-path: "../assets/fonts";
+
+@font-face {
+  font-family: "jfk-icons";
+  src:
+    url("#{$font-path}/jfk-icons.eot") format("embedded-opentype"),
+    url("#{$font-path}/jfk-icons.ttf") format("truetype"),
+    url("#{$font-path}/jfk-icons.woff") format("woff"),
+    url("#{$font-path}/jfk-icons.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

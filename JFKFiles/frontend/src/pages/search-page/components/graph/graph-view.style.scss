@@ -1,0 +1,46 @@
+@import "../../../../theme/palette";
+
+.container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  .node {
+    cursor: pointer;
+  }
+
+  .edge {
+    pointer-events: none;
+    stroke: darken($colorGrey, 50%);
+  }
+
+  .arrow {
+    fill: $colorGrey;
+    stroke: darken($colorGrey, 50%);
+  }
+
+  .label {
+    cursor: pointer;
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    .label-inner {
+      text-anchor: middle;
+      alignment-baseline: hanging;
+      fill: $colorWhite;
+    }
+
+    .label-stroke {
+      @extend .label-inner;
+
+      stroke: $colorBlack;
+      stroke-width: 5;
+    }
+  }
+
+  .labelarc {
+    fill: none;
+  }
+}

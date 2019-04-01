@@ -1,0 +1,11 @@
+@import "../../../../theme/_breakpoints.scss";
+
+.body {
+  margin-left: 0.75rem;
+  font-size: 0.85rem;
+
+  @include respond-to-desktop {
+    margin-left: 1.75rem;
+    font-size: 1rem;
+  }
+}

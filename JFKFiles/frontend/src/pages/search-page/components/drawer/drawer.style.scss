@@ -1,0 +1,42 @@
+@import "../../../../theme/_palette.scss";
+
+$drawer-max-width: 31rem;
+$dock-visible-width: 5rem;
+
+@mixin border-separator {
+  border-right-width: 0.65rem;
+  border-right-color: transparentize($colorGrey, 0.65);
+  border-right-style: solid;
+}
+
+.drawer-dock {
+  @include border-separator;
+
+  margin-left: 0;
+  color: inherit;
+
+  .drawer-paper-desktop {
+    position: static;
+    width: $drawer-max-width;
+    padding: 2.5rem;
+    transition: width 0.15s ease-out;
+  
+    &-hidden {
+      @extend .drawer-paper-desktop;
+  
+      width: $dock-visible-width;
+      overflow-x: hidden;
+    }
+  }
+}
+
+.drawer-paper-mobile {
+  @include border-separator;
+
+  width: 85vw;
+  max-width: $drawer-max-width;
+  padding: 1.25rem;
+  background-color: $colorPrimaryDarker !important;
+}
+
+

@@ -1,0 +1,42 @@
+@import "./../../../../theme/_breakpoints.scss";
+
+.container {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  @include respond-to-desktop {
+    flex-direction: row;
+  }
+}
+
+.hocr-preview {
+  box-sizing: border-box;
+  padding: 1rem;
+  height: 50%;
+  width: unset;
+
+  @include respond-to-desktop {
+    width: 50%;
+    height: unset;
+  }
+}
+
+.hocr-document {
+  box-sizing: border-box;
+  padding: 1rem;
+  height: 50%;
+  width: unset;
+
+  @include respond-to-desktop {
+    width: 50%;
+    height: unset;
+  }
+
+  &-hidden {
+    display: none;
+  }
+}

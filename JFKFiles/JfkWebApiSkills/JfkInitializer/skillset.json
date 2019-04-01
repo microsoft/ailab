@@ -1,0 +1,338 @@
+﻿{
+    "description": "JFK Files Skillset",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "defaultLanguageCode": "en",
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text"
+                },
+                {
+                    "name": "layoutText"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "handwritten",
+            "defaultLanguageCode": "en",
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "handwrittenText"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "handwrittenLayoutText"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.ImageAnalysisSkill",
+            "visualFeatures": [
+                "Tags",
+                "Description"
+            ],
+            "details": [ "Celebrities" ],
+            "context": "/document/normalized_images/*",
+            "defaultLanguageCode": "en",
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "tags",
+                    "targetName": "Tags"
+                },
+                {
+                    "name": "description",
+                    "targetName": "Description"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "description": "Merge native text content and inline OCR content where images were present",
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "nativeTextAndOcr"
+                },
+                {
+                    "name": "mergedOffsets",
+                    "targetName": "mergedOffsetsAfterOcr"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "description": "Merge native text content and inline OCR content where images were present",
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/nativeTextAndOcr"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/handwrittenText"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/mergedOffsetsAfterOcr"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "nativeTextAndOcrAndHandwriting"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "description": "Merge text content with image captions",
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/nativeTextAndOcrAndHandwriting"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/Description/captions/*/text"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "fullTextAndCaptions"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "description": "Merge text content with image tags",
+            "insertPreTag": " ",
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/fullTextAndCaptions"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/Tags/*/name"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "finalText"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+            "description": "Split text into pages for subsequent skill processing",
+            "textSplitMode": "pages",
+            "maximumPageLength": 5000,
+            "context": "/document/finalText",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/finalText"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "textItems",
+                    "targetName": "pages"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/finalText"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "languageCode"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.NamedEntityRecognitionSkill",
+            "categories": [
+                "Person",
+                "Location",
+                "Organization"
+            ],
+            "context": "/document/finalText/pages/*",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/finalText/pages/*"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/languageCode"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "entities",
+                    "targetName": "entities"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
+            "description": "Create a custom OCR image metadata object used to generate an HOCR document",
+            "context": "/document/normalized_images/*",
+            "inputs": [
+                {
+                    "name": "handwrittenLayoutText",
+                    "source": "/document/normalized_images/*/handwrittenLayoutText"
+                },
+                {
+                    "name": "layoutText",
+                    "source": "/document/normalized_images/*/layoutText"
+                },
+                {
+                    "name": "imageStoreUri",
+                    "source": "/document/normalized_images/*/imageStoreUri"
+                },
+                {
+                    "name": "width",
+                    "source": "/document/normalized_images/*/width"
+                },
+                {
+                    "name": "height",
+                    "source": "/document/normalized_images/*/height"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "targetName": "ocrImageMetadata"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+            "description": "Upload image data to the annotation store",
+            "uri": "[AzureFunctionEndpointUrl]/api/image-store?code=[AzureFunctionDefaultHostKey]",
+            "batchSize": 1,
+            "context": "/document/normalized_images/*",
+            "httpHeaders": {
+                "BlobContainerName": "[BlobContainerName]"
+            },
+            "inputs": [
+                {
+                    "name": "imageData",
+                    "source": "/document/normalized_images/*/data"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "imageStoreUri",
+                    "targetName": "imageStoreUri"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+            "description": "Generate HOCR for webpage rendering",
+            "uri": "[AzureFunctionEndpointUrl]/api/hocr-generator?code=[AzureFunctionDefaultHostKey]",
+            "batchSize": 1,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "ocrImageMetadataList",
+                    "source": "/document/normalized_images/*/ocrImageMetadata"
+                },
+                {
+                    "name": "wordAnnotations",
+                    "source": "/document/cryptonyms"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "hocrDocument",
+                    "targetName": "hocrDocument"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+            "description": "Cryptonym linker",
+            "uri": "[AzureFunctionEndpointUrl]/api/link-cryptonyms-list?code=[AzureFunctionDefaultHostKey]",
+            "batchSize": 1,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "words",
+                    "source": "/document/normalized_images/*/layoutText/words/*/text"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "cryptonyms",
+                    "targetName": "cryptonyms"
+                }
+            ]
+        }
+    ]
+}
