@@ -100,8 +100,8 @@ Let's create a basic bot using the SDK V4, we'll run it locally in Visual Studio
 1. Open **Visual Studio 2017** from the Start Menu.
 1. Click **Create new project...**. You can also find this option in VS Menu: **File > New > Project**.
 1. In the search box from the top right corner type: `bot`.
-1. Select `Bot Builder Echo Bot V4`.
-1. Provide a name for your new project: `ChatBot`.
+1. Select `EchoBot`.
+1. Provide a name for your new project: `EchoBot`.
 1. Click **Ok**.
 
     > NOTE: The template has pre-installed the latest version of the new Bot Framework SDK.
@@ -110,14 +110,14 @@ Let's create a basic bot using the SDK V4, we'll run it locally in Visual Studio
 
 The bot emulator provides a convenient way to interact and debug your bot locally.
 
-1. Open the **EchoWithCounterBot.cs** file.
+1. In the **EchoBot** project, open the **EchoBotBot.cs** file.
 1. Put a **breakpoint** on line 79.
 1. Run the app by clicking on the **IIS Express** button in Visual Studio (with the green play icon).
-
     > NOTE: A new web page with the Web Chat will be opened in your browser. Don't use this one yet as we'll configure it later.
-1. Check the port that your app is using, if it is not running on port **3978** you'll need to update the Bot configuration. In order to update this setting go to Visual Studio and open the **BotConfiguration.bot** file. Update the **endpoint** setting to match the port that your app is using.
+
+1. Check the port that your app is using, if it is not running on port **3978** you'll need to update the Bot configuration. In order to update this setting go to Visual Studio and open the **EchoBot.bot** file. Update the **endpoint** setting to match the port that your app is using.
 1. Open the **Bot Framework Emulator** from the Start Menu.
-1. Click **Open Bot** and select the file `BotConfiguration.bot` from your source code.
+1. Click **Open Bot** and select the file `EchoBot.bot` from your source code.
 
     > NOTE: Previously we had to provide the bot endpoint to the emulator but now it can read all the configuration from a file.
 1. **Type** `Hello` and press enter.
@@ -132,7 +132,7 @@ The bot emulator provides a convenient way to interact and debug your bot locall
 
 Notice that when you start a conversation the bot is not showing any initial message, let's add a welcome message to display it to the user at the beginning of the conversations:
 
-1. Open the **EchoWithCounterBot.cs** file and add the following import at the beginning of the file:
+1. Open the **EchoBotBot.cs** file and add the following import at the beginning of the file:
 
     ```cs
     using System.Linq;
@@ -162,7 +162,7 @@ Language Understanding (LUIS) allows your application to understand what a perso
 
 ### A) Create a LUIS subscription
 
-While LUIS has a standalone portal for building the model, it uses Azure for subscription management. The Bot Service deployment that we initially created
+While LUIS has a standalone portal for building the model, it uses Azure for subscription management. 
 
 Create the LUIS resource in Azure:
 
@@ -174,7 +174,6 @@ Create the LUIS resource in Azure:
     * Location: `West US`.
     * Pricing tier: `F0 (5 Calls per second, 10K Calls per month)`.
     * Use existing resource group: `ttmb-lab-<your initials>`.
-    * **Confirm** that you read and understood the terms by **checking** the box.
 1. Click **Create**. This step might take a few seconds.
 1. Once the deployment is complete, you will see a **Deployment succeeded** notification.
 1. Go to **All Resources** in the left pane and **search** for the new resource (`chatbot-luis-<your initials>`).
@@ -188,7 +187,7 @@ Create the LUIS resource in Azure:
 
 Before calling LUIS, we need to train it with the kinds of phrases we expect our users to use.
 
-1. Login to the [LUIS portal](www.luis.ai).
+1. Login to the [LUIS portal](https://www.luis.ai).
 
     > NOTE: Use the same credentials as you used for logging into Azure.
 
@@ -274,7 +273,7 @@ Like all of the Cognitive Services, LUIS is accessible via a RESTful endpoint. H
 
 1. In **Visual Studio**, open **Services/BotServices.cs**.
 
-    > NOTE: The new Bot Builder SDK uses the **BotServices** class to wrap up the different cognitive services clients that will be used by the bot. It uses the **BotConfiguration.bot** file to read the settings and initialize the services required.
+    > NOTE: The new Bot Builder SDK uses the **BotServices** class to wrap up the different cognitive services clients that will be used by the bot. It uses the **EchoBot.bot** file to read the settings and initialize the services required.
 
 2. **Add** the following namespace at the top of the file:
 
@@ -310,16 +309,16 @@ Like all of the Cognitive Services, LUIS is accessible via a RESTful endpoint. H
     }
     ```
 
-5. Open the **BotConfiguration.bot** file.
+5. Open the **EchoBot.bot** file.
 6. Replace `<your_luis_app_id>`, `<your_luis_authoring_key>` and `<your_luis_subscription_key>` with the values you captured in Notepad earlier in the lab.
-7. Open **EchoWithCounterBot.cs**.
-8. **Add** the following code snippet to the`EchoWithCounterBot` constructor method to initialize and validate the **BotServices**:
+7. Open **EchoBot.cs**.
+8. **Add** the following code snippet to the`EchoBot` constructor method to initialize and validate the **BotServices**:
 
     ```cs
     _services = services ?? throw new System.ArgumentNullException(nameof(services));
-    if (!_services.LuisServices.ContainsKey(LuisKey))
+    if (!_services.LuisServices.ContainsKey(BotConstants.LuisKey))
     {
-        throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a LUIS service named '{LuisKey}'.");
+        throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a LUIS service named '{BotConstants.LuisKey}'.");
     }
     ```
 
@@ -335,7 +334,7 @@ Like all of the Cognitive Services, LUIS is accessible via a RESTful endpoint. H
 
 Modify the Bot code to handle the results from LUIS.
 
-1. Open **EchoWithCounterBot.cs**.
+1. Open **EchoBot.cs**.
 1. **Add** the following namespace at the top of the file:
 
     ```cs
@@ -386,10 +385,10 @@ Let's run the bot to see LUIS in action.
 3. If the port is different, make sure to change the settings in the Bot like it was indicating before.
 4. Return to the **Bot Framework Emulator**.
 5. Click **File** -> **Open**.
-6. Select the **bot file** `Downloads/buildanintelligentbot/src/ChatBot/BotConfiguration.bot` and wait for it to load.
+6. Select the **bot file** `Downloads/buildanintelligentbot/src/ChatBot/EchoBot.bot` and wait for it to load.
 
     > NOTE: We are now using the sample code therefore we have to open a new bot file.
-    > ALERT: Remember to adjust your bot endpoint configuration if your app doesn't use the default port 3978.
+    > ALERT: Remember to adjust your bot endpoint configuration if your app doesn't use the default port 3978. This adjustment is also required on the line 16 of the **Models/BotConstants.cs** file.
 
 7. Click the **Start Over** button to start a new conversation.
 8. **Type** `what is the specialty for today?` and press enter.
@@ -402,7 +401,7 @@ Let's run the bot to see LUIS in action.
 
 Bots are capable of interacting with users through more than just text-based chat. *TodaysSpecialties* intent allows customers to review the different options in the menu for today's recommendations. Currently, this method is returning the options as a simple text. Let's modify it and return a carousel.
 
-1. Open **EchoWithCounterBot.cs**.
+1. Open **EchoBot.cs**.
 2. **Add** the following method at the end of the class:
 
     ```cs
@@ -487,7 +486,7 @@ Configure the Dialog state:
 
 Now that our bot supports LUIS, we'll finish the implementation by using the SDK to query the reservation date, confirm the reservation, and ask any clarifying questions. And we'll skip questions if the user has already provided the information as part of their initial utterance.
 
-1. Open **EchoWithCounterBot.cs**.
+1. Open **EchoBot.cs**.
 2. **Add** the following namespace at the top of the file:
 
     ```cs
@@ -583,8 +582,8 @@ Now that our bot supports LUIS, we'll finish the implementation by using the SDK
 
     > NOTE: The method invokes the `WaterfallDialog` created in the constructor by referencing it by name (`GatherInfo`).
 
-8. Put a breakpoint on the `await dialogContext.BeginDialogAsync(PromptStep.GatherInfo);` line in the `ReservationHandlerAsync`.
-9. **Add** the following constants at the beginning of the `EchoWithCounterBot` class:
+8. Put a breakpoint on the `await dialogContext.BeginDialogAsync(GatherInfo);` line in the `ReservationHandlerAsync`.
+9. **Add** the following constants at the beginning of the `EchoBot` class:
 
     ```cs
     // Conversation steps
@@ -595,7 +594,7 @@ Now that our bot supports LUIS, we'll finish the implementation by using the SDK
     public const string ConfirmationPrompt = "confirmationPrompt";
     ```
 
-10. **Add** the following code snippet at the end of the `EchoWithCounterBot` constructor method:
+10. **Add** the following code snippet at the end of the `EchoBot` constructor method:
 
     ```cs
     _dialogs = new DialogSet(accessors.ConversationDialogState);
@@ -822,18 +821,12 @@ Setup your QnA Maker instance:
 The Bot Builder SDK has native support for adding QnA Maker to your bot.
 
 1. Return to **Visual Studio**.
-2. Open **BotConfiguration.bot** and add the QnA Maker configuration:
+2. Open **appsettings.json** and add the QnA Maker settings:
 
     ```
-    {
-      "id": "3",
-      "type": "qna",
-      "name": "QnABot",
-      "version": "",
-      "kbId": "<your knowledge base id>",
-      "endpointKey": "<your qna maker subscription key>",
-      "hostname": "<your qna maker url>"
-    }
+    "QnAKbId": "<your knowledge base id>",
+    "QnAEndpointKey": "<your qna maker subscription key>",
+    "QnAHostname": "<your qna maker url>"
     ```
     > ALERT: Make sure you update the host, endpoint key, and knowledge base ID.
 
@@ -849,32 +842,29 @@ The Bot Builder SDK has native support for adding QnA Maker to your bot.
     ```cs
     public Dictionary<string, QnAMaker> QnAServices { get; } = new Dictionary<string, QnAMaker>();
     ```
-6. **Add** the QnA Service initialization after the LUIS case:
+
+6. Open **Startup.cs**.
+7. **Add** the following namespaces at the top of the file:
 
     ```cs
-    case ServiceTypes.QnA:
-    {
-        var qna = (QnAMakerService)service;
-        if (qna == null)
-        {
-            throw new InvalidOperationException("The QnA service is not configured correctly in your '.bot' file.");
-        }
-
-        var qnaEndpoint = new QnAMakerEndpoint()
-        {
-            KnowledgeBaseId = qna.KbId,
-            EndpointKey = qna.EndpointKey,
-            Host = qna.Hostname,
-        };
-
-        var qnaMaker = new QnAMaker(qnaEndpoint);
-        this.QnAServices.Add(qna.Name, qnaMaker);
-
-        break;
-    }
+    using Microsoft.Bot.Builder.AI.QnA;
     ```
-7. Open **EchoWithCounterBot.cs**.
-8. Look for the `OnTurnAsync` method and replace the line `await turnContext.SendActivityAsync("Sorry, I didn't understand that.");` with the following code snippet:
+
+8. Look for the line `services.AddSingleton(sp => connectedServices);`  **add** the following code before it:
+
+    ```cs
+    // We add the the QnA service to the connected services.
+      var qnaMaker = new QnAMaker(new QnAMakerEndpoint()
+      {
+        KnowledgeBaseId = Configuration["QnAKbId"],
+        EndpointKey = Configuration["QnAEndpointKey"],
+        Host = Configuration["QnAHostname"],
+      });
+      connectedServices.QnAServices.Add(BotConstants.QnAMakerKey, qnaMaker);
+    ```
+
+9. Open **EchoBot.cs**.
+10. Look for the `OnTurnAsync` method and replace the line `await turnContext.SendActivityAsync("Sorry, I didn't understand that.");` with the following code snippet:
 
     ```cs
     // Check QnA Maker model
@@ -904,7 +894,7 @@ Let's make our bot more user friendly by adding the Personality Chat. This cogni
 
 ### A) Add Project Personality Chat to the bot
 
-The Bot Builder SDK has native support for adding QnA Maker to your bot. The code provided already includes the Personality Chat NuGet package `Microsoft.Bot.Builder.PersonalityChat`, all we have to do is configure the Middleware.
+The Bot Builder SDK enables chitchat capabilities by using the PersonalityChat middleware. The code provided already includes the Personality Chat NuGet package `Microsoft.Bot.Builder.PersonalityChat`, all we have to do is configure the Middleware.
 
 1. Return to **Visual Studio**.
 2. Open **Startup.cs**.
@@ -931,6 +921,8 @@ The Bot Builder SDK has native support for adding QnA Maker to your bot. The cod
 
     > NOTE: Review the image below to see which utterances you can try and what output to expect in each case.
 
+    ![personality chat samples](./resources/personality_chat_samples.png)  
+
 ## Adding Speech support (Text-to-Speech and Speech-to-Text)
 
 In this section we will enable speech in Web Chat to recognize speech and send the transcript to the bot. We will also use Text to Speech from Speech service to generate SSML and send audio back from the Web Chat.
@@ -942,9 +934,11 @@ In this section we will enable speech in Web Chat to recognize speech and send t
 1. **Select** the *Speech* result and then click the **Create** button.
 1. Provide the required information:
     * App name: `speech-<your_initials>`.
-    * Location: `West US`.
+    * Location: `East US`.
     * Pricing tier: `S0`.
     * Use existing resource group: `ttmb-lab-<your initials>`.
+    > [!ALERT] Make sure to select `East US` for the location as the Neural voice we will use ahead on the lab is available only in a limited set of regions. [Here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/regions#neural-voices) you can find more information about the neural voices regions.
+    
 1. Click **Create**. This step might take a few seconds.
 1. Once the deployment is complete, you will see a **Deployment succeeded** notification.
 1. Go to **All Resources** in the left pane and **search** for the new resource (`speech-<your initials>`).
@@ -971,10 +965,10 @@ Speech is available as a component called `SpeechRecognizer` in the Web Chat con
 
 ### C) Add Text to Speech to bot
 
-For this scenario we will generate the audio SSML in the backend (our bot code). We'll use one of the pre set voices and play the audio by using the Speech synthesizer component from the Web Chat. The synthesizer was adjusted to use the Speech websockets endpoint, which in the background uses the regular Bing text-to-speech feature.
+For this scenario we will generate the audio SSML in the backend (our bot code). We'll use one of the pre set neural voices and play the audio by using the Speech synthesizer component from the Web Chat. The idea of use a neural voice is to create the interacions in a more natural way as the sinthethized speech of a neural voice is very close of a human recording. The synthesizer was adjusted to use the Speech websockets endpoint, which in the background uses the regular Bing text-to-speech feature.
 
-1. Open **EchoWithCounterBot.cs**.
-2. **Add** the following variable at the beginning of the **EchoWithCounterBot** class:
+1. Open **EchoBot.cs**.
+2. **Add** the following variable at the beginning of the **EchoBot** class:
 
     ```cs
     private readonly TextToSpeechService _ttsService;
@@ -984,6 +978,8 @@ For this scenario we will generate the audio SSML in the backend (our bot code).
     ```cs
     _ttsService = new TextToSpeechService(config.Value.VoiceFontName, config.Value.VoiceFontLanguage);
     ```
+    > NOTE: The `TextToSpeechService` selects the `JessaNeural` voice for the `en-US` language, [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#neural-voices-preview) you can find more information about Neural voices.
+
 4. **Modify** the *OnTurnAsync* method. Look for the welcome message `"Hi! I'm a restaurant assistant bot.` and **replace** the next line (`await turnContext.SendActivityAsync(msg);`) to include the audio SSML in the response:
 
     ```cs
@@ -1079,7 +1075,7 @@ Building a custom language model allows us to improve the vocabulary of our spee
 1. Click **Create New** and provide the requested information:
     * Name: `Food Language Model`.
     * Locale: `en-US`.
-    * Scenario: `Unified V3 EMBR - ULM`. 
+    * Scenario: `v4.5 Unified`. 
     * Language Data: auto populated with the sample data previously created.
     * Pronunciation Data: `Custom Pronunciation Data`.
 1. Click **Create**. It will display a table with your new model. This can take several minutes to complete (between 20 - 30 minutes).
@@ -1091,7 +1087,7 @@ Now that our model has finished building, we can quickly turn it into a web serv
 1. Click the **Endpoints** option from the top menu.
 1. Click **Create New** and provide the requested information:
     * Name: `cris-ttmb-<your initials>`.
-    * Scenario: Unified V3 EMBR - ULM.
+    * Scenario: v4.5 Unified.
     * Language Model: the model previously created should appear selected.
     * Accept terms & conditions
 1. Click **Create**. It will display a table with your new deployment. Wait for the **Status** to change to **Succeeded**.
@@ -1177,13 +1173,13 @@ The Translator Speech API allows to integrate the service into existing applicat
             Configuration["SpeechSubscriptionKey"],
             Configuration["TranslatorTextSubscriptionKey"],
             Configuration["Region"],
-            conversationState.CreateProperty<ReservationData>(EchoBotAccessors.ReservationStateName),
+            conversationState.CreateProperty<ReservationData>(EchoBotAccessors.ReservationStateName)
         ));
     ```
 
 1. Open the **appsettings.json** file.
 1. Replace the **<your_speech_subscription_key>** and **<your_translator_text_subscription_key>** values with the keys previously obtained from Azure.
-1. Open the **EchoWithCounterBot.cs** file.
+1. Open the **EchoBot.cs** file.
 1. **Modify** the `OnTurnAsync` method, and in the switch statement `switch (topIntent?.intent)` add the following code snippet before the default case:
     ```cs
     case "GetDiscounts":
@@ -1219,7 +1215,7 @@ Deploy and test translator speech:
 
 ## Adding a Bot to a Web Application
 
-We'll see how simple it is to add the web chat widget to a web application, using the bot deployed in Azure. In `Downloads\buildanintelligentbot\resources` you will find a folder named `restaurant` with a standalone website, which could easily be replaced with a modern single page application (SPA). You can see this website in action by serving it from an HTTP server or by opening `index.html` in a browser.
+We'll see how simple it is to add the web chat widget to a web application, using the bot deployed in Azure. In `Downloads\buildanintelligentbot\resources` you will find a zip file named `restaurant-lab.zip` with a standalone website, which could easily be replaced with a modern single page application (SPA). You can see this website in action by serving it from an HTTP server or by opening `index.html` in a browser.
 
 ### A) Add the Web Chat Libraries
 
@@ -1266,7 +1262,7 @@ Now that we have in place the logic that makes the web chat work and the DOM ele
 
       const speechSynthesizer = new CognitiveServices.SpeechSynthesizer({
         subscriptionKey: speechSubscriptionKey,
-        customVoiceEndpointUrl: 'https://westus.tts.speech.microsoft.com/cognitiveservices/v1',
+        customVoiceEndpointUrl: 'https://eastus.tts.speech.microsoft.com/cognitiveservices/v1',
       });
 
       const speechOptions = {

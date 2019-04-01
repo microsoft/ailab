@@ -84,7 +84,7 @@ namespace ChatBot.Services
             }
             else
             {
-                dictionary["en"] = new KeyValuePair<string, string>("en-US", $"{prefix} (en-US, JessaRUS)");
+                dictionary["en"] = new KeyValuePair<string, string>("en-US", $"{prefix} (en-US, JessaNeural)");
                 dictionary["es"] = new KeyValuePair<string, string>("es-ES", $"{prefix} (es-ES, Laura, Apollo)");
                 dictionary["fr"] = new KeyValuePair<string, string>("fr-FR", $"{prefix} (fr-FR, Julie, Apollo)");
                 dictionary["de"] = new KeyValuePair<string, string>("de-DE", $"{prefix} (de-DE, Hedda)");

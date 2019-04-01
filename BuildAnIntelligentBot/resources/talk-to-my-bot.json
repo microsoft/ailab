@@ -1,6 +1,6 @@
 {
   "luis_schema_version": "3.0.0",
-  "versionId": "0.1",
+  "versionId": "0.2",
   "name": "talk-to-my-bot",
   "desc": "",
   "culture": "en-us",
