@@ -1,0 +1,61 @@
+@import "./../../theme/_breakpoints.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  overflow: auto;
+  min-height: 21.6rem;
+
+  @include respond-to-desktop {
+    min-height: 30rem;
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 auto;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    height: 50%;
+    width: 50%;
+    color: inherit;
+
+    .logo-svg {
+      width: 100%;
+      height: 100%;
+      min-width: 7.5rem;
+      min-height: 7.5rem;
+      max-width: 22.5rem;
+      max-height: 22.5rem;
+      margin: 2.5rem 0 6.25rem;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 auto;
+    align-items: center;
+    width: 80vw;
+    max-width: 42rem;
+    margin-top: 3.6rem;
+
+    @include respond-to-desktop {
+      margin-top: 5rem;
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}

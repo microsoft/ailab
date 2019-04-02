@@ -1,0 +1,9 @@
+node_modules
+dist/
+.DS_Store
+*.orig
+.idea/
+.vscode/
+.dist/
+desktop.ini
+package-lock.json

@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "fb10d70d-7b9c-4cd2-b418-3d5691192060",
+		"name": "Azure Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Data Source",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{searchServiceKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"name\" : \"your data source name\",  \r\n    \"description\" : \"JFK Lab data source.\",  \r\n    \"type\" : \"Required. Must be one of 'azuresql', 'documentdb', 'azureblob', or 'azuretable'\",\r\n    \"credentials\" : { \"connectionString\" : \"Required. Connection string for your data source\" },  \r\n    \"container\" : { \"name\" : \"jfkfiles\" } \r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchServiceName}}.search.windows.net/datasources?api-version=2017-11-11-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchServiceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"datasources"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2017-11-11-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Skillset",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{searchServiceKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"JFK Files Skillset\",\r\n    \"skills\": [\r\n    \t{\r\n\t        \"@odata.type\": \"#Microsoft.Skills.Vision.OcrSkill\",\r\n\t        \"context\": \"/document/normalized_images/*\",\r\n\t        \"textExtractionAlgorithm\": \"printed\",\r\n\t        \"defaultLanguageCode\": \"en\",\r\n\t        \"inputs\": [\r\n\t            {\r\n\t                \"name\": \"image\",\r\n\t                \"source\": \"/document/normalized_images/*\"\r\n\t            }\r\n\t        ],\r\n\t        \"outputs\": [\r\n\t            {\r\n                    \"name\": \"text\"\r\n                },\r\n                {\r\n                    \"name\": \"layoutText\"\r\n                }\r\n\t        ]\r\n    \t},\r\n\t    {\r\n  \t        \"@odata.type\": \"#Microsoft.Skills.Text.MergeSkill\",\r\n\t        \"description\": \"Create merged text, which includes all the textual representation of each image inserted at the right location in the content field.\",\r\n\t        \"context\": \"/document\",\r\n\t        \"insertPreTag\": \" \",\r\n\t        \"insertPostTag\": \" \",\r\n\t        \"inputs\": [\r\n\t          {\r\n\t            \"name\": \"text\", \"source\": \"/document/content\"\r\n\t          },\r\n\t          {\r\n\t            \"name\": \"itemsToInsert\", \"source\": \"/document/normalized_images/*/text\"\r\n\t          },\r\n\t          {\r\n\t            \"name\": \"offsets\", \"source\": \"/document/normalized_images/*/contentOffset\" \r\n\t          }\r\n\t        ],\r\n\t        \"outputs\": [\r\n\t          {\r\n\t            \"name\": \"mergedText\",\r\n\t            \"targetName\" : \"finalText\"\r\n\t          }\r\n\t        ]\r\n\t    }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchServiceName}}.search.windows.net/skillsets/[skillset_name]?api-version=2017-11-11-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchServiceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"skillsets",
+						"[skillset_name]"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2017-11-11-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{searchServiceKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fields\": [\n        {\n            \"name\": \"id\",\n            \"type\": \"Edm.String\",\n            \"searchable\": true,\n            \"filterable\": true,\n            \"retrievable\": true,\n            \"sortable\": true,\n            \"facetable\": false,\n            \"key\": true\n        },\n        {\n            \"name\": \"fileName\",\n            \"type\": \"Edm.String\",\n            \"searchable\": false,\n            \"filterable\": false,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        },\n        {\n            \"name\": \"metadata\",\n            \"type\": \"Edm.String\",\n            \"searchable\": false,\n            \"filterable\": false,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        },\n        {\n            \"name\": \"text\",\n            \"type\": \"Edm.String\",\n            \"searchable\": true,\n            \"filterable\": false,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        },\n        {\n            \"name\": \"cryptonyms\",\n            \"type\": \"Collection(Edm.String)\",\n            \"searchable\": false,\n            \"filterable\": true,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": true\n        },\n        {\n            \"name\": \"demoBoost\",\n            \"type\": \"Edm.Int32\",\n            \"searchable\": false,\n            \"filterable\": true,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        },\n        {\n            \"name\": \"demoInitialPage\",\n            \"type\": \"Edm.Int32\",\n            \"searchable\": false,\n            \"filterable\": false,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        },\n        {\n            \"name\": \"enriched\",\n            \"type\": \"Edm.String\",\n            \"searchable\": false,\n            \"filterable\": false,\n            \"retrievable\": true,\n            \"sortable\": false,\n            \"facetable\": false\n        }\n    ],\n    \"scoringProfiles\": [\n        {\n            \"name\": \"demoBooster\",\n            \"text\": null,\n            \"functions\": [\n                {\n                    \"fieldName\": \"demoBoost\",\n                    \"interpolation\": \"linear\",\n                    \"magnitude\": {\n                        \"boostingRangeStart\": 0,\n                        \"boostingRangeEnd\": 100,\n                        \"constantBoostBeyondRange\": true\n                    },\n                    \"type\": \"magnitude\",\n                    \"boost\": 1000\n                }\n            ],\n            \"functionAggregation\": \"sum\"\n        }\n    ],\n    \"corsOptions\": {\n        \"allowedOrigins\": [ \"*\" ]\n    }\n}"
+				},
+				"url": {
+					"raw": "https://{{searchServiceName}}.search.windows.net/indexes/[index_name]?api-version=2017-11-11-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchServiceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"[index_name]"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2017-11-11-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Indexer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{searchServiceKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"[IndexerName]\",\n    \"targetIndexName\": \"[IndexName]\",\n    \"dataSourceName\": \"[DataSourceName]\",\n    \"skillsetName\": \"[SkillSetName]\",\n    \"parameters\": {\n        \"batchSize\": 1,\n        \"maxFailedItems\": 0,\n        \"maxFailedItemsPerBatch\": 0,\n        \"configuration\": {\n            \"dataToExtract\": \"contentAndMetadata\",\n            \"imageAction\": \"generateNormalizedImages\",\n            \"normalizedImageMaxWidth\": 3200,\n            \"normalizedImageMaxHeight\": 3200\n        }\n    },\n    \"fieldMappings\": [\n        {\n            \"sourceFieldName\": \"metadata_storage_name\",\n            \"targetFieldName\": \"fileName\"\n        },\n        {\n            \"sourceFieldName\": \"metadata_custom_demoBoost\",\n            \"targetFieldName\": \"demoBoost\"\n        },\n        {\n            \"sourceFieldName\": \"metadata_custom_demoInitialPage\",\n            \"targetFieldName\": \"demoInitialPage\"\n        }\n    ],\n    \"outputFieldMappings\": [\n        {\n            \"sourceFieldName\": \"/document/finalText\",\n            \"targetFieldName\": \"text\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://{{searchServiceName}}.search.windows.net/indexers/[indexer_name]?api-version=2017-11-11-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchServiceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexers",
+						"[indexer_name]"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2017-11-11-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Custom Skill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"values\": [\r\n        {\r\n            \"recordId\": \"a1\",\r\n            \"data\":\r\n            {\r\n               \"word\":  \"KU\"\r\n            }\r\n        },\r\n        {\r\n        \t\"recordId\": \"a2\",\r\n            \"data\":\r\n        \t{\r\n            \t\"word\": \"QDELF\"\r\n            }\r\n        }\r\n   ]\r\n}"
+				},
+				"url": {
+					"raw": "https://[function_app_name].azurewebsites.net/api/link-cryptonyms?code=[function_host_key]",
+					"protocol": "https",
+					"host": [
+						"[function_app_name]",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"link-cryptonyms"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "[function_host_key]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Skillset",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{searchServiceKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"JFK Files Skillset\",\r\n    \"skills\": [\r\n    \t{\r\n\t        \"@odata.type\": \"#Microsoft.Skills.Vision.OcrSkill\",\r\n\t        \"context\": \"/document/normalized_images/*\",\r\n\t        \"textExtractionAlgorithm\": \"printed\",\r\n\t        \"defaultLanguageCode\": \"en\",\r\n\t        \"inputs\": [\r\n\t            {\r\n\t                \"name\": \"image\",\r\n\t                \"source\": \"/document/normalized_images/*\"\r\n\t            }\r\n\t        ],\r\n\t        \"outputs\": [\r\n\t            {\r\n\t                \"name\": \"text\"\r\n\t            }\r\n\t        ]\r\n    \t},\r\n\t    {\r\n  \t        \"@odata.type\": \"#Microsoft.Skills.Text.MergeSkill\",\r\n\t        \"description\": \"Create merged text, which includes all the textual representation of each image inserted at the right location in the content field.\",\r\n\t        \"context\": \"/document\",\r\n\t        \"insertPreTag\": \" \",\r\n\t        \"insertPostTag\": \" \",\r\n\t        \"inputs\": [\r\n\t          {\r\n\t            \"name\":\"text\", \"source\": \"/document/content\"\r\n\t          },\r\n\t          {\r\n\t            \"name\": \"itemsToInsert\", \"source\": \"/document/normalized_images/*/text\"\r\n\t          },\r\n\t          {\r\n\t            \"name\":\"offsets\", \"source\": \"/document/normalized_images/*/contentOffset\" \r\n\t          }\r\n\t        ],\r\n\t        \"outputs\": [\r\n\t          {\r\n\t            \"name\": \"mergedText\",\r\n\t            \"targetName\" : \"finalText\"\r\n\t          }\r\n\t        ]\r\n\t    }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchServiceName}}.search.windows.net/skillsets/[skillset_name]?api-version=2017-11-11-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchServiceName}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"skillsets",
+						"[skillset_name]"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2017-11-11-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "9c229fa4-6f8c-49fa-9767-22fa341aad05",
+			"key": "searchServiceName",
+			"value": "",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "2248c13a-1c72-40d5-9a3f-7f493bb8a3f9",
+			"key": "searchServiceKey",
+			"value": "",
+			"type": "string",
+			"description": ""
+		}
+	]
+}

@@ -1,0 +1,20 @@
+@import "../../../../theme/breakpoints";
+
+$logo-size: 60%;
+
+.button {
+  flex-shrink: 0;
+  position: absolute !important;
+  top: 6rem;
+  right: 1.7rem;
+
+  @include respond-to-desktop {
+    top: 9.5rem;
+    right: 3.5rem;
+  }
+
+  .logo {
+    width: $logo-size;
+    height: $logo-size;
+  }
+}

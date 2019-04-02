@@ -1,0 +1,56 @@
+@import "../../../../theme/_breakpoints.scss";
+@import "../../../../theme/_palette.scss";
+@import "../../../../theme/_mixins.scss";
+
+.container {
+  position: relative;
+  width: 100%;
+  margin-top: 0.9rem;
+  margin-bottom: 2.07rem;
+
+  @include respond-to-desktop {
+    margin-top: 1.25rem;
+    margin-bottom: 2.875rem;
+  }
+
+  .input {
+    font-family: inherit;
+    font-weight: 600;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    color: $colorPrimaryDark;
+    border-width: 0;
+    border-radius: 6px;
+    outline: 0;
+    background-color: $colorWhite;
+    font-size: 1.3rem;
+    height: 3.06rem;
+    padding-left: 3rem;
+
+    @include respond-to-desktop {
+      height: 4.25rem;
+      font-size: 1.8rem;
+      padding-left: 4.25rem;
+    }
+  }
+
+  .icon {
+    @include jfk-icon;
+
+    margin: 0;
+    position: absolute;
+    color: $colorPrimaryDark;
+    z-index: 100;
+    font-size: 1.8rem;
+    left: 0.7038rem;
+    top: calc(50% - 3.06rem / 3.5);
+
+    @include respond-to-desktop {
+      font-size: 2.5rem;
+      left: 1rem;
+      top: calc(50% - 4.25rem / 3.5);
+    }
+  }
+}
+

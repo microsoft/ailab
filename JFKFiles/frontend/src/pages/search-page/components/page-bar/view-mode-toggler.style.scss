@@ -1,0 +1,26 @@
+@import "./../../../../theme/_mixins.scss";
+@import "./../../../../theme/_palette.scss";
+
+.icon {
+  @include jfk-icon;
+
+  transition: color 0.25s ease-out;
+
+  &.pulse {
+    animation-name: pulse-animation;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: 10;
+    animation-timing-function: ease-in-out;
+    text-shadow: 0 0 7px $colorPrimary;
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.8);
+  }
+}

@@ -1,0 +1,49 @@
+﻿{
+    "name": "[IndexerName]",
+    "targetIndexName": "[IndexName]",
+    "dataSourceName": "[DataSourceName]",
+    "skillsetName": "[SkillSetName]",
+    "parameters": {
+        "batchSize": 1,
+        "maxFailedItems": 0,
+        "maxFailedItemsPerBatch": 0,
+        "configuration": {
+            "dataToExtract": "contentAndMetadata",
+            "imageAction": "generateNormalizedImages",
+            "normalizedImageMaxWidth": 3200,
+            "normalizedImageMaxHeight": 3200
+        }
+    },
+    "fieldMappings": [
+        {
+            "sourceFieldName": "metadata_storage_name",
+            "targetFieldName": "fileName"
+        },
+        {
+            "sourceFieldName": "metadata_custom_demoBoost",
+            "targetFieldName": "demoBoost"
+        },
+        {
+            "sourceFieldName": "metadata_custom_demoInitialPage",
+            "targetFieldName": "demoInitialPage"
+        }
+    ],
+    "outputFieldMappings": [
+        {
+            "sourceFieldName": "/document/finalText",
+            "targetFieldName": "text"
+        },
+        {
+            "sourceFieldName": "/document/hocrDocument/metadata",
+            "targetFieldName": "metadata"
+        },
+        {
+            "sourceFieldName": "/document/finalText/pages/*/entities/*/value",
+            "targetFieldName": "entities"
+        },
+        {
+            "sourceFieldName": "/document/cryptonyms",
+            "targetFieldName": "cryptonyms"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+@import "./../../../../theme/_breakpoints.scss";
+
+.caption {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    margin: 0;
+    font-size: 1rem;
+
+    @include respond-to-desktop {
+      font-size: 1.25rem;
+    }
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 0.75rem;
+
+    @include respond-to-desktop {
+      font-size: 1rem;
+    }
+  }
+}

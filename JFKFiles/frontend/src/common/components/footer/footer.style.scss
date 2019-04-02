@@ -1,0 +1,72 @@
+@import "./../../../theme/_breakpoints.scss";
+@import "./../../../theme/_palette.scss";
+
+@mixin footer-text {
+  color: $colorWhite;
+  font-size: 0.65rem;
+
+  @include respond-to-desktop {
+    font-size: 0.8rem;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  height: 2rem;
+  padding: 0 1.75rem;
+
+  @include respond-to-desktop {
+    height: 3.5rem;
+    padding: 0.25rem 2.75rem;
+  }
+
+  .logo-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    .logo-svg {
+      flex-shrink: 0;
+      flex-grow: 0;
+      height: 1rem;
+
+      @include respond-to-desktop {
+        height: 1.8rem;
+      }
+    }
+  }
+
+
+  .link-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    opacity: 0.5;
+    width: 10rem;
+
+    .link {
+      @include footer-text;
+
+      margin-left: 1rem;
+    }
+  }
+
+  .statement-area {
+    @include footer-text;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10rem;    
+
+    opacity: 0.5;
+  }
+}
+

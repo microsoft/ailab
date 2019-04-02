@@ -1,0 +1,24 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+.drawer-container {
+  // Entry point.
+}
+
+.main-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}

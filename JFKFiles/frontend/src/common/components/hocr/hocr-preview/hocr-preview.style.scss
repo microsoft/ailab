@@ -1,0 +1,22 @@
+.container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.viewport {
+  display: block;
+  width: 100%;
+  flex-grow: 1;
+  margin: 0;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  background-color: lightgrey;
+
+  &.no-scrollable {
+    overflow: hidden;
+    scroll-behavior: unset;
+  }
+}
