@@ -1,0 +1,16 @@
+@import "./../../../../theme/_palette.scss";
+
+.popup {
+  min-width: 10rem;
+  max-width: 40rem;
+  min-height: 4rem;
+  padding: 1rem;
+  color: $colorBlack;
+  background-color: $colorWhite;
+  border-radius: 6px;
+  position: absolute;
+  box-shadow:
+    0 -14px 28px rgba(0, 0, 0, 0.25),
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+}

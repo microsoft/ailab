@@ -1,0 +1,31 @@
+@import "../../../../theme/_palette.scss";
+
+.container {
+  position: relative;
+
+  .input {
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: inherit;
+  }
+
+  .underline::before,
+  .underline:hover::before {
+    background-color: transparentize($colorGrey, 0.5) !important;
+  }
+
+  .underline::after {
+    background-color: $colorPrimary;
+  }
+
+  .dropdown-area {
+    position: absolute;
+    width: 100%;
+    z-index: 1500;
+    background-color: transparentize(darken($colorGrey, 85%), 0.2);
+
+    .suggestion-item {
+      color: inherit;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "./../../../theme/_palette.scss";
+
+.vertical-separator {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  width: 1px;
+  margin: 0 0.75rem;
+  background-color: darken($colorGrey, 50%);
+  opacity: 0.5;
+}

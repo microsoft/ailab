@@ -1,0 +1,42 @@
+@mixin default-fill {
+  fill: none;
+  pointer-events: fill;
+}
+
+.area {
+  @include default-fill();
+}
+
+.par {
+  @include default-fill();
+}
+
+.line {
+  @include default-fill();
+
+  &:hover {
+    // stroke: #ffac30;
+    // stroke-width: 1.5;
+    // stroke-dasharray: 0;
+  }
+}
+
+.word {
+  @include default-fill();
+
+  &.target {
+    fill: yellow;
+    opacity: 0.5;
+  }
+
+  &:hover,
+  &.highlight {
+    fill: #99cfff;
+    opacity: 0.5;
+    stroke: #007eff;
+    stroke-width: 3;
+    stroke-dasharray: 0;
+  }
+}
+
+

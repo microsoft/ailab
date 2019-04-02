@@ -1,0 +1,197 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "type": "string",
+            "defaultValue": "jfk-lab",
+            "metadata": {
+                "description": "Prefix for all resources created by this template"
+            }
+        },
+        "hostingPlanSku": {
+            "type": "string",
+            "defaultValue": "F1",
+            "allowedValues": [
+                "F1",
+                "D1",
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+            ],
+            "metadata": {
+                "description": "The pricing tier for the App Service plan"
+            }
+        },
+        "searchServiceSku": {
+            "type": "string",
+            "defaultValue": "basic",
+            "allowedValues": [
+                "free",
+                "basic",
+                "standard",
+                "standard2",
+                "standard3"
+            ],
+            "metadata": {
+                "description": "The SKU of the search service you want to create"
+            }
+        },
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS",
+                "Premium_LRS"
+            ],
+            "metadata": {
+                "description": "Storage Account type"
+            }
+        }
+    },
+    "variables": {
+        "websiteName": "[concat(parameters('resourcePrefix'), '-site-', uniqueString(resourceGroup().id, deployment().name))]",
+        "storageAccountName": "[concat(split(parameters('resourcePrefix'),'-')[0], 'storage', uniqueString(resourceGroup().id, deployment().name))]",
+        "searchServiceName": "[concat(parameters('resourcePrefix'), '-search-service-', uniqueString(resourceGroup().id, deployment().name))]",
+        "hostingPlanName": "[concat(parameters('resourcePrefix'), '-plan-', uniqueString(resourceGroup().id, deployment().name))]",
+        "functionAppName": "[concat(parameters('resourcePrefix'), '-function-app-', uniqueString(resourceGroup().id, deployment().name))]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2016-09-01",
+            "name": "[variables('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('hostingPlanSku')]"
+            },
+            "properties": {
+                "name": "[variables('hostingPlanName')]"
+            }
+        },
+        {
+            "apiVersion": "2017-10-01",
+            "name": "[variables('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "kind": "Storage"
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "name": "[variables('websiteName')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+            ],
+            "properties": {
+                "serverFarmId": "[variables('hostingPlanName')]"
+            }
+        },
+        {
+            "apiVersion": "2015-08-19",
+            "name": "[variables('searchServiceName')]",
+            "type": "Microsoft.Search/searchServices",
+            "location": "southcentralus",
+            "sku": {
+                "name": "[parameters('searchServiceSku')]"
+            }
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "name": "[variables('functionAppName')]",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
+                "[resourceId('Microsoft.Search/searchServices', variables('searchServiceName'))]"
+            ],
+            "properties": {
+                "name": "[variables('functionAppName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "beta"
+                        },
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "AzureWebJobsDashboard",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "BlobStorageAccountConnectionString",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "SearchServiceName",
+                            "value": "[variables('searchServiceName')]"
+                        },
+                        {
+                            "name": "SearchServiceApiKey",
+                            "value": "[listAdminKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceName')), '2015-08-19').primaryKey]"
+                        }
+                    ],
+                    "cors": {
+                        "allowedOrigins": [
+                            "[concat('https://', variables('websiteName'), '.azurewebsites.net')]"
+                        ]
+                    },
+                    "minTlsVersion": "1.0"
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "Subscription Id" : {
+            "type": "string",
+            "value": "[subscription().subscriptionId]"
+        },
+        "Search Service Name": {
+            "type": "string",
+            "value": "[variables('searchServiceName')]"
+        },
+        "Search Service Api Key": {
+            "type": "string",
+            "value": "[listAdminKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceName')), '2015-08-19').primaryKey]"
+        },
+        "Blob Storage Account Connection String": {
+            "type": "string",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+        },
+        "Azure Web App Site Name": {
+            "type": "string",
+            "value": "[variables('websiteName')]"
+        },
+        "Azure Web App Username": {
+            "type": "string",
+            "value": "[list(concat('Microsoft.Web/sites/', variables('websiteName'), '/config/publishingcredentials'), '2016-08-01').properties.publishingUserName]"
+        },
+        "Azure Web App Password": {
+            "type": "string",
+            "value": "[list(concat('Microsoft.Web/sites/', variables('websiteName'), '/config/publishingcredentials'), '2016-08-01').properties.publishingPassword]"
+        },
+        "Azure Function Site Name": {
+            "type": "string",
+            "value": "[variables('functionAppName')]"
+        }
+    }
+}

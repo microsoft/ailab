@@ -1,0 +1,50 @@
+@import "./../../../../theme/_mixins.scss";
+@import "./../../../../theme/_breakpoints.scss";
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 1rem;
+
+  @include respond-to-desktop {
+    margin: 1rem 2rem;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .toggle-view {
+    flex: 0 0 auto;
+    padding: 0;
+    margin-right: 0.5rem;
+  }
+
+  .icon {
+    @include jfk-icon;
+  }
+
+  .toggle-icon {
+    @extend .icon;
+
+    transition: color 0.25s ease-out;
+  }
+
+  .close-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close-icon {
+    @extend .icon;
+
+    font-size: 3.6rem;
+  }
+}

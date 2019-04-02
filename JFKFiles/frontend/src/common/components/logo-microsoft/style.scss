@@ -1,0 +1,43 @@
+@import "../../../theme/_palette.scss";
+
+@mixin common {
+  fill: $colorWhite;
+}
+
+.logo {
+  .text {
+    @include common;
+  }
+
+  .sq1 {
+    @include common;
+
+    &.colorful {
+      fill: #f25022;
+    }
+  }
+
+  .sq2 {
+    @include common;
+
+    &.colorful {
+      fill: #02a4ef;
+    }
+  }
+
+  .sq3 {
+    @include common;
+
+    &.colorful {
+      fill: #ffb902;
+    }
+  }
+
+  .sq4 {
+    @include common;
+
+    &.colorful {
+      fill: #80ba01;
+    }
+  }
+}

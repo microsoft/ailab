@@ -1,0 +1,29 @@
+@import "../../../../theme/palette";
+
+.dialog {
+  .title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-weight: 600 !important;
+    }
+  }
+
+  .content {
+    background-color: $colorWhite;
+
+    .img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .block {
+      color: $colorBlack;
+      display: block;
+      margin: 1rem 0;
+    }
+  }
+}

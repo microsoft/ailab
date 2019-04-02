@@ -1,0 +1,49 @@
+@import "./../../../../theme/_breakpoints.scss";
+
+.appbar {
+  box-shadow: none !important;
+
+  .toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 3rem;
+    margin: 0.25rem 0.75rem;
+
+    @include respond-to-desktop {
+      height: 5rem;
+      margin: 0.25rem 1.75rem;
+    }
+
+    .menu-button {
+      @include respond-to-desktop {
+        display: none;
+      }
+    }
+
+    .logo-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-left: 3rem;
+
+      @include respond-to-desktop {
+        margin-left: 6rem;
+      }
+
+      .logo-svg {
+        flex: 1 1 auto;
+        margin: 0 0.5rem;
+        max-height: 2.5rem;
+        max-width: 100%;
+
+        @include respond-to-desktop {
+          max-height: 3.5rem;
+        }
+      }
+    }
+  }
+}

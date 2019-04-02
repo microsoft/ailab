@@ -1,0 +1,67 @@
+@import "../../../../theme/_breakpoints.scss";
+@import "../../../../theme/_palette.scss";
+@import "../../../../theme/_mixins.scss";
+
+.container {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 1.25rem 0;
+
+  @include respond-to-desktop {
+    margin: 1.5rem 0;
+  }
+
+  .control-container {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .icon {
+      @include jfk-icon;
+
+      font-size: 1.4rem;
+      margin-right: 1rem;
+
+      @include respond-to-desktop {
+        font-size: 1.8rem;
+      }
+    }
+
+    .input {
+      flex: 1 1 auto;
+      font-size: 0.8rem;
+
+      @include respond-to-desktop {
+        font-size: 1rem;
+      }
+    }
+
+    .button {
+      @include red-gradient;
+
+      flex: 0 0 auto;
+      margin-left: 1rem;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+
+      @include respond-to-desktop {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .info-container {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}

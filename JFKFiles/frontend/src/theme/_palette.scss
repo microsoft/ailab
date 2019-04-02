@@ -1,0 +1,42 @@
+$colorWhite: white;
+$colorBlack: black;
+$colorPrimary: hsl(193, 99%, 57%);
+$colorPrimaryDark: hsl(210, 100%, 20%);
+$colorPrimaryDarker: hsl(202, 38%, 14%);
+$colorSecondary: hsl(347, 88%, 34%);
+$colorBackground: white;
+$colorPaper: transparent;
+$colorGrey: rgb(236, 236, 236);
+
+// Red gradient generator cross-browser.
+// Colors for gradients
+$redStart: hsl(349, 81%, 37%);
+$redEnd: hsl(346, 88%, 20%);
+
+@mixin red-gradient {
+  // Old browsers
+  background: $redStart;
+  // FF3.6-15
+  background: -moz-linear-gradient(top, $redStart 0%, $redEnd 100%);
+  // Chrome10-25,Safari5.1-6
+  background: -webkit-linear-gradient(top, $redStart 0%, $redEnd 100%);
+  // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+  background: linear-gradient(to bottom, $redStart 0%, $redEnd 100%);
+  // IE6-9
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr="#a9122d",
+    endColorstr="#60061b",
+    GradientType=0
+  );
+}
+
+:export {
+  colorWhite: $colorWhite;
+  colorBlack: $colorBlack;
+  colorPrimary: $colorPrimary;
+  colorPrimaryDark: $colorPrimaryDark;
+  colorSecondary: $colorSecondary;
+  colorBackground: $colorBackground;
+  colorPaper: $colorPaper;
+  colorGrey: $colorGrey;
+}

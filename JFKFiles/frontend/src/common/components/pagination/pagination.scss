@@ -1,0 +1,30 @@
+@import "../../../theme/_palette.scss";
+
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  max-width: 30rem;
+  margin: auto;
+
+  .button {
+    font-size: inherit;
+    margin: 0.1rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    box-shadow: none;
+    color: inherit;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparentize($colorGrey, 0.85);
+    }
+  }
+
+  .primary {
+    color: $colorPrimary;
+    font-weight: 600;
+    background-color: transparentize($colorPrimary, 0.85);
+  }
+}
+
+

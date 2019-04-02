@@ -1,0 +1,11 @@
+@import "./../../../theme/_breakpoints.scss";
+@import "./../../../theme/_palette.scss";
+
+hr.separator {
+  background-color: $colorPrimary;
+  opacity: 0.35;
+
+  @include respond-to-desktop {
+    margin: 0 2.5rem;
+  }
+}

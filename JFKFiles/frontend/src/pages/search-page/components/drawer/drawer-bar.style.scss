@@ -1,0 +1,43 @@
+@import "../../../../theme/_breakpoints.scss";
+@import "../../../../theme/_mixins.scss";
+
+.container {
+  flex: 0 0 auto;
+  justify-content: space-between;
+
+  &-closed {
+    @extend .container;
+
+    justify-content: center;
+  }
+}
+
+.caption {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  .title {
+    margin: 0;
+    font-size: 0.9rem;
+
+    @include respond-to-desktop {
+      font-size: 1.05rem;
+    }
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 0.7rem;
+
+    @include respond-to-desktop {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.close-icon {
+  @include jfk-icon;
+}

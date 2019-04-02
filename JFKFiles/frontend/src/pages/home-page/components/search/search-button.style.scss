@@ -1,0 +1,19 @@
+@import "../../../../theme/_breakpoints.scss";
+@import "../../../../theme/_palette.scss";
+
+.button {
+  @include red-gradient;
+
+  flex: 0 0 auto;
+  border-radius: 6px !important;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 8rem;
+  height: 2.4rem;
+
+  @include respond-to-desktop {
+    font-size: 1.25rem;
+    width: 11rem;
+    height: 3.25rem;
+  }
+}

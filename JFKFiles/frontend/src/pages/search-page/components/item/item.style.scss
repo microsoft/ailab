@@ -1,0 +1,105 @@
+@import "./../../../../theme/_breakpoints.scss";
+@import "./../../../../theme/_palette.scss";
+
+$colorTranslucent: transparentize($colorGrey, 0.85);
+
+.card {
+  width: 16rem;
+  margin: 0 0.75rem 1.5rem;
+
+  @include respond-to-desktop {
+    width: 19rem;
+    margin: 0 1rem 2.5rem;
+  }
+
+  .media {
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+    height: 22rem;
+
+    @include respond-to-desktop {
+      height: 26rem;
+    }
+  }
+
+  .caption {
+    cursor: pointer;
+    background-color: $colorTranslucent;
+  }
+
+  .subtitle {
+    font-size: 0.8em;
+    margin-left: 0.3em;
+    color: silver;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $colorTranslucent;
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .star {
+    width: 16px;
+  }
+
+  .chevron {
+    margin: 0 0 0 auto;
+  }
+
+  .collapse {
+    background-color: $colorTranslucent;
+  }
+}
+
+.list-mode {
+  width: 100%;
+
+  @include respond-to-desktop {
+    width: 100%;
+  }
+
+  .media {
+    height: 14rem;
+
+    @include respond-to-desktop {
+      height: 18rem;
+    }
+  }
+
+  .media-extended {
+    @extend .media;
+
+    height: 27rem;
+
+    @include respond-to-desktop {
+      height: 36rem;
+    }
+  }
+
+  .caption {
+    height: 0;
+  }
+}
+
+
+.tag {
+  margin: 0.15rem;
+
+  &-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+  }
+}
