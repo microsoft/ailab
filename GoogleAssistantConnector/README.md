@@ -18,7 +18,7 @@ For this, we have to create a project in *Action on Google* that points to our p
 
 ### 2. Publish the project *GoogleAssitantProxy*.
 
-You can also test the project locally using ***ngrok***. I show you how [aqui](docs/googleAssistantProxy.deploy.local.es.md). 
+You can also test the project locally using ***ngrok***. I show you how [here](docs/googleAssistantProxy.deploy.local.es.md). 
 
 Once you´ve tried the solution, I recommend you integrate it into your solution and deploy it together using *DevOps*.
 
