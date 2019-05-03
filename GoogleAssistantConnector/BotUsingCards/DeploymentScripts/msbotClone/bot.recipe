@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "resources": [
+    {
+      "type": "endpoint",
+      "id": "1",
+      "name": "development",
+      "url": "http://localhost:3978/api/messages"
+    },
+    {
+      "type": "endpoint",
+      "id": "2",
+      "name": "production",
+      "url": "https://yourbotname.azurewebsites.net/api/messages"
+    },
+    {
+      "type": "appInsights",
+      "id": "3",
+      "name": "cards-Insights"
+    }
+  ]
+}

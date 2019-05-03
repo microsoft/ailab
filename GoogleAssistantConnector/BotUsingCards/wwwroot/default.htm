@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Using cards sample</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Segoe UI;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        header {
+            background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 4638.9 651.6' style='enable-background:new 0 0 4638.9 651.6;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%2355A0E0;%7D .st1%7Bfill:none;%7D .st2%7Bfill:%230058A8;%7D .st3%7Bfill:%23328BD8;%7D .st4%7Bfill:%23B6DCF1;%7D .st5%7Bopacity:0.2;fill:url(%23SVGID_1_);enable-background:new ;%7D%0A%3C/style%3E%3Crect y='1.1' class='st0' width='4640' height='646.3'/%3E%3Cpath class='st1' d='M3987.8,323.6L4310.3,1.1h-65.6l-460.1,460.1c-17.5,17.5-46.1,17.5-63.6,0L3260.9,1.1H0v646.3h3660.3 L3889,418.7c17.5-17.5,46.1-17.5,63.6,0l228.7,228.7h66.6l-260.2-260.2C3970.3,369.8,3970.3,341.1,3987.8,323.6z'/%3E%3Cpath class='st2' d='M3784.6,461.2L4244.7,1.1h-983.9l460.1,460.1C3738.4,478.7,3767.1,478.7,3784.6,461.2z'/%3E%3Cpath class='st3' d='M4640,1.1h-329.8l-322.5,322.5c-17.5,17.5-17.5,46.1,0,63.6l260.2,260.2H4640L4640,1.1L4640,1.1z'/%3E%3Cpath class='st4' d='M3889,418.8l-228.7,228.7h521.1l-228.7-228.7C3935.2,401.3,3906.5,401.3,3889,418.8z'/%3E%3ClinearGradient id='SVGID_1_' gradientUnits='userSpaceOnUse' x1='3713.7576' y1='438.1175' x2='3911.4084' y2='14.2535' gradientTransform='matrix(1 0 0 -1 0 641.3969)'%3E%3Cstop offset='0' style='stop-color:%23FFFFFF;stop-opacity:0.5'/%3E%3Cstop offset='1' style='stop-color:%23FFFFFF'/%3E%3C/linearGradient%3E%3Cpath class='st5' d='M3952.7,124.5c-17.5-17.5-46.1-17.5-63.6,0l-523,523h1109.6L3952.7,124.5z'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: right;
+            background-color: #55A0E0;
+            width: 100%;
+            font-size: 44px;
+            height: 120px;
+            color: white;
+            padding: 30px 0 40px 0px;
+            display: inline-block;
+        }
+
+        .header-icon {
+            background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%20150.2%20125%22%20style%3D%22enable-background%3Anew%200%200%20150.2%20125%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cstyle%20type%3D%22text/css%22%3E%0A%09.st0%7Bfill%3Anone%3B%7D%0A%09.st1%7Bfill%3A%23FFFFFF%3B%7D%0A%3C/style%3E%0A%3Crect%20x%3D%220.5%22%20class%3D%22st0%22%20width%3D%22149.7%22%20height%3D%22125%22/%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M59%2C102.9L21.8%2C66c-3.5-3.5-3.5-9.1%2C0-12.5l37-36.5l2.9%2C3l-37%2C36.4c-1.8%2C1.8-1.8%2C4.7%2C0%2C6.6l37.2%2C37L59%2C102.9z%22%0A%09%09/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M92.5%2C102.9l-3-3l37.2-37c0.9-0.9%2C1.4-2%2C1.4-3.3c0-1.2-0.5-2.4-1.4-3.3L89.5%2C20l2.9-3l37.2%2C36.4%0A%09%09c1.7%2C1.7%2C2.6%2C3.9%2C2.6%2C6.3s-0.9%2C4.6-2.6%2C6.3L92.5%2C102.9z%22/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M90.1%2C68.4c-4.5%2C0-8-3.5-8-8.1c0-4.5%2C3.5-8.1%2C8-8.1c4.4%2C0%2C8%2C3.7%2C8%2C8.1C98.1%2C64.7%2C94.4%2C68.4%2C90.1%2C68.4z%0A%09%09%20M90.1%2C56.5c-2.2%2C0-3.8%2C1.7-3.8%2C3.9c0%2C2.2%2C1.7%2C3.9%2C3.8%2C3.9c1.9%2C0%2C3.8-1.6%2C3.8-3.9S91.9%2C56.5%2C90.1%2C56.5z%22/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M61.4%2C68.4c-4.5%2C0-8-3.5-8-8.1c0-4.5%2C3.5-8.1%2C8-8.1c4.4%2C0%2C8%2C3.7%2C8%2C8.1C69.5%2C64.7%2C65.8%2C68.4%2C61.4%2C68.4z%0A%09%09%20M61.4%2C56.5c-2.2%2C0-3.8%2C1.7-3.8%2C3.9c0%2C2.2%2C1.7%2C3.9%2C3.8%2C3.9c1.9%2C0%2C3.8-1.6%2C3.8-3.9S63.3%2C56.5%2C61.4%2C56.5z%22/%3E%0A%3C/g%3E%0A%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            float: left;
+            height: 140px;
+            width: 140px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-text {
+            padding-left: 1%;
+            color: #FFFFFF;
+            font-family: "Segoe UI";
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 0.35px;
+            line-height: 96px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-inner-container {
+            min-width: 480px;
+            max-width: 1366px;
+            margin-left: auto;
+            margin-right: auto;
+            vertical-align: middle;
+        }
+
+        .header-inner-container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .main-content-area {
+            padding-left: 30px;
+        }
+
+        .content-title {
+            color: #000000;
+            font-family: "Segoe UI";
+            font-size: 46px;
+            font-weight: 300;
+            line-height: 62px;
+        }
+
+        .main-text {
+            color: #808080;
+            font-size: 24px;
+            font-family: "Segoe UI";
+            font-size: 24px;
+            font-weight: 200;
+            line-height: 32px;
+        }
+
+        .main-text-p1{
+            padding-top: 48px;
+            padding-bottom: 28px;
+        }
+
+        .endpoint {
+           height: 32px;    
+           width: 571px;   
+           color: #808080; 
+           font-family: "Segoe UI";    
+           font-size: 24px;    
+           font-weight: 200;   
+           line-height: 32px;
+           padding-top: 28px;
+        }
+
+        .how-to-build-section {
+            padding-top: 20px;
+            padding-left: 30px;
+        }
+
+        .how-to-build-section>h3 {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.35px;
+            line-height: 22px;
+            margin: 0 0 24px 0;
+            text-transform: uppercase;
+        }
+
+        .step-container {
+            display: flex;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .step-container dl {
+            border-left: 1px solid #A0A0A0;
+            display: block;
+            padding: 0 24px;
+            margin: 0;
+        }
+
+        .step-container dl>dt::before {
+            background-color: white;
+            border: 1px solid #A0A0A0;
+            border-radius: 100%;
+            content: '';
+            left: 47px;
+            height: 11px;
+            position: absolute;
+            width: 11px;
+        }
+
+        .step-container dl>.test-bullet::before {
+            background-color: blue;
+        }
+
+        .step-container dl>dt {
+            display: block;
+            font-size: inherit;
+            font-weight: bold;
+            line-height: 20px;
+        }
+
+        .step-container dl>dd {
+            font-size: inherit;
+            line-height: 20px;
+            margin-left: 0;
+            padding-bottom: 32px;
+        }
+
+        .step-container:last-child dl {
+            border-left: 1px solid transparent;
+        }
+
+        .ctaLink {
+            background-color: transparent;
+            border: 1px solid transparent;
+            color: #006AB1;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            white-space: normal;
+        }
+
+        .ctaLink:focus {
+            outline: 1px solid #00bcf2;
+        }
+
+        .ctaLink:hover {
+            text-decoration: underline;
+        }
+
+        .step-icon {
+            display: flex;
+            height: 38px;
+            margin-right: 15px;
+            width: 38px;
+        }
+
+        .step-icon>div {
+            height: 30px;
+            width: 30px;
+            background-repeat: no-repeat;
+        }
+
+        .ms-logo-container {
+            min-width: 580px;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            transition: bottom 400ms;
+        }
+
+        .ms-logo {
+            float: right;
+            background-image: url("data:image/svg+xml;utf8,%0A%3Csvg%20version%3D%221.1%22%20id%3D%22MS-symbol%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%20400%20120%22%20style%3D%22enable-background%3Anew%200%200%20400%20120%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cstyle%20type%3D%22text/css%22%3E%0A%09.st0%7Bfill%3Anone%3B%7D%0A%09.st1%7Bfill%3A%23737474%3B%7D%0A%09.st2%7Bfill%3A%23D63F26%3B%7D%0A%09.st3%7Bfill%3A%23167D3E%3B%7D%0A%09.st4%7Bfill%3A%232E76BC%3B%7D%0A%09.st5%7Bfill%3A%23FDB813%3B%7D%0A%3C/style%3E%0A%3Crect%20x%3D%220.6%22%20class%3D%22st0%22%20width%3D%22398.7%22%20height%3D%22119%22/%3E%0A%3Cpath%20class%3D%22st1%22%20d%3D%22M171.3%2C38.4v43.2h-7.5V47.7h-0.1l-13.4%2C33.9h-5l-13.7-33.9h-0.1v33.9h-6.9V38.4h10.8l12.4%2C32h0.2l13.1-32H171.3%0A%09z%20M177.6%2C41.7c0-1.2%2C0.4-2.2%2C1.3-3c0.9-0.8%2C1.9-1.2%2C3.1-1.2c1.3%2C0%2C2.4%2C0.4%2C3.2%2C1.3c0.8%2C0.8%2C1.3%2C1.8%2C1.3%2C3c0%2C1.2-0.4%2C2.2-1.3%2C3%0A%09c-0.9%2C0.8-1.9%2C1.2-3.2%2C1.2s-2.3-0.4-3.1-1.2C178%2C43.8%2C177.6%2C42.8%2C177.6%2C41.7z%20M185.7%2C50.6v31h-7.3v-31H185.7z%20M207.8%2C76.3%0A%09c1.1%2C0%2C2.3-0.3%2C3.6-0.8c1.3-0.5%2C2.5-1.2%2C3.6-2v6.8c-1.2%2C0.7-2.5%2C1.2-4%2C1.5c-1.5%2C0.3-3.1%2C0.5-4.9%2C0.5c-4.6%2C0-8.3-1.4-11.1-4.3%0A%09c-2.9-2.9-4.3-6.6-4.3-11c0-5%2C1.5-9.1%2C4.4-12.3c2.9-3.2%2C7-4.8%2C12.4-4.8c1.4%2C0%2C2.7%2C0.2%2C4.1%2C0.5c1.4%2C0.4%2C2.5%2C0.8%2C3.3%2C1.2v7%0A%09c-1.1-0.8-2.3-1.5-3.4-1.9c-1.2-0.5-2.4-0.7-3.6-0.7c-2.9%2C0-5.2%2C0.9-7%2C2.8c-1.8%2C1.9-2.7%2C4.4-2.7%2C7.6c0%2C3.1%2C0.8%2C5.6%2C2.5%2C7.3%0A%09C202.6%2C75.4%2C204.9%2C76.3%2C207.8%2C76.3z%20M235.7%2C50.1c0.6%2C0%2C1.1%2C0%2C1.6%2C0.1s0.9%2C0.2%2C1.2%2C0.3v7.4c-0.4-0.3-0.9-0.5-1.7-0.8%0A%09c-0.7-0.3-1.6-0.4-2.7-0.4c-1.8%2C0-3.3%2C0.8-4.5%2C2.3c-1.2%2C1.5-1.9%2C3.8-1.9%2C7v15.6h-7.3v-31h7.3v4.9h0.1c0.7-1.7%2C1.7-3%2C3-4%0A%09C232.2%2C50.6%2C233.8%2C50.1%2C235.7%2C50.1z%20M238.9%2C66.6c0-5.1%2C1.4-9.2%2C4.3-12.2c2.9-3%2C6.9-4.5%2C12.1-4.5c4.8%2C0%2C8.6%2C1.4%2C11.3%2C4.3%0A%09c2.7%2C2.9%2C4.1%2C6.8%2C4.1%2C11.7c0%2C5-1.4%2C9-4.3%2C12c-2.9%2C3-6.8%2C4.5-11.8%2C4.5c-4.8%2C0-8.6-1.4-11.4-4.2C240.3%2C75.3%2C238.9%2C71.4%2C238.9%2C66.6z%0A%09%20M246.5%2C66.3c0%2C3.2%2C0.7%2C5.7%2C2.2%2C7.4c1.5%2C1.7%2C3.6%2C2.6%2C6.3%2C2.6c2.7%2C0%2C4.7-0.9%2C6.1-2.6c1.4-1.7%2C2.1-4.2%2C2.1-7.6c0-3.3-0.7-5.8-2.2-7.5%0A%09c-1.4-1.7-3.4-2.5-6-2.5c-2.7%2C0-4.7%2C0.9-6.2%2C2.7C247.2%2C60.5%2C246.5%2C63%2C246.5%2C66.3z%20M281.5%2C58.8c0%2C1%2C0.3%2C1.9%2C1%2C2.5%0A%09c0.7%2C0.6%2C2.1%2C1.3%2C4.4%2C2.2c2.9%2C1.2%2C5%2C2.5%2C6.1%2C3.9c1.2%2C1.5%2C1.8%2C3.2%2C1.8%2C5.3c0%2C2.9-1.1%2C5.3-3.4%2C7c-2.2%2C1.8-5.3%2C2.7-9.1%2C2.7%0A%09c-1.3%2C0-2.7-0.2-4.3-0.5c-1.6-0.3-2.9-0.7-4-1.2v-7.2c1.3%2C0.9%2C2.8%2C1.7%2C4.3%2C2.2c1.5%2C0.5%2C2.9%2C0.8%2C4.2%2C0.8c1.6%2C0%2C2.9-0.2%2C3.6-0.7%0A%09c0.8-0.5%2C1.2-1.2%2C1.2-2.3c0-1-0.4-1.9-1.2-2.5c-0.8-0.7-2.4-1.5-4.6-2.4c-2.7-1.1-4.6-2.4-5.7-3.8c-1.1-1.4-1.7-3.2-1.7-5.4%0A%09c0-2.8%2C1.1-5.1%2C3.3-6.9c2.2-1.8%2C5.1-2.7%2C8.6-2.7c1.1%2C0%2C2.3%2C0.1%2C3.6%2C0.4c1.3%2C0.2%2C2.5%2C0.6%2C3.4%2C0.9v6.9c-1-0.6-2.1-1.2-3.4-1.7%0A%09c-1.3-0.5-2.6-0.7-3.8-0.7c-1.4%2C0-2.5%2C0.3-3.2%2C0.8C281.9%2C57.1%2C281.5%2C57.8%2C281.5%2C58.8z%20M297.9%2C66.6c0-5.1%2C1.4-9.2%2C4.3-12.2%0A%09c2.9-3%2C6.9-4.5%2C12.1-4.5c4.8%2C0%2C8.6%2C1.4%2C11.3%2C4.3c2.7%2C2.9%2C4.1%2C6.8%2C4.1%2C11.7c0%2C5-1.4%2C9-4.3%2C12c-2.9%2C3-6.8%2C4.5-11.8%2C4.5%0A%09c-4.8%2C0-8.6-1.4-11.4-4.2C299.4%2C75.3%2C297.9%2C71.4%2C297.9%2C66.6z%20M305.5%2C66.3c0%2C3.2%2C0.7%2C5.7%2C2.2%2C7.4c1.5%2C1.7%2C3.6%2C2.6%2C6.3%2C2.6%0A%09c2.7%2C0%2C4.7-0.9%2C6.1-2.6c1.4-1.7%2C2.1-4.2%2C2.1-7.6c0-3.3-0.7-5.8-2.2-7.5c-1.4-1.7-3.4-2.5-6-2.5c-2.7%2C0-4.7%2C0.9-6.2%2C2.7%0A%09C306.3%2C60.5%2C305.5%2C63%2C305.5%2C66.3z%20M353.9%2C56.6h-10.9v25h-7.4v-25h-5.2v-6h5.2v-4.3c0-3.3%2C1.1-5.9%2C3.2-8c2.1-2.1%2C4.8-3.1%2C8.1-3.1%0A%09c0.9%2C0%2C1.7%2C0%2C2.4%2C0.1c0.7%2C0.1%2C1.3%2C0.2%2C1.8%2C0.4V42c-0.2-0.1-0.7-0.3-1.3-0.5c-0.6-0.2-1.3-0.3-2.1-0.3c-1.5%2C0-2.7%2C0.5-3.5%2C1.4%0A%09s-1.2%2C2.4-1.2%2C4.2v3.7h10.9v-7l7.3-2.2v9.2h7.4v6h-7.4v14.5c0%2C1.9%2C0.3%2C3.3%2C1%2C4c0.7%2C0.8%2C1.8%2C1.2%2C3.3%2C1.2c0.4%2C0%2C0.9-0.1%2C1.5-0.3%0A%09c0.6-0.2%2C1.1-0.4%2C1.6-0.7v6c-0.5%2C0.3-1.2%2C0.5-2.3%2C0.7c-1.1%2C0.2-2.1%2C0.3-3.2%2C0.3c-3.1%2C0-5.4-0.8-6.9-2.5c-1.5-1.6-2.3-4.1-2.3-7.4%0A%09V56.6z%22/%3E%0A%3Cg%3E%0A%09%3Crect%20x%3D%2231%22%20y%3D%2224%22%20class%3D%22st2%22%20width%3D%2234.2%22%20height%3D%2234.2%22/%3E%0A%09%3Crect%20x%3D%2268.8%22%20y%3D%2224%22%20class%3D%22st3%22%20width%3D%2234.2%22%20height%3D%2234.2%22/%3E%0A%09%3Crect%20x%3D%2231%22%20y%3D%2261.8%22%20class%3D%22st4%22%20width%3D%2234.2%22%20height%3D%2234.2%22/%3E%0A%09%3Crect%20x%3D%2268.8%22%20y%3D%2261.8%22%20class%3D%22st5%22%20width%3D%2234.2%22%20height%3D%2234.2%22/%3E%0A%3C/g%3E%0A%3C/svg%3E%0A");
+        }
+
+        .ms-logo-container>div {
+            min-height: 60px;
+            width: 150px;
+            background-repeat: no-repeat;
+        }
+
+        .row {
+            padding: 90px 0px 0 20px;
+            min-width: 480px;
+            max-width: 1366px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .column {
+            float: left;
+            width: 45%;
+            padding-right: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .download-the-emulator {
+            height: 20px;
+            color: #0063B1;
+            font-size: 15px;
+            line-height: 20px;
+            padding-bottom: 70px;
+        }
+
+        .how-to-iframe {
+            max-width: 700px !important;
+            min-width: 650px !important;
+            height: 700px !important;
+        }
+
+        .remove-frame-height {
+            height: 10px;
+        }
+
+        @media only screen and (max-width: 1300px) {
+            .ms-logo {
+                padding-top: 30px;
+            }
+
+            .header-text {
+                font-size: 40x;
+            }
+
+            .column {
+                float: none;
+                padding-top: 30px;
+                width: 100%;
+            }
+
+            .ms-logo-container {
+                padding-top: 30px;
+                min-width: 480px;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .row {
+                padding: 20px 0px 0 20px;
+                min-width: 480px;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media only screen and (max-width: 1370px) {
+            header {
+                background-color: #55A0E0;
+                background-size: auto 200px;
+            }
+        }
+
+        @media only screen and (max-width: 1230px) {
+            header {
+                background-color: #55A0E0;
+                background-size: auto 200px;
+            }
+
+            .header-text {
+                font-size: 44px;
+            }
+
+            .header-icon {
+                height: 120px;
+                width: 120px;
+            }
+        }
+
+        @media only screen and (max-width: 1000px) {
+            header {
+                background-color: #55A0E0;
+                background-image: none;
+            }
+        }
+
+        @media only screen and (max-width: 632px) {
+            .header-text {
+                font-size: 32px;
+            }
+
+            .row {
+                padding: 10px 0px 0 10px;
+                max-width: 490px !important;
+                min-width: 410px !important;
+            }
+
+            .endpoint {
+                font-size: 25px;
+            }
+
+            .main-text {
+                font-size: 20px;
+            }
+
+            .step-container dl>dd {
+                font-size: 14px;
+            }
+
+            .column {
+                padding-right: 5px;
+            }
+
+            .header-icon {
+                height: 110px;
+                width: 110px;
+            }
+
+            .how-to-iframe {
+                max-width: 480px !important;
+                min-width: 400px !important;
+                height: 650px !important;
+                overflow: hidden;
+            }
+        }
+
+        .remove-frame-height {
+            max-height: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadFrame();
+        });
+        var loadFrame = function () {
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute("id", "iframe");
+            var offLineHTMLContent = "";
+            var frameElement = document.getElementById("how-to-iframe");
+            if (window.navigator.onLine) {
+                iframe.src = 'https://docs.botframework.com/static/abs/pages/f5.htm';
+                iframe.setAttribute("scrolling", "no");
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("width", "100%");
+                iframe.setAttribute("height", "100%");
+                var frameDiv = document.getElementById("how-to-iframe");
+                frameDiv.appendChild(iframe);
+            } else {
+                frameElement.classList.add("remove-frame-height");
+            }
+        };      
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner-container">
+            <div class="header-icon" style="display: inline-block"></div>
+            <div class="header-text" style="display: inline-block">Cards Bot</div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="column" class="main-content-area">
+            <div class="content-title">Your bot is ready!</div>
+            <div class="main-text main-text-p1">You can test your bot in the Bot Framework Emulator<br />
+                by opening the .bot file in the project folder.</div>
+            <div class="main-text download-the-emulator"><a class="ctaLink" href="https://aka.ms/bot-framework-F5-download-emulator"
+                    target="_blank">Download the Emulator</a></div>
+            <div class="main-text">Visit <a class="ctaLink" href="https://aka.ms/bot-framework-F5-abs-home" target="_blank">Azure
+                    Bot Service</a> to register your bot and add it to<br />
+                various channels. The bot's endpoint URL typically looks
+                like this:</div>
+            <div class="endpoint">https://<i>your_bots_hostname</i>/api/messages</div>
+        </div>
+        <div class="column how-to-iframe" id="how-to-iframe"></div>
+    </div>
+    </div>
+    <div class="ms-logo-container">
+        <div class="ms-logo"></div>
+    </div>
+</body>
+
+</html>

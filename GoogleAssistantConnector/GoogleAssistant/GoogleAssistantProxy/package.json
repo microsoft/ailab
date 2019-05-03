@@ -1,0 +1,18 @@
+{
+  "name": "google-assistant-proxy",
+  "version": "1.0.0",
+  "description": "GoogleAssistantProxy",
+  "scripts": {
+    "start": "node server"
+  },
+  "engines": {
+    "node": "~6.10.x"
+  },
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "DirectLineToActionsOnGoogleLib": "file:../DirectLineToActionsOnGoogleLib",
+    "express": "^4.16.4"
+  }
+}
