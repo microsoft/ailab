@@ -1,5 +1,5 @@
 # Google Assistant Proxy
-> [here for English document](docs/index.md)
+> [here for English document](README.md)
 
 Instalando y configurando este servicio proxy, podemos interaccionar con nuestro *Bot Framework* desde *Google Assistant*.
 
