@@ -2,6 +2,8 @@
 
 This lab will show you how to build a bot using the new Microsoft Bot Framework SDK V4, the new Speech unified service and other Cognitive Services. The lab scenario focuses on Contoso Restaurant, a fictional restaurant that wants their customers to be able to make reservations using an interactive bot. In order to accomplish this, customers will need to be able to query information using natural language, QnA Maker and speech cognitive services as Translator Speech, Custom Speech and Speech.
 
+When designing your bot, it is important to take into consideration the [Microsoft's guidelines for responsibly building conversational AI](https://aischool.microsoft.com/en-us/conversational/learning-paths/responsible-conversational-ai/responsible-conversational-ai). Be mindful, as the developer it is your responsibility for how the bot interacts with the user and that you ensure a reliable and secure experience.
+
 ## Setup your environment
 
 ### A) Setup your Azure subscription
@@ -1137,7 +1139,7 @@ Deploy and test custom speech:
 
 ## Adding Speech Translation to your Bot
 
-By combining the Speech Translation with our bot, we can build a solution that can interact with a global audience using speech and different languages. The service also allows to create and deploy customized neural machine translations (NMT), meaning users can start talking to the bot in whatever language they choose and using a system that understands the terminology used in their specific business and industry. For this lab we won't be using the NMT customization feature, instead we will use the Speech to Text translation capabilites from the Speech Services by uploading a prerecorded French audio file. The sample code provides a prebuilt Speech Translation Service that we will use to translate the speech to English and pass the translated transcript to LUIS. Once the bot finishes processing the intent it will respond using audio and French language, for this purpose we will use the Translator Text and the existing Text to Speech capabilities from our bot.
+By combining the Speech Translation with our bot, we can build a solution that can interact with a global audience using speech and different languages. The service also allows to create and deploy customized neural machine translations (NMT), meaning users can start talking to the bot in whatever language they choose and using a system that understands the terminology used in their specific business and industry. For this lab we won't be using the NMT customization feature, instead we will use the Speech to Text translation capabilities from the Speech Services by uploading a prerecorded French audio file. The sample code provides a prebuilt Speech Translation Service that we will use to translate the speech to English and pass the translated transcript to LUIS. Once the bot finishes processing the intent it will respond using audio and French language, for this purpose we will use the Translator Text and the existing Text to Speech capabilities from our bot.
 
 ### A) Create a Translator Text subscription
 
