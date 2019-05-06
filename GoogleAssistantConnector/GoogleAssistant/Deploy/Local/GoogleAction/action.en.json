@@ -1,0 +1,30 @@
+{
+  "locale": "en",
+  "actions": [
+    {
+      "description": "Welcome",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "MAIN_CONVERSATION"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [ "Talk to Bot", "Hi Bot" ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "MAIN_CONVERSATION": {
+      "name": "MAIN_CONVERSATION",
+      "url": "https://73b865e5.ngrok.io",
+      "inDialogIntents": [
+        {
+          "name": "actions.intent.CANCEL"
+        }
+      ],
+      "fulfillmentApiVersion": 2
+    }
+  }
+}

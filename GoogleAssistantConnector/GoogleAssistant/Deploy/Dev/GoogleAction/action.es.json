@@ -1,0 +1,30 @@
+{
+  "locale": "es",
+  "actions": [
+    {
+      "description": "Welcome",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "MAIN_CONVERSATION"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [ "Hablar con Bot", "Hola Bot", "Quiero hablar con Bot", "Ey Bot", "Quiero hablar con Bot" ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "MAIN_CONVERSATION": {
+      "name": "MAIN_CONVERSATION",
+      "url": "https://your-site.azurewebsites.net",
+      "inDialogIntents": [
+        {
+          "name": "actions.intent.CANCEL"
+        }
+      ],
+      "fulfillmentApiVersion": 2
+    }
+  }
+}

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{F1AAB0FF-3B97-4E95-A259-1512D62DB47B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoogleAction", "GoogleAction", "{DACF1A59-1AA5-4F80-8B7C-C1D8D7F076B3}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "GoogleAssistantProxy", "GoogleAssistantProxy\GoogleAssistantProxy.njsproj", "{204F414C-22A8-4379-83F8-F32823A209C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev", "Dev", "{DFE3B4A4-4628-41E0-8EBF-C05B614A1F27}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\Dev\GoogleAction\action.en.json = Deploy\Dev\GoogleAction\action.en.json
+		Deploy\Dev\GoogleAction\action.es.json = Deploy\Dev\GoogleAction\action.es.json
+		Deploy\Dev\GoogleActionDeploy.cmd = Deploy\Dev\GoogleActionDeploy.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{D6C70562-B822-4C16-9F1A-A505D57258D3}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\Local\GoogleAction\action.en.json = Deploy\Local\GoogleAction\action.en.json
+		Deploy\Local\GoogleAction\action.es.json = Deploy\Local\GoogleAction\action.es.json
+		Deploy\Local\GoogleActionDeploy.cmd = Deploy\Local\GoogleActionDeploy.cmd
+		Deploy\Local\GoogleAssistantProxyLocalTest.cmd = Deploy\Local\GoogleAssistantProxyLocalTest.cmd
+	EndProjectSection
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DirectLineToActionsOnGoogleLib", "DirectLineToActionsOnGoogleLib\DirectLineToActionsOnGoogleLib.njsproj", "{7B1FF8B0-B3C8-4690-9270-15F26C407D02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{204F414C-22A8-4379-83F8-F32823A209C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204F414C-22A8-4379-83F8-F32823A209C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204F414C-22A8-4379-83F8-F32823A209C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204F414C-22A8-4379-83F8-F32823A209C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1FF8B0-B3C8-4690-9270-15F26C407D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1FF8B0-B3C8-4690-9270-15F26C407D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1FF8B0-B3C8-4690-9270-15F26C407D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1FF8B0-B3C8-4690-9270-15F26C407D02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DACF1A59-1AA5-4F80-8B7C-C1D8D7F076B3} = {F1AAB0FF-3B97-4E95-A259-1512D62DB47B}
+		{DFE3B4A4-4628-41E0-8EBF-C05B614A1F27} = {DACF1A59-1AA5-4F80-8B7C-C1D8D7F076B3}
+		{D6C70562-B822-4C16-9F1A-A505D57258D3} = {DACF1A59-1AA5-4F80-8B7C-C1D8D7F076B3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {806E9F6E-0CE0-4425-AE6A-A93E847E07BF}
+	EndGlobalSection
+EndGlobal
