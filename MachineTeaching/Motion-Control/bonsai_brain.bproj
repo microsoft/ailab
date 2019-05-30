@@ -1,0 +1,1 @@
+{"training": {"command": "python3 drill_simulator.py", "simulator": "bonsai.ai"}, "files": ["*.ink", "*.py", "*.csv", "LICENSE", "README.md", "drill_data.csv.zip", "requirements.txt"]}
