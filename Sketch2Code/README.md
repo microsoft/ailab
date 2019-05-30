@@ -31,7 +31,7 @@ These elements form the architecture as follows:
 ### Microsoft Custom Vision Model
 The training set used to create the sample model used in the project is located in the Model folder. Each training image has a unique identifier that matches information contained in the dataset.json file. This file contains all the tag information used to train the sample model.
 To create your own model you can use this dataset to start and using the Custom Vision API upload this dataset to your own project.
-You can create your Custom Vision Project at https://customvision.ai
+You can create your Custom Vision Project at https://customvision.ai.
 Once you have created your Custom Vision Project you need to annotate the Key and the Project Name to configure the Azure Function to call use the service.
 
 ### Computer Vision Service
