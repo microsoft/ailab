@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ChatBot.Dialogs;
 using ChatBot.Models;
 using ChatBot.Services;
 using Microsoft.Bot.Builder;
@@ -28,30 +29,27 @@ namespace ChatBot
     public class EchoBot : IBot
     {
         private readonly EchoBotAccessors _accessors;
-        private readonly ILogger _logger;
-        
-        /// <summary>
-        /// Services configured from the ".bot" file.
-        /// </summary>
-        private readonly BotServices _services;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EchoBot"/> class.
-        /// </summary>
-        /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
-        /// <param name="loggerFactory">A <see cref="ILoggerFactory"/> that is hooked to the Azure App Service provider.</param>
-        /// <seealso cref="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1#windows-eventlog-provider"/>
-        public EchoBot(BotServices services, EchoBotAccessors accessors, ILoggerFactory loggerFactory, IOptions<MySettings> config)
+        // Add text to speech service
+
+        // Add Dialogs set
+
+        // Add Luis Recognizer
+
+        public EchoBot(EchoBotAccessors accessors, IOptions<MySettings> config)
         {
-            if (loggerFactory == null)
-            {
-                throw new System.ArgumentNullException(nameof(loggerFactory));
-            }
-
-            _logger = loggerFactory.CreateLogger<EchoBot>();
-            _logger.LogTrace("EchoBot turn start.");
             _accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
+
+            // Initialize the dialogs
+
+            // Initialize the TTSS
+
+            // Initialize the LUIS recognizer
+
+            // Register the dialog
         }
+
+        // Add QnAMaker
 
         /// <summary>
         /// Every conversation turn for our Echo Bot will call this method.
@@ -68,34 +66,19 @@ namespace ChatBot
         /// <seealso cref="IMiddleware"/>
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // Handle Message activity type, which is the main activity type for shown within a conversational interface
-            // Message activities may contain text, speech, interactive cards, and binary or unknown attachments.
-            // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
             if (turnContext.Activity.Type == ActivityTypes.Message)
             {
-                // Get the conversation state from the turn context.
-                var state = await _accessors.CounterState.GetAsync(turnContext, () => new CounterState());
-
-                // Bump the turn count for this conversation.
-                state.TurnCount++;
-
-                // Set the property using the accessor.
-                await _accessors.CounterState.SetAsync(turnContext, state);
-
-                // Save the new turn count into the conversation state.
-                await _accessors.ConversationState.SaveChangesAsync(turnContext);
-
-                // Echo back to the user whatever they typed.
-                var responseMessage = $"Turn {state.TurnCount}: You sent '{turnContext.Activity.Text}'\n";
-                await turnContext.SendActivityAsync(responseMessage);
-            }
-            else
-            {
-                if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate && turnContext.Activity.MembersAdded.FirstOrDefault()?.Id == turnContext.Activity.Recipient.Id)
+                if (!turnContext.Responded)
                 {
-                    var msg = "Hi! I'm a restaurant assistant bot. I can add help you with your reservation.";
-                    await turnContext.SendActivityAsync(msg);
+                    // Handle LUIS intents recognition
                 }
+
+                // Save states in the accessor
+            }
+            else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate && turnContext.Activity.MembersAdded.FirstOrDefault()?.Id == turnContext.Activity.Recipient.Id)
+            {
+                var msg = "Hi! I'm a restaurant assistant bot. I can help you with your reservation.";
+                await turnContext.SendActivityAsync(msg);
             }
         }
     }
