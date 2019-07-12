@@ -1,4 +1,5 @@
 # Google Assistant Proxy
+
 > [here for English document](README.md)
 
 Instalando y configurando este servicio proxy, podemos interaccionar con nuestro *Bot Framework* desde *Google Assistant*.
@@ -18,7 +19,7 @@ Para ello, tenemos que crearnos un projecto en *Action on Google* que apunte a n
 
 ### 2. Publica el proyecto *GoogleAssitantProxy*.
 
-> También puedes probar el proyecto en local utilizando ***ngrok***. Te enseño cómo [aqui](googleAssistantProxy.deploy.local.es.md).
+> También puedes probar el proyecto en local utilizando ***ngrok***. Te enseño cómo [aqui](docs/googleAssistantProxy.deploy.local.es.md).
 >
 > Una vez que hayas probado la solucción, te recomiendo que la integres dentro de tu proyecto y lo despliegues todo junto utilizando *DevOps*.
 
@@ -28,7 +29,7 @@ Para ello, tenemos que crearnos un projecto en *Action on Google* que apunte a n
  con el *key secret* del canal *Direct Line* de tu bot.
  - Asegurate que la versión de Node sea al menos la 7.10.1 (en Azure mediante el *setting* **WEBSITE_NODE_DEFAULT_VERSION**)
 
-> Te enseño como [aqui](Azure.settings.es.md)
+> Te enseño como [aqui](docs/Azure.settings.es.md)
 
 ### 4. Configura las plantillas *actions.json*
    
@@ -90,12 +91,14 @@ Actualiza las **plantillas de *GoogleAction*** con la url de tu *GoogleAssitantP
  ### 7. Configura *GoogleAssitantProxy*
  Ahora que tenemos toda la infraestructura configurada, vamos a configurar nuestro proxy para que se adapte mejor a nuestro bot.
 
- - Mensajes de bienvenida, etc. [aqui](googleAssistantProxy.messages.es.md)
- - Otros posibles settings. [aqui](googleAssistantProxy.settings.es.md)
+ - Mensajes de bienvenida, etc. [aqui](docs/googleAssistantProxy.messages.es.md)
+ - Otros posibles settings. [aqui](docs/googleAssistantProxy.settings.es.md)
 
  ## Agradecimientos
  Muchas gracias a *Capgemini* por el impresionante trabajo que realizaron [aquí](https://github.com/Capgemini-AIE/bot-framework-actions-on-google). Este código está inspirado en su trabajo.
 
  A [@juliapiedrahita](https://twitter.com/juliapiedrahita) por empezar este proyecto y dejarme el trabajo facil.
+
+ Por Alberto Fraj ([@alfraso](https://twitter.com/Alfraso)).
 
 

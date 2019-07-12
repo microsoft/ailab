@@ -12,12 +12,12 @@ Podemos hacerlo de dos formas:
    ```
 - En las propiedades del proyecto ***GoogleAssistantProxy*** (recomendado).
 
-  ![Opciones del proyecto](/docs/images/vs-proyectOptions.png)
+  ![Opciones del proyecto](images/vs-proyectOptions.png)
 
 ## 2- Ejecutar el proyecto *GoogleAssistantProxy* en modo debug.
 Te deberia abrir la consola de *node.js*  indicandote que se ha inicializado el *middelware* de *express* *directLineToActionsOnGoogle* (que es el otro proyecto ;-) ).
 
-![consola node.js](/docs/images/node.js-console.png)
+![consola node.js](images/node.js-console.png)
 
 > Al inicializar nuestra librería, te muestra por consola los mensajes que has configurado.
 
@@ -26,7 +26,7 @@ Ahora que tenemos nuestro proxy ejecutándose en un puerto local (por defecto el
 
 Para simplificar la configuración, he añadido el comando ***GoogleAssistantProxyLocalTest.cmd*** que directamente genera la url sobre el puerto 1337. Está en  Sólo tienes en la carperta *Deploy\Local* de la solución.
 
-![ngrog](/docs/images/vs-ngrog.png)
+![ngrog](images/vs-ngrog.png)
 
 > Las urls que nos genera son las que aparacen en ***Forwarding***. Más concretamente la url segura https.
 
@@ -68,4 +68,4 @@ otra para español).
 }
    ```
 
-Ahora solo queda continuar con los pasos de la [guía rápida](index.es.md).
+Ahora solo queda continuar con los pasos de la [guía rápida](../readme.es-es.md).
