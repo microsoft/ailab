@@ -1,4 +1,5 @@
 # Google Assistant Proxy
+
 > [here for Spanish document](README.es-es.md)
 
 By installing and configuring this proxy service, we can interact with our *Bot Framework* from *Google Assistant*
@@ -81,7 +82,7 @@ Update **templates form *GoogleAction*** with url from your *GoogleAssitantProxy
   > ![Actions on Google settings](docs/images/Actions-Settings.png) ![Actions on Google project](docs/images/Actions-Project.png)
 
  ### 6. Check if it works 
-  Test in the simulator of the[console](https://console.actions.google.com) of 'Actions for Google' and see if it responds.
+  Test in the simulator of the [console](https://console.actions.google.com) of 'Actions for Google' and see if it responds.
 
 > You can see the ***console in Azure*** in *Advanced Tools*, *Log streaming*
 >
@@ -97,6 +98,8 @@ Update **templates form *GoogleAction*** with url from your *GoogleAssitantProxy
  ## Recognition 
  Many thanks to *Capgemini* for the very impressive work they have carried out [here](https://github.com/Capgemini-AIE/bot-framework-actions-on-google). This code was inspired by their work. 
 
- To [@juliapiedrahita](https://twitter.com/juliapiedrahita) for starting this project and making the work easier. 
+ To [@juliapiedrahita](https://twitter.com/juliapiedrahita) for starting this project and making the work easier.
+
+ By Alberto Fraj ([@alfraso](https://twitter.com/Alfraso)).
 
 

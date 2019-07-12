@@ -5,9 +5,9 @@
 
 2. Pincha en la opción *Application settings* en la sección *Settings*.
 
-   ![Azure App Service](/docs/images/Azure-AppService.png)
+   ![Azure App Service](images/Azure-AppService.png)
 3. Baja hasta la sección *Application settings* y añade los siguientes valores:
    - **DIRECT_LINE_SECRET**: *key secret* del canal *Direct Line* de tu bot
    - **WEBSITE_NODE_DEFAULT_VERSION**: 7.10.1
 
-   ![Azure Application settings](/docs/images/Azure-AppSettings.png)
+   ![Azure Application settings](images/Azure-AppSettings.png)
