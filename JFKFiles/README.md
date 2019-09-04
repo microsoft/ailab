@@ -89,7 +89,7 @@ Follow the next steps to create the resources:
 
 1. Click the following link to deploy the template: // TODO: Replace template url
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FAISchoolTutorials%2Fmaster%2Fjfkfiles%2Fazuredeploy.json" rel="nofollow">
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FAzureSearch_JFK_Files%2Fmaster%2Fazuredeploy.json" rel="nofollow">
      <img src="https://camo.githubusercontent.com/9285dd3998997a0835869065bb15e5d500475034/687474703a2f2f617a7572656465706c6f792e6e65742f6465706c6f79627574746f6e2e706e67" data-canonical-src="http://azuredeploy.net/deploybutton.png" style="max-width:100%;">
     </a>
 
@@ -255,7 +255,6 @@ if (requestRecords == null)
 8. Add the following code at the end of the method, this will process all the records and put the results in the output:
 ```
 // Process each record and set the cryptonym to the output if found
-CryptonymLinker cryptonymLinker = new CryptonymLinker(executionContext.FunctionAppDirectory);
 WebApiSkillResponse response = WebApiSkillHelpers.ProcessRequestRecords(skillName, requestRecords,
     (inRecord, outRecord) => {
         string word = inRecord.Data["word"] as string;
@@ -297,9 +296,8 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 1. After selecting SSL, ensure the **Minimum TLS version** is set to 1.0.
   > [!ALERT] TLS 1.2 functions are not yet supported as custom skills.
 1. Click on the **Overview** option.
-1. Click on **Application settings**.
-1. Scroll down to the **Application settings** section.
-1. Click on **Add new setting** and add the following setting:
+1. Click on **Configuration**.
+1. Click on **+ New Application Settings Verify** and add the following setting:
 
     * name: `MSDEPLOY_RENAME_LOCKED_FILES`.
     * value: `1`.
@@ -344,7 +342,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
   ]
 }
 ```
-    > [!NOTE] Replace the `[function_app_name]` and `[default_host_key]` with the values used in the previous section.
+> [!NOTE] Replace the `[function_app_name]` and `[default_host_key]` with the values used in the previous section.
 1. Click on **Send** and wait for the response. For a successful request, you should see status code `204 No Content`.
 1. Click the **Get Skillset** request from the collection in **Postman**.
 1. Review the request url and replace the value **[skillset_name]** with `jfklabskillset`.
