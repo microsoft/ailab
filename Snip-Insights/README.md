@@ -98,7 +98,7 @@ This project uses some third-party assets with a license that requires attributi
 - [Nerdbank.GitVersioning](https://github.com/aarnott/Nerdbank.GitVersioning): by Andrew Arnott 
 - [Newtonsoft.Json](https://www.newtonsoft.com/json): by James Newton-King
 - [Polly](https://github.com/App-vNext/Polly): by Michael Wolfenden
-- [Refit](https://github.com/reactiveui/refit): by Paul Betts
+- [Refit](https://github.com/reactiveui/refit): by Anaïs Betts and Oren Novotny
 - [SixLabors.ImageSharp](https://github.com/SixLabors/ImageSharp): by Six Labors
 
 ## Code of Conduct
