@@ -1,0 +1,26 @@
+﻿<Window
+    x:Class="Speaker.Recorder.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:Speaker.Recorder.Views"
+    xmlns:vm="clr-namespace:Speaker.Recorder.ViewModels"
+    Title="Speaker Recorder"
+    MinWidth="1280"
+    MinHeight="720"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
+    Background="{StaticResource Primary3Brush}"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:RecordViewModel}">
+            <views:RecordView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PlayerViewModel}">
+            <views:PlayerView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid x:Name="MainContent" />
+</Window>

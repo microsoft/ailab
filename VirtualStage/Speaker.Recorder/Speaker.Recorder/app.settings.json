@@ -1,0 +1,46 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "Serilog": {
+    "MinimumLevel": "Debug",
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "log.txt",
+          "rollingInterval": "Day"
+        }
+      }
+    ]
+  },
+  "Kinect": {
+    "DeviceIndex": 0,
+    "Device": {
+      "CameraFPS": "FPS30",
+      "ColorFormat": "ColorMJPG",
+      "ColorResolution": "R1080p",
+      "DepthMode": "NFOV_Unbinned",
+      "SynchronizedImagesOnly": true
+    },
+    "Record": {
+      "MinRecordTime": "00:00:10",
+      "ExposureFixTime": "00:00:02",
+      "StayOutMessageTime": "00:00:05",
+      "YouCanStartMessageTime": "00:00:03",
+      "PresentationSavedMessageTime": "00:00:03"
+    }
+    //"PlaybackFile": "AZURE_KINECT_PLAYBACK_FILE"
+  },
+  "Data": {
+    //"UploadRetries": 10,
+    //"DefaultConnectionLimit": 1,
+    //"SessionsIdentifier": "",
+    //"RecordingFolder": "C:\\Temp\\Recorded Sessions",
+    //"AzureBlobConnection": "AZURE_BLOB_CONNECTION_STRING"
+  }
+}
