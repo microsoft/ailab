@@ -7,6 +7,7 @@ It consists of two applications:
 
 * [__Speaker Recorder App__](#speaker-recorder-app): allows you to record a lecture using an Azure Kinect device.
 * [__Background Matting__](#background-matting): processes the video to remove the background with great quality.
+  * [__Kinect Mask Generator__](#kinect-mask-generator): CLI that generates the body segmentation from an Azure Kinect Video
 
 ## How to capture videos
 
@@ -81,7 +82,7 @@ Given a set of videos recorded with Azure Kinect in which a speaker gives a talk
 
 This work is based on [Background Matting: The World is Your Green Screen](http://grail.cs.washington.edu/projects/background-matting/)
 
-## Improvements over the original work
+### Improvements over the original work
 
 By using the Azure Kinect sensor depth capabilities to segment the speaker we
 improve the precision of the background matting, and the errors reduce
@@ -181,3 +182,7 @@ Additional parameters:
                         Input videos extension. Only if not using Azure Kinect
                         videos.
 ```
+
+#### Kinect Mask Generator
+
+To get the body segmentation from the Azure Kinect Video, the app uses a small CLI tool written in C++. [Check it out](KinectMaskGenerator/)!.
