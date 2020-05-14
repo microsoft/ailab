@@ -59,7 +59,7 @@ namespace Speaker.Recorder.Views
             }
 
             ((PlayerViewModel)this.DataContext).IsPlaying = false;
-            this.player.SetVideos(session.KinectVideoPaths?.Concat(new[] { session.PresentationVideoPath }).Where(x => x != null).ToArray());
+            this.player.SetVideos(session?.KinectVideoPaths?.Concat(new[] { session?.PresentationVideoPath }).Where(x => x != null).ToArray());
             var time = TimeSpan.Zero;
             TimelineSlider.Value = time.TotalSeconds;
             TextTimeLine.Text = time.ToString(@"hh\:mm\:ss", CultureInfo.InvariantCulture);
