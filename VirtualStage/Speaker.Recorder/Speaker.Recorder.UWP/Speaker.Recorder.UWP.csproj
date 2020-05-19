@@ -49,13 +49,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ChangeAttachedPropertyAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\TypeConverterHelper.cs" />
-    <Compile Include="Controls\VideoButton.cs" />
-    <Compile Include="VideosPlayer.xaml.cs">
-      <DependentUpon>VideosPlayer.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -93,15 +87,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\Speaker.Recorder\Resources\StylesShared.xaml">
-      <Link>StylesShared.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="VideosPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <ProjectReference Include="..\Speaker.Recorder.UWP.Controls\Speaker.Recorder.UWP.Controls.csproj">
+      <Project>{3edc4b42-b0aa-469d-981b-a6edc01dd5ee}</Project>
+      <Name>Speaker.Recorder.UWP.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

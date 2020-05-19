@@ -1,0 +1,220 @@
+﻿<UserControl
+    x:Class="Speaker.Recorder.UWP.VideosPlayer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:local="using:Speaker.Recorder.UWP.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="VideosPlayerControl"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StylesShared.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="VideoButtonStyle" TargetType="local:VideoButton">
+                <Setter Property="Background" Value="{StaticResource Primary3Brush}" />
+                <Setter Property="Foreground" Value="{StaticResource Primary4Brush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Primary2Brush}" />
+                <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+                <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+                <Setter Property="FocusVisualMargin" Value="-7,-3,-7,-3" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="local:VideoButton">
+                            <Grid x:Name="RootGrid" Margin="{TemplateBinding Padding}">
+                                <controls:DropShadowPanel
+                                    x:Name="OverBorder"
+                                    Margin="-4"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    Background="Transparent"
+                                    BlurRadius="16"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    OffsetX="0"
+                                    OffsetY="0"
+                                    ShadowOpacity=".5"
+                                    Visibility="Collapsed"
+                                    Color="{StaticResource Primary2Color}">
+                                    <Grid Background="Transparent" />
+                                </controls:DropShadowPanel>
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    AutomationProperties.AccessibilityView="Raw"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTransitions="{TemplateBinding ContentTransitions}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    TextWrapping="Wrap" />
+                                <Grid x:Name="OverlayContainer" Visibility="Collapsed">
+                                    <Border Background="{TemplateBinding Background}" Opacity="0.9" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{TemplateBinding FontFamily}"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        FontStretch="{TemplateBinding FontStretch}"
+                                        FontStyle="{TemplateBinding FontStyle}"
+                                        FontWeight="{TemplateBinding FontWeight}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Text="{TemplateBinding Title}" />
+                                </Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverBorder" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverlayContainer" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed" />
+                                        <VisualState x:Name="Disabled" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverBorder" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverlayContainer" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Indeterminate" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" MaxWidth="800" />
+            <ColumnDefinition Width="Auto" MaxWidth="800" />
+            <ColumnDefinition Width="Auto" MaxWidth="800" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".66*" />
+            <RowDefinition Height=".33*" MinHeight="200" />
+        </Grid.RowDefinitions>
+        <local:VideoButton
+            x:Name="MainMediaElementButton"
+            Title="View video"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            IsChecked="True"
+            Style="{StaticResource VideoButtonStyle}">
+            <MediaPlayerElement x:Name="MainMediaPlayer" />
+            <b:Interaction.Behaviors>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=MainMediaElementButton}" Value="True">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="2" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="4" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="0" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="0" />
+                    <i:CallMethodAction MethodName="MoveMainToBack" TargetObject="{Binding ElementName=VideosPlayerControl}" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="false" />
+                </i:DataTriggerBehavior>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=MainMediaElementButton}" Value="False">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="1" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0,16,16,16" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="true" />
+                </i:DataTriggerBehavior>
+            </b:Interaction.Behaviors>
+        </local:VideoButton>
+
+        <local:VideoButton
+            x:Name="SecondMediaElementButton"
+            Title="View video"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,16,16,16"
+            Style="{StaticResource VideoButtonStyle}">
+            <MediaPlayerElement x:Name="SecondMediaPlayer" />
+            <b:Interaction.Behaviors>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=SecondMediaElementButton}" Value="True">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="2" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="4" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="0" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="0" />
+                    <i:CallMethodAction MethodName="MoveSecondToBack" TargetObject="{Binding ElementName=VideosPlayerControl}" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="false" />
+                </i:DataTriggerBehavior>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=SecondMediaElementButton}" Value="False">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="2" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="1" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0,16,16,16" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="true" />
+                </i:DataTriggerBehavior>
+            </b:Interaction.Behaviors>
+        </local:VideoButton>
+
+        <local:VideoButton
+            x:Name="ThirdMediaElementButton"
+            Title="View PowerPoint"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,16,16,16"
+            Style="{StaticResource VideoButtonStyle}">
+            <MediaPlayerElement x:Name="ThirdMediaPlayer" />
+            <b:Interaction.Behaviors>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=ThirdMediaElementButton}" Value="True">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="2" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="4" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="0" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="0" />
+                    <i:CallMethodAction MethodName="MoveThirdToBack" TargetObject="{Binding ElementName=VideosPlayerControl}" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="false" />
+                </i:DataTriggerBehavior>
+                <i:DataTriggerBehavior Binding="{Binding IsChecked, ElementName=ThirdMediaElementButton}" Value="False">
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.RowSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.ColumnSpan" Value="1" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Column" Value="3" />
+                    <local:ChangeAttachedPropertyAction PropertyName="Grid.Row" Value="1" />
+                    <i:ChangePropertyAction PropertyName="Margin" Value="0,16,16,16" />
+                    <i:ChangePropertyAction PropertyName="IsHitTestVisible" Value="true" />
+                </i:DataTriggerBehavior>
+            </b:Interaction.Behaviors>
+        </local:VideoButton>
+    </Grid>
+</UserControl>

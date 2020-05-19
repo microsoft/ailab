@@ -61,6 +61,7 @@
     <PackageReference Include="System.Management" Version="4.7.0" />
     <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <ProjectReference Include="..\Speaker.Recorder.UWP.Controls\Speaker.Recorder.UWP.Controls.csproj" />
     <ProjectReference Include="..\Speaker.Recorder.UWP\Speaker.Recorder.UWP.csproj" />
     <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
