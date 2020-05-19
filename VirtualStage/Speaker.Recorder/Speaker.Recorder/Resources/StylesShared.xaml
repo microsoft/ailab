@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="AppFontFamily">Segoe UI</FontFamily>
+
+    <Style x:Key="Header1Style" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="LineHeight" Value="48" />
+    </Style>
+    <Style x:Key="Header2Style" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="LineHeight" Value="36" />
+    </Style>
+    <Style x:Key="Header3Style" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="LineHeight" Value="30" />
+    </Style>
+    <Style x:Key="BodyMediumStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="LineHeight" Value="26" />
+    </Style>
+    <Style x:Key="BodySmallStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="LineHeight" Value="24" />
+    </Style>
+    <Style x:Key="BodyExtraSmallStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="18" />
+    </Style>
+
+    <Color x:Key="Primary1Color">#2678D4</Color>
+    <Color x:Key="Primary2Color">#50E6FF</Color>
+    <Color x:Key="Primary3Color">#031224</Color>
+    <Color x:Key="SecondaryDark1Color">#152333</Color>
+    <Color x:Key="SecondaryDark2Color">#283544</Color>
+    <Color x:Key="SecondaryGrey1Color">#4E5965</Color>
+
+    <SolidColorBrush x:Key="Primary1Brush" Color="{StaticResource Primary1Color}" />
+    <SolidColorBrush x:Key="Primary2Brush" Color="{StaticResource Primary2Color}" />
+    <SolidColorBrush x:Key="Primary3Brush" Color="{StaticResource Primary3Color}" />
+    <SolidColorBrush x:Key="Primary4Brush" Color="#FFFFFF" />
+
+
+    <SolidColorBrush x:Key="SecondaryDark1Brush" Color="{StaticResource SecondaryDark1Color}" />
+    <SolidColorBrush x:Key="SecondaryDark2Brush" Color="{StaticResource SecondaryDark2Color}" />
+
+    <SolidColorBrush x:Key="SecondaryGrey1Brush" Color="{StaticResource SecondaryGrey1Color}" />
+    <SolidColorBrush x:Key="SecondaryGrey2Brush" Color="#818891" />
+    <SolidColorBrush x:Key="SecondaryGrey3Brush" Color="#B3B8BD" />
+
+    <SolidColorBrush x:Key="SecondaryLight1Brush" Color="#E5E7E9" />
+    <SolidColorBrush x:Key="SecondaryLight2Brush" Color="#F2F3F4" />
+    <SolidColorBrush x:Key="SecondaryLight3Brush" Color="#F7F8F8" />
+
+    <SolidColorBrush x:Key="SecondaryRed1Brush" Color="#FE392F" />
+
+</ResourceDictionary>

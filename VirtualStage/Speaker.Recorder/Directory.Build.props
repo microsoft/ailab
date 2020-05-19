@@ -1,0 +1,5 @@
+<Project>
+    <PropertyGroup>
+        <RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory)\ThirdParty\NuGetFeed;https://dotnet.myget.org/F/uwpcommunitytoolkit/api/v3/index.json</RestoreAdditionalProjectSources>
+    </PropertyGroup>
+</Project>
