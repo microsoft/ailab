@@ -483,7 +483,7 @@
       <Version>5.6.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Data.OData">
-      <Version>5.6.2</Version>
+      <Version>5.8.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Data.Services.Client">
       <Version>5.6.2</Version>
