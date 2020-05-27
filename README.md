@@ -20,6 +20,7 @@ AI Lab is developed in partnership with Microsoft’s AI School and the Microsof
 - [Drones](https://www.microsoft.com/en-us/ai/ai-lab-airsim-drones)
 - [Style Transfer](https://www.ailab.microsoft.com/experiments/99907c05-d487-450b-9ee9-901b40205e81)
 - [MRC](https://www.microsoft.com/en-us/ai/ai-lab-machine-reading)
+- [Virtual Stage](https://www.microsoft.com/en-us/ai/ai-lab-virtual-stage)
 
 
 # Contributing
