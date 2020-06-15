@@ -16,7 +16,7 @@ def fixed_split(videos, thresholds, mask_suffix, overlap=0):
 
         threshold = int(thresholds[i])
         iup_region = f"iw:{threshold + overlap}:0:0"
-        idw_region = f"iw:ih-{threshold + overlap}:0:{threshold - overlap}"
+        idw_region = f"iw:ih-{threshold}+{overlap}:0:{threshold - overlap}"
 
         # crop color images
         code = os.system(
