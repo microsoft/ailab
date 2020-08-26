@@ -10,16 +10,16 @@ AI Lab helps our large fast-growing community of developers get started on AI. Y
 AI Lab is developed in partnership with Microsoft’s AI School and the Microsoft Research (MSR) AI organization.
 
 # Microsoft AI Lab Projects
-- [Spektacom "Power Bat"](https://www.ailab.microsoft.com/experiments/ce508ed3-cea9-41eb-a08e-ab4727556f7b)
-- [Snip Insights](https://www.ailab.microsoft.com/experiments/32e85f94-3fdd-4a4b-b1ca-9f4cdf47feb6)
-- [Intelligent Robotics](https://www.ailab.microsoft.com/experiments/f508a96d-3255-474b-a769-d5b2cf2bb9d6)
-- [Sketch 2 Code](https://www.ailab.microsoft.com/experiments/30c61484-d081-4072-99d6-e132d362b99d)
-- [Build a bot](https://www.ailab.microsoft.com/experiments/1af37019-42f1-4a74-baa8-0ec847419c02)
-- [Drawing Bot](https://www.ailab.microsoft.com/experiments/1e9e1eef-2ab1-41f1-b341-0118f414bd78)
-- [JFK Files](https://www.ailab.microsoft.com/experiments/7d6b0652-51dc-440d-a12a-481f28525143)
-- [Drones](https://www.ailab.microsoft.com/experiments/92262b36-de2e-444e-86ca-8bcb8bd02454)
-- [Style Transfer](https://www.ailab.microsoft.com/experiments/99907c05-d487-450b-9ee9-901b40205e81)
-- [MRC](https://www.ailab.microsoft.com/experiments/ef90706b-e822-4686-bbc4-94fd0bca5fc5)
+- [Spektacom "Power Bat"](https://www.microsoft.com/en-us/ai/ai-lab-spektakom)
+- [Snip Insights](https://www.microsoft.com/en-us/ai/ai-lab-snip-insights)
+- [Intelligent Robotics](https://www.microsoft.com/en-us/ai/ai-lab-intelligent-robotics)
+- [Sketch 2 Code](https://www.microsoft.com/en-us/ai/ai-lab-sketch2code)
+- [Build a bot](https://aischool.microsoft.com/en-us/conversational/learning-paths)
+- [Drawing Bot](https://www.microsoft.com/en-us/research/project/vision-and-language-intelligence/)
+- [JFK Files](https://www.microsoft.com/en-us/ai/ai-lab-jfk-files)
+- [Drones](https://www.microsoft.com/en-us/ai/ai-lab-airsim-drones)
+- [Style Transfer](https://aischool.microsoft.com/en-us/machine-learning/learning-paths/style-transfer-lab)
+- [MRC](https://www.microsoft.com/en-us/ai/ai-lab-machine-reading)
 
 
 # Contributing
