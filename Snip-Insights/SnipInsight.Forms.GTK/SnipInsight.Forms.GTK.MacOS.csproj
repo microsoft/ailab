@@ -271,7 +271,7 @@
       <Version>4.5.0-rc1</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
-      <Version>4.3.0</Version>
+      <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Primitives">
       <Version>4.3.0</Version>
