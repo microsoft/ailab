@@ -1,3 +1,7 @@
+[![.github/workflows/Combined.yml](https://github.com/Creakthistle/ailab/actions/workflows/Combined.yml/badge.svg?branch=Creakthistle-path-1&event=check_run)](https://github.com/Creakthistle/ailab/actions/workflows/Combined.yml)[![.github/workflows/Combined.yml](https://github.com/Creakthistle/ailab/actions/workflows/Combined.yml/badge.svg?branch=Creakthistle-path-1&event=check_run)](https://github.com/Creakthistle/ailab/actions/workflows/Combined.yml) 
+ 
+ 
+ 
  # Allows you to run this workflow manually from the Actions tab
  - name: workflow_dispatch
     runs-on: ubuntu-latest
