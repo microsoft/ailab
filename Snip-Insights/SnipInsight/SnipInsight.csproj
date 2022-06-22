@@ -498,7 +498,7 @@
       <Version>5.4.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="Stateless">
       <Version>2.4.0</Version>
