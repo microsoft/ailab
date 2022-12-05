@@ -282,6 +282,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 1. Right-click the **JfkWebApiSkills** project.
 1. Click **Publish**.
 1. Mark the option Select Existing.
+  > [!NOTE] If this option is missing, select **Tools - Get Tools and Features** to add support for Azure development workloads.
 1. Click **Publish**.
 1. Select the Web App previously created for the function: `jfk-lab-function-app`.
 1. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
