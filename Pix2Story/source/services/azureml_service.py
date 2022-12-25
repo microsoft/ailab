@@ -73,7 +73,7 @@ class AzureMlService():
             service.wait_for_deployment(show_output = True)
             return service
         aks_config = AksWebservice.deploy_configuration(auth_enabled=True, max_request_wait_time=75000, 
-            replica_max_concurrent_requests=100,autoscale_enabled=False,num_replicas=15)
+            autoscale_enabled=False,num_replicas=15)
         aks_service_name = service_config['name']
         aks_service = Webservice.deploy_from_image(workspace = self.__ws,
                                                     name = aks_service_name,
