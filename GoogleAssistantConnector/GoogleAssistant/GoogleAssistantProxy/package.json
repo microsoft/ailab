@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "DirectLineToActionsOnGoogleLib": "file:../DirectLineToActionsOnGoogleLib",
-    "express": "^4.16.4"
+    "express": "^4.18.2"
   }
 }
