@@ -199,7 +199,7 @@
       <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>11.0.2</Version>
+      <Version>13.0.2</Version>
     </PackageReference>
     <PackageReference Include="Polly">
       <Version>6.0.1</Version>
