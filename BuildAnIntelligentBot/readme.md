@@ -1135,7 +1135,7 @@ The Bot Builder SDK enables chitchat capabilities by using the PersonalityChat m
 
     > **Note:** Review the image below to see which utterances you can try and what output to expect in each case.
 
-    ![personality chat samples](./resources/personality_chat_samples.png)  
+    ![personality chat samples](./resources/personality_chat_samples.png)
 
 ## Adding Speech support (Text-to-Speech and Speech-to-Text)
 

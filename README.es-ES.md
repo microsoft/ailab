@@ -24,7 +24,7 @@ AI Lab is developed in partnership with Microsoft’s AI School and the Microsof
 
 # Contribución
 
-Este proyecto agradece contribuciones y sugerencias. Casi todas las contributiones requiere aceptar al 
+Este proyecto agradece contribuciones y sugerencias. Casi todas las contributiones requiere aceptar al
 Contributor License Agreement (CLA) declarando que yo tienes el derecho de, y de echo lo haces, darnos el consentimiento de usar tu contribución. Para más detalles, visita https://cla.microsoft.com.
 
 Cuando subes una pull request, un CLA-bot determinará automáticamente si necesitas proporcionar un CLA y decorar la PR adecuadamente (por ejemplo: etiqueta, comentario). Sigue las instrucciones proporcionadas por el bot. Solo tienes que hacer esto una vez por todos tus repositorios usando nuestro CLA.
